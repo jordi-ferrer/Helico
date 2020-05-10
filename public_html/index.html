@@ -16,7 +16,7 @@ body{
   color:white;
 }
 .terra{
-	background-color:CadetBlue;
+	background-color: gray;
 }
 #bloc1,#bloc2,#bloc3,#bloc4,#bloc5,#bloc6{
 	position: absolute;
@@ -46,12 +46,12 @@ heli = new rectvol();
 
 /*bloc position & speed*/
 // 					left, top,width,height,vx,vy
-bc1 = new rectvol(1000, 400+Math.random()*100, 200, 200, -10, 0);
-bc2 = new rectvol(1200, 400+Math.random()*100, 200, 200, -10, 0);
-bc3 = new rectvol(1400, 400+Math.random()*100, 200, 200, -10, 0);
-bc4 = new rectvol(1600, 400+Math.random()*100, 200, 200, -10, 0);
-bc5 = new rectvol(1800, 400+Math.random()*100, 200, 200, -10, 0);
-bc6 = new rectvol(2000, 400+Math.random()*100, 200, 200, -10, 0);
+bc1 = new rectvol();
+bc2 = new rectvol();
+bc3 = new rectvol();
+bc4 = new rectvol();
+bc5 = new rectvol();
+bc6 = new rectvol();
 
 var nomsb = ["bloc1","bloc2","bloc3","bloc4","bloc5","bloc6"];
 var bloc = [bc1,bc2,bc3,bc4,bc5,bc6];
@@ -82,12 +82,12 @@ function carrega() {
 	//reinitializing helicopter
 	heli.width = 50; heli.height = 25; heli.x = 200; heli.y=200; heli.vx=0; heli.vy=0;
 	//reinitializing the blocs
-	bc1.width = 100; bc1.height = 200; bc1.x=1000; bc1.y= 400+Math.random()*100; bc1.vx=-10; bc1.vy=0;
-	bc2.width = 100; bc2.height = 200; bc2.x=1200; bc2.y= 400+Math.random()*100; bc2.vx=-10; bc2.vy=0;
-	bc3.width = 100; bc3.height = 200; bc3.x=1400; bc3.y= 400+Math.random()*100; bc3.vx=-10; bc3.vy=0;
-	bc4.width = 100; bc4.height = 200; bc4.x=1600; bc4.y= 400+Math.random()*100; bc4.vx=-10; bc4.vy=0;
-	bc5.width = 100; bc5.height = 200; bc5.x=1800; bc5.y= 400+Math.random()*100; bc5.vx=-10; bc5.vy=0;
-	bc6.width = 100; bc6.height = 200; bc6.x=2000; bc6.y= 400+Math.random()*100; bc6.vx=-10; bc6.vy=0;
+	bc1.width = 100; bc1.height = 400; bc1.x=1000; bc1.y= 400+Math.random()*100; bc1.vx=-10; bc1.vy=0;
+	bc2.width = 100; bc2.height = 400; bc2.x=1200; bc2.y= 400+Math.random()*100; bc2.vx=-10; bc2.vy=0;
+	bc3.width = 100; bc3.height = 400; bc3.x=1400; bc3.y= 400+Math.random()*100; bc3.vx=-10; bc3.vy=0;
+	bc4.width = 100; bc4.height = 400; bc4.x=1600; bc4.y= 400+Math.random()*100; bc4.vx=-10; bc4.vy=0;
+	bc5.width = 100; bc5.height = 400; bc5.x=1800; bc5.y= 400+Math.random()*100; bc5.vx=-10; bc5.vy=0;
+	bc6.width = 100; bc6.height = 400; bc6.x=2000; bc6.y= 400+Math.random()*100; bc6.vx=-10; bc6.vy=0;
 	draw();
 	document.getElementById("aux2").innerHTML="hola2";
 	
