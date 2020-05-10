@@ -16,7 +16,7 @@ body{
   color:white;
 }
 .terra{
-	background-color:DarkSalmon;
+	background-color:CadetBlue;
 }
 #bloc1,#bloc2,#bloc3,#bloc4,#bloc5,#bloc6{
 	position: absolute;
@@ -64,7 +64,7 @@ class rectvol extends rect {
 
 /*helicopter position & speed*/
 // 					left,top,width,height,vx,vy
-heli = new rectvol(200, 200, 50, 25, 0, 0);
+heli = new rectvol();
 
 /*bloc position & speed*/
 // 					left, top,width,height,vx,vy
@@ -100,7 +100,16 @@ function restart() {
 }
 
 function carrega() {
-	document.getElementById("aux2").innerHTML="hola";
+	document.getElementById("aux2").innerHTML="carregant...";
+	//reinitializing helicopter
+	heli.width = 50; heli.height = 25; heli.x = 200; heli.y=200; heli.vx=0; heli.vy=0;
+	//reinitializing the blocs
+	bc1.width = 100; bc1.height = 200; bc1.x=1000; bc1.y= 400+Math.random()*100; bc1.vx=-10; bc1.vy=0;
+	bc2.width = 100; bc2.height = 200; bc2.x=1200; bc2.y= 400+Math.random()*100; bc2.vx=-10; bc2.vy=0;
+	bc3.width = 100; bc3.height = 200; bc3.x=1400; bc3.y= 400+Math.random()*100; bc3.vx=-10; bc3.vy=0;
+	bc4.width = 100; bc4.height = 200; bc4.x=1600; bc4.y= 400+Math.random()*100; bc4.vx=-10; bc4.vy=0;
+	bc5.width = 100; bc5.height = 200; bc5.x=1800; bc5.y= 400+Math.random()*100; bc5.vx=-10; bc5.vy=0;
+	bc6.width = 100; bc6.height = 200; bc6.x=2000; bc6.y= 400+Math.random()*100; bc6.vx=-10; bc6.vy=0;
 	draw();
 	document.getElementById("aux2").innerHTML="hola2";
 	
@@ -112,7 +121,6 @@ function move() {
 		gameover();
 		return;
 	}
-	document.getElementById("aux2").innerHTML = "windown inner width: "+ window.innerWidth + " window.innerHeight: "+window.innerHeight;
 	//move
 	if(mou) {
 		moveheli();
@@ -141,6 +149,7 @@ function move() {
 	draw()
 	
 	/*texts auxiliars*/
+	document.getElementById("aux2").innerHTML = "windown inner width: "+ window.innerWidth + " window.innerHeight: "+window.innerHeight;
 	document.getElementById("aux1").innerHTML="heli vy:" +Math.round(heli.vy) + "<br> heli y:" + 
 	Math.round(heli.y) + "<br>bloc vx:" +Math.round(bc1.vx) + "<br>pos x bloc:" +Math.round(bc1.x) +
 	"<br> bloc vy: " +Math.round(bc1.vy) + "<br> bloc y: " + Math.round(bc1.y);
@@ -202,7 +211,7 @@ function movebloc(rect, i){
 
 	rect.x = rect.x + rect.vx;
 	if(rect.x < -rect.width) {
-		rect.x = 990 ;
+		rect.x = 1100 ;
 		rect.y = bloc[i].y +  Math.floor(Math.random() * (100)-50 ) ;
 		if(rect.y<200) rect.y=200;
 		if(rect.y>450) rect.y=450;
