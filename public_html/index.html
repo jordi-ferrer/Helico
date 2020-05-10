@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html  onclick="volare('helicop')" onkeydown="volare('helicop')">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 <style>
+body{
+	background-color:LightCyan;
+}
 
-#helicop {
+#helicop {   
   position: absolute;
   top:200px;
   left:200px;
@@ -16,53 +18,26 @@
 .terra{
 	background-color:DarkSalmon;
 }
-#bloc1{
+#bloc1,#bloc2,#bloc3,#bloc4,#bloc5,#bloc6{
 	position: absolute;
 	height:200px;
 	top:200px;
 	left:150px;
+}
+#gameover{
+	position:absolute;
+	left:200px;
+	top:200px;
+	visibility:hidden;
+	color:red;
 }
 
 </style>
 </head>
 <body onload="carrega();move()">
 
-<script src="js/rect.js"></script>
-<script>
 
-/*class rect {
-  constructor(left,top,width,height) {
-    this.x1 = left;
-	this.y1 = top;
-	this.width1 = width;
-	this.height1 = height;
-  }
-  get x() {
-    return this.x1;
-  }
-  get y() {
-    return this.y1;
-  }
-  get width() {
-    return this.width1;
-  }
-  get height() {
-    return this.height1;
-  }
-  
-  set x(ep) {
-    this.x1 = ep;
-  }
-  set y(ep) {
-    this.y1 = ep;
-  }
-  set width(ep) {
-    this.width1 = ep;
-  }
-  set height(ep) {
-    this.height1 = ep;
-  }
-}*/
+<script>
 
 class rectvol extends rect {
   constructor(left,top,width,height,vx,vy) {
@@ -93,22 +68,59 @@ heli = new rectvol(200, 200, 50, 25, 0, 0);
 
 /*bloc position & speed*/
 // 					left, top,width,height,vx,vy
-bc1 = new rectvol(1000, 200, 200, 200, -10, 0);
+bc1 = new rectvol(1000, 400+Math.random()*100, 200, 200, -10, 0);
+bc2 = new rectvol(1200, 400+Math.random()*100, 200, 200, -10, 0);
+bc3 = new rectvol(1400, 400+Math.random()*100, 200, 200, -10, 0);
+bc4 = new rectvol(1600, 400+Math.random()*100, 200, 200, -10, 0);
+bc5 = new rectvol(1800, 400+Math.random()*100, 200, 200, -10, 0);
+bc6 = new rectvol(2000, 400+Math.random()*100, 200, 200, -10, 0);
+
+var nomsb = ["bloc1","bloc2","bloc3","bloc4","bloc5","bloc6"];
+var bloc = [bc1,bc2,bc3,bc4,bc5,bc6];
 
 var mou=false;
+var  sco=0;
+
+function restart() {
+	//reinicialitzant les coordenadees i velocitat del jjjjjjoricopter
+	heli.x = 200; heli.y=200; heli.vx=0; heli.vy=0;
+	
+	//reinicialitzant les coordenades de l'helicopter i els blocs:
+	bc1.x=1000; bc1.y= 400+Math.random()*100;
+	bc2.x=1200; bc2.y= 400+Math.random()*100;
+	bc3.x=1400; bc3.y= 400+Math.random()*100;
+	bc4.x=1600; bc4.y= 400+Math.random()*100;
+	bc5.x=1800; bc5.y= 400+Math.random()*100;
+	bc6.x=2000; bc6.y= 400+Math.random()*100;
+	mou=false;
+	sco=0;
+	document.getElementById("gameover").style.visibility="hidden"; //amaga el botó restart
+	draw();
+	move();
+}
 
 function carrega() {
+	document.getElementById("aux2").innerHTML="hola";
 	draw();
+	document.getElementById("aux2").innerHTML="hola2";
+	
 }
 
 function move() {
-	
-	xoc = checkxoc(heli,bc1);
-	if(xoc) return;
-	
+	//check hit:
+	if( checkxoc(heli,bc1) || checkxoc(heli,bc2) || checkxoc(heli,bc3) || checkxoc(heli,bc4) || checkxoc(heli,bc5) || checkxoc(heli,bc6)  ){
+		gameover();
+		return;
+	}
+	document.getElementById("aux2").innerHTML = "windown inner width: "+ window.innerWidth + " window.innerHeight: "+window.innerHeight;
+	//move
 	if(mou) {
 		moveheli();
-		movebloc();
+		
+		var n = bloc.length;
+		for(var i=0;i<n;i++) {
+			movebloc(bloc[i],i);
+		}
 	}
 		
 	/*check speed limits*/
@@ -133,6 +145,23 @@ function move() {
 	Math.round(heli.y) + "<br>bloc vx:" +Math.round(bc1.vx) + "<br>pos x bloc:" +Math.round(bc1.x) +
 	"<br> bloc vy: " +Math.round(bc1.vy) + "<br> bloc y: " + Math.round(bc1.y);
 	
+	document.getElementById("score").innerHTML = "<b>SCORE "+ sco +" pts</b>"
+	if(mou) sco +=1;
+	
+	if(sco>1000) {
+		var n = bloc.length;
+		for(var i=0;i<n;i++){
+			document.getElementById(nomsb[i]).style.backgroundColor ="DarkSlateBlue";			
+		}
+		if(sco>2000) {
+			var n = bloc.length;
+			for(var i=0;i<n;i++){
+				document.getElementById(nomsb[i]).style.backgroundColor ="darkgreen";			
+			}
+		}
+	}
+	
+	//repeat
 	setTimeout(move, 10); 
 }
 
@@ -141,11 +170,16 @@ function draw() {
 	document.getElementById("helicop").style.left=heli.x+"px";
 	document.getElementById("helicop").style.width=heli.width+"px";
 	document.getElementById("helicop").style.height=heli.height+"px";
+
+	var n = nomsb.length;
+	for(var i=0;i<n;i++){
 	
-	document.getElementById("bloc1").style.top=bc1.y+"px";
-	document.getElementById("bloc1").style.left=bc1.x+"px";
-	document.getElementById("bloc1").style.width=bc1.width+"px";
-	document.getElementById("bloc1").style.height=bc1.height+"px";
+		document.getElementById(nomsb[i]).style.top=bloc[i].y+"px";
+		document.getElementById(nomsb[i]).style.left=bloc[i].x+"px";
+		document.getElementById(nomsb[i]).style.width=bloc[i].width+"px";
+		document.getElementById(nomsb[i]).style.height=bloc[i].height+"px";
+	}
+	
 }
 
 function checkxoc(rect1, rect2) {
@@ -161,11 +195,17 @@ function moveheli(){
 	heli.y = heli.y+heli.vy;
 }
 
-function movebloc(){
-	bc1.x = bc1.x + bc1.vx;
-	if(bc1.x < -bc1.width) {
-		bc1.x = 1000 ;
-		bc1.y = Math.floor(Math.random() * (200+ heli.width) ) ;
+function movebloc(rect, i){
+	if(i==0) { 
+	i = bloc.length-1;
+	} else {i=i-1;}
+
+	rect.x = rect.x + rect.vx;
+	if(rect.x < -rect.width) {
+		rect.x = 990 ;
+		rect.y = bloc[i].y +  Math.floor(Math.random() * (100)-50 ) ;
+		if(rect.y<200) rect.y=200;
+		if(rect.y>450) rect.y=450;
 	}
 	
 }
@@ -176,13 +216,27 @@ function volare(id) {
 	 heli.y += heli.vy;	 
 }
 
+function gameover() {
+	document.getElementById("gameover").style.visibility="visible";
+}
+
 </script>
 
 <div class="terra" id="bloc1"></div>
+<div class="terra" id="bloc2"></div>
+<div class="terra" id="bloc3"></div>
+<div class="terra" id="bloc4"></div>
+<div class="terra" id="bloc5"></div>
+<div class="terra" id="bloc6"></div>
 <div id="helicop">Helicopter</div>
 
+<div id="gameover"> <b>
+	<p>GAME OVER</p></b>
+	<button style ="color:blue" onclick="restart()"><b>restart</b></button>
+</div>
 <p id="aux1"></p>
 <p id="aux2"></p>
+<p id="score"></p>
 
 </body  >
-</html>
+</html> 
