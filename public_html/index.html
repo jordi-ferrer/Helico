@@ -78,8 +78,10 @@ function restart() {
 	mou=false;
 	sco=0;
 	document.getElementById("gameover").style.visibility="hidden"; //amaga el botó restart
-        //document.getElementById("botogameov").disabled=true;
-	//draw();
+        var n = bloc.length;
+            for(var i=0;i<n;i++){
+			document.getElementById(nomsb[i]).style.backgroundColor ="gray";			
+		}
         xocat=false;
 	move();
     }
@@ -240,6 +242,7 @@ function gameover() {
 	<p><b>GAME OVER</b></p>
 	<button id="botogameov" style ="color:blue" onclick="restart()"><b>restart</b></button>
 </div> 
+<div id="fons_de_pant"> </div>
 <p id="aux1"></p>
 <p id="aux2"></p>
 <p id="score"></p>
