@@ -1,4 +1,4 @@
-function randbolet (id='alo') {
+function randbolet(id='alo') {
     var colors=['chartreuse','lawngreen','lime','limegreen','palegreen',
     'lightgreen','mediumspringgreen','springgreen','yellowgreen','darkseagreen',
     'pink','lightcoral','papayawhip','peachpuff'];
@@ -18,7 +18,7 @@ function randbolet (id='alo') {
      document.getElementById(id).innerHTML = parraf;
 }
 
-function randbolet2 (id='alo') {
+function randbolet2(id='alo') {
     var colors=['saddlebrown','lightcoral','chocolate','brown','lightsalmon',
     'burlywood','darkgoldenrod','maroon','indianred','lightslategray',
     'pink','orange','papayawhip','peachpuff'];
