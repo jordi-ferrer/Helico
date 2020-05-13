@@ -90,9 +90,9 @@ function restart() {
 	sco=0;
 	document.getElementById("gameover").style.visibility="hidden"; //amaga el botó restart
         var n = bloc.length;
-            for(var i=0;i<n;i++){
-			document.getElementById(nomsb[i]).style.backgroundColor ="gray";			
-		}
+        for(var i=0;i<n;i++){
+                    document.getElementById(nomsb[i]).style.backgroundColor ="gray";			
+            }
         xocat=false;
 	move();
     }
@@ -112,8 +112,11 @@ function carrega() {
 	draw();
 	document.getElementById("aux2").innerHTML="hola2";
         randbolet2(id="fons_de_pant",colors=["white","pink"],boles=80,spready=500,spreadx=1000);
-        randbolet2(id="bloc4",colors=["white","brown"],boles=10,spready=400,spreadx=100);
-
+        
+        var n = bloc.length;
+        for(var i=0;i<n;i++){
+                    randbolet2(id=nomsb[i],colors=["white","brown"],boles=10,spready=400,spreadx=100);			
+            }
 }
 
 function move() {
