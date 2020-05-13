@@ -97,6 +97,7 @@ function restart() {
                     document.getElementById(nomsb[i]).style.backgroundColor ="gray";			
             }
         xocat=false;
+        document.getElementById("helicop").innerHTML=":D";
 	move();
     }
 }
@@ -114,6 +115,7 @@ function carrega() {
 	bc6.width = 100; bc6.height = 400; bc6.x=2000; bc6.y= 400+Math.random()*100; bc6.vx=-5; bc6.vy=0;
 	draw();
 	document.getElementById("aux2").innerHTML="hola2";
+        document.getElementById("helicop").innerHTML=":O";
         randbolet2(id="fons_de_pant",colors=["white","pink"],boles=80,spready=500,spreadx=1000,minballr=10,maxballr=100);
         
         var n = bloc.length;
@@ -126,7 +128,6 @@ function move() {
 	//check hit:
 	if( checkxoc(heli,bc1) || checkxoc(heli,bc2) || checkxoc(heli,bc3) || checkxoc(heli,bc4) || checkxoc(heli,bc5) || checkxoc(heli,bc6)  ){
 		gameover();
-                xocat=true;
 		return;
 	}
 	//move
@@ -239,7 +240,9 @@ function volare(id) {
 }
 
 function gameover() {
-	document.getElementById("gameover").style.visibility="visible";  
+    xocat=true;
+    document.getElementById("gameover").style.visibility="visible";  
+    document.getElementById("helicop").innerHTML=":X";  
 }
 
 </script>
@@ -256,7 +259,7 @@ function gameover() {
 <div class="cel" id="bloc10"></div>
 <div class="cel" id="bloc11"></div>
 <div class="cel" id="bloc12"></div>
-<div id="helicop">Helicopter</div>
+<div id="helicop">:o</div>
 
 <div id="gameover"> 
 	<p><b>GAME OVER</b></p>
