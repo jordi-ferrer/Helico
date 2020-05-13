@@ -73,7 +73,8 @@ function restart() {
 	mou=false;
 	sco=0;
 	document.getElementById("gameover").style.visibility="hidden"; //amaga el botó restart
-	draw();
+        document.getElementById("botogameov").disabled=true;
+	//draw();
 	move();
 }
 
@@ -82,15 +83,14 @@ function carrega() {
 	//reinitializing helicopter
 	heli.width = 50; heli.height = 25; heli.x = 200; heli.y=200; heli.vx=0; heli.vy=0;
 	//reinitializing the blocs
-	bc1.width = 100; bc1.height = 200; bc1.x=1000; bc1.y= 400+Math.random()*100; bc1.vx=-10; bc1.vy=0;
-	bc2.width = 100; bc2.height = 200; bc2.x=1200; bc2.y= 400+Math.random()*100; bc2.vx=-10; bc2.vy=0;
-	bc3.width = 100; bc3.height = 200; bc3.x=1400; bc3.y= 400+Math.random()*100; bc3.vx=-10; bc3.vy=0;
-	bc4.width = 100; bc4.height = 200; bc4.x=1600; bc4.y= 400+Math.random()*100; bc4.vx=-10; bc4.vy=0;
-	bc5.width = 100; bc5.height = 200; bc5.x=1800; bc5.y= 400+Math.random()*100; bc5.vx=-10; bc5.vy=0;
-	bc6.width = 100; bc6.height = 200; bc6.x=2000; bc6.y= 400+Math.random()*100; bc6.vx=-10; bc6.vy=0;
+	bc1.width = 100; bc1.height = 400; bc1.x=1000; bc1.y= 400+Math.random()*100; bc1.vx=-5; bc1.vy=0;
+	bc2.width = 100; bc2.height = 400; bc2.x=1200; bc2.y= 400+Math.random()*100; bc2.vx=-5; bc2.vy=0;
+	bc3.width = 100; bc3.height = 400; bc3.x=1400; bc3.y= 400+Math.random()*100; bc3.vx=-5; bc3.vy=0;
+	bc4.width = 100; bc4.height = 400; bc4.x=1600; bc4.y= 400+Math.random()*100; bc4.vx=-5; bc4.vy=0;
+	bc5.width = 100; bc5.height = 400; bc5.x=1800; bc5.y= 400+Math.random()*100; bc5.vx=-5; bc5.vy=0;
+	bc6.width = 100; bc6.height = 400; bc6.x=2000; bc6.y= 400+Math.random()*100; bc6.vx=-5; bc6.vy=0;
 	draw();
 	document.getElementById("aux2").innerHTML="hola2";
-	
 }
 
 function move() {
@@ -114,8 +114,8 @@ function move() {
 	if(heli.vy<-20) heli.vy= -20;
 	
 	/*check height limits*/
-	if(heli.y>400) { 
-		heli.y=400;
+	if(heli.y>600) { 
+		heli.y=600;
 		heli.vy = 0;
 	}
 	if(heli.y<0) {
@@ -203,13 +203,15 @@ function movebloc(rect, i){
 }
 
 function volare(id) {
-	if(!mou) mou=true;
+        if(!mou) mou=true;
 	 heli.vy = heli.vy - 8;
 	 heli.y += heli.vy;	 
 }
 
 function gameover() {
 	document.getElementById("gameover").style.visibility="visible";
+        document.getElementById("botogameov").disabled=false;
+        
 }
 
 </script>
@@ -220,12 +222,18 @@ function gameover() {
 <div class="terra" id="bloc4"></div>
 <div class="terra" id="bloc5"></div>
 <div class="terra" id="bloc6"></div>
+<div class="cel" id="bloc7"></div>
+<div class="cel" id="bloc8"></div>
+<div class="cel" id="bloc9"></div>
+<div class="cel" id="bloc10"></div>
+<div class="cel" id="bloc11"></div>
+<div class="cel" id="bloc12"></div>
 <div id="helicop">Helicopter</div>
 
-<div id="gameover">
-        <p>GAME OVER</p>
-	<button style ="color:blue" onclick="restart()"><b>restart</b></button>
-</div>
+<div id="gameover"> 
+	<p><b>GAME OVER</b></p>
+	<button id="botogameov" style ="color:blue" onclick="restart()"><b>restart</b></button>
+</div> 
 <p id="aux1"></p>
 <p id="aux2"></p>
 <p id="score"></p>
