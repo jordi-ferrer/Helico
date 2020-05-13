@@ -20,13 +20,13 @@ function randbolet(id='alo') {
 
 function randbolet2(id='alo',colors=['saddlebrown','lightcoral','chocolate','brown','lightsalmon',
     'burlywood','darkgoldenrod','maroon','indianred','lightslategray',
-    'pink','orange','papayawhip','peachpuff'],boles=11,spready=500,spreadx=250) {
+    'pink','orange','papayawhip','peachpuff'],boles=11,spready=500,spreadx=250,minballr=20,maxballr=40) {
     parraf='';
     x=0;y=0;big=0;
     for(i=1;i<boles;i++) {
         x= Math.round(spreadx*Math.random());
-        y= Math.round(20+spready*Math.random());
-        big=20+Math.round(20*Math.random());
+        y= Math.round(spready*Math.random());
+        big=minballr+Math.round((maxballr-minballr)*Math.random());
         color = _.sample(colors);
         linia = '<div class="boleta" style="top:'+y+'px;left:'+x+
         'px;background-color:'+color+';width:'+big+'px;height:'+big+
