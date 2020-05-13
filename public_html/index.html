@@ -82,12 +82,12 @@ function carrega() {
 	//reinitializing helicopter
 	heli.width = 50; heli.height = 25; heli.x = 200; heli.y=200; heli.vx=0; heli.vy=0;
 	//reinitializing the blocs
-	bc1.width = 100; bc1.height = 400; bc1.x=1000; bc1.y= 400+Math.random()*100; bc1.vx=-10; bc1.vy=0;
-	bc2.width = 100; bc2.height = 400; bc2.x=1200; bc2.y= 400+Math.random()*100; bc2.vx=-10; bc2.vy=0;
-	bc3.width = 100; bc3.height = 400; bc3.x=1400; bc3.y= 400+Math.random()*100; bc3.vx=-10; bc3.vy=0;
-	bc4.width = 100; bc4.height = 400; bc4.x=1600; bc4.y= 400+Math.random()*100; bc4.vx=-10; bc4.vy=0;
-	bc5.width = 100; bc5.height = 400; bc5.x=1800; bc5.y= 400+Math.random()*100; bc5.vx=-10; bc5.vy=0;
-	bc6.width = 100; bc6.height = 400; bc6.x=2000; bc6.y= 400+Math.random()*100; bc6.vx=-10; bc6.vy=0;
+	bc1.width = 100; bc1.height = 200; bc1.x=1000; bc1.y= 400+Math.random()*100; bc1.vx=-10; bc1.vy=0;
+	bc2.width = 100; bc2.height = 200; bc2.x=1200; bc2.y= 400+Math.random()*100; bc2.vx=-10; bc2.vy=0;
+	bc3.width = 100; bc3.height = 200; bc3.x=1400; bc3.y= 400+Math.random()*100; bc3.vx=-10; bc3.vy=0;
+	bc4.width = 100; bc4.height = 200; bc4.x=1600; bc4.y= 400+Math.random()*100; bc4.vx=-10; bc4.vy=0;
+	bc5.width = 100; bc5.height = 200; bc5.x=1800; bc5.y= 400+Math.random()*100; bc5.vx=-10; bc5.vy=0;
+	bc6.width = 100; bc6.height = 200; bc6.x=2000; bc6.y= 400+Math.random()*100; bc6.vx=-10; bc6.vy=0;
 	draw();
 	document.getElementById("aux2").innerHTML="hola2";
 	
@@ -124,7 +124,7 @@ function move() {
 	}	
 	
 	/*draw helicop and bloc*/
-	draw()
+	draw();
 	
 	/*texts auxiliars*/
 	document.getElementById("aux2").innerHTML = "windown inner width: "+ window.innerWidth + " window.innerHeight: "+window.innerHeight;
@@ -132,7 +132,7 @@ function move() {
 	Math.round(heli.y) + "<br>bloc vx:" +Math.round(bc1.vx) + "<br>pos x bloc:" +Math.round(bc1.x) +
 	"<br> bloc vy: " +Math.round(bc1.vy) + "<br> bloc y: " + Math.round(bc1.y);
 	
-	document.getElementById("score").innerHTML = "<b>SCORE "+ sco +" pts</b>"
+	document.getElementById("score").innerHTML = "<b>SCORE "+ sco +" pts</b>";
 	if(mou) sco +=1;
 	
 	if(sco>1000) {
@@ -171,9 +171,12 @@ function draw() {
 
 function checkxoc(rect1, rect2) {
    if(rect1.x < rect2.x + rect2.width &&
-   rect1.x + rect1.width > rect2.x &&
-   rect1.y < rect2.y + rect2.height &&
-   rect1.y + rect1.height > rect2.y) {return true}
+      rect1.x + rect1.width > rect2.x &&
+      rect1.y < rect2.y + rect2.height &&
+      rect1.y + rect1.height > rect2.y) 
+   {
+       return true;
+   }
    return false;
 }
 
@@ -183,7 +186,7 @@ function moveheli(){
 }
 
 function movebloc(rect, i){
-	if(i==0) { 
+	if(i===0) { 
 	i = bloc.length-1;
 	} else {i=i-1;}
 
@@ -217,8 +220,8 @@ function gameover() {
 <div class="terra" id="bloc6"></div>
 <div id="helicop">Helicopter</div>
 
-<div id="gameover"> <b>
-	<p>GAME OVER</p></b>
+<div id="gameover">
+        <p>GAME OVER</p>
 	<button style ="color:blue" onclick="restart()"><b>restart</b></button>
 </div>
 <p id="aux1"></p>
