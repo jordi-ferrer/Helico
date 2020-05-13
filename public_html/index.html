@@ -40,6 +40,7 @@ body{
 <script src="js/rectvol.js"></script>
 <script>
 
+var xocat=false;
 /*helicopter position & speed*/
 // 					left,top,width,height,vx,vy
 heli = new rectvol();
@@ -60,6 +61,7 @@ var mou=false;
 var  sco=0;
 
 function restart() {
+    if(xocat) {
 	//reinicialitzant les coordenadees i velocitat del jjjjjjoricopter
 	heli.x = 200; heli.y=200; heli.vx=0; heli.vy=0;
 	
@@ -73,9 +75,11 @@ function restart() {
 	mou=false;
 	sco=0;
 	document.getElementById("gameover").style.visibility="hidden"; //amaga el botó restart
-        document.getElementById("botogameov").disabled=true;
+        //document.getElementById("botogameov").disabled=true;
 	//draw();
+        xocat=false;
 	move();
+    }
 }
 
 function carrega() {
@@ -97,6 +101,7 @@ function move() {
 	//check hit:
 	if( checkxoc(heli,bc1) || checkxoc(heli,bc2) || checkxoc(heli,bc3) || checkxoc(heli,bc4) || checkxoc(heli,bc5) || checkxoc(heli,bc6)  ){
 		gameover();
+                xocat=true;
 		return;
 	}
 	//move
@@ -209,8 +214,7 @@ function volare(id) {
 }
 
 function gameover() {
-	document.getElementById("gameover").style.visibility="visible";
-        
+	document.getElementById("gameover").style.visibility="visible";  
 }
 
 </script>
