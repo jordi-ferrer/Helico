@@ -45,6 +45,9 @@ body{
   border-radius: 50%;
   background-color:silver;
 }
+#cara {   
+  transform: rotate(90deg);
+}
 .terra{
 	background-color: gray;
 }
@@ -127,7 +130,7 @@ function restart() {
                     document.getElementById(nomsb[i]).style.backgroundColor ="gray";			
             }
         xocat=false;
-        document.getElementById("cuah").innerHTML=":O";
+        document.getElementById("cara").innerHTML=":O";
 	move();
     }
 }
@@ -145,7 +148,7 @@ function carrega() {
 	bc6.width = 100; bc6.height = 400; bc6.x=2000; bc6.y= 400+Math.random()*100; bc6.vx=-5; bc6.vy=0;
 	draw();
 	document.getElementById("aux2").innerHTML="hola2";
-        document.getElementById("cuah").innerHTML=":D";
+        document.getElementById("cara").innerHTML=":D";
         randbolet2(id="fons_de_pant",colors=["white","pink"],boles=80,spready=500,spreadx=1000,minballr=10,maxballr=100);
         
         var n = bloc.length;
@@ -272,7 +275,7 @@ function volare(id) {
 function gameover() {
     xocat=true;
     document.getElementById("gameover").style.visibility="visible";  
-    document.getElementById("cuah").innerHTML=":X";  
+    document.getElementById("cara").innerHTML=":X";  
 }
 
 </script>
@@ -292,7 +295,8 @@ function gameover() {
 <div id="helicop">
     <div id="helix1"></div>
     <div id="helix2"></div>
-    <div id="cuah">:d</div>
+    <div id="cuah"></div>
+    <div id="cara">:d</div>
     
 </div>
         
