@@ -187,13 +187,15 @@ function moveheli(){
 
 function movebloc(rect, i){
 	if(i===0) { 
-	i = bloc.length-1;
-	} else {i=i-1;}
-
+            i = bloc.length-1;
+	} else {
+            i=i-1;
+        }
+        
 	rect.x = rect.x + rect.vx;
 	if(rect.x < -rect.width) {
 		rect.x = 1100 ;
-		rect.y = bloc[i].y +  Math.floor(Math.random() * (100)-50 ) ;
+		rect.y = bloc[i].y +  Math.floor(Math.random() * (100)-50 );
 		if(rect.y<200) rect.y=200;
 		if(rect.y>450) rect.y=450;
 	}
