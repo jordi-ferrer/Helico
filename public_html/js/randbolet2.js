@@ -24,8 +24,8 @@ function randbolet2(id='alo',colors=['saddlebrown','lightcoral','chocolate','bro
     parraf='';
     x=0;y=0;big=0;
     for(i=1;i<boles;i++) {
-        x= Math.round(spreadx*Math.random());
-        y= Math.round(spready*Math.random());
+        x= Math.round(spreadx*Math.random())-20;
+        y= Math.round(spready*Math.random())-20;
         big=minballr+Math.round((maxballr-minballr)*Math.random());
         color = _.sample(colors);
         linia = '<div class="boleta" style="top:'+y+'px;left:'+x+
