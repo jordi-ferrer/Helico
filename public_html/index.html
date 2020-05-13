@@ -110,7 +110,7 @@ function carrega() {
 	bc6.width = 100; bc6.height = 400; bc6.x=2000; bc6.y= 400+Math.random()*100; bc6.vx=-5; bc6.vy=0;
 	draw();
 	document.getElementById("aux2").innerHTML="hola2";
-        randbolet2("fons_de_pant");
+        randbolet2(id="fons_de_pant");
 }
 
 function move() {
@@ -234,7 +234,7 @@ function gameover() {
 }
 
 </script>
-
+<div id="fons_de_pant"> </div>
 <div class="terra" id="bloc1"></div>
 <div class="terra" id="bloc2"></div>
 <div class="terra" id="bloc3"></div>
@@ -253,7 +253,7 @@ function gameover() {
 	<p><b>GAME OVER</b></p>
 	<button id="botogameov" style ="color:blue" onclick="restart()"><b>restart</b></button>
 </div> 
-<div id="fons_de_pant"> </div>
+
 <p id="aux1"></p>
 <p id="aux2"></p>
 <p id="score"></p>
