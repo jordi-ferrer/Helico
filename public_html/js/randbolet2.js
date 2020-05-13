@@ -20,10 +20,10 @@ function randbolet(id='alo') {
 
 function randbolet2(id='alo',colors=['saddlebrown','lightcoral','chocolate','brown','lightsalmon',
     'burlywood','darkgoldenrod','maroon','indianred','lightslategray',
-    'pink','orange','papayawhip','peachpuff']) {
+    'pink','orange','papayawhip','peachpuff'],boles=11) {
     parraf='';
     x=0;y=0;big=0;
-    for(i=1;i<11;i++) {
+    for(i=1;i<boles;i++) {
         x= Math.round(250*Math.random());
         y= Math.round(20+500*Math.random());
         big=20+Math.round(20*Math.random());
