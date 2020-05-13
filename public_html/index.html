@@ -114,11 +114,11 @@ function carrega() {
 	bc6.width = 100; bc6.height = 400; bc6.x=2000; bc6.y= 400+Math.random()*100; bc6.vx=-5; bc6.vy=0;
 	draw();
 	document.getElementById("aux2").innerHTML="hola2";
-        randbolet2(id="fons_de_pant",colors=["white","pink"],boles=80,spready=500,spreadx=1000);
+        randbolet2(id="fons_de_pant",colors=["white","pink"],boles=80,spready=500,spreadx=1000,minballr=5,maxballr=80);
         
         var n = bloc.length;
         for(var i=0;i<n;i++){
-                    randbolet2(id=nomsb[i],colors=["LightCyan","brown","gray"],boles=10,spready=400,spreadx=100,minballr=5,maxballr=40);			
+                    randbolet2(id=nomsb[i],colors=["LightCyan","brown","gray"],boles=10,spready=400,spreadx=100,minballr=20,maxballr=40);			
             }
 }
 
