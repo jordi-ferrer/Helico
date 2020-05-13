@@ -18,10 +18,9 @@ function randbolet(id='alo') {
      document.getElementById(id).innerHTML = parraf;
 }
 
-function randbolet2(id='alo') {
-    var colors=['saddlebrown','lightcoral','chocolate','brown','lightsalmon',
+function randbolet2(id='alo',colors=['saddlebrown','lightcoral','chocolate','brown','lightsalmon',
     'burlywood','darkgoldenrod','maroon','indianred','lightslategray',
-    'pink','orange','papayawhip','peachpuff'];
+    'pink','orange','papayawhip','peachpuff']) {
     parraf='';
     x=0;y=0;big=0;
     for(i=1;i<11;i++) {
