@@ -136,7 +136,7 @@ function restart() {
 	//reinicialitzant les coordenadees i velocitat del jjjjjjoricopter
 	heli.x = 200; heli.y=200; heli.vx=0; heli.vy=0;
 	 //inicilitzant enemic1
-        enemic1.x = 1000; enemic1.y=200; enemic1.vx=-10; enemic1.vy=0;
+        enemic1.x = 1200; enemic1.y=Math.random()*400; enemic1.vx=-10; enemic1.vy=0;
 	
         //reinicialitzant les coordenades de l'helicopter i els blocs:
 	bc1.x=1000; bc1.y= 400+Math.random()*100;
@@ -163,7 +163,7 @@ function carrega() {
 	//reinitializing helicopter
 	heli.width = 50; heli.height = 25; heli.x = 200; heli.y=200; heli.vx=0; heli.vy=0; heli.ay=0.2;
         //inicilitzant enemic1
-        enemic1.width = 50; enemic1.height = 25; enemic1.x = 1000; enemic1.y=200; enemic1.vx=-10; enemic1.vy=0; enemic1.ay=0;
+        enemic1.width = 50; enemic1.height = 25; enemic1.x = 1200; enemic1.y=200; enemic1.vx=-10; enemic1.vy=0; enemic1.ay=0;
 	
         
         //reinitializing the blocs
@@ -210,7 +210,8 @@ function move() {
 	document.getElementById("aux2").innerHTML = "windown inner width: "+ window.innerWidth + " window.innerHeight: "+window.innerHeight;
 	document.getElementById("aux1").innerHTML="heli vy:" +Math.round(heli.vy) + "<br> heli y:" + 
 	Math.round(heli.y) + "<br>bloc vx:" +Math.round(bc1.vx) + "<br>pos x bloc:" +Math.round(bc1.x) +
-	"<br> bloc vy: " +Math.round(bc1.vy) + "<br> bloc y: " + Math.round(bc1.y);
+	"<br> bloc vy: " +Math.round(bc1.vy) + "<br> bloc y: " + Math.round(bc1.y) + "<br> enemic1 y: " + Math.round(enemic1.y) +
+        "<br> enemic1 x: " + Math.round(enemic1.x);
 	
 	document.getElementById("score").innerHTML = "<b>SCORE "+ sco +" pts</b>";
 	if(mou) sco +=1;
@@ -282,6 +283,11 @@ function moveheli(rectvol){
 	if(rectvol.y<0) {
 		rectvol.y=0;
 		rectvol.vy = 0;
+	}
+        //the next if is to stop the red helicopters from going too far out of the screen
+        if(rectvol.x<-100) {
+		rectvol.x=-100;
+		rectvol.vx = 0;
 	}
 }
 
