@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html  onclick="volare('helicop')" onkeydown="volare('helicop')">
 <head>
+    <title>JoriCop</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 <style>
 body{
 	background-color:LightCyan;
 }
 
-#helicop {   
+.heli {   
   position: absolute;
   top:200px;
   left:200px;
+  width:50px;
   height: 25px;
   border-radius: 30px;
   background-color: DarkOliveGreen;
   color:white;
 }
-#cuah {   
+.cuah {   
   position:absolute;
   top:-12px;
   left:-7px;
@@ -27,7 +29,7 @@ body{
   transform: rotate(-60deg);
   color:purple;
 }
-#helix2 {   
+.helix2 {   
   position:absolute;
   top:-17px;
   left:-25px;
@@ -36,7 +38,7 @@ body{
   border-radius: 20px;
   background-color:silver;
 }
-#helix1 {   
+.helix1 {   
   position:absolute;
   top:-30px;
   left:-15px;
@@ -45,9 +47,15 @@ body{
   border-radius: 50%;
   background-color:silver;
 }
-#cara {   
+.cara {   
   position:absolute;
   transform: rotate(90deg);
+  left:20px;
+  top:5px;
+}
+.cara2 {   
+  position:absolute;
+  transform: rotate(0deg);
   left:20px;
   top:5px;
 }
@@ -99,11 +107,15 @@ body{
 <script src="js/underscore.js"></script>
 <script>
 
+
+
+
+
 var xocat=false;
 /*helicopter position & speed*/
 // 					left,top,width,height,vx,vy
 heli = new rectvol();
-
+enemic1 = new rectvol();
 /*bloc position & speed*/
 // 					left, top,width,height,vx,vy
 bc1 = new rectvol();
@@ -123,8 +135,10 @@ function restart() {
     if(xocat) {
 	//reinicialitzant les coordenadees i velocitat del jjjjjjoricopter
 	heli.x = 200; heli.y=200; heli.vx=0; heli.vy=0;
+	 //inicilitzant enemic1
+        enemic1.x = 1000; enemic1.y=200; enemic1.vx=-10; enemic1.vy=0;
 	
-	//reinicialitzant les coordenades de l'helicopter i els blocs:
+        //reinicialitzant les coordenades de l'helicopter i els blocs:
 	bc1.x=1000; bc1.y= 400+Math.random()*100;
 	bc2.x=1200; bc2.y= 400+Math.random()*100;
 	bc3.x=1400; bc3.y= 400+Math.random()*100;
@@ -147,8 +161,12 @@ function restart() {
 function carrega() {
 	document.getElementById("aux2").innerHTML="carregant...";
 	//reinitializing helicopter
-	heli.width = 50; heli.height = 25; heli.x = 200; heli.y=200; heli.vx=0; heli.vy=0;
-	//reinitializing the blocs
+	heli.width = 50; heli.height = 25; heli.x = 200; heli.y=200; heli.vx=0; heli.vy=0; heli.ay=0.2;
+        //inicilitzant enemic1
+        enemic1.width = 50; enemic1.height = 25; enemic1.x = 1000; enemic1.y=200; enemic1.vx=-10; enemic1.vy=0; enemic1.ay=0;
+	
+        
+        //reinitializing the blocs
 	bc1.width = 100; bc1.height = 400; bc1.x=1000; bc1.y= 400+Math.random()*100; bc1.vx=-5; bc1.vy=0;
 	bc2.width = 100; bc2.height = 400; bc2.x=1200; bc2.y= 400+Math.random()*100; bc2.vx=-5; bc2.vy=0;
 	bc3.width = 100; bc3.height = 400; bc3.x=1400; bc3.y= 400+Math.random()*100; bc3.vx=-5; bc3.vy=0;
@@ -168,33 +186,22 @@ function carrega() {
 
 function move() {
 	//check hit:
-	if( checkxoc(heli,bc1) || checkxoc(heli,bc2) || checkxoc(heli,bc3) || checkxoc(heli,bc4) || checkxoc(heli,bc5) || checkxoc(heli,bc6)  ){
+	if( checkxoc(heli,bc1) || checkxoc(heli,bc2) || checkxoc(heli,bc3) || checkxoc(heli,bc4) || checkxoc(heli,bc5) || checkxoc(heli,bc6) || 
+                checkxoc(heli,enemic1) ){
 		gameover();
 		return;
 	}
 	//move
 	if(mou) {
-		moveheli();
-		
+		moveheli(heli);
+		moveheli(enemic1);
 		var n = bloc.length;
 		for(var i=0;i<n;i++) {
 			movebloc(bloc[i],i);
 		}
 	}
 		
-	/*check speed limits*/
-	if(heli.vy>20) heli.vy=20;
-	if(heli.vy<-20) heli.vy= -20;
-	
-	/*check height limits*/
-	if(heli.y>600) { 
-		heli.y=600;
-		heli.vy = 0;
-	}
-	if(heli.y<0) {
-		heli.y=0;
-		heli.vy = 0;
-	}	
+		
 	
 	/*draw helicop and bloc*/
 	draw();
@@ -230,6 +237,11 @@ function draw() {
 	document.getElementById("helicop").style.left=heli.x+"px";
 	document.getElementById("helicop").style.width=heli.width+"px";
 	document.getElementById("helicop").style.height=heli.height+"px";
+        
+        document.getElementById("enemic1").style.top=enemic1.y+"px";
+	document.getElementById("enemic1").style.left=enemic1.x+"px";
+	document.getElementById("enemic1").style.width=enemic1.width+"px";
+	document.getElementById("enemic1").style.height=enemic1.height+"px";
 
 	var n = nomsb.length;
 	for(var i=0;i<n;i++){
@@ -253,9 +265,24 @@ function checkxoc(rect1, rect2) {
    return false;
 }
 
-function moveheli(){
-	heli.vy=heli.vy+0.2;
-	heli.y = heli.y+heli.vy;
+function moveheli(rectvol){
+	rectvol.vy=rectvol.vy+=rectvol.ay;
+	rectvol.y = rectvol.y+rectvol.vy;
+        rectvol.x = rectvol.x+rectvol.vx;
+        
+        /*check speed limits*/
+	if(rectvol.vy>20) rectvol.vy=20;
+	if(rectvol.vy<-20) rectvol.vy= -20;
+	
+	/*check height limits*/
+	if(rectvol.y>600) { 
+		rectvol.y=600;
+		rectvol.vy = 0;
+	}
+	if(rectvol.y<0) {
+		rectvol.y=0;
+		rectvol.vy = 0;
+	}
 }
 
 function movebloc(rect, i){
@@ -295,18 +322,20 @@ function gameover() {
 <div class="terra" id="bloc4"></div>
 <div class="terra" id="bloc5"></div>
 <div class="terra" id="bloc6"></div>
-<div class="cel" id="bloc7"></div>
-<div class="cel" id="bloc8"></div>
-<div class="cel" id="bloc9"></div>
-<div class="cel" id="bloc10"></div>
-<div class="cel" id="bloc11"></div>
-<div class="cel" id="bloc12"></div>
-<div id="helicop">
-    <div id="helix1"></div>
-    <div id="helix2"></div>
-    <div id="cuah"></div>
-    <div id="cara">:d</div>
-    
+
+
+<div id="enemic1" class="heli" style="left:100px;background-color:red;transform: rotateY(180deg);" >
+    <div class="helix1"></div>
+    <div class="helix2"></div>
+    <div class="cuah" style="background-color:red;"></div>
+    <div class="cara2"> o.O </div>
+</div>
+
+<div id="helicop" class="heli">
+    <div class="helix1"></div>
+    <div class="helix2"></div>
+    <div class="cuah"></div>
+    <div class="cara" id="cara">:d</div>    
 </div>
         
 
