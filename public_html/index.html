@@ -216,6 +216,8 @@ function move() {
 	document.getElementById("score").innerHTML = "<b>SCORE "+ sco +" pts</b>";
 	if(mou) sco +=1;
 	
+        if(sco % 400 ==0) enemic1.x=1200; enemic1.vx=-10; enemic1.y=Math.random()*400;
+        
 	if(sco>1000) {
 		var n = bloc.length;
 		for(var i=0;i<n;i++){
