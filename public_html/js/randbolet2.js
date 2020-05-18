@@ -37,6 +37,43 @@ function randbolet2(id='alo',colors=['saddlebrown','lightcoral','chocolate','bro
      document.getElementById(id).innerHTML = parraf;
 }
 
+function randquadrats(id='alo',colors=['blue'],fileshor=2,filesver=7,height=500,width=250,border=5) {
+    
+    var splith = [border];
+    var amplada = width-2*border;
+    var ampfin;
+    for(i=fileshor;i>1;i--)
+    {
+        ampfin = amplada/i;
+        splith.push(splith[splith.length - 1]+ampfin);
+        amplada = amplada - ampfin;
+    }
+    splith.push(width-border);
+    //console.log(splith);
+    var splitv = [border];
+    var alcada = height-2*border;
+    var alcfin;
+    for(i=filesver;i>1;i--)
+    {
+        alcfin = alcada/i;
+        splitv.push(splitv[splitv.length - 1]+alcfin);
+        alcada = alcada - alcfin;
+    }
+    splitv.push(height-border);
+    
+    parraf = '';
+    for(i=0;i<fileshor;i++) {
+        for(j=0;j<filesver;j++) {
+            color = _.sample(colors);
+            linia = '<div class="finestra" style="top:'+splitv[j]+'px;left:'+splith[i]+
+            'px;background-color:'+color+';width:'+(ampfin-border/2)+'px;height:'+(alcfin-border/2)+'px">  </div>';
+            parraf=parraf+linia;
+        }
+    }
+   
+     document.getElementById(id).innerHTML = parraf;
+}
+
 function llenga(lang='cat') {
     if(lang=='cat') {
         document.getElementById('salist').innerHTML = document.getElementById('catlist').innerHTML;
