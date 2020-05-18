@@ -108,7 +108,7 @@ body{
 
 </style>
 </head>
-<body onload="carrega();move()">
+<body onload="carrega();">
 
 <script src="js/rect.js"></script>
 <script src="js/rectvol.js"></script>
@@ -142,18 +142,20 @@ var  sco=0;
 
 function restart() {
     if(xocat) {
-	//reinicialitzant les coordenadees i velocitat del jjjjjjoricopter
-	heli.x = 200; heli.y=200; heli.vx=0; heli.vy=0;
+	 //reinicialitzant les coordenades de l'helicopter i els blocs:
+	bc1.x=200; bc1.y= 200+Math.random()*300;
+	bc2.x=400; bc2.y= 200+Math.random()*300;
+	bc3.x=600; bc3.y= 200+Math.random()*300;
+	bc4.x=800; bc4.y= 200+Math.random()*300;
+	bc5.x=1000; bc5.y= 200+Math.random()*300;
+	bc6.x=1200; bc6.y= 200+Math.random()*300;
+        
+        //reinicialitzant les coordenadees i velocitat del jjjjjjoricopter
+	heli.x = 200; heli.y=bc1.y - 30; heli.vx=0; heli.vy=0;
 	 //inicilitzant enemic1
         enemic1.x = 1200; enemic1.y=Math.random()*400; enemic1.vx=-10; enemic1.vy=0;
 	
-        //reinicialitzant les coordenades de l'helicopter i els blocs:
-	bc1.x=1000; bc1.y= 400+Math.random()*100;
-	bc2.x=1200; bc2.y= 400+Math.random()*100;
-	bc3.x=1400; bc3.y= 400+Math.random()*100;
-	bc4.x=1600; bc4.y= 400+Math.random()*100;
-	bc5.x=1800; bc5.y= 400+Math.random()*100;
-	bc6.x=2000; bc6.y= 400+Math.random()*100;
+       
 	mou=false;
 	sco=0;
 	document.getElementById("gameover").style.visibility="hidden"; //amaga el botó restart
@@ -163,6 +165,7 @@ function restart() {
             }
         xocat=false;
         document.getElementById("cara").innerHTML=":O";
+        mou=true;
 	move();
     }
 }
@@ -176,12 +179,12 @@ function carrega() {
 	
         
         //reinitializing the blocs
-	bc1.width = 100; bc1.height = 400; bc1.x=1000; bc1.y= 400+Math.random()*100; bc1.vx=-5; bc1.vy=0;
-	bc2.width = 100; bc2.height = 400; bc2.x=1200; bc2.y= 400+Math.random()*100; bc2.vx=-5; bc2.vy=0;
-	bc3.width = 100; bc3.height = 400; bc3.x=1400; bc3.y= 400+Math.random()*100; bc3.vx=-5; bc3.vy=0;
-	bc4.width = 100; bc4.height = 400; bc4.x=1600; bc4.y= 400+Math.random()*100; bc4.vx=-5; bc4.vy=0;
-	bc5.width = 100; bc5.height = 400; bc5.x=1800; bc5.y= 400+Math.random()*100; bc5.vx=-5; bc5.vy=0;
-	bc6.width = 100; bc6.height = 400; bc6.x=2000; bc6.y= 400+Math.random()*100; bc6.vx=-5; bc6.vy=0;
+	bc1.width = 100; bc1.height = 400; bc1.x=200; bc1.y= heli.y+30; bc1.vx=-5; bc1.vy=0;
+	bc2.width = 100; bc2.height = 400; bc2.x=400; bc2.y= 400+Math.random()*100; bc2.vx=-5; bc2.vy=0;
+	bc3.width = 100; bc3.height = 400; bc3.x=600; bc3.y= 400+Math.random()*100; bc3.vx=-5; bc3.vy=0;
+	bc4.width = 100; bc4.height = 400; bc4.x=800; bc4.y= 400+Math.random()*100; bc4.vx=-5; bc4.vy=0;
+	bc5.width = 100; bc5.height = 400; bc5.x=1000; bc5.y= 400+Math.random()*100; bc5.vx=-5; bc5.vy=0;
+	bc6.width = 100; bc6.height = 400; bc6.x=1200; bc6.y= 400+Math.random()*100; bc6.vx=-5; bc6.vy=0;
 	draw();
 	document.getElementById("aux2").innerHTML="hola2";
         document.getElementById("cara").innerHTML=":D";
@@ -189,9 +192,24 @@ function carrega() {
         var n = bloc.length;
         for(var i=0;i<n;i++){
                     //randbolet2(id=nomsb[i],colors=["LightCyan","brown","gray"],boles=10,spready=400,spreadx=100,minballr=20,maxballr=40);			
-                    randquadrats(id=nomsb[i],colors=["LightCyan","salmon","salmon","salmon"],fileshor=10,filesver=40,height=400,width=100,border=5);
+                    randquadrats(id=nomsb[i],colors=["LightCyan","salmon","salmon","greenyellow"],fileshor=10,filesver=40,height=400,width=100,border=5);
 
             }
+     
+         intro();
+}
+
+function caratrista() {
+    document.getElementById("cara").innerHTML=":(";
+}
+
+function intro() {
+  
+            document.getElementById("score").innerHTML="<b>A long time in the future, in a faraway land.. an office worker is stuck in her office. She is just tired of working and just wants to get out" +
+                    " and scream ALELUYA! with all her might. However, she is stuck in the office. But her employer came to the office by Copter today! So she decides to take the chance and sneak into her" +
+                    " employer copter and take a ride around da city! Will you have what it takes to master the mystery of flight and take a fly around the sky-scrappers? Now is your chance!!!<b> <br> "+
+                    "<button onclick='mou=true;move()'><b style='color:red'>YES</b></button>"+
+                    "<button onclick='caratrista()'><b style='color:blue'>NO<b></button>"; 
 }
 
 function move() {
@@ -202,7 +220,8 @@ function move() {
 		return;
 	}
 	//move
-	if(mou) {
+   
+        if(mou) {
 		moveheli(heli);
 		moveheli(enemic1);
 		var n = bloc.length;
@@ -324,9 +343,10 @@ function movebloc(rect, i){
 }
 
 function volare(id) {
-        if(!mou) mou=true;
+        if(mou) { 
 	 heli.vy = heli.vy - 6;
 	 heli.y += heli.vy;	 
+     }
 }
 
 function gameover() {
