@@ -196,7 +196,7 @@ function carrega() {
         var n = bloc.length;
         for(var i=0;i<n;i++){
                     //randbolet2(id=nomsb[i],colors=["LightCyan","brown","gray"],boles=10,spready=400,spreadx=100,minballr=20,maxballr=40);			
-                    randquadrats(id=nomsb[i],colors=["LightCyan","salmon","salmon","greenyellow"],fileshor=10,filesver=40,height=400,width=100,border=5);
+                    randquadrats(id=nomsb[i],colors=["LightCyan","salmon","salmon","greenyellow"],fileshor=5,filesver=20,height=400,width=100,border=5);
 
             }
      
@@ -339,7 +339,7 @@ function movebloc(rect, i){
 	rect.x = rect.x + rect.vx;
 	if(rect.x < -rect.width) {
 		rect.x = 1100 ;
-		rect.y = bloc[i].y +  Math.floor(Math.random() * (100)-50 );
+		rect.y = bloc[i].y +  Math.floor(Math.random() * (150)-75 );
 		if(rect.y<200) rect.y=200;
 		if(rect.y>450) rect.y=450;
 	}
