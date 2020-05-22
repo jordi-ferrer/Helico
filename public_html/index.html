@@ -3,6 +3,9 @@
 <head>
     <title>JoriCop</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+ <link rel="stylesheet" href="style/human.css">
+
 <style>
 
 
@@ -74,6 +77,11 @@ html {
 .cel{
 	background-color: blue;
 }
+
+#human1{
+    position:absolute;
+}
+
 .boleta {
     position:absolute;
      width: 30px;
@@ -100,8 +108,8 @@ html {
 }
 #gameover{
 	position:absolute;
-	left:200px;
-	top:200px;
+	left:30%;
+	top:30%;
 	visibility:hidden;
 	color:red;
 }
@@ -112,7 +120,7 @@ html {
 }
 #controls{
     position:absolute;
-    visibility:visible;
+    visibility:hidden;
 }
 
 </style>
@@ -127,13 +135,15 @@ html {
 
 
 
-
+var rescats=0;
+var rescatat=false;
 let request; //aquesta variable serveix per fer les animacions
 var xocat=false;
 /*helicopter position & speed*/
 // 					left,top,width,height,vx,vy
 heli = new rectvol();
 enemic1 = new rectvol();
+human = new rectvol();
 /*bloc position & speed*/
 // 					left, top,width,height,vx,vy
 bc1 = new rectvol();
@@ -167,6 +177,7 @@ function restart() {
        
 	mou=false;
 	sco=0;
+        rescats=0;
 	document.getElementById("gameover").style.visibility="hidden"; //amaga el botó restart
         var n = bloc.length;
         for(var i=0;i<n;i++){
@@ -186,7 +197,6 @@ function carrega() {
         //inicilitzant enemic1
         enemic1.width = 50; enemic1.height = 25; enemic1.x = 1200; enemic1.y=200; enemic1.vx=-10; enemic1.vy=0; enemic1.ay=0;
 	
-        
         //reinitializing the blocs
 	bc1.width = 100; bc1.height = 400; bc1.x=200; bc1.y= heli.y+30; bc1.vx=-5; bc1.vy=0;
 	bc2.width = 100; bc2.height = 400; bc2.x=400; bc2.y= 400+Math.random()*100; bc2.vx=-5; bc2.vy=0;
@@ -194,7 +204,10 @@ function carrega() {
 	bc4.width = 100; bc4.height = 400; bc4.x=800; bc4.y= 400+Math.random()*100; bc4.vx=-5; bc4.vy=0;
 	bc5.width = 100; bc5.height = 400; bc5.x=1000; bc5.y= 400+Math.random()*100; bc5.vx=-5; bc5.vy=0;
 	bc6.width = 100; bc6.height = 400; bc6.x=1200; bc6.y= 400+Math.random()*100; bc6.vx=-5; bc6.vy=0;
-	draw();
+	
+        human.x = bc6.x; human.y=bc6.y - 47; human.width=30; human.height=80;
+        
+        draw();
 	document.getElementById("aux2").innerHTML="hola2";
         document.getElementById("cara").innerHTML=":D";
         randbolet2(id="fons_de_pant",colors=["white","pink"],boles=80,spready=500,spreadx=1000,minballr=10,maxballr=100);
@@ -214,11 +227,11 @@ function caratrista() {
 
 function intro() {
   
-            document.getElementById("score").innerHTML="<b>A long time in the future, in a faraway land.. an office worker is stuck in her office. She is just tired of working and just wants to get out" +
+            document.getElementById("score").innerHTML="<p align='justify'><b>A long time in the future, in a faraway land.. an office worker is stuck in her office. She is just tired of working and just wants to get out" +
                     " and scream ALELUYA! with all her might. However, she is stuck in the office. But her employer came to the office by Copter today! So she decides to take the chance and sneak into her" +
                     " employer copter and take a ride around da city! Will you have what it takes to master the mystery of flight and take a fly around the sky-scrappers? Now is your chance!!!<b> <br> "+
-                    "<button onclick='mou=true;requestAnimationFrame(move)'><b style='color:red'>YES</b></button>"+
-                    "<button onclick='caratrista()'><b style='color:blue'>NO<b></button>"; 
+                    "</p><center><button onclick='mou=true;requestAnimationFrame(move)'><h1><b style='color:red'>YES</b></h1></button>"+
+                    "<button onclick='caratrista()'><h1><b style='color:blue'>NO<b></h1></button></center>"; 
 }
 
 function move() {
@@ -228,8 +241,14 @@ function move() {
 		gameover();
 		return;
 	}
+        //check resque:
+        if(checkxoc(heli,human) && !rescatat) {
+            rescats += 1;
+            rescatat=true;
+            document.getElementById("human1").style.visibility="hidden";
+        }
 	//move
-   
+        
         if(mou) {
 		moveheli(heli);
 		moveheli(enemic1);
@@ -237,6 +256,7 @@ function move() {
 		for(var i=0;i<n;i++) {
 			movebloc(bloc[i],i);
 		}
+                movehuman(human);
 	}
 		
 		
@@ -251,7 +271,7 @@ function move() {
 	"<br> bloc vy: " +Math.round(bc1.vy) + "<br> bloc y: " + Math.round(bc1.y) + "<br> enemic1 y: " + Math.round(enemic1.y) +
         "<br> enemic1 x: " + Math.round(enemic1.x) + "<br> request: " + request;
 	
-	document.getElementById("score").innerHTML = "<b>SCORE "+ sco +" pts</b>";
+	document.getElementById("score").innerHTML = "<h3><b>Distance <b style='color:brown'>"+ sco +" </b></b>m  - clerks resqued </b><b style='color:brown'>"+rescats+"</b></h3>";
 	if(mou) sco +=1;
 	
         if( (sco % 400) ===0) {enemic1.x=1200; enemic1.vx=-10; enemic1.y=Math.random()*bc1.y    ;}
@@ -277,15 +297,20 @@ function move() {
 }
 
 function draw() {
+    //draw helicopter
 	document.getElementById("helicop").style.top=heli.y+"px";
 	document.getElementById("helicop").style.left=heli.x+"px";
 	document.getElementById("helicop").style.width=heli.width+"px";
 	document.getElementById("helicop").style.height=heli.height+"px";
-        
+       //draw eemy helicopter
         document.getElementById("enemic1").style.top=enemic1.y+"px";
 	document.getElementById("enemic1").style.left=enemic1.x+"px";
 	document.getElementById("enemic1").style.width=enemic1.width+"px";
 	document.getElementById("enemic1").style.height=enemic1.height+"px";
+        
+       	document.getElementById("human1").style.top=human.y+"px";
+        document.getElementById("human1").style.left=human.x+"px";
+
 
 	var n = nomsb.length;
 	for(var i=0;i<n;i++){
@@ -347,10 +372,16 @@ function movebloc(rect, i){
 		rect.y = bloc[i].y +  Math.floor(Math.random() * (150)-75 );
 		if(rect.y<200) rect.y=200;
 		if(rect.y>450) rect.y=450;
+                if(i===5 && rescatat) {
+                    rescatat=false;
+                    document.getElementById("human1").style.visibility="visible";
+                }
 	}
 	
 }
-
+function movehuman() {
+    human.x = bc6.x; human.y = bc6.y-47;
+}
 function volare(id) {
         if(mou) { 
 	 heli.vy = heli.vy - 6;
@@ -381,6 +412,8 @@ function gameover() {
     <div class="cara2"> o.O </div>
 </div>
 
+<div id="human1"><span class="leg1"></span><span class="leg2"></span><span class="arms"></span><span class="body"></span><span class="head">:)</span></div>
+
 <div id="helicop" class="heli">
     <div class="helix1"></div>
     <div class="helix2"></div>
@@ -390,8 +423,8 @@ function gameover() {
         
 
 <div id="gameover"> 
-	<p><b>GAME OVER</b></p>
-	<button id="botogameov" style ="color:blue" onclick="restart()"><b>restart</b></button>
+	<h2><b>GAME OVER</b></h2>
+        <center><button id="botogameov" style ="color:blue" onclick="restart()"><h2><b>restart</b></h2></button></center>
 </div> 
 <div id="score"></div>
 <div id="controls">
