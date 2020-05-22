@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html  onclick="volare('helicop')" onkeydown="volare('helicop')">
 <head>
-    <title>JoriCop</title>
+    <title>Map Creator</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 <style>
 
@@ -170,13 +170,16 @@ function carrega() {
         document.getElementById("cara").innerHTML=":D";
         randbolet2(id="fons_de_pant",colors=["white","pink"],boles=80,spready=500,spreadx=1000,minballr=10,maxballr=100);
         var n = bloc.length;
+        var parag="";
         for(var i=0;i<n;i++){
                     //randbolet2(id=nomsb[i],colors=["LightCyan","brown","gray"],boles=10,spready=400,spreadx=100,minballr=20,maxballr=40);			
                     randquadrats(id=nomsb[i],colors=["LightCyan","salmon","salmon","greenyellow"],fileshor=10,filesver=40,height=400,width=100,border=5);
-
+                    parag = parag + "<div class='terra' id='" + nomsb[i] + "'>"+ document.getElementById(nomsb[i]).innerHTML + "</div>";
+                    
             }
-     
-         intro();
+          
+        document.getElementById("map").innerHTML = parag;
+         
 }
 
 function caratrista() {
@@ -185,7 +188,7 @@ function caratrista() {
 
 function intro() {
   
-            document.getElementById("score").innerHTML="<b>A long time in the future, in a faraway land.. an office worker is stuck in her office. She is just tired of working and just wants to get out" +
+            document.getElementById("score").innerHTML="<b>bA long time in the future, in a faraway land.. an office worker is stuck in her office. She is just tired of working and just wants to get out" +
                     " and scream ALELUYA! with all her might. However, she is stuck in the office. But her employer came to the office by Copter today! So she decides to take the chance and sneak into her" +
                     " employer copter and take a ride around da city! Will you have what it takes to master the mystery of flight and take a fly around the sky-scrappers? Now is your chance!!!<b> <br> "+
                     "<button onclick='mou=true;requestAnimationFrame(move)'><b style='color:red'>YES</b></button>"+
@@ -222,8 +225,10 @@ function draw() {
 </script>
 
 <div id="fons_de_pant"> </div>
+<div style="position:absolute">
 <p>text to copy paste for creating the buildings:</p>
-<div id="map"></div>
+    <xmp  id="map"> </xmp>
+</div>
 <div class="terra" id="bloc1"></div>
 <div class="terra" id="bloc2"></div>
 <div class="terra" id="bloc3"></div>
