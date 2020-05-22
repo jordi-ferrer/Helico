@@ -4,7 +4,12 @@
     <title>JoriCop</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 <style>
-body{
+
+
+    /* per fer animacions mirar-se be al funció requestAnimationFrame() en comptes
+    d'usar setTimeout() */
+    
+    body{
 	background-color:LightCyan;
         touch-action: manipulation;
 }
@@ -107,7 +112,7 @@ html {
 }
 #controls{
     position:absolute;
-    visibility:hidden;
+    visibility:visible;
 }
 
 </style>
@@ -123,7 +128,7 @@ html {
 
 
 
-
+let request; //aquesta variable serveix per fer les animacions
 var xocat=false;
 /*helicopter position & speed*/
 // 					left,top,width,height,vx,vy
@@ -170,7 +175,7 @@ function restart() {
         xocat=false;
         document.getElementById("cara").innerHTML=":O";
         mou=true;
-	move();
+	requestAnimationFrame(move);
     }
 }
 
@@ -196,7 +201,7 @@ function carrega() {
         var n = bloc.length;
         for(var i=0;i<n;i++){
                     //randbolet2(id=nomsb[i],colors=["LightCyan","brown","gray"],boles=10,spready=400,spreadx=100,minballr=20,maxballr=40);			
-                    randquadrats(id=nomsb[i],colors=["LightCyan","salmon","salmon","greenyellow"],fileshor=5,filesver=20,height=400,width=100,border=5);
+                    randquadrats(id=nomsb[i],colors=["LightCyan","salmon","salmon","greenyellow"],fileshor=10,filesver=40,height=400,width=100,border=5);
 
             }
      
@@ -212,7 +217,7 @@ function intro() {
             document.getElementById("score").innerHTML="<b>A long time in the future, in a faraway land.. an office worker is stuck in her office. She is just tired of working and just wants to get out" +
                     " and scream ALELUYA! with all her might. However, she is stuck in the office. But her employer came to the office by Copter today! So she decides to take the chance and sneak into her" +
                     " employer copter and take a ride around da city! Will you have what it takes to master the mystery of flight and take a fly around the sky-scrappers? Now is your chance!!!<b> <br> "+
-                    "<button onclick='mou=true;move()'><b style='color:red'>YES</b></button>"+
+                    "<button onclick='mou=true;requestAnimationFrame(move)'><b style='color:red'>YES</b></button>"+
                     "<button onclick='caratrista()'><b style='color:blue'>NO<b></button>"; 
 }
 
@@ -244,7 +249,7 @@ function move() {
 	document.getElementById("aux1").innerHTML="heli vy:" +Math.round(heli.vy) + "<br> heli y:" + 
 	Math.round(heli.y) + "<br>bloc vx:" +Math.round(bc1.vx) + "<br>pos x bloc:" +Math.round(bc1.x) +
 	"<br> bloc vy: " +Math.round(bc1.vy) + "<br> bloc y: " + Math.round(bc1.y) + "<br> enemic1 y: " + Math.round(enemic1.y) +
-        "<br> enemic1 x: " + Math.round(enemic1.x);
+        "<br> enemic1 x: " + Math.round(enemic1.x) + "<br> request: " + request;
 	
 	document.getElementById("score").innerHTML = "<b>SCORE "+ sco +" pts</b>";
 	if(mou) sco +=1;
@@ -268,7 +273,7 @@ function move() {
                     enemic1.vy = 3} else {enemic1.vy=-3}
 	
 	//repeat
-	setTimeout(move, 10); 
+	request = requestAnimationFrame(move); 
 }
 
 function draw() {
