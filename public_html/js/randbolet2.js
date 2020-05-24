@@ -66,7 +66,7 @@ function randquadrats(id='alo',colors=['blue'],fileshor=2,filesver=7,height=500,
         for(j=0;j<filesver;j++) {
             color = _.sample(colors);
             linia = '<div class="finestra" style="top:'+splitv[j]+'px;left:'+splith[i]+
-            'px;background-color:'+color+';width:'+(splitv[j+1]-splitv[j]-border)+'px;height:'+(splith[i+1]-splith[i]-border)+'px">  </div>';
+            'px;background-color:'+color+';width:'+(splith[i+1]-splith[i]-border)+'px;height:'+(splitv[j+1]-splitv[j]-border)+'px">  </div>';
             parraf=parraf+linia+"\n";
         }
     }
