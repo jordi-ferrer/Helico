@@ -62,25 +62,14 @@ function randquadrats(id='alo',colors=['blue'],fileshor=2,filesver=7,height=500,
     splitv.push(height);
     
     parraf = '';
-    for(i=0;i<(fileshor-1);i++) {
-        for(j=0;j<(filesver-1);j++) {
+    for(i=0;i<fileshor;i++) {
+        for(j=0;j<filesver;j++) {
             color = _.sample(colors);
-<<<<<<< HEAD
-            linia = '<div class="finestra" style="top:'+(splitv[j])+'px;left:'+splith[i]+
-            'px;background-color:'+color+';width:'+(splith[i+1]-splith[i]-border/2)+'px;height:'+ (splitv[j+1]-splitv[j]-border/2)+'px">  </div>';
-=======
             linia = '<div class="finestra" style="top:'+splitv[j]+'px;left:'+splith[i]+
             'px;background-color:'+color+';width:'+(splitv[j+1]-splitv[j]-border)+'px;height:'+(splith[i+1]-splith[i]-border)+'px">  </div>';
->>>>>>> origin/master
             parraf=parraf+linia+"\n";
         }
     }
-    i=(fileshor-1); j=(filesver-1);
-    color = _.sample(colors);
-    linia = '<div class="finestra" style="top:'+(splitv[j])+'px;left:'+splith[i]+
-            'px;background-color:'+color+';width:'+(splith[i+1]-splith[i])+'px;height:'+ (splitv[j+1]-splitv[j]-border/2)+'px">  </div>';
-    parraf=parraf+linia+"\n";
-    
    
      document.getElementById(id).innerHTML = parraf;
 }
