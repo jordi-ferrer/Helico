@@ -40,7 +40,7 @@ function randbolet2(id='alo',colors=['saddlebrown','lightcoral','chocolate','bro
 function randquadrats(id='alo',colors=['blue'],fileshor=2,filesver=7,height=500,width=250,border=5) {
     
     var splith = [border];
-    var amplada = width-2*border;
+    var amplada = width-border;
     var ampfin;
     for(i=fileshor;i>1;i--)
     {
@@ -48,10 +48,10 @@ function randquadrats(id='alo',colors=['blue'],fileshor=2,filesver=7,height=500,
         splith.push(splith[splith.length - 1]+ampfin);
         amplada = amplada - ampfin;
     }
-    splith.push(width-border);
-    //console.log(splith);
+    splith.push(width);
+    
     var splitv = [border];
-    var alcada = height-2*border;
+    var alcada = height-border;
     var alcfin;
     for(i=filesver;i>1;i--)
     {
@@ -59,14 +59,14 @@ function randquadrats(id='alo',colors=['blue'],fileshor=2,filesver=7,height=500,
         splitv.push(splitv[splitv.length - 1]+alcfin);
         alcada = alcada - alcfin;
     }
-    splitv.push(height-border);
+    splitv.push(height);
     
     parraf = '';
     for(i=0;i<fileshor;i++) {
         for(j=0;j<filesver;j++) {
             color = _.sample(colors);
             linia = '<div class="finestra" style="top:'+splitv[j]+'px;left:'+splith[i]+
-            'px;background-color:'+color+';width:'+(ampfin-border/2)+'px;height:'+(alcfin-border/2)+'px">  </div>';
+            'px;background-color:'+color+';width:'+(splitv[j+1]-splitv[j]-border)+'px;height:'+(splith[i+1]-splith[i]-border)+'px">  </div>';
             parraf=parraf+linia+"\n";
         }
     }
