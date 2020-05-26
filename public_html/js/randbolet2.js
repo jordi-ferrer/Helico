@@ -23,23 +23,23 @@ function randquadrats(id='alo',colors=['blue'],fileshor=2,filesver=7,height=500,
     
     var splith = [border];
     var amplada = width-border;
-    var ampfin;
+    var ampfin = amplada/fileshor;
     for(i=fileshor;i>1;i--)
     {
-        ampfin = amplada/i;
-        splith.push(splith[splith.length - 1]+ampfin);
-        amplada = amplada - ampfin;
+        //ampfin = amplada/i;
+        splith.push(splith[splith.length - 1]+ampfin + border);
+        //amplada = amplada - ampfin;
     }
     splith.push(width);
     
     var splitv = [border];
     var alcada = height-border;
-    var alcfin;
+    var alcfin = alcada/filesver;
     for(i=filesver;i>1;i--)
     {
-        alcfin = alcada/i;
-        splitv.push(splitv[splitv.length - 1]+alcfin);
-        alcada = alcada - alcfin;
+        //alcfin = alcada/i;
+        splitv.push(splitv[splitv.length - 1]+alcfin+border);
+        //alcada = alcada - alcfin;
     }
     splitv.push(height);
     
