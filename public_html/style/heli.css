@@ -1,0 +1,51 @@
+.heli {   
+  position: absolute;
+  top:200px;
+  left:200px;
+  width:50px;
+  height: 25px;
+  border-radius: 30px;
+  background-color: DarkOliveGreen;
+  color:white;
+}
+.cuah {   
+  position:absolute;
+  top:-12px;
+  left:-7px;
+  height: 25px;
+  width:10px;
+  border-radius: 30px;
+  background-color: DarkOliveGreen;
+  transform: rotate(-60deg);
+  color:purple;
+}
+.helix2 {   
+  position:absolute;
+  top:-17px;
+  left:-25px;
+  height: 20px;
+  width:20px;
+  border-radius: 20px;
+  background-color:silver;
+}
+.helix1 {   
+  position:absolute;
+  top:-30px;
+  left:-15px;
+  height: 15px;
+  width:80px;
+  border-radius: 50%;
+  background-color:silver;
+}
+.cara {   
+  position:absolute;
+  transform: rotate(90deg);
+  left:20px;
+  top:5px;
+}
+.cara2 {   
+  position:absolute;
+  transform: rotate(0deg);
+  left:20px;
+  top:5px;
+}
