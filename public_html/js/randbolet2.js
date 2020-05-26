@@ -1,4 +1,22 @@
-
+function randbolet(id='alo') {
+    var colors=['chartreuse','lawngreen','lime','limegreen','palegreen',
+    'lightgreen','mediumspringgreen','springgreen','yellowgreen','darkseagreen',
+    'pink','lightcoral','papayawhip','peachpuff'];
+    parraf='';
+    x=0;y=0;big=0;
+    for(i=1;i<11;i++) {
+        x= Math.round(250*Math.random());
+        y= Math.round(20+500*Math.random());
+        big=20+Math.round(20*Math.random());
+        color = _.sample(colors);
+        linia = '<div class="boleta" style="top:'+y+'px;left:'+x+
+        'px;background-color:'+color+';width:'+big+'px;height:'+big+
+        'px;border-radius:'+big+'px">  </div>';
+        parraf=parraf+linia;
+    }
+   
+     document.getElementById(id).innerHTML = parraf;
+}
 
 function randbolet2(id='alo',colors=['saddlebrown','lightcoral','chocolate','brown','lightsalmon',
     'burlywood','darkgoldenrod','maroon','indianred','lightslategray',
@@ -23,23 +41,23 @@ function randquadrats(id='alo',colors=['blue'],fileshor=2,filesver=7,height=500,
     
     var splith = [border];
     var amplada = width-border;
-    var ampfin = amplada/fileshor;
+    var ampfin;
     for(i=fileshor;i>1;i--)
     {
-        //ampfin = amplada/i;
-        splith.push(splith[splith.length - 1]+ampfin );
-        //amplada = amplada - ampfin;
+        ampfin = amplada/i + Math.random()*3*border - Math.random()*3*border;
+        splith.push(splith[splith.length - 1]+ampfin);
+        amplada = amplada - ampfin;
     }
     splith.push(width);
     
     var splitv = [border];
     var alcada = height-border;
-    var alcfin = alcada/filesver;
+    var alcfin;
     for(i=filesver;i>1;i--)
     {
-        //alcfin = alcada/i;
+        alcfin = alcada/i + Math.random()*3*border - Math.random()*3*border;
         splitv.push(splitv[splitv.length - 1]+alcfin);
-        //alcada = alcada - alcfin;
+        alcada = alcada - alcfin;
     }
     splitv.push(height);
     
@@ -48,7 +66,7 @@ function randquadrats(id='alo',colors=['blue'],fileshor=2,filesver=7,height=500,
         for(j=0;j<filesver;j++) {
             color = _.sample(colors);
             linia = '<div class="finestra" style="top:'+splitv[j]+'px;left:'+splith[i]+
-            'px;background-color:'+color+';width:'+(splitv[j+1]-splitv[j]-border)+'px;height:'+(splith[i+1]-splith[i]-border)+'px">  </div>';
+            'px;background-color:'+color+';width:'+(splith[i+1]-splith[i]-border)+'px;height:'+(splitv[j+1]-splitv[j]-border)+'px">  </div>';
             parraf=parraf+linia+"\n";
         }
     }
