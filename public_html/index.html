@@ -223,7 +223,7 @@ function carrega() {
         var n = bloc.length;
         for(var i=0;i<n;i++){
                     //randbolet2(id=nomsb[i],colors=["LightCyan","brown","gray"],boles=10,spready=400,spreadx=100,minballr=20,maxballr=40);			
-                    randquadrats(id=nomsb[i],colors=["LightCyan","salmon","salmon","greenyellow"],fileshor=4,filesver=13,height=400,width=100,border=3);
+                    randquadrats(id=nomsb[i],colors=["LightCyan","#bf7873","#e9b088","greenyellow"],fileshor=4,filesver=13,height=400,width=100,border=3);
 
             }
      
@@ -254,7 +254,7 @@ function move() {
         if(  !rescatat && ( checkxoc(heli,human)  ||  
                                                 abovesegment( [heli.x+corda.x - corda.height*Math.sin(Math.PI*angcord/180), heli.y+heli.height+corda.y+Math.cos(Math.PI*angcord/180)*corda.height],
                                                                 [heli.x+corda.x,  heli.y+heli.height+corda.y],
-                                                                [human.x,human.y], human.width, ab=false)
+                                                                [human.x,human.y], human, ab=false)
                                                  ) ) {
             rescats += 1;
             rescatat=true;
@@ -370,14 +370,14 @@ function checkxoc(rect1, rect2) {
    return false;
 }
 
-function abovesegment(p1,p2,p3, width, ab=true) {
+function abovesegment(p1,p2,p3, obj1, ab=true) {
     //p1 and p2 are the two limit points of the segment. p3 is the point we want to check whether
     // it is above (ab=true) or below (ab=false) of the segment p1p2
     //p2.x must be > p1.x
     var m = (p2[1]-p1[1])/(p2[0]-p1[0]);
     var n = p2[1]- m*p2[0];
     quad1 = new rect(p1[0],p2[1], Math.abs(p2[0]-p1[0]), Math.abs(p2[1]-p1[1]));
-    if(!checkxoc(quad1,human)) return false; //checking that the x + width segment intersects the p1.x, p2.x segmetn
+    if(!checkxoc(quad1,obj1)) return false; //checking that the x + width segment intersects the p1.x, p2.x segmetn
     if(ab) return (p3[1] >= m*p3[0] + n);
     return (p3[1] <= m*p3[0] + n);
 }
