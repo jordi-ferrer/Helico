@@ -12,9 +12,9 @@
     /* per fer animacions mirar-se be al funció requestAnimationFrame() en comptes
     d'usar setTimeout() */
     
-    body{
-	background-color:LightCyan;
-        touch-action: manipulation;
+body{
+    background-color:LightCyan;
+    touch-action: manipulation;
 }
 html {
     touch-action: manipulation;
@@ -252,6 +252,14 @@ function move() {
             rescatat=true;
             document.getElementById("human1").style.visibility="hidden";
         }
+        if(human.x + human.width < heli.x)
+        {
+            document.getElementById("cara_huma").innerHTML=":o";
+        }
+        else
+        {
+            document.getElementById("cara_huma").innerHTML=":)";
+        }
 	//move
         
         if(mou) {
@@ -417,7 +425,7 @@ function gameover() {
     <div class="cara2"> o.O </div>
 </div>
 
-<div id="human1"><span class="leg1"></span><span class="leg2"></span><span class="arms"></span><span class="body"></span><span class="head"><span class="cara3">:(</span></span></div>
+<div id="human1"><span class="leg1"></span><span class="leg2"></span><span class="arms"></span><span class="body"></span><span class="head"><span id="cara_huma" class="cara3">:)</span></span></div>
 
 <div id="helicop" class="heli">
     <div class="helix1"></div>
