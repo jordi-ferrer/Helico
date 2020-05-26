@@ -44,7 +44,7 @@ function randquadrats(id='alo',colors=['blue'],fileshor=2,filesver=7,height=500,
     var ampfin;
     for(i=fileshor;i>1;i--)
     {
-        ampfin = amplada/i;
+        ampfin = amplada/i + Math.random()*border - Math.random()*border;
         splith.push(splith[splith.length - 1]+ampfin);
         amplada = amplada - ampfin;
     }
@@ -55,7 +55,7 @@ function randquadrats(id='alo',colors=['blue'],fileshor=2,filesver=7,height=500,
     var alcfin;
     for(i=filesver;i>1;i--)
     {
-        alcfin = alcada/i;
+        alcfin = alcada/i + Math.random()*border - Math.random()*border;
         splitv.push(splitv[splitv.length - 1]+alcfin);
         alcada = alcada - alcfin;
     }
