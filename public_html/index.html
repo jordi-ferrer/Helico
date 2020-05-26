@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
  <link rel="stylesheet" href="style/human.css">
+ <link rel="stylesheet" href="style/corda.css">
 
 <style>
 
@@ -139,7 +140,7 @@ html {
 <script>
 
 
-
+var angcord=0; //angle inicial de la corda respecte la vertical
 var rescats=0;
 var rescatat=false;
 let request; //aquesta variable serveix per fer les animacions
@@ -149,6 +150,7 @@ var xocat=false;
 heli = new rectvol();
 enemic1 = new rectvol();
 human = new rectvol();
+corda = new rectvol();
 /*bloc position & speed*/
 // 					left, top,width,height,vx,vy
 bc1 = new rectvol();
@@ -212,6 +214,8 @@ function carrega() {
 	
         human.x = bc6.x; human.y=bc6.y - 47; human.width=30; human.height=80;
         
+        corda.x=23; corda.y = 23; corda.width=5; corda.height=100;
+        
         draw();
 	document.getElementById("aux2").innerHTML="hola2";
         document.getElementById("cara").innerHTML=":D";
@@ -219,7 +223,7 @@ function carrega() {
         var n = bloc.length;
         for(var i=0;i<n;i++){
                     //randbolet2(id=nomsb[i],colors=["LightCyan","brown","gray"],boles=10,spready=400,spreadx=100,minballr=20,maxballr=40);			
-                    randquadrats(id=nomsb[i],colors=["LightCyan","salmon","salmon","greenyellow"],fileshor=5,filesver=17,height=400,width=100,border=3);
+                    randquadrats(id=nomsb[i],colors=["LightCyan","salmon","salmon","greenyellow"],fileshor=4,filesver=13,height=400,width=100,border=3);
 
             }
      
@@ -242,12 +246,16 @@ function intro() {
 function move() {
 	//check hit:
 	if( checkxoc(heli,bc1) || checkxoc(heli,bc2) || checkxoc(heli,bc3) || checkxoc(heli,bc4) || checkxoc(heli,bc5) || checkxoc(heli,bc6) || 
-                checkxoc(heli,enemic1) ){
+                checkxoc(heli,enemic1)  )  {
 		gameover();
 		return;
 	}
         //check resque:
-        if(checkxoc(heli,human) && !rescatat) {
+        if(  !rescatat && ( checkxoc(heli,human)  ||  
+                                                abovesegment( [heli.x+corda.x - corda.height*Math.sin(Math.PI*angcord/180), heli.y+heli.height+corda.y+Math.cos(Math.PI*angcord/180)*corda.height],
+                                                                [heli.x+corda.x,  heli.y+heli.height+corda.y],
+                                                                [human.x,human.y], human.width, ab=false)
+                                                 ) ) {
             rescats += 1;
             rescatat=true;
             document.getElementById("human1").style.visibility="hidden";
@@ -262,6 +270,9 @@ function move() {
 			movebloc(bloc[i],i);
 		}
                 movehuman(human);
+                angcord = angcord + Math.random()*4 - 2;
+                if(angcord<0) angcord=0.01; if(angcord>40) angcord=40;
+                document.getElementById("corda").style.transform="rotate("+ angcord +"deg)";
 	}
 		
 		
@@ -270,11 +281,20 @@ function move() {
 	draw();
 	
 	/*texts auxiliars*/
-	document.getElementById("aux2").innerHTML = "windown inner width: "+ window.innerWidth + " window.innerHeight: "+window.innerHeight;
-	document.getElementById("aux1").innerHTML="heli vy:" +Math.round(heli.vy) + "<br> heli y:" + 
-	Math.round(heli.y) + "<br>bloc vx:" +Math.round(bc1.vx) + "<br>pos x bloc:" +Math.round(bc1.x) +
+	document.getElementById("aux2").innerHTML = "windown inner width: "+ window.innerWidth + " window.innerHeight: "+window.innerHeight +
+                "<br> segment ["+Math.round(heli.x+corda.x - corda.height*Math.sin(Math.PI*angcord/180))+","+ Math.round(heli.y+heli.height+corda.y+Math.cos(Math.PI*angcord/180)*corda.height)+"], ["+ 
+                                                                Math.round( heli.x+corda.x )+", "+ Math.round(heli.y+heli.height+corda.y )+"],["+
+                                                                Math.round(human.x)+","+Math.round(human.y)+"]: "+abovesegment([heli.x+corda.x - corda.height*Math.sin(Math.PI*angcord/180), heli.y+heli.height+corda.y+Math.cos(Math.PI*angcord/180)*corda.height],
+                                                                [heli.x+corda.x,  heli.y+heli.height+corda.y],
+                                                                [human.x,human.y],false);
+	document.getElementById("aux1").innerHTML="heli vy:" +Math.round(heli.vy) + "<br> heli y:" + Math.round(heli.y) +
+                 "<br> heli height: " +Math.round(heli.height) + "<br> heli x: " + heli.x +
+	 "<br>bloc vx:" +Math.round(bc1.vx) + "<br>pos x bloc:" +Math.round(bc1.x) +
 	"<br> bloc vy: " +Math.round(bc1.vy) + "<br> bloc y: " + Math.round(bc1.y) + "<br> enemic1 y: " + Math.round(enemic1.y) +
-        "<br> enemic1 x: " + Math.round(enemic1.x) + "<br> request: " + request;
+        "<br> enemic1 x: " + Math.round(enemic1.x) + "<br> request: " + request +
+         "<br> human x: " + human.x + "<br> human y: " + human.y + "<br> human heigth: " + human.height + "<br> human width " + human.width +
+         "<br> bloc 6 y " + bc6.y + "<br> corda*sin(ang corda):"+ Math.round(corda.height*Math.sin(Math.PI*angcord/180) ) + 
+          "<br> angle corda: " + angcord ;
 	
 	document.getElementById("score").innerHTML = "<h3><b>Distance <b style='color:brown'>"+ sco +" </b></b>m  - clerks resqued </b><b style='color:brown'>"+rescats+"</b></h3>";
 	if(mou) sco +=1;
@@ -315,7 +335,11 @@ function draw() {
         
        	document.getElementById("human1").style.top=human.y+"px";
         document.getElementById("human1").style.left=human.x+"px";
-
+        
+        document.getElementById("corda").style.top=corda.y+"px";
+	document.getElementById("corda").style.left=corda.x+"px";
+	document.getElementById("corda").style.width=corda.width+"px";
+	document.getElementById("corda").style.height=corda.height+"px";
 
 	var n = nomsb.length;
 	for(var i=0;i<n;i++){
@@ -337,6 +361,18 @@ function checkxoc(rect1, rect2) {
        return true;
    }
    return false;
+}
+
+function abovesegment(p1,p2,p3, width, ab=true) {
+    //p1 and p2 are the two limit points of the segment. p3 is the point we want to check whether
+    // it is above (ab=true) or below (ab=false) of the segment p1p2
+    //p2.x must be > p1.x
+    var m = (p2[1]-p1[1])/(p2[0]-p1[0]);
+    var n = p2[1]- m*p2[0];
+    quad1 = new rect(p1[0],p2[1], Math.abs(p2[0]-p1[0]), Math.abs(p2[1]-p1[1]));
+    if(!checkxoc(quad1,human)) return false; //checking that the x + width segment intersects the p1.x, p2.x segmetn
+    if(ab) return (p3[1] >= m*p3[0] + n);
+    return (p3[1] <= m*p3[0] + n);
 }
 
 function moveheli(rectvol){
@@ -417,13 +453,14 @@ function gameover() {
     <div class="cara2"> o.O </div>
 </div>
 
-<div id="human1"><span class="leg1"></span><span class="leg2"></span><span class="arms"></span><span class="body"></span><span class="head"><span class="cara3">:(</span></span></div>
+<div id="human1"><span class="leg1"></span><span class="leg2"></span><span class="arms"></span><span class="body"></span><span class="head"><span class="cara3">:|</span></span></div>
 
 <div id="helicop" class="heli">
     <div class="helix1"></div>
     <div class="helix2"></div>
     <div class="cuah"></div>
-    <div class="cara" id="cara">:d</div>    
+    <div class="cara" id="cara">:d</div>   
+    <div id="corda"> </div>
 </div>
         
 
