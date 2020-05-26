@@ -27,7 +27,7 @@ function randquadrats(id='alo',colors=['blue'],fileshor=2,filesver=7,height=500,
     for(i=fileshor;i>1;i--)
     {
         //ampfin = amplada/i;
-        splith.push(splith[splith.length - 1]+ampfin + border);
+        splith.push(splith[splith.length - 1]+ampfin );
         //amplada = amplada - ampfin;
     }
     splith.push(width);
@@ -38,7 +38,7 @@ function randquadrats(id='alo',colors=['blue'],fileshor=2,filesver=7,height=500,
     for(i=filesver;i>1;i--)
     {
         //alcfin = alcada/i;
-        splitv.push(splitv[splitv.length - 1]+alcfin+border);
+        splitv.push(splitv[splitv.length - 1]+alcfin);
         //alcada = alcada - alcfin;
     }
     splitv.push(height);
