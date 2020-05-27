@@ -23,7 +23,7 @@ and open the template in the editor.
 .flock{
     position:absolute;
   animation-name: birdmove;
-  animation-duration: 40s;
+  animation-duration: 200s;
   animation-iteration-count: infinite;
   animation-delay: 0s;
   visibility:visible;
