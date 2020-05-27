@@ -55,8 +55,11 @@ body{
 }
 @keyframes celcanvi {
    0%   {left:100%;background-color:LightCyan }
-   50%   {left:50%;background-color:LightCyan }
-  90%  {left:-10%;background-color:#ffa28b  }
+   40%   {left:50%;background-color:LightCyan }
+   43%   {left:50%;background-color:#f3f7d1 }
+   54%   {left:50%;background-color:#f3f7d1 }
+   67%   {left:50%;background-color:#ffa28b }
+  98%  {left:-10%;background-color:#ffa28b  }
   100%  {left:-20%;background-color:LightCyan  }
 }
 @keyframes solcanvi1 {
