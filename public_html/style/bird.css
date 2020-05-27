@@ -21,6 +21,7 @@ and open the template in the editor.
   visibility:visible;
 }
 .flock{
+    position:absolute;
   animation-name: birdmove;
   animation-duration: 40s;
   animation-iteration-count: infinite;
@@ -47,9 +48,9 @@ and open the template in the editor.
   animation-delay: 0s;
 }
 @keyframes birdmove {
-   0%   {transform: translateX(1300px);;visibility:visible }
-  90%  {transform: translateX(-100px);;visibility:hidden }
-  100%  {transform: translateX(-100px);;;visibility:hidden }
+   0%   {transform: translateX(1200px);visibility:visible }
+  90%  {transform: translateX(-300px);visibility:hidden }
+  100%  {transform: translateX(-300px);visibility:hidden }
 }
 
 @keyframes birdfly {
