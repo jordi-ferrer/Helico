@@ -6,6 +6,7 @@
 
  <link rel="stylesheet" href="style/human.css">
  <link rel="stylesheet" href="style/corda.css">
+ <link rel="stylesheet" href="style/bird.css">
 
 <style>
 
@@ -303,7 +304,7 @@ function move() {
          "<br> bloc 6 y " + bc6.y + "<br> corda*sin(ang corda):"+ Math.round(corda.height*Math.sin(Math.PI*angcord/180) ) + 
           "<br> angle corda: " + angcord ;
 	
-	document.getElementById("score").innerHTML = "<h3><b>Distance <b style='color:brown'>"+ sco +" </b></b>m  - clerks resqued </b><b style='color:brown'>"+rescats+"</b></h3>";
+	document.getElementById("score").innerHTML = "<h3><b>Distance <b style='color:brown'>"+Math.round(sco/10)/100 +" </b></b>km  - clerks resqued </b><b style='color:brown'>"+rescats+"</b></h3>";
 	if(mou) sco +=1;
 	
         if( (sco % 400) ===0) {enemic1.x=1200; enemic1.vx=-10; enemic1.y=Math.random()*bc1.y    ;}
@@ -445,6 +446,18 @@ function gameover() {
 
 </script>
 <div id="fons_de_pant"> </div>
+<div class="flock">
+    
+<div class="bird" id="bird1" style="background-color:black;top:30px;left:40px">
+    <div class="wing wing1"  style="left:-5px;"></div>
+    <div class="wing wing2"  style="left:5px;"></div>
+</div>
+<div class="bird" id="bird2" style="background-color:blue;top:100px;">
+    <div class="wing wing1"  style="background-color:blue;left:-5px;"></div>
+    <div class="wing wing2"  style="background-color:blue;left:5px;"></div>
+</div>
+    
+</div>
 <div class="terra" id="bloc1"></div>
 <div class="terra" id="bloc2"></div>
 <div class="terra" id="bloc3"></div>
