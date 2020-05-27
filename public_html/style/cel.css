@@ -7,13 +7,40 @@ and open the template in the editor.
     Created on : 27-may-2020, 1:44:45
     Author     : MiPc
 */
-
+body{
+    background-color:LightCyan;
+       animation-name: celcanvi;
+  animation-duration: 600s;
+  animation-iteration-count: infinite;
+  animation-delay: 0s;
+}
 .sol {
   position:absolute;
-  width: 40px;
-  height: 40px;
+  left:30px;
+  top:10px;
+  width: 80px;
+  height: 80px;
   border-radius: 100%;
-  background-color: #fffaaf;
+  background-color: yellow;
+  opacity:100%;
+   animation-name: solcanvi1;
+  animation-duration: 600s;
+  animation-iteration-count: infinite;
+  animation-delay: 0s;
+}
+.aura1 {
+  position:absolute;
+  width: 120px;
+  height: 120px;
+  border-radius: 100%;
+  background-color: #f7fefe;
+} 
+.aura2 {
+  position:absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 100%;
+  background-color: #eafeff;
   animation-name: mousol;
   animation-duration: 600s;
   animation-iteration-count: infinite;
@@ -21,6 +48,22 @@ and open the template in the editor.
 }
 
 @keyframes mousol {
-   0%   {left:100% }
-  100%  {left:0% }
+   0%   {left:100%;background-color:#eafeff }
+   30%   {left:50%;background-color:#eafeff }
+  90%  {left:-15%;background-color:#f7d7ab  }
+  100%  {left:-20%;background-color:#eafeff  }
+}
+@keyframes celcanvi {
+   0%   {left:100%;background-color:LightCyan }
+   50%   {left:50%;background-color:LightCyan }
+  90%  {left:-10%;background-color:#ffa28b  }
+  100%  {left:-20%;background-color:LightCyan  }
+}
+@keyframes solcanvi1 {
+   0%   {background-color:yellow }
+   40%  {background-color:yellow }
+  50%  {background-color:#f8d153 }
+  80%  {background-color:red }
+  90%  {background-color:red }
+  100%  {background-color:yellow }
 }
