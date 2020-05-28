@@ -4,18 +4,18 @@
     <title>JoriCop</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
- <link rel="stylesheet" href="style/human.css">
- <link rel="stylesheet" href="style/heli.css">
- <link rel="stylesheet" href="style/corda.css">
- <link rel="stylesheet" href="style/bird.css">
- <link rel="stylesheet" href="style/cel.css">
+<link rel="stylesheet" href="style/human.css">
+<link rel="stylesheet" href="style/heli.css">
+<link rel="stylesheet" href="style/corda.css">
+<link rel="stylesheet" href="style/buildings.css">
+<link rel="stylesheet" href="style/bird.css">
+<link rel="stylesheet" href="style/cel.css">
 
 <style>
 
-
     /* per fer animacions mirar-se be al funció requestAnimationFrame() en comptes
     d'usar setTimeout() */
-    
+
 body{
     background-color:LightCyan;
     touch-action: manipulation;
@@ -25,14 +25,10 @@ html {
 }
 
 .terra{
-	background-color: gray;
+    background-color: gray;
 }
 .cel{
-	background-color: blue;
-}
-
-#human1{
-    position:absolute;
+    background-color: blue;
 }
 
 .boleta {
@@ -42,23 +38,8 @@ html {
       border-radius: 30px;
       border-color: blue;
       background: greenyellow;
-      
-    }
-.finestra {
-    position:absolute;
-     width: 30px;
-      height: 30px;
-     
-      border-color: blue;
-      background: greenyellow;
-      
-    }
-#bloc1,#bloc2,#bloc3,#bloc4,#bloc5,#bloc6{
-	position: absolute;
-	height:200px;
-	top:200px;
-	left:150px;
-}
+ }
+
 #gameover{
 	position:absolute;
 	left:30%;
