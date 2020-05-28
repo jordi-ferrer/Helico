@@ -63,8 +63,8 @@ body{
   100%  {left:-20%;background-color:LightCyan  }
 }
 @keyframes solcanvi1 {
-   0%   {background-color:yellow }
-   40%  {background-color:yellow }
+  0%   {background-color:yellow }
+  40%  {background-color:yellow }
   50%  {background-color:#f8d153 }
   80%  {background-color:red }
   90%  {background-color:red }
