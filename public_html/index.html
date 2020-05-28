@@ -48,6 +48,8 @@ html {
 <script src="js/class/rectvol.js"></script>
 <script src="js/function/randbolet2.js"></script>
 <script src="js/function/underscore.js"></script>
+<script src="js/function/movement.js"></script>
+<script src="js/function/xocs.js"></script>
 <script>
 
 
@@ -141,9 +143,7 @@ function carrega() {
          intro();
 }
 
-function caratrista() {
-    document.getElementById("cara").innerHTML=":(";
-}
+
 
 function intro() {
   
@@ -189,7 +189,7 @@ function move() {
 		}
                 movehuman(human);
                 angcord = angcord + Math.random()*4 - 2;
-                if(angcord<0) angcord=0.01; if(angcord>90) angcord=90;
+                if(angcord<0) angcord=0.01; if(angcord>45) angcord=45;
                 document.getElementById("corda").style.transform="rotate("+ angcord +"deg)";
 	}
 		
@@ -268,84 +268,6 @@ function draw() {
 		document.getElementById(nomsb[i]).style.height=bloc[i].height+"px";
 	}
 	
-}
-
-function checkxoc(rect1, rect2) {
-   if(rect1.x < rect2.x + rect2.width &&
-      rect1.x + rect1.width > rect2.x &&
-      rect1.y < rect2.y + rect2.height &&
-      rect1.y + rect1.height > rect2.y) 
-   {
-       return true;
-   }
-   return false;
-}
-
-function abovesegment(p1,p2,p3, obj1, ab=true) {
-    //p1 and p2 are the two limit points of the segment. p3 is the point we want to check whether
-    // it is above (ab=true) or below (ab=false) of the segment p1p2
-    //p2.x must be > p1.x
-    var m = (p2[1]-p1[1])/(p2[0]-p1[0]);
-    var n = p2[1]- m*p2[0];
-    quad1 = new rect(p1[0],p2[1], Math.abs(p2[0]-p1[0]), Math.abs(p2[1]-p1[1]));
-    if(!checkxoc(quad1,obj1)) return false; //checking that the x + width segment intersects the p1.x, p2.x segmetn
-    if(ab) return (p3[1] >= m*p3[0] + n);
-    return (p3[1] <= m*p3[0] + n);
-}
-
-function moveheli(rectvol){
-	rectvol.vy=rectvol.vy+=rectvol.ay;
-	rectvol.y = rectvol.y+rectvol.vy;
-        rectvol.x = rectvol.x+rectvol.vx;
-        
-        /*check speed limits*/
-	if(rectvol.vy>20) rectvol.vy=20;
-	if(rectvol.vy<-20) rectvol.vy= -20;
-	
-	/*check height limits*/
-	if(rectvol.y>600) { 
-		rectvol.y=600;
-		rectvol.vy = 0;
-	}
-	if(rectvol.y<0) {
-		rectvol.y=0;
-		rectvol.vy = 0;
-	}
-        //the next if is to stop the red helicopters from going too far out of the screen
-        if(rectvol.x<-100) {
-		rectvol.x=-100;
-		rectvol.vx = 0;
-	}
-}
-
-function movebloc(rect, i){
-	if(i===0) { 
-            i = bloc.length-1;
-	} else {
-            i=i-1;
-        }
-        
-	rect.x = rect.x + rect.vx;
-	if(rect.x < -rect.width) {
-		rect.x = 1100 ;
-		rect.y = bloc[i].y +  Math.floor(Math.random() * (150)-75 );
-		if(rect.y<200) rect.y=200;
-		if(rect.y>450) rect.y=450;
-                if(i===5 && rescatat) {
-                    rescatat=false;
-                    document.getElementById("human1").style.visibility="visible";
-                }
-	}
-	
-}
-function movehuman() {
-    human.x = bc6.x; human.y = bc6.y-47;
-}
-function volare(id) {
-        if(mou) { 
-	 heli.vy = heli.vy - 6;
-	 heli.y += heli.vy;	 
-     }
 }
 
 function gameover() {
