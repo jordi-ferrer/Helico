@@ -50,3 +50,8 @@
   border-radius: 40%;
   display: inline-block;
 }
+.cara3 {
+     position:absolute;
+  transform: rotate(90deg);
+  left:5px;
+}
