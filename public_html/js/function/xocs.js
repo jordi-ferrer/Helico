@@ -16,14 +16,66 @@ function checkxoc(rect1, rect2) {
    return false;
 }
 
-function abovesegment(p1,p2,p3, obj1, ab=true) {
-    //p1 and p2 are the two limit points of the segment. p3 is the point we want to check whether
-    // it is above (ab=true) or below (ab=false) of the segment p1p2
-    //p2.x must be > p1.x
+//function not used anymore: xocrotatedret used instead
+function abovesegment(p1,p2, p3, obj1, ab=true) {
+    //Here we want to check whether the rectangular object ojb1 crossed the 
+    //segment formed by the points p1 and p2. here p2.x must be > p1.x
+    //p3 is the upper left corner of obj1. p4 is the lower right corner of obj1.
+    //width is the width of the segment. p1 and p2 are the extreme coordinates of the leftmost side 
+    //of the segment.
     var m = (p2[1]-p1[1])/(p2[0]-p1[0]);
     var n = p2[1]- m*p2[0];
     quad1 = new rect(p1[0],p2[1], Math.abs(p2[0]-p1[0]), Math.abs(p2[1]-p1[1]));
     if(!checkxoc(quad1,obj1)) return false; //checking that the x + width segment intersects the p1.x, p2.x segmetn
-    if(ab) return (p3[1] >= m*p3[0] + n);
+    if(ab) return ( p3[1] >= m*p3[0] + n ) ;
     return (p3[1] <= m*p3[0] + n);
+}
+
+function paboveline(p1,p2, p3, ab=true) { //point 3 above line formed by p1,p2.
+    var pts = [p1, p2];
+    pts.sort(sortfunction1);
+    p1 = pts[0]; p2 = pts[1];
+    var m = (p2[1]-p1[1])/(p2[0]-p1[0]);
+    var n = p2[1]- m*p2[0];
+    if(ab) return ( p3[1] >= m*p3[0] + n ) ;
+    return (p3[1] <= m*p3[0] + n);
+}
+
+function xocrotatedrect(p1,p2,p3,p4, rect2) {
+    //p11, p22, p33, p44 are the four points forming the rotated rectangle, rect2 is NOT rotated
+    var pts = [p1, p2, p3, p4];
+    pts.sort(sortfunction1);//sorts points from smallest to biggest x, and smallest to biggest y
+    var pt24 = [pts[1],pts[2]];
+    pt24.sort(sortfunctiony);
+    //these two sorts have sorted the points of the rotated rectangle in counter-clockwise order startnig at left-uppermost corner of
+    //rotated rectangle:
+    var p = [pts[0], pt24[0], pts[3], pt24[1]];
+    
+    var q1 = [rect2.x, rect2.y];
+    var q2 = [rect2.x+rect2.width, rect2.y];
+    var q3 = [rect2.x, rect2.y + rect2.height];
+    var q4 = [rect2.x+rect2.width, rect2.y+ rect2.height];
+    
+    var q = [q1, q2, q3, q4];
+    
+    q.sort(sortfunction1);
+    
+    return( paboveline(p[1],p[2], q[1]) && paboveline(p[0], p[3], q[2], ab=false) &&
+            paboveline(p[2], p[3], q[0], ab=false) && paboveline(p[0], p[1], q[3])  ); 
+    
+    
+    /*q2 > p2, p3
+    q3 < p1, p4
+    q1 < p3, p4
+    q4 > p1 p2
+    */
+}
+
+function sortfunctiony(a,b) { //sorts points from smallest to biggest y
+    return a[1] - b[1];
+}
+
+function sortfunction1(a,b) { //sorts points from smallest to biggest x, and smallest to biggest y
+    if(a[0] === b[0]) return a[1] - b[1];
+    return a[0] - b[0];
 }
