@@ -37,7 +37,7 @@ html {
 }
 #controls{
     position:absolute;
-    visibility:hidden;
+    visibility:visibility;
 }
 
 </style>
@@ -165,7 +165,7 @@ function move() {
         if(  !rescatat && ( checkxoc(heli,human)  ||  
                                                 abovesegment( [heli.x+corda.x - corda.height*Math.sin(Math.PI*angcord/180), heli.y+heli.height+corda.y+Math.cos(Math.PI*angcord/180)*corda.height],
                                                                 [heli.x+corda.x,  heli.y+heli.height+corda.y],
-                                                                [human.x,human.y], human, ab=false)
+                                                                [human.x,human.y], human, false)
                                                  ) ) {
             rescats += 1;
             rescatat=true;
@@ -212,7 +212,7 @@ function move() {
         "<br> enemic1 x: " + Math.round(enemic1.x) + "<br> request: " + request +
          "<br> human x: " + human.x + "<br> human y: " + human.y + "<br> human heigth: " + human.height + "<br> human width " + human.width +
          "<br> bloc 6 y " + bc6.y + "<br> corda*sin(ang corda):"+ Math.round(corda.height*Math.sin(Math.PI*angcord/180) ) + 
-          "<br> angle corda: " + angcord ;
+          "<br> angle corda: " + angcord + "<br> vector of points:" + abovesegment2([4,2],[2,4], [1,3], [3,1], human) + " " + paboveline([1,3], [3,1], [2,4], ab=false);
 	
 	document.getElementById("score").innerHTML = "<h3><b>Distance <b style='color:brown'>"+Math.round(sco/10)/100 +" </b></b>km  - clerks resqued </b><b style='color:brown'>"+rescats+"</b></h3>";
 	if(mou) sco +=1;
@@ -349,6 +349,7 @@ function gameover() {
 <div id="controls">
 <p id="aux1"></p>
 <p id="aux2"></p>
+<p id="aux3"></p>
 
 </div>
 </body  >
