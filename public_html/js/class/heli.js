@@ -16,9 +16,9 @@ class helicop extends rectvol {
     
     move() {
         super.move();
-        
+        //s´haurien de definir els limits fora de la funció
         if(this.vy > 20) this.vy = 20;
-	if(this.vy < -20) this.vy= -20;
+	if(this.vy < -20) this.vy = -20;
 	
 	/*check height limits*/
 	if(this.y > 600) {
