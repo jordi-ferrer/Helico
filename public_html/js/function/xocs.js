@@ -16,20 +16,7 @@ function checkxoc(rect1, rect2) {
    return false;
 }
 
-//function not used anymore: xocrotatedret used instead
-function abovesegment(p1,p2, p3, obj1, ab=true) {
-    //Here we want to check whether the rectangular object ojb1 crossed the 
-    //segment formed by the points p1 and p2. here p2.x must be > p1.x
-    //p3 is the upper left corner of obj1. p4 is the lower right corner of obj1.
-    //width is the width of the segment. p1 and p2 are the extreme coordinates of the leftmost side 
-    //of the segment.
-    var m = (p2[1]-p1[1])/(p2[0]-p1[0]);
-    var n = p2[1]- m*p2[0];
-    quad1 = new rect(p1[0],p2[1], Math.abs(p2[0]-p1[0]), Math.abs(p2[1]-p1[1]));
-    if(!checkxoc(quad1,obj1)) return false; //checking that the x + width segment intersects the p1.x, p2.x segmetn
-    if(ab) return ( p3[1] >= m*p3[0] + n ) ;
-    return (p3[1] <= m*p3[0] + n);
-}
+
 
 function paboveline(p1,p2, p3, ab=true) { //point 3 above line formed by p1,p2.
     var pts = [p1, p2];
