@@ -1,7 +1,7 @@
 class rectvol extends rect {
     constructor(left,top,width,height,vx,vy,ax,ay, name) {
         super(left,top,width,height);
-        this._vx = vx;
+        this._vx = vx; //comm t'agrada canviar els .noms a les this variables! ;p
         this._vy = vy;
         this._ax = ax;
         this._ay = ay;
