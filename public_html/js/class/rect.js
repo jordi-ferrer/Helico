@@ -1,33 +1,33 @@
 class rect {
   constructor(left,top,width,height) {
-    this.x1 = left;
-	this.y1 = top;
-	this.width1 = width;
-	this.height1 = height;
+    this._x = left;
+    this._y = top;
+    this._width = width;
+    this._height = height;
   }
   get x() {
-    return this.x1;
+    return this._x;
   }
   get y() {
-    return this.y1;
+    return this._y;
   }
   get width() {
-    return this.width1;
+    return this._width;
   }
   get height() {
-    return this.height1;
+    return this._height;
   }
   
   set x(ep) {
-    this.x1 = ep;
+    this._x = ep;
   }
   set y(ep) {
-    this.y1 = ep;
+    this._y = ep;
   }
   set width(ep) {
-    this.width1 = ep;
+    this._width = ep;
   }
   set height(ep) {
-    this.height1 = ep;
+    this._height = ep;
   }
 }

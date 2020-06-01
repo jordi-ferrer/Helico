@@ -10,9 +10,10 @@ function caratrista() {
 }
 
 function moveheli(rectvol){
-	rectvol.vy=rectvol.vy+=rectvol.ay;
-	rectvol.y = rectvol.y+rectvol.vy;
-        rectvol.x = rectvol.x+rectvol.vx;
+	//rectvol.vy=rectvol.vy+=rectvol.ay;
+	//rectvol.y = rectvol.y+rectvol.vy;
+        //rectvol.x = rectvol.x+rectvol.vx;
+        rectvol.move();
         
         /*check speed limits*/
 	if(rectvol.vy>20) rectvol.vy=20;
@@ -52,7 +53,6 @@ function movebloc(rect, i){
                     document.getElementById("human1").style.visibility="visible";
                 }
 	}
-	
 }
 function movehuman() {
     human.x = bc6.x; human.y = bc6.y-47;
