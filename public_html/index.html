@@ -130,7 +130,7 @@ function carrega() {
         corda.x=23; corda.y = 23; corda.width=5; corda.height=100;
         
         draw();
-	document.getElementById("aux2").innerHTML="hola2";
+	document.getElementById("aux2").innerHTML="hola2 " + angcord;
         document.getElementById("cara").innerHTML=":D";
         randbolet2(id="fons_de_pant",colors=["white","pink"],boles=80,spready=500,spreadx=1000,minballr=10,maxballr=100);
         var n = bloc.length;
@@ -155,12 +155,14 @@ function intro() {
 }
 
 function move() {
+    
 	//check hit:
 	if( checkxoc(heli,bc1) || checkxoc(heli,bc2) || checkxoc(heli,bc3) || checkxoc(heli,bc4) || checkxoc(heli,bc5) || checkxoc(heli,bc6) || 
                 checkxoc(heli,enemic1)  )  {
 		gameover();
 		return;
 	}
+        
         //check resque:
         if(  !rescatat && ( checkxoc(heli,human)   ||  
                                                xocrotatedrect( [heli.x+corda.x - corda.height*Math.sin(Math.PI*angcord/180), heli.y+heli.height+corda.y+Math.cos(Math.PI*angcord/180)*corda.height],
@@ -173,6 +175,7 @@ function move() {
             rescatat=true;
             document.getElementById("human1").style.visibility="hidden";
         }
+        //si no rescata a un clerck posa cara de sorpresa:
         if(human.x + human.width < heli.x)
         {
             document.getElementById("cara_huma").innerHTML=":o";
@@ -180,6 +183,7 @@ function move() {
         {
             document.getElementById("cara_huma").innerHTML=":)";
         }
+        
 	//move
         
         if(mou) {
@@ -202,12 +206,7 @@ function move() {
 	
         
 	/*texts auxiliars*/
-	document.getElementById("aux2").innerHTML = "windown inner width: "+ window.innerWidth + " window.innerHeight: "+window.innerHeight +
-                "<br> segment ["+Math.round(heli.x+corda.x - corda.height*Math.sin(Math.PI*angcord/180))+","+ Math.round(heli.y+heli.height+corda.y+Math.cos(Math.PI*angcord/180)*corda.height)+"], ["+ 
-                                                                Math.round( heli.x+corda.x )+", "+ Math.round(heli.y+heli.height+corda.y )+"],["+
-                                                                Math.round(human.x)+","+Math.round(human.y)+"]: "+abovesegment([heli.x+corda.x - corda.height*Math.sin(Math.PI*angcord/180), heli.y+heli.height+corda.y+Math.cos(Math.PI*angcord/180)*corda.height],
-                                                                [heli.x+corda.x,  heli.y+heli.height+corda.y],
-                                                                [human.x,human.y],false);
+	document.getElementById("aux2").innerHTML = "windown inner width: "+ window.innerWidth + " window.innerHeight: "+window.innerHeight ;
 	document.getElementById("aux1").innerHTML="heli vy:" +Math.round(heli.vy) + "<br> heli y:" + Math.round(heli.y) +
                  "<br> heli height: " +Math.round(heli.height) + "<br> heli x: " + heli.x +
 	 "<br>bloc vx:" +Math.round(bc1.vx) + "<br>pos x bloc:" +Math.round(bc1.x) +
@@ -216,7 +215,6 @@ function move() {
          "<br> human x: " + human.x + "<br> human y: " + human.y + "<br> human heigth: " + human.height + "<br> human width " + human.width +
          "<br> bloc 6 y " + bc6.y + "<br> corda*sin(ang corda):"+ Math.round(corda.height*Math.sin(Math.PI*angcord/180) ) + 
           "<br> angle corda: " + angcord ;
-	
 	document.getElementById("score").innerHTML = "<h3><b>Distance <b style='color:brown'>"+Math.round(sco/10)/100 +" </b></b>km  - clerks resqued </b><b style='color:brown'>"+rescats+"</b></h3>";
 	if(mou) sco +=1;
 	
@@ -293,7 +291,7 @@ function gameover() {
     <div class="wing wing1"  style="left:-5px;"></div>
     <div class="wing wing2"  style="left:5px;"></div>
 </div>
- <div class="bird" id="bird2" style="background-color:brown;top:220px;left:20px;;">
+ <div class="bird" id="bird2" style="background-color:brown;top:220px;left:20px;">
     <div class="wing wing1"  style="background-color:brown;left:-5px;"></div>
     <div class="wing wing2"  style="background-color:brown;left:5px;"></div>
 </div>
@@ -308,7 +306,7 @@ function gameover() {
     <div class="wing wing1"  style="left:-5px;"></div>
     <div class="wing wing2"  style="left:5px;"></div>
 </div>
- <div class="bird" id="bird2" style="background-color:brown;top:220px;left:20px;;">
+ <div class="bird" id="bird2" style="background-color:brown;top:220px;left:20px;">
     <div class="wing wing1"  style="background-color:brown;left:-5px;"></div>
     <div class="wing wing2"  style="background-color:brown;left:5px;"></div>
 </div>
