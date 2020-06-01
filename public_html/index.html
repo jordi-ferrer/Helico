@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html  onclick="volare('helicop')" onkeydown="volare('helicop')">
 <head>
-    <title>JoriCop</title>
+<title>JoriCop</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
 <link rel="stylesheet" href="style/human.css">
@@ -13,8 +13,8 @@
 
 <style>
 
-    /* per fer animacions mirar-se be al funció requestAnimationFrame() en comptes
-    d'usar setTimeout() */
+/* per fer animacions mirar-se be al funció requestAnimationFrame() en comptes
+d'usar setTimeout() */
 
 body{
     background-color:LightCyan;
@@ -24,11 +24,11 @@ html {
     touch-action: manipulation;
 }
 #gameover{
-	position:absolute;
-	left:30%;
-	top:30%;
-	visibility:hidden;
-	color:red;
+    position:absolute;
+    left:30%;
+    top:30%;
+    visibility:hidden;
+    color:red;
 }
 #score{
     top:30px;
@@ -46,6 +46,8 @@ html {
 
 <script src="js/class/rect.js"></script>
 <script src="js/class/rectvol.js"></script>
+<script src="js/class/heli.js"></script>
+
 <script src="js/function/randbolet2.js"></script>
 <script src="js/function/underscore.js"></script>
 <script src="js/function/movement.js"></script>
@@ -53,35 +55,38 @@ html {
 <script>
 
 
-var angcord=0; //angle inicial de la corda respecte la vertical
-var rescats=0;
-var rescatat=false;
+var angcord = 0; //angle inicial de la corda respecte la vertical
+var rescats = 0;
+var rescatat = false;
 let request; //aquesta variable serveix per fer les animacions
-var xocat=false;
+var xocat = false;
+
 /*helicopter position & speed*/
 // 					left,top,width,height,vx,vy
-heli = new rectvol();
-enemic1 = new rectvol();
-human = new rectvol();
-corda = new rectvol();
+heli = new helicop(200, 300, 50, 25, 0, 0, 0, 0.2, "helicop");
+enemic1 = new helicop(1200, 200, 50, 25, -10, 0, 0, 0, "enemic1");
+
 /*bloc position & speed*/
 // 					left, top,width,height,vx,vy
-bc1 = new rectvol();
-bc2 = new rectvol();
-bc3 = new rectvol();
-bc4 = new rectvol();
-bc5 = new rectvol();
-bc6 = new rectvol();
+bc1 = new rectvol(200, heli.y+30, 100, 400, -5, 0, 0, 0, "bloc1");
+bc2 = new rectvol(400, 400+Math.random()*100, 100, 400, -5, 0, 0, 0, "bloc2");
+bc3 = new rectvol(600, 400+Math.random()*100, 100, 400, -5, 0, 0, 0, "bloc3");
+bc4 = new rectvol(800, 400+Math.random()*100, 100, 400, -5, 0, 0, 0, "bloc4");
+bc5 = new rectvol(1000, 400+Math.random()*100, 100, 400, -5, 0, 0, 0, "bloc5");
+bc6 = new rectvol(1200, 400+Math.random()*100, 100, 400, -5, 0, 0, 0, "bloc6");
+
+human = new rectvol(bc6.x, bc6.y-47,10, 65, 0, 0, 0, 0, "human1");
+corda = new rectvol(23, 23, 5, 100, 0, 0, 0, 0, "corda");
 
 var nomsb = ["bloc1","bloc2","bloc3","bloc4","bloc5","bloc6"];
 var bloc = [bc1,bc2,bc3,bc4,bc5,bc6];
 
-var mou=false;
-var  sco=0;
+var mou = false;
+var sco = 0;
 
 function restart() {
     if(xocat) {
-	 //reinicialitzant les coordenades de l'helicopter i els blocs:
+	//reinicialitzant les coordenades de l'helicopter i els blocs:
 	bc1.x=200; bc1.y= 200+Math.random()*300;
 	bc2.x=400; bc2.y= 200+Math.random()*300;
 	bc3.x=600; bc3.y= 200+Math.random()*300;
@@ -91,21 +96,21 @@ function restart() {
         
         //reinicialitzant les coordenadees i velocitat del jjjjjjoricopter
 	heli.x = 200; heli.y=bc1.y - 30; heli.vx=0; heli.vy=0;
-	 //inicilitzant enemic1
+	//inicilitzant enemic1
         enemic1.x = 1200; enemic1.y=Math.random()*400; enemic1.vx=-10; enemic1.vy=0;
 	
-       angcord=0;
+        angcord=0;
 	mou=false;
 	sco=0;
         rescats=0;
 	document.getElementById("gameover").style.visibility="hidden"; //amaga el botó restart
         var n = bloc.length;
         for(var i=0;i<n;i++){
-                    document.getElementById(nomsb[i]).style.backgroundColor ="gray";			
-            }
-        xocat=false;
+            document.getElementById(nomsb[i]).style.backgroundColor ="gray";			
+        }
+        xocat = false;
         document.getElementById("cara").innerHTML=":O";
-        mou=true;
+        mou = true;
 	requestAnimationFrame(move);
     }
 }
@@ -113,21 +118,21 @@ function restart() {
 function carrega() {
 	document.getElementById("aux2").innerHTML="carregant...";
 	//reinitializing helicopter
-	heli.width = 50; heli.height = 25; heli.x = 200; heli.y=300; heli.vx=0; heli.vy=0; heli.ay=0.2;
+	//heli.width = 50; heli.height = 25; heli.x = 200; heli.y=300; heli.vx=0; heli.vy=0; heli.ay=0.2;
         //inicilitzant enemic1
-        enemic1.width = 50; enemic1.height = 25; enemic1.x = 1200; enemic1.y=200; enemic1.vx=-10; enemic1.vy=0; enemic1.ay=0;
+        //enemic1.width = 50; enemic1.height = 25; enemic1.x = 1200; enemic1.y=200; enemic1.vx=-10; enemic1.vy=0; enemic1.ay=0;
 	
         //reinitializing the blocs
-	bc1.width = 100; bc1.height = 400; bc1.x=200; bc1.y= heli.y+30; bc1.vx=-5; bc1.vy=0;
-	bc2.width = 100; bc2.height = 400; bc2.x=400; bc2.y= 400+Math.random()*100; bc2.vx=-5; bc2.vy=0;
-	bc3.width = 100; bc3.height = 400; bc3.x=600; bc3.y= 400+Math.random()*100; bc3.vx=-5; bc3.vy=0;
-	bc4.width = 100; bc4.height = 400; bc4.x=800; bc4.y= 400+Math.random()*100; bc4.vx=-5; bc4.vy=0;
-	bc5.width = 100; bc5.height = 400; bc5.x=1000; bc5.y= 400+Math.random()*100; bc5.vx=-5; bc5.vy=0;
-	bc6.width = 100; bc6.height = 400; bc6.x=1200; bc6.y= 400+Math.random()*100; bc6.vx=-5; bc6.vy=0;
+	//bc1.width = 100; bc1.height = 400; bc1.x=200; bc1.y= heli.y+30; bc1.vx=-5; bc1.vy=0;
+	//bc2.width = 100; bc2.height = 400; bc2.x=400; bc2.y= 400+Math.random()*100; bc2.vx=-5; bc2.vy=0;
+	//bc3.width = 100; bc3.height = 400; bc3.x=600; bc3.y= 400+Math.random()*100; bc3.vx=-5; bc3.vy=0;
+	//bc4.width = 100; bc4.height = 400; bc4.x=800; bc4.y= 400+Math.random()*100; bc4.vx=-5; bc4.vy=0;
+	//bc5.width = 100; bc5.height = 400; bc5.x=1000; bc5.y= 400+Math.random()*100; bc5.vx=-5; bc5.vy=0;
+	//bc6.width = 100; bc6.height = 400; bc6.x=1200; bc6.y= 400+Math.random()*100; bc6.vx=-5; bc6.vy=0;
 	
-        human.x = bc6.x; human.y=bc6.y - 47; human.width=10; human.height=65;
+        //human.x = bc6.x; human.y=bc6.y - 47; human.width=10; human.height=65;
         
-        corda.x=23; corda.y = 23; corda.width=5; corda.height=100;
+        //corda.x=23; corda.y = 23; corda.width=5; corda.height=100;
         
         draw();
 	document.getElementById("aux2").innerHTML="hola2";
@@ -146,12 +151,11 @@ function carrega() {
 
 
 function intro() {
-  
-            document.getElementById("score").innerHTML="<p align='justify'><b>A long time in the future, in a faraway land.. an office worker is stuck in her office. She is just tired of working and just wants to get out" +
-                    " and scream ALELUYA! with all her might. However, she is stuck in the office. But her employer came to the office by Copter today! So she decides to take the chance and sneak into her" +
-                    " employer copter and take a ride around da city! Will you have what it takes to master the mystery of flight and take a fly around the sky-scrappers? Now is your chance!!!<b> <br> "+
-                    "</p><center><button onclick='mou=true;requestAnimationFrame(move)'><h1><b style='color:red'>YES</b></h1></button>"+
-                    "<button onclick='caratrista()'><h1><b style='color:blue'>NO<b></h1></button></center>"; 
+    document.getElementById("score").innerHTML="<p align='justify'><b>A long time in the future, in a faraway land.. an office worker is stuck in her office. She is just tired of working and just wants to get out" +
+            " and scream ALELUYA! with all her might. However, she is stuck in the office. But her employer came to the office by Copter today! So she decides to take the chance and sneak into her" +
+            " employer copter and take a ride around da city! Will you have what it takes to master the mystery of flight and take a fly around the sky-scrappers? Now is your chance!!!<b> <br> "+
+            "</p><center><button onclick='mou=true;requestAnimationFrame(move)'><h1><b style='color:red'>YES</b></h1></button>"+
+            "<button onclick='caratrista()'><h1><b style='color:blue'>NO<b></h1></button></center>"; 
 }
 
 function move() {
@@ -183,24 +187,21 @@ function move() {
 	//move
         
         if(mou) {
-		moveheli(heli);
-		moveheli(enemic1);
-		var n = bloc.length;
-		for(var i=0;i<n;i++) {
-			movebloc(bloc[i],i);
-		}
-                movehuman(human);
-                angcord = angcord + Math.random()*4 - 2;
-                if(angcord<0) angcord=0.01; if(angcord>45) angcord=45;
-                document.getElementById("corda").style.transform="rotate("+ angcord +"deg)";
+            heli.move();
+            enemic1.move();
+            var n = bloc.length;
+            for(var i=0;i<n;i++) {
+                    movebloc(bloc[i],i);
+            }
+            movehuman(human);
+            angcord = angcord + Math.random()*4 - 2;
+            if(angcord<0) angcord=0.01; if(angcord>45) angcord=45;
+            document.getElementById("corda").style.transform="rotate("+ angcord +"deg)";
 	}
-		
-		
 	
 	/*draw helicop and bloc*/
 	draw();
 	
-        
 	/*texts auxiliars*/
 	document.getElementById("aux2").innerHTML = "windown inner width: "+ window.innerWidth + " window.innerHeight: "+window.innerHeight +
                 "<br> segment ["+Math.round(heli.x+corda.x - corda.height*Math.sin(Math.PI*angcord/180))+","+ Math.round(heli.y+heli.height+corda.y+Math.cos(Math.PI*angcord/180)*corda.height)+"], ["+ 
@@ -243,34 +244,12 @@ function move() {
 }
 
 function draw() {
-    //draw helicopter
-	document.getElementById("helicop").style.top=heli.y+"px";
-	document.getElementById("helicop").style.left=heli.x+"px";
-	document.getElementById("helicop").style.width=heli.width+"px";
-	document.getElementById("helicop").style.height=heli.height+"px";
-       //draw eemy helicopter
-        document.getElementById("enemic1").style.top=enemic1.y+"px";
-	document.getElementById("enemic1").style.left=enemic1.x+"px";
-	document.getElementById("enemic1").style.width=enemic1.width+"px";
-	document.getElementById("enemic1").style.height=enemic1.height+"px";
-        
-       	document.getElementById("human1").style.top=human.y+"px";
-        document.getElementById("human1").style.left=human.x+"px";
-        
-        document.getElementById("corda").style.top=corda.y+"px";
-	document.getElementById("corda").style.left=corda.x+"px";
-	document.getElementById("corda").style.width=corda.width+"px";
-	document.getElementById("corda").style.height=corda.height+"px";
-
-	var n = nomsb.length;
-	for(var i=0;i<n;i++){
-	
-		document.getElementById(nomsb[i]).style.top=bloc[i].y+"px";
-		document.getElementById(nomsb[i]).style.left=bloc[i].x+"px";
-		document.getElementById(nomsb[i]).style.width=bloc[i].width+"px";
-		document.getElementById(nomsb[i]).style.height=bloc[i].height+"px";
-	}
-	
+    heli.draw();
+    enemic1.draw();
+    human.draw();
+    corda.draw();
+    
+    bloc.forEach(element => element.draw());
 }
 
 function gameover() {
