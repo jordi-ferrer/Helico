@@ -53,7 +53,10 @@ html {
 
 <script src="js/class/rect.js"></script>
 <script src="js/class/rectvol.js"></script>
+<script src="js/class/person.js"></script>
+<script src="js/class/edifici.js"></script>
 <script src="js/class/heli.js"></script>
+<script src="js/class/corda.js"></script>
 
 <script src="js/function/randbolet2.js"></script>
 <script src="js/function/underscore.js"></script>
@@ -62,7 +65,6 @@ html {
 <script>
 
 
-var angcord = 0; //angle inicial de la corda respecte la vertical
 var rescats = 0;
 var rescatat = false;
 let request; //aquesta variable serveix per fer les animacions
@@ -75,15 +77,15 @@ enemic1 = new helicop(1200, 200, 50, 25, -10, 0, 0, 0, "enemic1");
 
 /*bloc position & speed*/
 // 					left, top,width,height,vx,vy
-bc1 = new rectvol(200, heli.y+30, 100, 400, -5, 0, 0, 0, "bloc1");
-bc2 = new rectvol(400, 400+Math.random()*100, 100, 400, -5, 0, 0, 0, "bloc2");
-bc3 = new rectvol(600, 400+Math.random()*100, 100, 400, -5, 0, 0, 0, "bloc3");
-bc4 = new rectvol(800, 400+Math.random()*100, 100, 400, -5, 0, 0, 0, "bloc4");
-bc5 = new rectvol(1000, 400+Math.random()*100, 100, 400, -5, 0, 0, 0, "bloc5");
-bc6 = new rectvol(1200, 400+Math.random()*100, 100, 400, -5, 0, 0, 0, "bloc6");
+bc1 = new edifici(200, heli.y+30, 100, 400, -5, 0, 0, 0, "bloc1");
+bc2 = new edifici(400, 400+Math.random()*100, 100, 400, -5, 0, 0, 0, "bloc2");
+bc3 = new edifici(600, 400+Math.random()*100, 100, 400, -5, 0, 0, 0, "bloc3");
+bc4 = new edifici(800, 400+Math.random()*100, 100, 400, -5, 0, 0, 0, "bloc4");
+bc5 = new edifici(1000, 400+Math.random()*100, 100, 400, -5, 0, 0, 0, "bloc5");
+bc6 = new edifici(1200, 400+Math.random()*100, 100, 400, -5, 0, 0, 0, "bloc6");
 
-human = new rectvol(bc6.x, bc6.y-47,10, 65, 0, 0, 0, 0, "human1");
-corda = new rectvol(23, 23, 5, 100, 0, 0, 0, 0, "corda");
+human = new person(bc6.x, bc6.y-47,10, 65, 0, 0, 0, 0, "human1");
+corda = new corda(23, 23, 5, 100, 0, 0, 0, 0, "corda");
 
 var nomsb = ["bloc1","bloc2","bloc3","bloc4","bloc5","bloc6"];
 var bloc = [bc1,bc2,bc3,bc4,bc5,bc6];
@@ -106,15 +108,13 @@ function restart() {
 	//inicilitzant enemic1
         enemic1.x = 1200; enemic1.y=Math.random()*400; enemic1.vx=-10; enemic1.vy=0;
 	
-        angcord=0;
+        corda.angle = 0;
 	mou=false;
 	sco=0;
         rescats=0;
 	document.getElementById("gameover").style.visibility="hidden"; //amaga el botó restart
-        var n = bloc.length;
-        for(var i=0;i<n;i++){
-            document.getElementById(nomsb[i]).style.backgroundColor ="gray";			
-        }
+
+
         
         //erase submit form:
         document.getElementById("formsendsc").style.visibility="hidden";
@@ -124,6 +124,9 @@ function restart() {
         document.getElementById("distance").value=0;
         document.getElementById("clerks").value=0;
                 
+
+        bloc.forEach(element => element.setColour("gray"));
+
         xocat = false;
         document.getElementById("cara").innerHTML=":O";
         mou = true;
@@ -151,7 +154,7 @@ function carrega() {
         //corda.x=23; corda.y = 23; corda.width=5; corda.height=100;
         
         draw();
-	document.getElementById("aux2").innerHTML="hola2 " + angcord;
+	document.getElementById("aux2").innerHTML="hola2 " + corda.angle;
         document.getElementById("cara").innerHTML=":D";
         randbolet2(id="fons_de_pant",colors=["white","pink"],boles=80,spready=500,spreadx=1000,minballr=10,maxballr=100);
         var n = bloc.length;
@@ -184,13 +187,13 @@ function move() {
 	}
         
         //check resque:
-        if(  !rescatat && ( checkxoc(heli,human)   ||  
-                                               xocrotatedrect( [heli.x+corda.x - corda.height*Math.sin(Math.PI*angcord/180), heli.y+heli.height+corda.y+Math.cos(Math.PI*angcord/180)*corda.height],
-                                                                [heli.x+corda.x,  heli.y+heli.height+corda.y],
-                                                                [heli.x+corda.x - corda.height*Math.sin(Math.PI*angcord/180) + corda.width*Math.cos(Math.PI*angcord/180), heli.y+heli.height+corda.y+Math.cos(Math.PI*angcord/180)*corda.height + corda.width*Math.sin(Math.PI*angcord/180)],
-                                                                [heli.x+corda.x + corda.width*Math.cos(Math.PI*angcord/180),  heli.y+heli.height+corda.y + corda.width*Math.sin(Math.PI*angcord/180)],
-                                                                human)
-                                               ) ) {
+        if( !rescatat && ( checkxoc(heli,human)   ||  
+            xocrotatedrect( [heli.x+corda.x - corda.height*Math.sin(Math.PI*corda.angle/180), heli.y+heli.height+corda.y+Math.cos(Math.PI*corda.angle/180)*corda.height],
+                             [heli.x+corda.x,  heli.y+heli.height+corda.y],
+                             [heli.x+corda.x - corda.height*Math.sin(Math.PI*corda.angle/180) + corda.width*Math.cos(Math.PI*corda.angle/180), heli.y+heli.height+corda.y+Math.cos(Math.PI*corda.angle/180)*corda.height + corda.width*Math.sin(Math.PI*corda.angle/180)],
+                             [heli.x+corda.x + corda.width*Math.cos(Math.PI*corda.angle/180),  heli.y+heli.height+corda.y + corda.width*Math.sin(Math.PI*corda.angle/180)],
+                             human)
+            )) {
             rescats += 1;
             rescatat=true;
             document.getElementById("human1").style.visibility="hidden";
@@ -198,25 +201,19 @@ function move() {
         //si no rescata a un clerck posa cara de sorpresa:
         if(human.x + human.width < heli.x)
         {
-            document.getElementById("cara_huma").innerHTML=":o";
+            human.setCara(":o");
         } else
         {
-            document.getElementById("cara_huma").innerHTML=":)";
+            human.setCara(":)");
         }
         
 	//move
-        
         if(mou) {
             heli.move();
             enemic1.move();
-            var n = bloc.length;
-            for(var i=0;i<n;i++) {
-                    movebloc(bloc[i],i);
-            }
+            bloc.forEach(movebloc);
             movehuman(human);
-            angcord = angcord + Math.random()*4 - 2;
-            if(angcord<0) angcord=0.01; if(angcord>45) angcord=45;
-            document.getElementById("corda").style.transform="rotate("+ angcord +"deg)";
+            corda.move();
 	}
 	
 	/*draw helicop and bloc*/
@@ -230,28 +227,25 @@ function move() {
 	"<br> bloc vy: " +Math.round(bc1.vy) + "<br> bloc y: " + Math.round(bc1.y) + "<br> enemic1 y: " + Math.round(enemic1.y) +
         "<br> enemic1 x: " + Math.round(enemic1.x) + "<br> request: " + request +
          "<br> human x: " + human.x + "<br> human y: " + human.y + "<br> human heigth: " + human.height + "<br> human width " + human.width +
-         "<br> bloc 6 y " + bc6.y + "<br> corda*sin(ang corda):"+ Math.round(corda.height*Math.sin(Math.PI*angcord/180) ) + 
-          "<br> angle corda: " + angcord ;
+         "<br> bloc 6 y " + bc6.y + "<br> corda*sin(ang corda):"+ Math.round(corda.height*Math.sin(Math.PI*corda.angle/180) ) + 
+          "<br> angle corda: " + corda.angle ;
 	document.getElementById("score").innerHTML = "<h3><b>Distance <b style='color:brown'>"+Math.round(sco/10)/100 +" </b></b>km  - clerks resqued </b><b style='color:brown'>"+rescats+"</b></h3>";
 	if(mou) sco +=1;
 	
         if( (sco % 400) ===0) {enemic1.x=1200; enemic1.vx=-10; enemic1.y=Math.random()*bc1.y    ;}
         
-	if(sco>1000) {
-		var n = bloc.length;
-		for(var i=0;i<n;i++){
-			document.getElementById(nomsb[i]).style.backgroundColor ="DarkSlateBlue";			
-		}
-		if(sco>2000) {
-			var n = bloc.length;
-			for(var i=0;i<n;i++){
-				document.getElementById(nomsb[i]).style.backgroundColor ="darkgreen";			
-			}
-		}
-                
+	if(sco > 1000) {
+            bloc.forEach(element => element.setColour("DarkSlateBlue"));
+            if(sco > 2000) {
+                bloc.forEach(element => element.setColour("darkgreen"));
+            }
 	}
-        if(heli.y>enemic1.y) {
-                    enemic1.vy = 3} else {enemic1.vy=-3}
+        
+        if(heli.y > enemic1.y) {
+            enemic1.vy = 3
+        } else {
+            enemic1.vy=-3
+        }
 	
 	//repeat
 	request = requestAnimationFrame(move); 
