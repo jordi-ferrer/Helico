@@ -3,6 +3,8 @@
 <head>
 <title>JoriCop</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta charset="UTF-8">
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
 
 <link rel="stylesheet" href="style/human.css">
 <link rel="stylesheet" href="style/heli.css">
@@ -10,12 +12,17 @@
 <link rel="stylesheet" href="style/buildings.css">
 <link rel="stylesheet" href="style/bird.css">
 <link rel="stylesheet" href="style/cel.css">
+<link rel="stylesheet" href="style/button.css">
 
 <style>
 
 /* per fer animacions mirar-se be al funció requestAnimationFrame() en comptes
 d'usar setTimeout() */
 
+#formsendsc {
+    position:absolute;
+    visibility:hidden;
+}
 body{
     background-color:LightCyan;
     touch-action: manipulation;
@@ -108,6 +115,15 @@ function restart() {
         for(var i=0;i<n;i++){
             document.getElementById(nomsb[i]).style.backgroundColor ="gray";			
         }
+        
+        //erase submit form:
+        document.getElementById("formsendsc").style.visibility="hidden";
+        document.getElementById("user").value="";
+        document.getElementById("email").value="";
+        document.getElementById("comment").value="";
+        document.getElementById("distance").value=0;
+        document.getElementById("clerks").value=0;
+                
         xocat = false;
         document.getElementById("cara").innerHTML=":O";
         mou = true;
@@ -155,7 +171,7 @@ function intro() {
             " and scream ALELUYA! with all her might. However, she is stuck in the office. But her employer came to the office by Copter today! So she decides to take the chance and sneak into her" +
             " employer copter and take a ride around da city! Will you have what it takes to master the mystery of flight and take a fly around the sky-scrappers? Now is your chance!!!<b> <br> "+
             "</p><center><button onclick='mou=true;requestAnimationFrame(move)'><h1><b style='color:red'>YES</b></h1></button>"+
-            "<button onclick='caratrista()'><h1><b style='color:blue'>NO<b></h1></button></center>"; 
+            "<button onclick='caratrista()'><h1><b>NO<b></h1></button></center>"; 
 }
 
 function move() {
@@ -252,8 +268,13 @@ function draw() {
 
 function gameover() {
     xocat=true;
+    document.getElementById("formsendsc").style.visibility="visible";
     document.getElementById("gameover").style.visibility="visible";  
     document.getElementById("cara").innerHTML=":X";  
+    document.getElementById("distance").value=Math.round(sco/10)/100;
+    document.getElementById("clerks").value=rescats;
+    
+    window.getSelection().removeAllRanges();
 }
 
 </script>
@@ -322,10 +343,7 @@ function gameover() {
 </div>
         
 
-<div id="gameover"> 
-	<h2><b>GAME OVER</b></h2>
-        <center><button id="botogameov" style ="color:blue" onclick="restart()"><h2><b>restart</b></h2></button></center>
-</div> 
+
 <div id="score"></div>
 <div id="controls">
 <p id="aux1"></p>
@@ -333,5 +351,28 @@ function gameover() {
 <p id="aux3"></p>
 
 </div>
+<br>
+<br>
+<br>
+<div id="formsendsc"> <h2><i>Send score to da server, sist! </i></h2>
+            <form action="http://localhost/sendscore.php" >
+            <input placeholder="your name" name="user" id="user"> 
+            <input placeholder="email" name="email" id="email">
+            <p>Comments for the creators Jordi and Romà:</p>
+            <textarea id="comment" placeholder="Your comments on the game" name="comentaris" rows="8" cols="40">
+            
+            </textarea>
+            <br>
+            <input class ="submitbut" type="submit" value="Send score! :D :D Yay!"> 
+            <input placeholder="distance" name="distance" id="distance" style="visibility:hidden" > 
+            <input placeholder="clerks" name="clerks" id="clerks" style="visibility:hidden">
+            </form>
+        </div>
+
+<div id="gameover"> 
+	<h2><b>GAME OVER</b></h2>
+        <center><button id="botogameov"  onclick="restart()"><h2><b>restart</b></h2></button></center>
+</div> 
+
 </body  >
 </html> 
