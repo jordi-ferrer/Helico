@@ -9,18 +9,39 @@ and open the template in the editor.
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <script>ake 
+            function fillform() {
+                document.getElementById("distance").value=124;
+                document.getElementById("clerks").value=11;
+            }
+            
+            function enterskipline() { //prevent form from submiting on enter press
+                document.getElementById("distance").value=(window.event && window.event.keyCode == 13);
+               if(window.event && window.event.keyCode == 13) {
+                   //document.getElementById("comment").value=document.getElementById("comment").value +"\r\n";
+                   return false;
+               }
+               return true;
+            }
+            
+         </script>
+        
     </head>
     <body>
         <div>Send score to server
-            <form action="http://localhost/sendscore.php">
+            <form action="http://localhost/sendscore.php" style="visibility:visible">
             <input placeholder="user name" name="user" id="user"> 
             <input placeholder="email" name="email" id="email"> 
-            <input placeholder="comments" name="comment" id="comment">
-            <input placeholder="distance" name="distance" id="distance"> 
+            <textarea id="w3review" placeholder="comments" name="comentaris" rows="8" cols="80">
+            yo
+            </textarea>
+            <input placeholder="distance" name="distance" id="distance" style="visibility:visible"> 
             <input placeholder="clerks" name="clerks" id="clerks">
             <input type="submit" value="Submit">
             </form>
         </div>
+        <button onclick="fillform()">get distance & clerks rescued</button>
     </body>
 </html>
 
