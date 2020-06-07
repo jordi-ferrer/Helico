@@ -5,7 +5,7 @@
  */
 
 
-class corda extends rectvol {
+class rope extends rectvol {
     constructor(left,top,width,height,vx,vy,ax,ay, name) {
         super(left,top,width,height,vx,vy,ax,ay, name);
         this._angle = 0;

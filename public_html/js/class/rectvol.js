@@ -19,6 +19,9 @@ class rectvol extends rect {
     get ay() {
         return this._ay;
     }
+    get name() {//no fiquem set (es fa al contructor i no es pot canviar després)
+        return this._name;
+    }
     set vx(ep) {
         this._vx = ep;
     }
