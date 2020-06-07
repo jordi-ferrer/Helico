@@ -174,7 +174,7 @@ function intro() {
             " and scream ALELUYA! with all her might. However, she is stuck in the office. But her employer came to the office by Copter today! So she decides to take the chance and sneak into her" +
             " employer copter and take a ride around da city! Will you have what it takes to master the mystery of flight and take a fly around the sky-scrappers? Now is your chance!!!<b> <br> "+
             "</p><center><button onclick='mou=true;requestAnimationFrame(move)'><h1><b style='color:red'>YES</b></h1></button>"+
-            "<button onclick='caratrista()'><h1><b>NO<b></h1></button></center>"; 
+            "<button onclick='caratrista()'><h1><b>NO<b></h1></button>  <button style='color:green' onclick='showranking()'><h1><b>Show Ranking<b></h1></button></center>"; 
 }
 
 function move() {
@@ -269,6 +269,10 @@ function gameover() {
     document.getElementById("clerks").value=rescats;
     
     window.getSelection().removeAllRanges();
+}
+
+function showranking() {
+    window.location.href="http://localhost/getusers.php";
 }
 
 </script>
