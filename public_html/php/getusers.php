@@ -1,4 +1,3 @@
-
 <?php
 
 
@@ -25,33 +24,8 @@
     }
     
      
-//for inserting a row into the database:
-    
-$user = filter_input(INPUT_GET, 'user');
-$email =  filter_input(INPUT_GET, 'email');
-$comment =  filter_input(INPUT_GET, 'comentaris');
-$distance =  filter_input(INPUT_GET, 'distance');
-$clerks =  filter_input(INPUT_GET, 'clerks');
-
-echo nl2br("Welcome " . $user. "! with email: ". $email. ". Distance run: ".$distance.". Clerks rescued: ".$clerks.". You commented that: <br> ".$comment. "<br>");
-
-
-$sql = sprintf("INSERT INTO helicorder_users1 (user, email, comment, distance, clerks)
-VALUES ('%s','%s', '%s', '%s', '%s')", 
-addslashes($user),
-addslashes($email),
-addslashes($comment),
-addslashes($distance),
-addslashes($clerks));
-
-if ($conn->query($sql) === TRUE) {
-  echo "New record created successfully";
-} else {
-  echo "Error: " . $sql . "<br>" . $conn->error;
-}
- 
  //get scores from da people
- $sql = "SELECT user, distance, clerks FROM helicorder_users1";
+ $sql = "SELECT user, distance, clerks, comment FROM helicorder_users1";
     $result = $conn->query($sql);
 
 	$result2 =  $result -> fetch_all(MYSQLI_ASSOC);
@@ -62,16 +36,17 @@ if ($conn->query($sql) === TRUE) {
 	$names = array_column($result2, 'user');
 	$scores = array_column($result2, 'distance');
 	$rescats = array_column($result2, 'clerks');
+	$comment = array_column($result2, 'comment');
 	
-	array_multisort($rescats, SORT_DESC, $scores, SORT_DESC, $names );
+	array_multisort($rescats, SORT_DESC, $scores, SORT_DESC, $names, $comment );
 	
 
 	$max = 10;
-	$rank = "<table id='userscrs'>   <tr> <th>Pos.</th> <th>Name</th>  <th>Distance (km) </th> <th> Clerks rescued </th>  </tr>";
+	$rank = "<table id='userscrs'>   <tr> <th>Pos.</th> <th>Name</th>  <th>Distance (km) </th> <th> Clerks rescued </th> <th>Comments</th> </tr>";
 	for($i = 0;  ($i < count($scores)) and ($i<$max) ; $i++) {
 		if($i<3) {
 			$rank = $rank . "<tr> <td ><b style='color:brown'>" .($i +1)."</b></td><td ><b style='color:brown'>" . $names[$i]. "</b></td> <td style='text-align: right;' ><b style='color:brown'>". 
-			 $scores[$i].	"</b></td> <td style='text-align: center;' ><b style='color:brown'>". $rescats[$i].		"</b></td></b></tr>";
+			 $scores[$i].	"</b></td> <td style='text-align: center;' ><b style='color:brown'>". $rescats[$i].		"</b></td><td style='color:brown' > \" ". $comment[$i].		" \" </td></tr> ";
 		} else {
 		
 		$rank = $rank . "<tr> <td >" .($i +1)."</td><td >" . $names[$i]. "</td> <td style='text-align: right;' >". 
@@ -88,10 +63,11 @@ if ($conn->query($sql) === TRUE) {
 	
 	// Free result set
 	$result -> free_result();
-	
-$conn->close();
- 
+	$url="http://localhost/showusers.php?rank='$rank'";
+ $url=str_replace(PHP_EOL, '', $url);
+ header("Location: $url");
 
-
  
- header("Location: http://localhost/thanksfor.php?rank=$rank"); ?>
+ $conn->close();
+ 
+ ?>
