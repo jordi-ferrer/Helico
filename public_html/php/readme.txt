@@ -8,4 +8,7 @@ anomenat 000webhost.com.
 Totes les rutes i crides entre arxius php s'han de canviar cada cop que es canvii l'ubicacio dels arxius php
 o res funcionarà.
 
+l'arxiu joricop_000webhost_v1.zip conté tot el joc tal i com es pot
+jugar a espib2.000webhostapp.com/romjorter
+
 Romà Masana Chicago 07.06.2020.
