@@ -64,31 +64,27 @@ html {
 <script src="js/function/xocs.js"></script>
 <script>
 
-
 var rescats = 0;
 var rescatat = false;
 let request; //aquesta variable serveix per fer les animacions
 var xocat = false;
 
-/*helicopter position & speed*/
-// 					left,top,width,height,vx,vy
+/*helicopter position, speed & rope*/
+//                  left,top,width,height,vx,vy,ax,ay,name
 heli = new helicop(200, 300, 50, 25, 0, 0, 0, 0.2, "helicop");
+corda = new rope(23, 23, 5, 100, 0, 0, 0, 0, "corda");
 enemic1 = new helicop(1200, 200, 50, 25, -10, 0, 0, 0, "enemic1");
 
 /*bloc position & speed*/
-// 					left, top,width,height,vx,vy
 bc1 = new edifici(200, heli.y+30, 100, 400, -5, 0, 0, 0, "bloc1");
 bc2 = new edifici(400, 400+Math.random()*100, 100, 400, -5, 0, 0, 0, "bloc2");
 bc3 = new edifici(600, 400+Math.random()*100, 100, 400, -5, 0, 0, 0, "bloc3");
 bc4 = new edifici(800, 400+Math.random()*100, 100, 400, -5, 0, 0, 0, "bloc4");
 bc5 = new edifici(1000, 400+Math.random()*100, 100, 400, -5, 0, 0, 0, "bloc5");
 bc6 = new edifici(1200, 400+Math.random()*100, 100, 400, -5, 0, 0, 0, "bloc6");
+var bloc = [bc1,bc2,bc3,bc4,bc5,bc6];
 
 human = new person(bc6.x, bc6.y-47,10, 65, 0, 0, 0, 0, "human1");
-corda = new corda(23, 23, 5, 100, 0, 0, 0, 0, "corda");
-
-var nomsb = ["bloc1","bloc2","bloc3","bloc4","bloc5","bloc6"];
-var bloc = [bc1,bc2,bc3,bc4,bc5,bc6];
 
 var mou = false;
 var sco = 0;
@@ -113,8 +109,6 @@ function restart() {
 	sco=0;
         rescats=0;
 	document.getElementById("gameover").style.visibility="hidden"; //amaga el botó restart
-
-
         
         //erase submit form:
         document.getElementById("formsendsc").style.visibility="hidden";
@@ -123,48 +117,25 @@ function restart() {
         document.getElementById("comment").value="";
         document.getElementById("distance").value=0;
         document.getElementById("clerks").value=0;
-                
 
         bloc.forEach(element => element.setColour("gray"));
 
         xocat = false;
-        document.getElementById("cara").innerHTML=":O";
+        heli.setCara(":O");
         mou = true;
 	requestAnimationFrame(move);
     }
 }
 
 function carrega() {
-	document.getElementById("aux2").innerHTML="carregant...";
-	//reinitializing helicopter
-	//heli.width = 50; heli.height = 25; heli.x = 200; heli.y=300; heli.vx=0; heli.vy=0; heli.ay=0.2;
-        //inicilitzant enemic1
-        //enemic1.width = 50; enemic1.height = 25; enemic1.x = 1200; enemic1.y=200; enemic1.vx=-10; enemic1.vy=0; enemic1.ay=0;
-	
-        //reinitializing the blocs
-	//bc1.width = 100; bc1.height = 400; bc1.x=200; bc1.y= heli.y+30; bc1.vx=-5; bc1.vy=0;
-	//bc2.width = 100; bc2.height = 400; bc2.x=400; bc2.y= 400+Math.random()*100; bc2.vx=-5; bc2.vy=0;
-	//bc3.width = 100; bc3.height = 400; bc3.x=600; bc3.y= 400+Math.random()*100; bc3.vx=-5; bc3.vy=0;
-	//bc4.width = 100; bc4.height = 400; bc4.x=800; bc4.y= 400+Math.random()*100; bc4.vx=-5; bc4.vy=0;
-	//bc5.width = 100; bc5.height = 400; bc5.x=1000; bc5.y= 400+Math.random()*100; bc5.vx=-5; bc5.vy=0;
-	//bc6.width = 100; bc6.height = 400; bc6.x=1200; bc6.y= 400+Math.random()*100; bc6.vx=-5; bc6.vy=0;
-	
-        //human.x = bc6.x; human.y=bc6.y - 47; human.width=10; human.height=65;
-        
-        //corda.x=23; corda.y = 23; corda.width=5; corda.height=100;
-        
+	//document.getElementById("aux2").innerHTML="carregant...";
         draw();
-	document.getElementById("aux2").innerHTML="hola2 " + corda.angle;
-        document.getElementById("cara").innerHTML=":D";
+	//document.getElementById("aux2").innerHTML="hola2 " + corda.angle;
+        heli.setCara(":D");
         randbolet2(id="fons_de_pant",colors=["white","pink"],boles=80,spready=500,spreadx=1000,minballr=10,maxballr=100);
-        var n = bloc.length;
-        for(var i=0;i<n;i++){
-                    //randbolet2(id=nomsb[i],colors=["LightCyan","brown","gray"],boles=10,spready=400,spreadx=100,minballr=20,maxballr=40);			
-                    randquadrats(id=nomsb[i],colors=["LightCyan","#bf7873","#e9b088","greenyellow"],fileshor=4,filesver=13,height=400,width=100,border=3);
-
-            }
-     
-         intro();
+        bloc.forEach(element => element.createWindows());
+        
+        intro();
 }
 
 
@@ -178,32 +149,29 @@ function intro() {
 }
 
 function move() {
-    
 	//check hit:
 	if( checkxoc(heli,bc1) || checkxoc(heli,bc2) || checkxoc(heli,bc3) || checkxoc(heli,bc4) || checkxoc(heli,bc5) || checkxoc(heli,bc6) || 
-                checkxoc(heli,enemic1)  )  {
-		gameover();
-		return;
+            checkxoc(heli,enemic1)  )  {
+            gameover();
+            return;
 	}
         
         //check resque:
         if( !rescatat && ( checkxoc(heli,human)   ||  
             xocrotatedrect( [heli.x+corda.x - corda.height*Math.sin(Math.PI*corda.angle/180), heli.y+heli.height+corda.y+Math.cos(Math.PI*corda.angle/180)*corda.height],
-                             [heli.x+corda.x,  heli.y+heli.height+corda.y],
-                             [heli.x+corda.x - corda.height*Math.sin(Math.PI*corda.angle/180) + corda.width*Math.cos(Math.PI*corda.angle/180), heli.y+heli.height+corda.y+Math.cos(Math.PI*corda.angle/180)*corda.height + corda.width*Math.sin(Math.PI*corda.angle/180)],
-                             [heli.x+corda.x + corda.width*Math.cos(Math.PI*corda.angle/180),  heli.y+heli.height+corda.y + corda.width*Math.sin(Math.PI*corda.angle/180)],
-                             human)
+                            [heli.x+corda.x,  heli.y+heli.height+corda.y],
+                            [heli.x+corda.x - corda.height*Math.sin(Math.PI*corda.angle/180) + corda.width*Math.cos(Math.PI*corda.angle/180), heli.y+heli.height+corda.y+Math.cos(Math.PI*corda.angle/180)*corda.height + corda.width*Math.sin(Math.PI*corda.angle/180)],
+                            [heli.x+corda.x + corda.width*Math.cos(Math.PI*corda.angle/180),  heli.y+heli.height+corda.y + corda.width*Math.sin(Math.PI*corda.angle/180)],
+                            human)
             )) {
             rescats += 1;
-            rescatat=true;
-            document.getElementById("human1").style.visibility="hidden";
+            rescatat = true;
+            document.getElementById("human1").style.visibility = "hidden";
         }
         //si no rescata a un clerck posa cara de sorpresa:
-        if(human.x + human.width < heli.x)
-        {
+        if(human.x + human.width < heli.x) {
             human.setCara(":o");
-        } else
-        {
+        } else {
             human.setCara(":)");
         }
         
@@ -261,10 +229,10 @@ function draw() {
 }
 
 function gameover() {
-    xocat=true;
+    xocat = true;
     document.getElementById("formsendsc").style.visibility="visible";
-    document.getElementById("gameover").style.visibility="visible";  
-    document.getElementById("cara").innerHTML=":X";  
+    document.getElementById("gameover").style.visibility="visible";
+    heli.setCara(":X");
     document.getElementById("distance").value=Math.round(sco/10)/100;
     document.getElementById("clerks").value=rescats;
     
@@ -272,7 +240,7 @@ function gameover() {
 }
 
 function showranking() {
-    window.location.href="http://localhost/getusers.php";
+    window.location.href = "http://localhost/getusers.php";
 }
 
 </script>
@@ -282,36 +250,36 @@ function showranking() {
 <div class="sol"> </div>
 </div>
     
-<div id="fons_de_pant"> </div>
+<div id="fons_de_pant"></div>
 
 <div class="flock">
-<div class="bird"  style="background-color:black;top:210px;left:40px">
-    <div class="wing wing1"  style="left:-5px;"></div>
-    <div class="wing wing2"  style="left:5px;"></div>
-</div>
- <div class="bird" id="bird2" style="background-color:brown;top:220px;left:20px;">
-    <div class="wing wing1"  style="background-color:brown;left:-5px;"></div>
-    <div class="wing wing2"  style="background-color:brown;left:5px;"></div>
-</div>
-<div class="bird"  style="background-color:blue;top:230px;">
-    <div class="wing wing1"  style="background-color:blue;left:-5px;"></div>
-    <div class="wing wing2"  style="background-color:blue;left:5px;"></div>
-</div>
+    <div class="bird"  style="background-color:black;top:210px;left:40px">
+        <div class="wing wing1"  style="left:-5px;"></div>
+        <div class="wing wing2"  style="left:5px;"></div>
+    </div>
+    <div class="bird" id="bird2" style="background-color:brown;top:220px;left:20px;">
+       <div class="wing wing1"  style="background-color:brown;left:-5px;"></div>
+       <div class="wing wing2"  style="background-color:brown;left:5px;"></div>
+    </div>
+    <div class="bird"  style="background-color:blue;top:230px;">
+        <div class="wing wing1"  style="background-color:blue;left:-5px;"></div>
+        <div class="wing wing2"  style="background-color:blue;left:5px;"></div>
+    </div>
 </div>
 
 <div class="flock" style="top:-110px;left:240px">
-<div class="bird"  style="background-color:black;top:210px;left:40px">
-    <div class="wing wing1"  style="left:-5px;"></div>
-    <div class="wing wing2"  style="left:5px;"></div>
-</div>
- <div class="bird" id="bird2" style="background-color:brown;top:220px;left:20px;">
-    <div class="wing wing1"  style="background-color:brown;left:-5px;"></div>
-    <div class="wing wing2"  style="background-color:brown;left:5px;"></div>
-</div>
-<div class="bird"  style="background-color:blue;top:230px;">
-    <div class="wing wing1"  style="background-color:blue;left:-5px;"></div>
-    <div class="wing wing2"  style="background-color:blue;left:5px;"></div>
-</div>
+    <div class="bird"  style="background-color:black;top:210px;left:40px">
+        <div class="wing wing1"  style="left:-5px;"></div>
+        <div class="wing wing2"  style="left:5px;"></div>
+    </div>
+    <div class="bird" id="bird2" style="background-color:brown;top:220px;left:20px;">
+       <div class="wing wing1"  style="background-color:brown;left:-5px;"></div>
+       <div class="wing wing2"  style="background-color:brown;left:5px;"></div>
+   </div>
+   <div class="bird"  style="background-color:blue;top:230px;">
+       <div class="wing wing1"  style="background-color:blue;left:-5px;"></div>
+       <div class="wing wing2"  style="background-color:blue;left:5px;"></div>
+   </div>
 </div>
 
 <div class="terra" id="bloc1"></div>
@@ -321,14 +289,12 @@ function showranking() {
 <div class="terra" id="bloc5"></div>
 <div class="terra" id="bloc6"></div>
 
-
 <div id="enemic1" class="heli" style="left:100px;background-color:red;transform: rotateY(180deg);" >
     <div class="helix1"></div>
     <div class="helix2"></div>
     <div class="cuah" style="background-color:red;"></div>
-    <div class="cara2"> o.O </div>
+    <div class="cara2">o.O</div>
 </div>
-
 
 <div id="human1"><span class="leg1"></span><span class="leg2"></span><span class="arms"></span><span class="body"></span><span class="head"><span class="cara3" id="cara_huma">:|</span></span></div>
 
@@ -336,41 +302,37 @@ function showranking() {
     <div class="helix1"></div>
     <div class="helix2"></div>
     <div class="cuah"></div>
-    <div class="cara" id="cara">:d</div>   
+    <div class="cara" id="cara">:D</div>   
     <div id="corda"> </div>
 </div>
-        
-
 
 <div id="score"></div>
-<div id="controls">
-<p id="aux1"></p>
-<p id="aux2"></p>
-<p id="aux3"></p>
 
+<div id="controls">
+    <p id="aux1"></p>
+    <p id="aux2"></p>
+    <p id="aux3"></p>
 </div>
 <br>
 <br>
 <br>
 <div id="formsendsc"> <h2><i>Send score to da server, sist! </i></h2>
-            <form action="http://localhost/sendscore.php" >
-            <input placeholder="your name" name="user" id="user"> 
-            <input placeholder="email" name="email" id="email">
-            <p>Comments for the creators Jordi and Romà:</p>
-            <textarea id="comment" placeholder="Your comments on the game" name="comentaris" rows="8" cols="40">
-            
-            </textarea>
-            <br>
-            <input class ="submitbut" type="submit" value="Send score! :D :D Yay!"> 
-            <input placeholder="distance" name="distance" id="distance" style="visibility:hidden" > 
-            <input placeholder="clerks" name="clerks" id="clerks" style="visibility:hidden">
-            </form>
-        </div>
+    <form action="http://localhost/sendscore.php" >
+        <input placeholder="your name" name="user" id="user"> 
+        <input placeholder="email" name="email" id="email">
+        <p>Comments for the creators Jordi and Romà:</p>
+        <textarea id="comment" placeholder="Your comments on the game" name="comentaris" rows="8" cols="40"></textarea>
+        <br>
+        <input class ="submitbut" type="submit" value="Send score! :D :D Yay!"> 
+        <input placeholder="distance" name="distance" id="distance" style="visibility:hidden" > 
+        <input placeholder="clerks" name="clerks" id="clerks" style="visibility:hidden">
+    </form>
+</div>
 
 <div id="gameover"> 
-	<h2><b>GAME OVER</b></h2>
-        <center><button id="botogameov"  onclick="restart()"><h2><b>restart</b></h2></button></center>
+    <h2><b>GAME OVER</b></h2>
+    <center><button id="botogameov"  onclick="restart()"><h2><b>restart</b></h2></button></center>
 </div> 
 
-</body  >
+</body>
 </html> 

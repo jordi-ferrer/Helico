@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 
+const vy_lim = 20;
+const height_lim = 600;
 
 class helicop extends rectvol {
     constructor(left,top,width,height,vx,vy,ax,ay, name) {
@@ -16,13 +18,13 @@ class helicop extends rectvol {
     
     move() {
         super.move();
-        //s´haurien de definir els limits fora de la funció
-        if(this.vy > 20) this.vy = 20;
-	if(this.vy < -20) this.vy = -20;
+        /*check velocity limits*/
+        if(this.vy > vy_lim) this.vy = vy_lim;
+	if(this.vy < -vy_lim) this.vy = -vy_lim;
 	
 	/*check height limits*/
-	if(this.y > 600) {
-            this.y = 600;
+	if(this.y > height_lim) {
+            this.y = height_lim;
             this.vy = 0;
 	}
 	if(this.y < 0) {
@@ -35,6 +37,13 @@ class helicop extends rectvol {
             this.x = -100;
             this.vx = 0;
 	}
-        
+    }
+    
+    setCara(cara) {
+        document.getElementById("cara").innerHTML = cara;
+    }
+    
+    setCaraEnemic(cara) {
+        document.getElementById("cara2").innerHTML = cara;
     }
 }
