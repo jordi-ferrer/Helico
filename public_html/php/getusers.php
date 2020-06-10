@@ -10,10 +10,8 @@
    //  http://localhost/PHPexec.php?f=C:\Roma\Nebeans_repsol\Helico\public_html\php\sendscore.php
    
    
-    $servername = "localhost";
-    $username = "root"; // id12095050_roma 
-    $password = "";                 //Joricopter_3
-    $database = "test"; //id12095050_articlesdstuds
+
+include("connect.php");//contains all passwords.
 
     // Create connection
     $conn = new mysqli($servername, $username, $password, $database);
@@ -25,7 +23,7 @@
     
      
  //get scores from da people
- $sql = "SELECT user, distance, clerks, comment FROM helicorder_users1";
+ $sql = "SELECT user, distance, clerks, comment FROM helikopter_users";
     $result = $conn->query($sql);
 
 	$result2 =  $result -> fetch_all(MYSQLI_ASSOC);
@@ -41,16 +39,18 @@
 	array_multisort($rescats, SORT_DESC, $scores, SORT_DESC, $names, $comment );
 	
 
-	$max = 10;
+	$max = 12;
 	$rank = "<table id='userscrs'>   <tr> <th>Pos.</th> <th>Name</th>  <th>Distance (km) </th> <th> Clerks rescued </th> <th>Comments</th> </tr>";
 	for($i = 0;  ($i < count($scores)) and ($i<$max) ; $i++) {
 		if($i<3) {
 			$rank = $rank . "<tr> <td ><b style='color:brown'>" .($i +1)."</b></td><td ><b style='color:brown'>" . $names[$i]. "</b></td> <td style='text-align: right;' ><b style='color:brown'>". 
 			 $scores[$i].	"</b></td> <td style='text-align: center;' ><b style='color:brown'>". $rescats[$i].		"</b></td><td style='color:brown' > \" ". $comment[$i].		" \" </td></tr> ";
-		} else {
-		
-		$rank = $rank . "<tr> <td >" .($i +1)."</td><td >" . $names[$i]. "</td> <td style='text-align: right;' >". 
-			 $scores[$i].	"</td> <td style='text-align: center;' >". $rescats[$i].		"</td></tr>";
+		} elseif ($i<7) {
+		$rank = $rank . "<tr style='color:DarkCyan'> <td >" .($i +1)."</td><td >" . $names[$i]. "</td> <td style='text-align: right;' >". 
+			 $scores[$i].	"</td> <td style='text-align: center;' >". $rescats[$i].		"</td><td> \" ". $comment[$i].		" \" </td></tr>";
+		}  else {
+		    	$rank = $rank . "<tr style='color:gray'> <td >" .($i +1)."</td><td >" . $names[$i]. "</td> <td style='text-align: right;' >". 
+			 $scores[$i].	"</td> <td style='text-align: center;' >". $rescats[$i].		"</td><td> \" ". $comment[$i].		" \" </td></tr>";
 		}
 	}
 	$rank = $rank . "</table>";
@@ -63,7 +63,7 @@
 	
 	// Free result set
 	$result -> free_result();
-	$url="http://localhost/showusers.php?rank='$rank'";
+	$url="showusers.php?rank=$rank";
  $url=str_replace(PHP_EOL, '', $url);
  header("Location: $url");
 
