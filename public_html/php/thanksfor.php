@@ -10,13 +10,13 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <style>
-<?php include 'file:///C:/Roma/Nebeans_repsol/Helico/public_html/style/button.css'; ?>
+<?php include '../style/button.css'; ?>
 </style>
         
     </head>
     <body style="background-color:LightCyan">
         <div>Thank you for your answer gal!</div>
-        <button onclick="window.location.href='http://localhost:8383/Helico/index.html'">Back to game!</button>
+        <button onclick="window.location.href='../index.html'">Back to game!</button>
     <p>current player scores:</p>
 	
 	    <?php $yolo = $_GET['rank'] ;
