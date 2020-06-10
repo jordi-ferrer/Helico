@@ -1,7 +1,4 @@
-
 <?php
-
-
 
    //WARNING: IN ORDER TO EXECUTE PHP FILES GO TO THE DESIGNED FOLDER BY YOUR SERVER
    // TO DO SO. USUALLY. C:/XAMPP/HTDOCS/
@@ -10,11 +7,8 @@
    //  using the browser url:  
    //  http://localhost/PHPexec.php?f=C:\Roma\Nebeans_repsol\Helico\public_html\php\sendscore.php
    
-   
-    $servername = "localhost";
-    $username = "root"; // id12095050_roma 
-    $password = "";                 //Joricopter_3
-    $database = "test"; //id12095050_articlesdstuds
+include("connect.php");//contains all passwords.
+
 
     // Create connection
     $conn = new mysqli($servername, $username, $password, $database);
@@ -33,10 +27,10 @@ $comment =  filter_input(INPUT_GET, 'comentaris');
 $distance =  filter_input(INPUT_GET, 'distance');
 $clerks =  filter_input(INPUT_GET, 'clerks');
 
-echo nl2br("Welcome " . $user. "! with email: ". $email. ". Distance run: ".$distance.". Clerks rescued: ".$clerks.". You commented that: <br> ".$comment. "<br>");
+//echo nl2br("Welcome " . $user. "! with email: ". $email. ". Distance run: ".$distance.". Clerks rescued: ".$clerks.". You commented that: <br> ".$comment. "<br>");
 
 
-$sql = sprintf("INSERT INTO helicorder_users1 (user, email, comment, distance, clerks)
+$sql = sprintf("INSERT INTO helikopter_users (user, email, comment, distance, clerks)
 VALUES ('%s','%s', '%s', '%s', '%s')", 
 addslashes($user),
 addslashes($email),
@@ -44,14 +38,12 @@ addslashes($comment),
 addslashes($distance),
 addslashes($clerks));
 
-if ($conn->query($sql) === TRUE) {
-  echo "New record created successfully";
-} else {
+if ($conn->query($sql) === FALSE) {
   echo "Error: " . $sql . "<br>" . $conn->error;
 }
  
  //get scores from da people
- $sql = "SELECT user, distance, clerks FROM helicorder_users1";
+ $sql = "SELECT user, distance, clerks FROM helikopter_users";
     $result = $conn->query($sql);
 
 	$result2 =  $result -> fetch_all(MYSQLI_ASSOC);
@@ -62,19 +54,22 @@ if ($conn->query($sql) === TRUE) {
 	$names = array_column($result2, 'user');
 	$scores = array_column($result2, 'distance');
 	$rescats = array_column($result2, 'clerks');
+
 	
 	array_multisort($rescats, SORT_DESC, $scores, SORT_DESC, $names );
 	
 
-	$max = 10;
-	$rank = "<table id='userscrs'>   <tr> <th>Pos.</th> <th>Name</th>  <th>Distance (km) </th> <th> Clerks rescued </th>  </tr>";
+	$max = 12;
+	$rank = "<table id='userscrs'>   <tr> <th>Pos.</th> <th>Name</th>  <th>Distance (km) </th> <th> Clerks rescued </th> <th>Comments</th> </tr>";
 	for($i = 0;  ($i < count($scores)) and ($i<$max) ; $i++) {
 		if($i<3) {
 			$rank = $rank . "<tr> <td ><b style='color:brown'>" .($i +1)."</b></td><td ><b style='color:brown'>" . $names[$i]. "</b></td> <td style='text-align: right;' ><b style='color:brown'>". 
-			 $scores[$i].	"</b></td> <td style='text-align: center;' ><b style='color:brown'>". $rescats[$i].		"</b></td></b></tr>";
-		} else {
-		
-		$rank = $rank . "<tr> <td >" .($i +1)."</td><td >" . $names[$i]. "</td> <td style='text-align: right;' >". 
+			 $scores[$i].	"</b></td> <td style='text-align: center;' ><b style='color:brown'>". $rescats[$i].		"</b></td></tr> ";
+		} elseif ($i<7) {
+		$rank = $rank . "<tr style='color:DarkCyan'> <td >" .($i +1)."</td><td >" . $names[$i]. "</td> <td style='text-align: right;' >". 
+			 $scores[$i].	"</td> <td style='text-align: center;' >". $rescats[$i].		"</td></tr>";
+		}  else {
+		    	$rank = $rank . "<tr style='color:gray'> <td >" .($i +1)."</td><td >" . $names[$i]. "</td> <td style='text-align: right;' >". 
 			 $scores[$i].	"</td> <td style='text-align: center;' >". $rescats[$i].		"</td></tr>";
 		}
 	}
@@ -94,4 +89,4 @@ $conn->close();
 
 
  
- header("Location: http://localhost/thanksfor.php?rank=$rank"); ?>
+ header("Location: thanksfor.php?rank=$rank"); ?>
