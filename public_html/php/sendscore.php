@@ -8,7 +8,7 @@
    //  http://localhost/PHPexec.php?f=C:\Roma\Nebeans_repsol\Helico\public_html\php\sendscore.php
    
 include("connect.php");//contains all passwords.
-
+include("iploc.php");//gets IP from users.
 
     // Create connection
     $conn = new mysqli($servername, $username, $password, $database);
@@ -30,13 +30,15 @@ $clerks =  filter_input(INPUT_GET, 'clerks');
 //echo nl2br("Welcome " . $user. "! with email: ". $email. ". Distance run: ".$distance.". Clerks rescued: ".$clerks.". You commented that: <br> ".$comment. "<br>");
 
 
-$sql = sprintf("INSERT INTO helikopter_users (user, email, comment, distance, clerks)
-VALUES ('%s','%s', '%s', '%s', '%s')", 
+$sql = sprintf("INSERT INTO helikopter_users (user, email, comment, distance, clerks, IP)
+VALUES ('%s','%s', '%s', '%s', '%s', '%s')", 
 addslashes($user),
 addslashes($email),
 addslashes($comment),
 addslashes($distance),
-addslashes($clerks));
+addslashes($clerks),
+addslashes($ip_address));
+
 
 if ($conn->query($sql) === FALSE) {
   echo "Error: " . $sql . "<br>" . $conn->error;
@@ -60,7 +62,7 @@ if ($conn->query($sql) === FALSE) {
 	
 
 	$max = 12;
-	$rank = "<table id='userscrs'>   <tr> <th>Pos.</th> <th>Name</th>  <th>Distance (km) </th> <th> Clerks rescued </th> <th>Comments</th> </tr>";
+	$rank = "<table id='userscrs'>   <tr> <th>Pos.</th> <th>Name</th>  <th>Distance (km) </th> <th> Clerks rescued </th> </tr>";
 	for($i = 0;  ($i < count($scores)) and ($i<$max) ; $i++) {
 		if($i<3) {
 			$rank = $rank . "<tr> <td ><b style='color:brown'>" .($i +1)."</b></td><td ><b style='color:brown'>" . $names[$i]. "</b></td> <td style='text-align: right;' ><b style='color:brown'>". 
