@@ -197,7 +197,7 @@ function move() {
          "<br> human x: " + human.x + "<br> human y: " + human.y + "<br> human heigth: " + human.height + "<br> human width " + human.width +
          "<br> bloc 6 y " + bc6.y + "<br> corda*sin(ang corda):"+ Math.round(corda.height*Math.sin(Math.PI*corda.angle/180) ) + 
           "<br> angle corda: " + corda.angle ;
-	document.getElementById("score").innerHTML = "<h3><b>Distance <b style='color:brown'>"+Math.round(sco/10)/100 +" </b></b>km  - clerks resqued </b><b style='color:brown'>"+rescats+"</b></h3>";
+	document.getElementById("score").innerHTML = "<h3 style='color:white;text-shadow:1px 1px 4px blue;' ><b>Distance <b style='color:brown;text-shadow:1px 1px 4px blue;'>"+Math.round(sco/10)/100 +" </b></b>km  - Clerks resqued </b><b style='color:brown'>"+rescats+"</b></h3>";
 	if(mou) sco +=1;
 	
         if( (sco % 400) ===0) {enemic1.x=1200; enemic1.vx=-10; enemic1.y=Math.random()*bc1.y    ;}
@@ -335,5 +335,9 @@ function showranking() {
     <h2><b>GAME OVER</b></h2>
     </center>
 </div> 
+
+<audio autoplay loop  id="playAudio">
+    <source src="audio/yoshiflowerisland.mp3" type="audio/mp3">
+</audio>
 </body>
 </html> 
