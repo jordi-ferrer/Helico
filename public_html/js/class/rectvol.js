@@ -34,6 +34,9 @@ class rectvol extends rect {
     set ay(ep) {
         this._ay = ep;
     }
+    set name(ep) {
+        this._name = ep;
+    }
     
     draw() {
         document.getElementById(this._name).style.top = this.y + "px";
