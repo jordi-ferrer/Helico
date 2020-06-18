@@ -16,7 +16,7 @@ and open the template in the editor.
     </head>
     <body style="background-color:LightCyan">
         
-        <button onclick="window.location.href='../index.html'">Back to game!</button>
+        <button onclick="window.location.href='../main.html'">Back to game!</button>
    <h2>Current player ranking for this incredible game:</h2>
 	
 	    <?php $yolo = $_GET['rank'] ;
