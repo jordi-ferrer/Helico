@@ -13,7 +13,7 @@ class helicop extends rectvol {
     }
 
     draw() {
-        super.draw(this._name);
+        super.draw();
     }
     
     move() {
