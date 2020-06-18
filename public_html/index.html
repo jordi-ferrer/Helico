@@ -144,7 +144,7 @@ function intro() {
     document.getElementById("score").innerHTML="<p align='justify'><b>A long time in the future, in a faraway land.. an office worker is stuck in her office. She is just tired of working and just wants to get out" +
             " and scream ALELUYA! with all her might. However, she is stuck in the office. But her employer came to the office by Copter today! So she decides to take the chance and sneak into her" +
             " employer copter and take a ride around da city! Will you have what it takes to master the mystery of flight and take a fly around the sky-scrappers? Now is your chance!!!<b> <br> "+
-            "</p><center><button onclick='mou=true;requestAnimationFrame(move)'><h1><b style='color:red'>YES</b></h1></button>"+
+            "</p><center><button onclick='playsong();mou=true;requestAnimationFrame(move)'><h1><b style='color:red'>YES</b></h1></button>"+
             "<button onclick='caratrista()'><h1><b>NO<b></h1></button>  <button style='color:green' onclick='showranking()'><h1><b>Show Ranking<b></h1></button></center>"; 
 }
 
@@ -242,6 +242,18 @@ function gameover() {
 function showranking() {
     window.location.href = "php/getusers.php";
 }
+function playsong() {
+    var rand = Math.round(Math.random());
+    //canço de fons
+    var song = 'yoshiflowerisland.mp3';
+    if(rand===1)  song='rainbowmeadows.mp3';
+    song = "audio/"+song;
+    document.getElementById("aux3").innerHTML = rand + " " + song;
+    document.getElementById("aux3").visibility ="visible";
+    var cançofons = new Audio(song);
+    cançofons.loop = true;
+    cançofons.play();
+}
 
 </script>
 <div class="solbunch">
@@ -336,9 +348,10 @@ function showranking() {
     </center>
 </div> 
 
-<audio autoplay loop  id="playAudio">
-    <source src="audio/rainbowmeadows.mp3" type="audio/mp3">
-</audio>
+
 <!-- galeria de sons a https://downloads.khinsider.com/game-soundtracks/album/fire-emblem-fates-->
 </body>
 </html> 
+
+
+
