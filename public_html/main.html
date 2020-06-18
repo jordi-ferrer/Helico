@@ -73,7 +73,7 @@ var xocat = false;
 
 /*helicopter position, speed & rope*/
 //                  left,top,width,height,vx,vy,ax,ay,name
-heli = new helicop(200, 300, 50, 25, 0, 0, 0, 0.2, "helicop");
+heli = new helicop(30, 300, 50, 25, 0, 0, 0, 0.2, "helicop");
 corda = new rope(23, 23, 5, 100, 0, 0, 0, 0, "corda");
 enemic1 = new helicop(1200, 200, 50, 25, -10, 0, 0, 0, "enemic1");
 
@@ -104,7 +104,7 @@ function restart() {
 	bc6.x=1200; bc6.y= 200+Math.random()*300;
         
         //reinicialitzant les coordenadees i velocitat del jjjjjjoricopter
-	heli.x = 200; heli.y=bc1.y - 30; heli.vx=0; heli.vy=0;
+	heli.x = 30; heli.y=bc1.y - 30; heli.vx=0; heli.vy=0;
 	//inicilitzant enemic1
         enemic1.x = 1200; enemic1.y=Math.random()*400; enemic1.vx=-10; enemic1.vy=0;
 	
