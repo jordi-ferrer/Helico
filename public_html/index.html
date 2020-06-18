@@ -71,11 +71,7 @@ var xocat = false;
 
 /*helicopter position, speed & rope*/
 //                  left,top,width,height,vx,vy,ax,ay,name
-heli = new helicop();
-heli.x = 200; heli.y = 300; heli.width = 50; heli.height= 25; heli.vx = 0;
-heli.vy = 0; heli.ax = 0; heli.ay = 0.2; heli.name="helicop";
-
-
+heli = new helicop(200, 300, 50, 25, 0, 0, 0.2, 0, "enemic1");
 corda = new rope(23, 23, 5, 100, 0, 0, 0, 0, "corda");
 enemic1 = new helicop(1200, 200, 50, 25, -10, 0, 0, 0, "enemic1");
 
