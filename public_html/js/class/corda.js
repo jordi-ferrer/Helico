@@ -22,8 +22,7 @@ class rope extends rectvol {
         if(this._angle < 0) this._angle = 0.01; 
         if(this._angle > 45) this._angle = 45;
         document.getElementById(this._name).style.transform = "rotate(" + this._angle + "deg)";
-        corda.vy=heli.vy;
-        super.move();
+        //super.move();
     }
     
     get angle() {
