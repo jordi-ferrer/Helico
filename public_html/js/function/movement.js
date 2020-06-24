@@ -65,3 +65,4 @@ function volare(id) {
             //corda.vy = heli.vy;
         }
 }
+
