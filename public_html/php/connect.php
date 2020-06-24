@@ -2,5 +2,5 @@
     $servername = "localhost";
     $username = "root";      
     $password = "";            
-    $database = "test";    
+    $database = "id13995965_kopterdatabase";  // "test"
 ?>
