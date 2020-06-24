@@ -55,7 +55,7 @@ function movebloc(rect, i){
 	}
 }
 function movehuman() {
-    human.x = bc3.x; human.y = bc3.y-58;
+    human.x = bc6.x; human.y = bc6.y-58;
 }
 function volare(id) {
         if(mou) { 

@@ -89,7 +89,7 @@ bc6 = new edifici(1200, 400+Math.random()*100, 100, 400, -5, 0, 0, 0, "bloc6");
 var bloc = [bc1,bc2,bc3,bc4,bc5,bc6];
 
 
-human = new person(bc3.x, bc3.y - 58,10, 65, 0, 0, 0, 0, "human1");
+human = new person(bc6.x, bc6.y - 58,10, 65, 0, 0, 0, 0, "human1");
 
 var mou = false;
 var sco = 0;
@@ -151,8 +151,8 @@ function intro() {
     document.getElementById("score").innerHTML="<p align='justify'><b>A long time in the future, in a faraway land.. an office worker is stuck in her office. She is just tired of working and just wants to get out" +
             " and scream ALELUYA! with all her might. However, she is stuck in the office. But her employer came to the office by Copter today! So she decides to take the chance and sneak into her" +
             " employer copter and take a ride around da city! Will you have what it takes to master the mystery of flight and take a fly around the sky-scrappers? Now is your chance!!!<b> <br> "+
-            "</p><center><button onclick='playsong();mou=true;requestAnimationFrame(move)'><h1><b style='color:red'>YES</b></h1></button>"+
-            "<button onclick='caratrista()'><h1><b>NO<b></h1></button>  <button style='color:green' onclick='showranking()'><h1><b>Show Ranking<b></h1></button></center>"; 
+            "</p><center><button class='butt1' onclick='playsong();mou=true;requestAnimationFrame(move)'><h1><b style='color:red'>YES</b></h1></button>"+
+            "<button onclick='caratrista()' class='butt1' ><h1><b>NO<b></h1></button>  <button class='butt1'  style='color:green' onclick='showranking()'><h1><b>Show Ranking<b></h1></button></center>"; 
 }
 
 function move() {
@@ -167,10 +167,10 @@ function move() {
         
         //check resque:
         if( !rescatat && ( checkxoc(heli,human)   ||  
-            xocrotatedrect( [heli.x+corda.x - corda.height*Math.sin(Math.PI*corda.angle/180), heli.y+heli.height+corda.y+Math.cos(Math.PI*corda.angle/180)*corda.height],
-                            [heli.x+corda.x,  heli.y+heli.height+corda.y],
-                            [heli.x+corda.x - corda.height*Math.sin(Math.PI*corda.angle/180) + corda.width*Math.cos(Math.PI*corda.angle/180), heli.y+heli.height+corda.y+Math.cos(Math.PI*corda.angle/180)*corda.height + corda.width*Math.sin(Math.PI*corda.angle/180)],
-                            [heli.x+corda.x + corda.width*Math.cos(Math.PI*corda.angle/180),  heli.y+heli.height+corda.y + corda.width*Math.sin(Math.PI*corda.angle/180)],
+            xocrotatedrect( [corda.x - corda.height*Math.sin(Math.PI*corda.angle/180), corda.y+Math.cos(Math.PI*corda.angle/180)*corda.height],
+                            [corda.x,  corda.y],
+                            [corda.x - corda.height*Math.sin(Math.PI*corda.angle/180) + corda.width*Math.cos(Math.PI*corda.angle/180), corda.y+Math.cos(Math.PI*corda.angle/180)*corda.height + corda.width*Math.sin(Math.PI*corda.angle/180)],
+                            [corda.x + corda.width*Math.cos(Math.PI*corda.angle/180),  corda.y + corda.width*Math.sin(Math.PI*corda.angle/180)],
                             human)
             )) {
             rescats += 1;
@@ -348,7 +348,7 @@ function playsong() {
         <input placeholder="distance" name="distance" id="distance" style="visibility:hidden" > 
         <input placeholder="clerks" name="clerks" id="clerks" style="visibility:hidden">
     </form>
-    <button id="botogameov"  onclick="restart()"><h2><b>Skip and restart</b></h2></button>
+    <button id="botogameov"  class='butt1'  onclick="restart()"><h2><b>Skip and restart</b></h2></button>
 </div>
 
 <div id="gameover"> 

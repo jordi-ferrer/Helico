@@ -19,3 +19,17 @@ button, .submitbut{
     font-size:140%;
     
 }
+
+.submitbut, .butt1 {
+  transition-duration: 0.4s;
+}
+
+.submitbut:hover {
+  background-color: lightblue; /* Green */
+  color: black;
+}
+
+.butt1:hover {
+  background-color: lightblue; /* Green */
+  color: black;
+}
