@@ -55,11 +55,12 @@ function movebloc(rect, i){
 	}
 }
 function movehuman() {
-    human.x = bc6.x; human.y = bc6.y-47;
+    human.x = bc3.x; human.y = bc3.y-58;
 }
 function volare(id) {
         if(mou) { 
 	 heli.vy = heli.vy - 6;
-	 heli.y += heli.vy;	 
+	 heli.y += heli.vy;
+         corda.vy=heli.vy;
      }
 }

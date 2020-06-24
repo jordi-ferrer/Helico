@@ -11,16 +11,19 @@ class rope extends rectvol {
         this._angle = 0;
     }
 
-    //draw() {
-        //super.draw(this._name);
-    //}
+    draw(transf='') {
+        transf = "rotate(" + this._angle + "deg) " + transf;
+        super.draw(transf);
+    }
     
     move() {
-        //super.move();
+        //super.move();        
         this._angle += Math.random()*4 - 2;
         if(this._angle < 0) this._angle = 0.01; 
         if(this._angle > 45) this._angle = 45;
         document.getElementById(this._name).style.transform = "rotate(" + this._angle + "deg)";
+        corda.vy=heli.vy;
+        super.move();
     }
     
     get angle() {

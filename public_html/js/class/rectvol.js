@@ -38,9 +38,8 @@ class rectvol extends rect {
         this._name = ep;
     }
     
-    draw() {
-        document.getElementById(this._name).style.top = this.y + "px";
-        document.getElementById(this._name).style.left = this.x + "px";
+    draw(transf='') {
+        document.getElementById(this._name).style.transform = 'translateY('+this.y + 'px) translateX('+this.x + 'px) ' + transf;
         document.getElementById(this._name).style.width = this.width + "px";
         document.getElementById(this._name).style.height = this.height + "px";
     }

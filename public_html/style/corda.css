@@ -10,8 +10,8 @@ and open the template in the editor.
 
 #corda{
     position:absolute;
-    top:23px;
-    left:23px;
+    top:0px;
+    left:0px;
     background-color: #c79645;
     border-radius: 30%;
     transform: rotate(20deg);

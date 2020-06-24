@@ -53,8 +53,32 @@
   border-radius: 40%;
   display: inline-block;
 }
+.panxa {
+  position:absolute;
+  top:10px;
+  left:-5px;
+  height: 25px;
+  width: 20px;
+  background-color: gray;
+  border-radius: 100%;
+  display: inline-block;
+}
+.papada {
+  position:absolute;
+  top:-2px;
+  left:-1px;
+  height: 12px;
+  width: 12px;
+  background-color: bisque;
+  border-radius: 100%;
+  display: inline-block;
+}
 .cara3 {
      position:absolute;
   transform: rotate(90deg);
   left:5px;
 }
+
+
+/*<div id="human gordo"><span class="leg1"></span><span class="leg2"></span><span class="arms"></span><span class="body"><span class="papada"></span><span class="panxa"></span></span><span class="head"><span class="cara3" id="cara_huma">:|</span></span></div>
+<div id="human1"><span class="leg1"></span><span class="leg2"></span><span class="arms"></span><span class="body"></span><span class="head"><span class="cara3" id="cara_huma">:|</span></span></div> */

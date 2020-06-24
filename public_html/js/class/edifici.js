@@ -10,8 +10,8 @@ class edifici extends rectvol {
         super(left,top,width,height,vx,vy,ax,ay, name);
     }
 
-    draw() {
-        super.draw(this._name);
+    draw(transf='') {
+        super.draw(transf);
     }
     
     move() {
