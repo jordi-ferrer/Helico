@@ -59,9 +59,9 @@ function movehuman() {
 }
 function volare(id) {
         if(mou) { 
-	 heli.vy = heli.vy - 6;
-	 heli.y += heli.vy;
-         corda.vy = heli.vy;
-         corda.y =  heli.y + heli.height;
-     }
+            heli.vy = heli.vy - 6;
+            heli.y += heli.vy;
+            corda.y = heli.y + heli.height; //hola roma
+            //corda.vy = heli.vy;
+        }
 }
