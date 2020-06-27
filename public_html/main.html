@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="style/bird.css">
 <link rel="stylesheet" href="style/cel.css">
 <link rel="stylesheet" href="style/button.css">
+<link rel="stylesheet" href="style/flag.css">
 
 <style>
 
@@ -57,6 +58,7 @@ html {
 <script src="js/class/edifici.js"></script>
 <script src="js/class/heli.js"></script>
 <script src="js/class/corda.js"></script>
+<script src="js/class/flag.js"></script>
 
 <script src="js/function/randbolet2.js"></script>
 <script src="js/function/underscore.js"></script>
@@ -71,6 +73,9 @@ var rescats = 0;
 var rescatat = false;
 let request; //aquesta variable serveix per fer les animacions
 var xocat = false;
+var checkpoint = 1;
+var current_checkpoint = 0;
+const checkpoint_dist = 300;
 
 /*helicopter position, speed & rope*/
 //                  left,top,width,height,vx,vy,ax,ay,name
@@ -88,6 +93,8 @@ bc6 = new edifici(1200, 400+Math.random()*100, 100, 400, -5, 0, 0, 0, "bloc6");
 
 var bloc = [bc1,bc2,bc3,bc4,bc5,bc6];
 
+/*flag*/
+flag = new flag(bc6.x, bc6.y-58, 33, 50, 0, 0, 0, 0, "flag");
 
 human = new person(bc6.x, bc6.y - 58,10, 65, 0, 0, 0, 0, "human1");
 
@@ -96,24 +103,32 @@ var sco = 0;
 
 function restart() {
     if(xocat) {
-	//reinicialitzant les coordenades de l'helicopter i els blocs:
-	bc1.x=200; bc1.y= 200+Math.random()*300;
-	bc2.x=400; bc2.y= 200+Math.random()*300;
-	bc3.x=600; bc3.y= 200+Math.random()*300;
-	bc4.x=800; bc4.y= 200+Math.random()*300;
-	bc5.x=1000; bc5.y= 200+Math.random()*300;
-	bc6.x=1200; bc6.y= 200+Math.random()*300;
-        
+        if( current_checkpoint > 0) //checkpoint guardat
+        {
+            sco = (current_checkpoint-1)*checkpoint_dist;//revisar
+        }
+        else //no checkpoint
+        {
+            sco=0;
+            rescats=0;
+            //reinicialitzant les coordenades de l'helicopter i els blocs:
+            bc1.x=200; bc1.y= 200+Math.random()*300;
+            bc2.x=400; bc2.y= 200+Math.random()*300;
+            bc3.x=600; bc3.y= 200+Math.random()*300;
+            bc4.x=800; bc4.y= 200+Math.random()*300;
+            bc5.x=1000; bc5.y= 200+Math.random()*300;
+            bc6.x=1200; bc6.y= 200+Math.random()*300;
+            bloc.forEach(element => element.setColour("gray"));
+
+        }
         //reinicialitzant les coordenadees i velocitat del jjjjjjoricopter
-	heli.x = 200; heli.y=bc1.y - heli.width; heli.vx=0; heli.vy=0;
+        heli.x = 200; heli.y=bc1.y - heli.width; heli.vx=0; heli.vy=0;
         corda.x = heli.x +23; corda.y = heli.y + 23;
-	//inicilitzant enemic1
+        //inicilitzant enemic1
         enemic1.x = 1200; enemic1.y=Math.random()*400; enemic1.vx=-10; enemic1.vy=0;
-	
+
         corda.angle = 0;
-	mou=false;
-	sco=0;
-        rescats=0;
+	//mou=false;
 	document.getElementById("gameover").style.visibility="hidden"; //amaga el botó restart
         
         //erase submit form:
@@ -124,11 +139,9 @@ function restart() {
         document.getElementById("distance").value=0;
         document.getElementById("clerks").value=0;
 
-        bloc.forEach(element => element.setColour("gray"));
-
         xocat = false;
         heli.setCara(":O");
-        mou = true;
+        //mou = true;
 	requestAnimationFrame(move);
     }
 }
@@ -163,8 +176,6 @@ function move() {
             return;
 	}
         
-        
-        
         //check resque:
         if( !rescatat && ( checkxoc(heli,human)   ||  
             xocrotatedrect( [corda.x - corda.height*Math.sin(Math.PI*corda.angle/180), corda.y+Math.cos(Math.PI*corda.angle/180)*corda.height],
@@ -176,6 +187,12 @@ function move() {
             rescats += 1;
             rescatat = true;
             document.getElementById("human1").style.visibility = "hidden";
+        }
+        //checkpoint
+        if(checkxoc(heli,flag) && flag.isVisible())
+        {
+            current_checkpoint = checkpoint;
+            flag.setColour("ForestGreen");
         }
         //si no rescata a un clerck posa cara de sorpresa:
         if(human.x + human.width < heli.x) {
@@ -189,9 +206,21 @@ function move() {
             heli.move();
             enemic1.move();
             bloc.forEach(movebloc);
-            movehuman(human);
+            movehuman();
+            moveflag();
             corda.move();
 	}
+        
+        if(sco > checkpoint*checkpoint_dist)
+        {
+            checkpoint++;
+            flag.show();
+        }
+        if(flag.x < 0)
+        {
+            flag.setColour("red");
+            flag.hide();
+        }
 	
 	/*draw helicop and bloc*/
 	draw();
@@ -199,13 +228,13 @@ function move() {
 	/*texts auxiliars*/
 	document.getElementById("aux2").innerHTML = "windown inner width: "+ window.innerWidth + " window.innerHeight: "+window.innerHeight ;
 	document.getElementById("aux1").innerHTML="heli vy:" +Math.round(heli.vy) + "<br> heli y:" + Math.round(heli.y) +
-                 "<br> heli height: " +Math.round(heli.height) + "<br> heli x: " + heli.x +
-	 "<br>bloc vx:" +Math.round(bc1.vx) + "<br>pos x bloc:" +Math.round(bc1.x) +
-	"<br> bloc vy: " +Math.round(bc1.vy) + "<br> bloc y: " + Math.round(bc1.y) + "<br> enemic1 y: " + Math.round(enemic1.y) +
-        "<br> enemic1 x: " + Math.round(enemic1.x) + "<br> request: " + request +
-         "<br> human x: " + human.x + "<br> human y: " + human.y + "<br> human heigth: " + human.height + "<br> human width " + human.width +
-         "<br> bloc 6 y " + bc6.y + "<br> corda*sin(ang corda):"+ Math.round(corda.height*Math.sin(Math.PI*corda.angle/180) ) + 
-          "<br> angle corda: " + corda.angle ;
+                "<br> heli height: " +Math.round(heli.height) + "<br> heli x: " + heli.x +
+                "<br>bloc vx:" +Math.round(bc1.vx) + "<br>pos x bloc:" +Math.round(bc1.x) +
+                "<br> bloc vy: " +Math.round(bc1.vy) + "<br> bloc y: " + Math.round(bc1.y) + "<br> enemic1 y: " + Math.round(enemic1.y) +
+                "<br> enemic1 x: " + Math.round(enemic1.x) + "<br> request: " + request +
+                "<br> human x: " + human.x + "<br> human y: " + human.y + "<br> human heigth: " + human.height + "<br> human width " + human.width +
+                "<br> bloc 6 y " + bc6.y + "<br> corda*sin(ang corda):"+ Math.round(corda.height*Math.sin(Math.PI*corda.angle/180) ) + 
+                "<br> angle corda: " + corda.angle ;
 	document.getElementById("score").innerHTML = "<h3 style='color:white;text-shadow:1px 1px 4px blue;' ><b>Distance <b style='color:brown;'>"+Math.round(sco/10)/100 +" </b></b>km  - Clerks resqued </b><b style='color:brown'>"+rescats+"</b></h3>";
 	if(mou) sco +=1;
 	
@@ -233,7 +262,7 @@ function draw() {
     enemic1.draw("rotateY(180deg)");//afegeixo una transformacio al elicopter enemic
     human.draw();
     corda.draw();
-    
+    flag.draw();
     bloc.forEach(element => element.draw()); //wow què és això? de:Romà
 }
 
@@ -254,7 +283,7 @@ function showranking() {
 function playsong() {
     var rand = Math.round(Math.random());
     //canço de fons
-    var song = 'yoshiflowerisland.mp3';
+    var song = 'turkishmarch.mp3';
     if(rand===1)  song='rainbowmeadows.mp3';
     song = "audio/"+song;
     document.getElementById("aux3").innerHTML = rand + " " + song;
@@ -319,6 +348,8 @@ function playsong() {
 
 <div id="human1"><span class="leg1"></span><span class="leg2"></span><span class="arms"></span><span class="body"><span class="papada"></span><span class="panxa"></span></span><span class="head"><span class="cara3" id="cara_huma">:|</span></span></div>
 
+<div id="flag"><span class="stick"><span class="banner" id="banner"></span></div>
+
 <div id="helicop" class="heli">
     <div class="helix1"></div>
     <div class="helix2"></div>
@@ -360,7 +391,4 @@ function playsong() {
 
 <!-- galeria de sons a https://downloads.khinsider.com/game-soundtracks/album/fire-emblem-fates-->
 </body>
-</html> 
-
-
-
+</html>

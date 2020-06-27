@@ -36,27 +36,34 @@ function moveheli(rectvol){
 }
 
 function movebloc(rect, i){
-	if(i===0) { 
+	/*if(i===0) { 
             i = bloc.length-1;
 	} else {
-            i=i-1;
-        }
+            i = i-1;
+        }*/
         
 	rect.x = rect.x + rect.vx;
 	if(rect.x < -rect.width) {
 		rect.x = 1100 ;
 		rect.y = bloc[i].y +  Math.floor(Math.random() * (150)-75 );
-		if(rect.y<200) rect.y=200;
-		if(rect.y>450) rect.y=450;
+		if(rect.y < 200) rect.y = 200;
+		if(rect.y > 450) rect.y = 450;
                 if(i===5 && rescatat) {
                     rescatat=false;
                     document.getElementById("human1").style.visibility="visible";
                 }
 	}
 }
+
 function movehuman() {
     human.x = bc6.x; human.y = bc6.y-58;
 }
+
+function moveflag() {
+    flag.x = bloc[5].x + bloc[5].width - flag.width;
+    flag.y = bloc[5].y-58;
+}
+
 function volare(id) {
         if(mou) { 
             heli.vy = heli.vy - 6;
