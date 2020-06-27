@@ -60,8 +60,8 @@ function movehuman() {
 }
 
 function moveflag() {
-    flag.x = bloc[5].x + bloc[5].width - flag.width;
-    flag.y = bloc[5].y-58;
+    flag.x = bloc[0].x + bloc[0].width - flag.width;
+    flag.y = bloc[0].y-58;
 }
 
 function volare(id) {
