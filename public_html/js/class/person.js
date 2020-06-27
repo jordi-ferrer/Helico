@@ -6,10 +6,13 @@
 
 
 class person extends rectvol {
-    constructor(left,top,width,height,vx,vy,ax,ay, name) {
+    constructor(left,top,width,height,vx,vy,ax,ay, name, cara) {
         super(left,top,width,height,vx,vy,ax,ay, name);
+        this._cara = cara;
     }
-
+    
+ 
+    
     draw(transf='') {
         super.draw(transf);
     }
@@ -19,6 +22,6 @@ class person extends rectvol {
     }
     
     setCara(cara) {
-        document.getElementById("cara_huma").innerHTML = cara;
+        document.getElementById(this._cara).innerHTML = cara;
     }
 }
