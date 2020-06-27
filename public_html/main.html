@@ -82,7 +82,7 @@ const checkpoint_dist = 300;
 heli = new helicop(200, 300, 50, 25, 0, 0, 0, 0.2, "helicop");
 corda = new rope(heli.x + 23, heli.y + 23, 5, 100, heli.vx, heli.vy, 0, heli.ax, "corda");
 enemic1 = new helicop(1200, 200, 50, 25, -10, 0, 0, 0, "enemic1");
-
+        
 /*bloc position & speed*/
 bc1 = new edifici(200, heli.y+30, 100, 400, -5, 0, 0, 0, "bloc1");
 bc2 = new edifici(400, 400+Math.random()*100, 100, 400, -5, 0, 0, 0, "bloc2");
@@ -96,7 +96,8 @@ var bloc = [bc1,bc2,bc3,bc4,bc5,bc6];
 /*flag*/
 flag = new flag(bc6.x, bc6.y-58, 33, 50, 0, 0, 0, 0, "flag");
 
-human = new person(bc6.x, bc6.y - 58,10, 65, 0, 0, 0, 0, "human1");
+montse = new person(bc1.x, bc1.y - 58,10, 65, 0, 0, 0, 0, "human2", "cara_montse");
+human = new person(bc6.x, bc6.y - 58,10, 65, 0, 0, 0, 0, "human1", "cara_huma");
 
 var mou = false;
 var sco = 0;
@@ -348,6 +349,8 @@ function playsong() {
 
 <div id="human1"><span class="leg1"></span><span class="leg2"></span><span class="arms"></span><span class="body"><span class="papada"></span><span class="panxa"></span></span><span class="head"><span class="cara3" id="cara_huma">:|</span></span></div>
 
+<div id="human2"><span class="leg1m"></span><span class="leg2m"></span><span class="armsm"></span><span class="bodym"></span><span class="headm"><span class="cara3" id="cara_montse">:|</span></span></div>
+
 <div id="flag"><span class="stick"><span class="banner" id="banner"></span></div>
 
 <div id="helicop" class="heli">
@@ -389,6 +392,6 @@ function playsong() {
 </div> 
 
 
-<!-- galeria de sons a https://downloads.khinsider.com/game-soundtracks/album/fire-emblem-fates-->
+<!-- galeria de songs a https://downloads.khinsider.com/game-soundtracks/album/fire-emblem-fates-->
 </body>
 </html>
