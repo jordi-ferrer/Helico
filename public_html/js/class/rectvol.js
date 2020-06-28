@@ -49,4 +49,16 @@ class rectvol extends rect {
 	this.y = this.y + this.vy;
         this.x = this.x + this.vx;
     }
+    
+    hide() {
+        document.getElementById(this._name).style.visibility = "hidden";
+    }
+    
+    show() {
+        document.getElementById(this._name).style.visibility = "visible";
+    }
+    
+    isVisible() {
+        return document.getElementById(this._name).style.visibility == "visible";
+    }
 }

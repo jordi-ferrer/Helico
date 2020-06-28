@@ -11,8 +11,6 @@ class person extends rectvol {
         this._cara = cara;
     }
     
- 
-    
     draw(transf='') {
         super.draw(transf);
     }
