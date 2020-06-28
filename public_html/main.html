@@ -88,7 +88,7 @@ bc6 = new edifici(1200, 400+Math.random()*100, 100, 400, -5, 0, 0, 0, "bloc6");
 
 var bloc = [bc1,bc2,bc3,bc4,bc5,bc6];
 
-montse = new person(bc1.x, bc1.y - 58,10, 65, 0, 0, 0, 0, "human2", "cara_montse");
+montse = new person(bc1.x+heli.width, bc1.y + 58,10, 65, 0, 0, 0, 0, "human2", "cara_montse");
 human = new person(bc6.x, bc6.y - 58,10, 65, 0, 0, 0, 0, "human1", "cara_huma");
 
 var mou = false;
@@ -232,6 +232,7 @@ function draw() {
     heli.draw();
     enemic1.draw("rotateY(180deg)");//afegeixo una transformacio al elicopter enemic
     human.draw();
+    montse.draw("rotateY(-60deg)");
     corda.draw();
     
     bloc.forEach(element => element.draw()); //wow què és això? de:Romà
@@ -303,6 +304,8 @@ function playsong() {
    </div>
 </div>
 
+<div id="human2"><span class="peluca"></span><span class="leg1m"></span><span class="leg2m"></span><span class="armsm"></span><span class="bodym"></span><span class="headm"><span class="cara3" id="cara_montse">:|</span></span></div>
+
 <div class="terra" id="bloc1"></div>
 <div class="terra" id="bloc2"></div>
 <div class="terra" id="bloc3"></div>
@@ -319,7 +322,6 @@ function playsong() {
 
 <div id="human1"><span class="leg1"></span><span class="leg2"></span><span class="arms"></span><span class="body"><span class="papada"></span><span class="panxa"></span></span><span class="head"><span class="cara3" id="cara_huma">:|</span></span></div>
 
-<div id="human2"><span class="leg1m"></span><span class="leg2m"></span><span class="armsm"></span><span class="bodym"></span><span class="headm"><span class="cara3" id="cara_montse">:|</span></span></div>
 
 <div id="helicop" class="heli">
     <div class="helix1"></div>
