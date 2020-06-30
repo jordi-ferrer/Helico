@@ -14,12 +14,19 @@ and open the template in the editor.
 }
 
 #introbuttons {
+    position:absolute;
+    top:140px;
     visibility: hidden;
+    width:1000px;
 }
 
 #introtext {
+    position:absolute;
+    top:-30px;
     width:800px;
-    color:Brown;
+    color:brown;
+    font-size: 18px;
+    font-family: "Trebuchet MS";
 }
 #gameover{
     position:absolute;
@@ -27,4 +34,8 @@ and open the template in the editor.
     top:30%;
     visibility:hidden;
     color:DarkCyan;
+}
+#skipinbut {
+    position:absolute;
+    top:150px;
 }
