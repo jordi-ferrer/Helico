@@ -1,10 +1,7 @@
 #human1{
     position:absolute;
 }
-#human2 {
-    position:absolute;
-    color:white;
-}
+
 .leg1 {
   position:absolute;
   top:40px;
@@ -144,5 +141,45 @@
   border-radius: 45%;
 }
 
-/*<div id="human gordo"><span class="leg1"></span><span class="leg2"></span><span class="arms"></span><span class="body"><span class="papada"></span><span class="panxa"></span></span><span class="head"><span class="cara3" id="cara_huma">:|</span></span></div>
-<div id="human1"><span class="leg1"></span><span class="leg2"></span><span class="arms"></span><span class="body"></span><span class="head"><span class="cara3" id="cara_huma">:|</span></span></div> */
+#human2 {
+    position:absolute;
+    top:0px;
+    left:0px;
+    color:white;
+    animation-name: camina;
+    animation-duration: 1s;
+    animation-iteration-count: 13;
+    transform-origin:50% 50%;
+     animation-delay: 10s;
+  
+}
+
+#areavital {
+    position:absolute;
+    top:0px;
+    width:50px;
+    height:70px;
+    left:0px;
+    animation-name: desplaça;
+    animation-duration: 13s;
+    animation-iteration-count: 1;
+     transform-origin:50% 50%;
+     animation-timing-function: linear;
+     visibility: hidden;
+     animation-delay: 10s;
+}
+
+
+@keyframes desplaça {
+   0%   {transform: translateX(280px) translateY(430px) rotate(60deg);visibility: visible; }
+  50%  {transform: translateX(280px) translateY(280px) rotate(60deg) }
+  60%  {transform: translateX(280px) translateY(280px) rotate(0deg)}
+  90%  {transform: translateX(200px) translateY(280px) rotate(0deg);visibility: hidden; }
+  100%  {transform: translateX(175px) translateY(280px) rotate(0deg);visibility: hidden; }
+}
+
+@keyframes camina {
+    0%   {transform:  rotate(10deg) }
+  50%  {transform: rotate(-10deg)}
+  100%  {transform:  rotate(10deg) }
+}
