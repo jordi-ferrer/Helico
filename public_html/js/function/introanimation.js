@@ -5,9 +5,9 @@
  */
 
 var txtcount = 0;
-var introtxt ="A long time in the future, in a faraway land... an office worker is stuck in her office. She is just tired of working and just wants to get out " +
-             "and scream ALELUYA! with all her might. However, she is stuck in the office. But her employer came to the office by Copter today! So she decides to take the chance and sneak into her " +
-             "employer copter and take a ride around da city! Will you have what it takes to master the mystery of flight and take a fly around the sky-scrappers? Now is your chance!!!" ;
+var introtxt ="A long time in the future, in a faraway city-town... an office worker is stuck in her office. She is just tired of working and working in this grimmy building and just wants to get out " +
+             "and scream ALELUYA! with all her might. Despite being stuck in such a tiny office, her employer came to work by Copter today! So she decides to take the chance and sneak into her " +
+             "employer's copter before he even realises! Will you have what it takes to master the mystery of flight and take a ride around the sky-scrappers? Now is your chance!!!" ;
 var txtspeed = 30;
 
 function typeWriter() {
@@ -24,4 +24,16 @@ function skipintrou() {
     document.getElementById("human2").style.visibility="hidden";
     document.getElementById("skipinbut").style.visibility="hidden";
     document.getElementById("introtext").style.visibility="hidden";
+}
+
+
+function intro() {
+    //document.getElementById("intro").innerHTML= document.getElementById("intro").innerHTML;
+    typeWriter();
+    if(!skipintro) setTimeout(function(){ document.getElementById("introbuttons").style.visibility = "visible";document.getElementById("skipinbut").style.visibility="hidden"; }, 22000);
+    
+    song = "audio/typewriter-1.mp3";
+    var typewriting = new Audio(song);
+    typewriting.play();
+    setTimeout(function(){ typewriting.pause(); }, 18000);
 }

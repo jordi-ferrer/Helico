@@ -157,14 +157,6 @@ function carrega() {
 }
 
 
-
-function intro() {
-    //document.getElementById("intro").innerHTML= document.getElementById("intro").innerHTML;
-    typeWriter();
-    if(!skipintro) setTimeout(function(){ document.getElementById("introbuttons").style.visibility = "visible";document.getElementById("skipinbut").style.visibility="hidden"; }, 23000);
-    
-}
-
 function move() {
 	//check hit:
 	if( checkxoc(heli,bc1) || checkxoc(heli,bc2) || checkxoc(heli,bc3) || checkxoc(heli,bc4) || checkxoc(heli,bc5) || checkxoc(heli,bc6) || 
@@ -295,6 +287,7 @@ function playsong() {
     var cançofons = new Audio(song);
     cançofons.loop = true;
     cançofons.play();
+    
 }
 
 </script>
@@ -397,7 +390,7 @@ function playsong() {
 </div> 
 
 <div id="intro" >
-    <b><p id="introtext"  align='justify'> 
+    <b><p id="introtext"  > 
         </p></b>
     <center id="introbuttons">
         <button class='butt1' onclick='playsong();mou=true;requestAnimationFrame(move);document.getElementById("intro").innerHTML="";'><h1><b style='color:red'>YES</b></h1></button>
