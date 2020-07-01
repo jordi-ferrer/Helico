@@ -14,16 +14,15 @@
 <link rel="stylesheet" href="style/cel.css">
 <link rel="stylesheet" href="style/button.css">
 <link rel="stylesheet" href="style/flag.css">
+<link rel="stylesheet" href="style/controls.css">
+<link rel="stylesheet" href="style/forms.css">
 
 <style>
 
 /* per fer animacions mirar-se be al funció requestAnimationFrame() en comptes
 d'usar setTimeout() */
 
-#formsendsc {
-    position:absolute;
-    visibility:hidden;
-}
+
 body{
     background-color:LightCyan;
     touch-action: manipulation;
@@ -31,13 +30,7 @@ body{
 html {
     touch-action: manipulation;
 }
-#gameover{
-    position:absolute;
-    left:30%;
-    top:30%;
-    visibility:hidden;
-    color:red;
-}
+
 #score{
     top:30px;
     left:30px;
@@ -45,7 +38,7 @@ html {
 }
 #controls{
     position:absolute;
-    visibility:hidden;
+    visibility:visible;
 }
 
 </style>
@@ -58,25 +51,27 @@ html {
 <script src="js/class/edifici.js"></script>
 <script src="js/class/heli.js"></script>
 <script src="js/class/corda.js"></script>
-<script src="js/class/flag.js"></script>
+<script src="js/class/bandera.js"></script>
 
 <script src="js/function/randbolet2.js"></script>
 <script src="js/function/underscore.js"></script>
 <script src="js/function/movement.js"></script>
 <script src="js/function/xocs.js"></script>
+<script src="js/function/introanimation.js"></script>
 
 
 <script>
 
 var mou = false;
 var sco = 0;
+var skipintro = false;
 var rescats = 0;
 var rescatat = false;
 let request; //aquesta variable serveix per fer les animacions
 var xocat = false;
 var checkpoint = 1;
 var current_checkpoint = 0;
-const checkpoint_dist = 200;
+const checkpoint_dist = 1000;
 
 /*helicopter position, speed & rope*/
 //                  left,top,width,height,vx,vy,ax,ay,name
@@ -95,24 +90,13 @@ bc6 = new edifici(1200, 400+Math.random()*100, 100, 400, -5, 0, 0, 0, "bloc6");
 var bloc = [bc1,bc2,bc3,bc4,bc5,bc6];
 
 /*flag*/
-flag = new flag(bc6.x, bc6.y-58, 33, 50, 0, 0, 0, 0, "flag");
+flag = new bandera(bc6.x, bc6.y-58, 33, 50, 0, 0, 0, 0, "flag");
 
 montse = new person(bc1.x+1.5*heli.width, bc1.y + 58, 10, 65, 0, 0, 0, 0, "human2", "cara_montse");
 human = new person(bc6.x, bc6.y - 58, 10, 65, 0, 0, 0, 0, "human1", "cara_huma");
 
 // checkpoint stored variables
-var sco_cp = sco;
-var rescats_cp = rescats;
-var bc1_cp = bc1;
-var bc2_cp = bc2;
-var bc3_cp = bc3;
-var bc4_cp = bc4;
-var bc5_cp = bc5;
-var bc6_cp = bc6;
-var flag_cp = flag;
-var human_cp = human;
-var heli_cp = heli;
-/*var sco_cp;
+var sco_cp;
 var rescats_cp;
 bc1_cp = new edifici();
 bc2_cp = new edifici();
@@ -120,9 +104,9 @@ bc3_cp = new edifici();
 bc4_cp = new edifici();
 bc5_cp = new edifici();
 bc6_cp = new edifici();
-flag_cp = new flag();
+flag_cp = new bandera();
 human_cp = new person();
-heli_cp = new helicop();*/
+heli_cp = new helicop();
 
 function restart() {
     if(xocat) {
@@ -130,15 +114,16 @@ function restart() {
         {
             sco = sco_cp;
             rescats = rescats_cp;
-            bc1 = bc1_cp;
-            bc2 = bc2_cp;
-            bc3 = bc3_cp;
-            bc4 = bc4_cp;
-            bc5 = bc5_cp;
-            bc6 = bc6_cp;
-            flag = flag_cp;
-            human = human_cp;
-            heli = heli_cp;
+            
+            bc1.naiveCopy(bc1_cp);
+            bc2.naiveCopy(bc2_cp);
+            bc3.naiveCopy(bc3_cp);
+            bc4.naiveCopy(bc4_cp);
+            bc5.naiveCopy(bc5_cp);
+            bc6.naiveCopy(bc6_cp);
+            flag.naiveCopy(flag_cp);
+            human.naiveCopy(human_cp);
+            heli.naiveCopy(heli_cp);
             heli.vx=0; heli.vy=0;
         }
         else //no checkpoint
@@ -190,17 +175,9 @@ function carrega() {
         bloc.forEach(element => element.createWindows());
         
         intro();
+        
 }
 
-
-
-function intro() {
-    document.getElementById("score").innerHTML="<p align='justify'><b>A long time in the future, in a faraway land.. an office worker is stuck in her office. She is just tired of working and just wants to get out" +
-            " and scream ALELUYA! with all her might. However, she is stuck in the office. But her employer came to the office by Copter today! So she decides to take the chance and sneak into her" +
-            " employer copter and take a ride around da city! Will you have what it takes to master the mystery of flight and take a fly around the sky-scrappers? Now is your chance!!!<b> <br> "+
-            "</p><center><button class='butt1' onclick='playsong();mou=true;requestAnimationFrame(move)'><h1><b style='color:red'>YES</b></h1></button>"+
-            "<button onclick='caratrista()' class='butt1' ><h1><b>NO<b></h1></button>  <button class='butt1'  style='color:green' onclick='showranking()'><h1><b>Show Ranking<b></h1></button></center>"; 
-}
 
 function move() {
 	//check hit:
@@ -225,23 +202,21 @@ function move() {
         //checkpoint
         if(checkxoc(heli,flag) && flag.isVisible())
         {
-            document.getElementById("helicop").style.backgroundColor = "blue";
-            // saving checkpoint state
-            current_checkpoint = checkpoint;
             flag.setColour("ForestGreen");
             
+            // saving checkpoint state
+            current_checkpoint = checkpoint;
             sco_cp = sco;
             rescats_cp = rescats;
-            bc1_cp = bc1;
-            bc2_cp = bc2;
-            bc3_cp = bc3;
-            bc4_cp = bc4;
-            bc5_cp = bc5;
-            bc6_cp = bc6;
-            flag_cp = flag;
-            human_cp = human;
-            heli_cp = heli;
-            
+            bc1_cp.naiveCopy(bc1);
+            bc2_cp.naiveCopy(bc2);
+            bc3_cp.naiveCopy(bc3);
+            bc4_cp.naiveCopy(bc4);
+            bc5_cp.naiveCopy(bc5);
+            bc6_cp.naiveCopy(bc6);
+            flag_cp.naiveCopy(flag);
+            human_cp.naiveCopy(human);
+            heli_cp.naiveCopy(heli);
         }
         //si no rescata a un clerck posa cara de sorpresa:
         if(human.x + human.width < heli.x) {
@@ -388,7 +363,8 @@ function playsong() {
    </div>
 </div>
 
-<div id="human2"><span class="peluca"></span><span class="leg1m"></span><span class="leg2m"></span><span class="armsm"></span><span class="bodym"></span><span class="headm"><span class="cara3" id="cara_montse">:|</span></span></div>
+<div id="areavital" ><div id="human2"><span class="peluca"></span><span class="leg1m"></span><span class="leg2m"></span><span class="armsm"></span><span class="bodym"></span><span class="headm"><span class="cara3" id="cara_montse">:|</span></span></div>
+</div>
 
 <div class="terra" id="bloc1"></div>
 <div class="terra" id="bloc2"></div>
@@ -404,7 +380,7 @@ function playsong() {
     <div class="cara2">o.O</div>
 </div>
 
-<div id="human1"><span class="leg1"></span><span class="leg2"></span><span class="arms"></span><span class="body"><span class="papada"></span><span class="panxa"></span></span><span class="head"><span class="cara3" id="cara_huma">:|</span></span></div>
+ <div id="human1"><span class="leg1"></span><span class="leg2"></span><span class="arms"></span><span class="body"><span class="papada"></span><span class="panxa"></span></span><span class="head"><span class="cara3" id="cara_huma">:|</span></span></div>
 
 
 <div id="flag"><span class="stick"><span class="banner" id="banner"></span></div>
@@ -443,11 +419,20 @@ function playsong() {
 
 <div id="gameover"> 
     <center>
-    <h2><b>GAME OVER</b></h2>
+    <h2><b>YOUR SWEET COPTER RIDE IS OVER :(</b></h2>
     </center>
 </div> 
 
-
+<div id="intro" >
+    <b><p id="introtext"  > 
+        </p></b>
+    <center id="introbuttons">
+        <button class='butt1' onclick='playsong();mou=true;requestAnimationFrame(move);document.getElementById("intro").innerHTML="";'><h1><b style='color:red'>YES</b></h1></button>
+         <button onclick='caratrista()' class='butt1' ><h1><b>NO<b></h1></button>  
+         <button class='butt1'  style='color:green' onclick='showranking()'><h1><b>Show Ranking<b></h1></button>
+                                           </center>
+    <button id="skipinbut" class='butt1' onclick='skipintrou()'><b>Skip intro</b></button>
+</div>
 <!-- galeria de songs a https://downloads.khinsider.com/game-soundtracks/album/fire-emblem-fates-->
 </body>
 </html>
