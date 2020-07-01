@@ -1,0 +1,41 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 30-jun-2020, 15:53:27
+    Author     : MiPc
+*/
+
+#intro {
+    position:absolute;
+    visibility:visible;
+}
+
+#introbuttons {
+    position:absolute;
+    top:140px;
+    visibility: hidden;
+    width:1000px;
+}
+
+#introtext {
+    position:absolute;
+    top:-30px;
+    width:800px;
+    color:brown;
+    font-size: 18px;
+    font-family: "Trebuchet MS";
+}
+#gameover{
+    position:absolute;
+    left:30%;
+    top:30%;
+    visibility:hidden;
+    color:DarkCyan;
+}
+#skipinbut {
+    position:absolute;
+    top:150px;
+}

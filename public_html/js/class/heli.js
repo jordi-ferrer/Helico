@@ -46,4 +46,9 @@ class helicop extends rectvol {
     setCaraEnemic(cara) {
         document.getElementById("cara2").innerHTML = cara;
     }
+    
+    naiveCopy(obj)
+    {
+        super.naiveCopy(obj);
+    }
 }

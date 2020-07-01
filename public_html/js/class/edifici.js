@@ -6,7 +6,7 @@
 
 
 class edifici extends rectvol {
-    constructor(left,top,width,height,vx,vy,ax,ay, name) {
+    constructor(left,top,width,height,vx,vy,ax,ay,name) {
         super(left,top,width,height,vx,vy,ax,ay, name);
     }
 
@@ -32,5 +32,10 @@ class edifici extends rectvol {
         var border = 3;
         
         randquadrats(id,colors,fileshor,filesver,height,width,border);
+    }
+    
+    naiveCopy(obj)
+    {
+        super.naiveCopy(obj);
     }
 }
