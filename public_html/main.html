@@ -38,7 +38,7 @@ html {
 }
 #controls{
     position:absolute;
-    visibility:hidden;
+    visibility:visible;
 }
 
 </style>
@@ -51,7 +51,7 @@ html {
 <script src="js/class/edifici.js"></script>
 <script src="js/class/heli.js"></script>
 <script src="js/class/corda.js"></script>
-<script src="js/class/flag.js"></script>
+<script src="js/class/bandera.js"></script>
 
 <script src="js/function/randbolet2.js"></script>
 <script src="js/function/underscore.js"></script>
@@ -63,6 +63,8 @@ html {
 
 <script>
 
+var mou = false;
+var sco = 0;
 var skipintro = false;
 var rescats = 0;
 var rescatat = false;
@@ -93,19 +95,41 @@ montse = new person(bc1.x+1.5*heli.width, bc1.y + 58, 50, 65, 0, 0, 0, 0, "human
 jefe = new person(bc1.x+1.5*heli.width, bc1.y + 58, 50, 65, 0, 0, 0, 0, "jefe", "cara_jefe");
 
 /*flag*/
-flag = new flag(bc6.x, bc6.y-58, 33, 50, 0, 0, 0, 0, "flag");
+flag = new bandera(bc6.x, bc6.y-58, 33, 50, 0, 0, 0, 0, "flag");
 
+montse = new person(bc1.x+1.5*heli.width, bc1.y + 58, 10, 65, 0, 0, 0, 0, "human2", "cara_montse");
+human = new person(bc6.x, bc6.y - 58, 10, 65, 0, 0, 0, 0, "human1", "cara_huma");
 
-human = new person(bc6.x, bc6.y - 58,10, 65, 0, 0, 0, 0, "human1", "cara_huma");
-
-var mou = false;
-var sco = 0;
+// checkpoint stored variables
+var sco_cp;
+var rescats_cp;
+bc1_cp = new edifici();
+bc2_cp = new edifici();
+bc3_cp = new edifici();
+bc4_cp = new edifici();
+bc5_cp = new edifici();
+bc6_cp = new edifici();
+flag_cp = new bandera();
+human_cp = new person();
+heli_cp = new helicop();
 
 function restart() {
     if(xocat) {
         if( current_checkpoint > 0) //checkpoint guardat
         {
-            sco = (current_checkpoint-1)*checkpoint_dist;//revisar
+            sco = sco_cp;
+            rescats = rescats_cp;
+            
+            bc1.naiveCopy(bc1_cp);
+            bc2.naiveCopy(bc2_cp);
+            bc3.naiveCopy(bc3_cp);
+            bc4.naiveCopy(bc4_cp);
+            bc5.naiveCopy(bc5_cp);
+            bc6.naiveCopy(bc6_cp);
+            flag.naiveCopy(flag_cp);
+            human.naiveCopy(human_cp);
+            heli.naiveCopy(heli_cp);
+            heli.vx=0; heli.vy=0;
         }
         else //no checkpoint
         {
@@ -120,9 +144,9 @@ function restart() {
             bc6.x=1200; bc6.y= 200+Math.random()*300;
             bloc.forEach(element => element.setColour("gray"));
 
+            //reinicialitzant les coordenadees i velocitat del jjjjjjoricopter
+            heli.x = 200; heli.y = bc1.y - heli.width; heli.vx=0; heli.vy=0;
         }
-        //reinicialitzant les coordenadees i velocitat del jjjjjjoricopter
-        heli.x = 200; heli.y=bc1.y - heli.width; heli.vx=0; heli.vy=0;
         corda.x = heli.x +23; corda.y = heli.y + 23;
         //inicilitzant enemic1
         enemic1.x = 1200; enemic1.y=Math.random()*400; enemic1.vx=-10; enemic1.vy=0;
@@ -156,6 +180,7 @@ function carrega() {
         bloc.forEach(element => element.createWindows());
         
         intro();
+        
 }
 
 
@@ -182,8 +207,21 @@ function move() {
         //checkpoint
         if(checkxoc(heli,flag) && flag.isVisible())
         {
-            current_checkpoint = checkpoint;
             flag.setColour("ForestGreen");
+            
+            // saving checkpoint state
+            current_checkpoint = checkpoint;
+            sco_cp = sco;
+            rescats_cp = rescats;
+            bc1_cp.naiveCopy(bc1);
+            bc2_cp.naiveCopy(bc2);
+            bc3_cp.naiveCopy(bc3);
+            bc4_cp.naiveCopy(bc4);
+            bc5_cp.naiveCopy(bc5);
+            bc6_cp.naiveCopy(bc6);
+            flag_cp.naiveCopy(flag);
+            human_cp.naiveCopy(human);
+            heli_cp.naiveCopy(heli);
         }
         //si no rescata a un clerck posa cara de sorpresa:
         if(human.x + human.width < heli.x) {

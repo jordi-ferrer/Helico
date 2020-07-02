@@ -5,7 +5,7 @@
  */
 
 
-class flag extends rectvol {
+class bandera extends rectvol {
     constructor(left,top,width,height,vx,vy,ax,ay, name) {
         super(left,top,width,height,vx,vy,ax,ay, name);
     }
@@ -20,5 +20,10 @@ class flag extends rectvol {
     
     setColour(colour) {
         document.getElementById("banner").style.backgroundColor = colour;
+    }
+    
+    naiveCopy(obj)
+    {
+        super.naiveCopy(obj);
     }
 }
