@@ -58,6 +58,7 @@ html {
 <script src="js/function/movement.js"></script>
 <script src="js/function/xocs.js"></script>
 <script src="js/function/introanimation.js"></script>
+<script src="js/function/songs.js"></script>
 
 
 <script>
@@ -89,6 +90,7 @@ var bloc = [bc1,bc2,bc3,bc4,bc5,bc6];
 
 
 montse = new person(bc1.x+1.5*heli.width, bc1.y + 58, 50, 65, 0, 0, 0, 0, "human2", "cara_montse");
+jefe = new person(bc1.x+1.5*heli.width, bc1.y + 58, 50, 65, 0, 0, 0, 0, "jefe", "cara_jefe");
 
 /*flag*/
 flag = new flag(bc6.x, bc6.y-58, 33, 50, 0, 0, 0, 0, "flag");
@@ -250,7 +252,7 @@ function draw() {
     heli.draw();
     enemic1.draw("rotateY(180deg)");//afegeixo una transformacio al elicopter enemic
     human.draw();
-    montse.draw("rotate(60deg)");
+    
     corda.draw();
     flag.draw();
     bloc.forEach(element => element.draw()); //wow què és això? de:Romà
@@ -270,25 +272,7 @@ function gameover() {
 function showranking() {
     window.location.href = "php/getusers.php";
 }
-function playsong() {
-    var rand = _.sample([1, 2, 3, 4, 5, 6]);
-    //canço de fons
-    var song = 'turkishmarch.mp3';
-    if(rand===2)  song='rainbowmeadows.mp3';
-    if(rand===3 ) song='Curious Dining.mp3';
-    if(rand===4 ) song='No Cure For....mp3';
-    if(rand===5 ) song='Flight of the Bumblebee.mp3';
-    if(rand===6 ) song='The-Entertainer.mp3';
-    
-    
-    song = "audio/"+song;
-    document.getElementById("aux3").innerHTML = rand + " " + song;
-    document.getElementById("aux3").visibility ="visible";
-    var cançofons = new Audio(song);
-    cançofons.loop = true;
-    cançofons.play();
-    
-}
+
 
 </script>
 <div class="solbunch">
@@ -330,6 +314,9 @@ function playsong() {
 </div>
 
 <div id="areavital" ><div id="human2"><span class="peluca"></span><span class="leg1m"></span><span class="leg2m"></span><span class="armsm"></span><span class="bodym"></span><span class="headm"><span class="cara3" id="cara_montse">:|</span></span></div>
+</div>
+
+<div id="areavital2" ><div id="jefe"><span class="peluca2"></span><span class="leg13"></span><span class="leg23"></span><span class="arms3"></span><span class="body3"><span class="papada2"></span><span class="panxa2"></span><span class="head3"><span class="cara4" id="cara_jefe">;}</span></span></div>
 </div>
 
 <div class="terra" id="bloc1"></div>

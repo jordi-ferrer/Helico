@@ -15,7 +15,7 @@ and open the template in the editor.
 
 #introbuttons {
     position:absolute;
-    top:140px;
+    top:175px;
     visibility: hidden;
     width:1000px;
 }
@@ -37,5 +37,6 @@ and open the template in the editor.
 }
 #skipinbut {
     position:absolute;
-    top:150px;
+    left:80px;
+    top:175px;
 }
