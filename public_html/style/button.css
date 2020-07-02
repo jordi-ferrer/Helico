@@ -12,12 +12,13 @@ button, .submitbut{
     background-color:CornflowerBlue;
     color:white;
     border-radius:10px;
+    font-family: "Comic Sans MS";
 }
 .submitbut {
     width:50%;
     height:20%;
     font-size:140%;
-    
+    font-family: "Comic Sans MS";
 }
 
 .submitbut, .butt1 {
