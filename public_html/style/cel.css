@@ -9,7 +9,7 @@ and open the template in the editor.
 */
 body{
     background-color:LightCyan;
-    animation-name: celcanvid;
+    animation-name: celcanvi;
     animation-duration: 600s;
     animation-iteration-count: infinite;
     animation-delay: 0s;
@@ -34,7 +34,7 @@ body{
     height: 80px;
     border-radius: 100%;
     background-color: yellow;
-    animation-name: solcanvi1d;
+    animation-name: solcanvi1;
     animation-duration: 600s;
     animation-iteration-count: infinite;
     animation-delay: 0s;
@@ -47,7 +47,7 @@ body{
     border-radius: 100%;
     background-color: white;
     opacity: 0.3;
-    animation-name: aurachanged;
+    animation-name: aurachange;
     animation-duration: 600s;
     animation-iteration-count: infinite;
     animation-delay: 0s;
@@ -62,7 +62,7 @@ body{
   border-radius: 100%;
   background-color: white;
   opacity: 0.3;
-  animation-name: aurachanged;
+  animation-name: aurachange;
   animation-duration: 600s;
   animation-iteration-count: infinite;
   animation-delay: 0s;
@@ -73,7 +73,7 @@ body{
    height:20%;
   position:absolute;
   border-radius: 100%;
-  animation-name: mousold;
+  animation-name: mousol;
   animation-duration: 600s;
   animation-iteration-count: infinite;
   animation-delay: 0s;
