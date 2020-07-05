@@ -24,8 +24,10 @@ class person extends rectvol {
     }
     
     setCara(cara)
-    {
-        document.getElementById(this._cara).innerHTML = cara;
+    {   
+        if( document.getElementById(this._cara).innerHTML !== cara) {
+            document.getElementById(this._cara).innerHTML = cara;
+        }
     }
     
     naiveCopy(obj)
