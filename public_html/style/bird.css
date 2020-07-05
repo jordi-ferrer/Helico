@@ -14,19 +14,21 @@ and open the template in the editor.
   height: 4px;
   border-radius: 90%;
   background-color: black;
-  animation-name: birdfly;
+  animation-name: birdflyd;
   animation-duration: 1s;
   animation-iteration-count: infinite;
   animation-delay: 0s;
   visibility:visible;
+  will-change: transform;
 }
 .flock{
     position:absolute;
-  animation-name: birdmove;
+  animation-name: birdmoved;
   animation-duration: 200s;
   animation-iteration-count: infinite;
   animation-delay: 0s;
   visibility:visible;
+  will-change: transform;
 }
 .wing {
     position:absolute;
@@ -34,18 +36,21 @@ and open the template in the editor.
   height: 3px;
   border-radius: 100%;
   background-color: black;
+  will-change: transform;
 }
 .wing1 {
-  animation-name: wing1;
+  animation-name: wing1d;
   animation-duration: 1s;
   animation-iteration-count: infinite;
   animation-delay: 0s;
+  will-change: transform;
 }
 .wing2 {
-  animation-name: wing2;
+  animation-name: wing2d;
   animation-duration: 1s;
   animation-iteration-count: infinite;
   animation-delay: 0s;
+  will-change: transform;
 }
 @keyframes birdmove {
    0%   {transform: translateX(1200px);visibility:visible }
@@ -58,12 +63,7 @@ and open the template in the editor.
   50%  {transform: translateY(-10px);}
   100%  {transform: translateY(10px);}
 }
-@keyframes wing {
-  0%   {top:100%; }
-  50%  {top:0%;}
-  100%  {top:100%}
 
-}
 @keyframes wing1 {
   0%   {transform: rotate(30deg); transform-origin: 100% 100%; }
   50%  {transform: rotate(-30deg); transform-origin: 100% 100%; }
@@ -74,5 +74,4 @@ and open the template in the editor.
   0%   {transform: rotate(-30deg); transform-origin: 0% 0%; }
   50%  {transform: rotate(30deg); transform-origin: 0% 0%; }
   100%  {transform: rotate(-30deg); transform-origin: 0% 0%; }
-
 }

@@ -172,7 +172,7 @@ function restart() {
 }
 
 function carrega() {
-
+        setwidths();
 	//document.getElementById("aux2").innerHTML="carregant...";
         draw();
 	//document.getElementById("aux2").innerHTML="hola2 " + corda.angle;
@@ -285,6 +285,17 @@ function move() {
 	
 	//repeat
 	request = requestAnimationFrame(move); 
+}
+
+
+function setwidths() {
+    heli.setwidths();
+    enemic1.setwidths();//afegeixo una transformacio al elicopter enemic
+    human.setwidths();
+    
+    corda.setwidths();
+    flag.setwidths();
+    bloc.forEach(element => element.setwidths());
 }
 
 function draw() {

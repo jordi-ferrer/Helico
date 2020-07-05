@@ -10,7 +10,9 @@
     height: 30px;
     border-color: blue;
     background: greenyellow;
+    will-change: transform;
 }
 .terra{
     background-color: gray;
+    will-change: transform;
 }

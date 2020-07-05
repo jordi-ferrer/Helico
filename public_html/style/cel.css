@@ -9,7 +9,7 @@ and open the template in the editor.
 */
 body{
     background-color:LightCyan;
-    animation-name: celcanvi;
+    animation-name: celcanvid;
     animation-duration: 600s;
     animation-iteration-count: infinite;
     animation-delay: 0s;
@@ -34,10 +34,11 @@ body{
     height: 80px;
     border-radius: 100%;
     background-color: yellow;
-    animation-name: solcanvi1;
+    animation-name: solcanvi1d;
     animation-duration: 600s;
     animation-iteration-count: infinite;
     animation-delay: 0s;
+    will-change: transform;
 }
 .aura1 {
     position:absolute;
@@ -46,10 +47,11 @@ body{
     border-radius: 100%;
     background-color: white;
     opacity: 0.3;
-    animation-name: aurachange;
+    animation-name: aurachanged;
     animation-duration: 600s;
     animation-iteration-count: infinite;
     animation-delay: 0s;
+    will-change: transform;
 } 
 .aura2 {
   position:absolute;
@@ -60,33 +62,38 @@ body{
   border-radius: 100%;
   background-color: white;
   opacity: 0.3;
-  animation-name: aurachange;
+  animation-name: aurachanged;
   animation-duration: 600s;
   animation-iteration-count: infinite;
   animation-delay: 0s;
+  will-change: transform;
 } 
 .solbunch {
+   width:20%;
+   height:20%;
   position:absolute;
-  animation-name: mousol;
+  border-radius: 100%;
+  animation-name: mousold;
   animation-duration: 600s;
   animation-iteration-count: infinite;
   animation-delay: 0s;
+  will-change: transform;
 }
 
 @keyframes mousol {
-   0%   {left:100%;background-color:#eafeff }
-   30%   {left:50%;background-color:#eafeff }
-  90%  {left:-15%;background-color:#f7d7ab  }
-  100%  {left:-20%;background-color:#eafeff  }
+   0%   {transform: translateX(500%) }
+   30%   {transform: translateX(250%) }
+  90%  {transform: translateX(-15%) }
+  100%  {transform: translateX(-20%) }
 }
 @keyframes celcanvi {
-   0%   {left:100%;background-color:LightCyan }
-   40%   {left:50%;background-color:LightCyan }
-   43%   {left:50%;background-color:#f3f7d1 }
-   54%   {left:50%;background-color:#f3f7d1 }
-   67%   {left:50%;background-color:#ffa28b }
-  96%  {left:-10%;background-color:#ffa28b  }
-  100%  {left:-20%;background-color:LightCyan  }
+   0%   {background-color:LightCyan }
+   40%   {background-color:LightCyan }
+   43%   {background-color:#f3f7d1 }
+   54%   {background-color:#f3f7d1 }
+   67%   {background-color:#ffa28b }
+  96%  {background-color:#ffa28b  }
+  100%  {background-color:LightCyan  }
 }
 @keyframes solcanvi1 {
   0%   {background-color:yellow }

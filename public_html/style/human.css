@@ -3,6 +3,7 @@
 
 #human1{
     position:absolute;
+    will-change: transform;
 }
 
 .leg1 {
@@ -154,6 +155,7 @@
     animation-iteration-count: 13;
     transform-origin:50% 50%;
      animation-delay: 10s;
+     will-change: transform;
   
 }
 
@@ -170,6 +172,7 @@
      animation-timing-function: linear;
      visibility: hidden;
      animation-delay: 10s;
+     will-change: transform;
 }
 
 
@@ -289,7 +292,7 @@
     animation-iteration-count: 16;
     transform-origin:50% 50%;
      animation-delay: 15s;
-  
+  will-change: transform;
 }
 
 #areavital2 {
@@ -305,6 +308,7 @@
      animation-timing-function: linear;
      visibility: hidden;
      animation-delay: 15s;
+     will-change: transform;
 }
 
 

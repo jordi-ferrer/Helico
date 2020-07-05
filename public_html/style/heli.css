@@ -7,6 +7,7 @@
   border-radius: 30px;
   background-color: DarkOliveGreen;
   color:white;
+  will-change: transform;
 }
 .cuah {   
   position:absolute;
