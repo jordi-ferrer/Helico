@@ -6,20 +6,25 @@
 
 
 class person extends rectvol {
-    constructor(left,top,width,height,vx,vy,ax,ay, name, cara) {
+    constructor(left,top,width,height,vx,vy,ax,ay, name, cara)
+    {
         super(left,top,width,height,vx,vy,ax,ay, name);
         this._cara = cara;
     }
     
-    draw(transf='') {
+    draw(transf='')
+    {
         super.draw(transf);
     }
     
-    move() {
-        //super.move();
+    move(edifici)
+    {
+        this.x = edifici.x;
+        this.y = edifici.y - 58;
     }
     
-    setCara(cara) {
+    setCara(cara)
+    {
         document.getElementById(this._cara).innerHTML = cara;
     }
     

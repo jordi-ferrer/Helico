@@ -22,7 +22,6 @@
 /* per fer animacions mirar-se be al funció requestAnimationFrame() en comptes
 d'usar setTimeout() */
 
-
 body{
     background-color:LightCyan;
     touch-action: manipulation;
@@ -72,7 +71,7 @@ let request; //aquesta variable serveix per fer les animacions
 var xocat = false;
 var checkpoint = 1;
 var current_checkpoint = 0;
-const checkpoint_dist = 1000;
+const checkpoint_dist = 300;
 
 /*helicopter position, speed & rope*/
 //                  left,top,width,height,vx,vy,ax,ay,name
@@ -112,6 +111,7 @@ bc6_cp = new edifici();
 flag_cp = new bandera();
 human_cp = new person();
 heli_cp = new helicop();
+enemic_cp = new helicop();
 
 function restart() {
     if(xocat) {
@@ -130,12 +130,13 @@ function restart() {
             human.naiveCopy(human_cp);
             heli.naiveCopy(heli_cp);
             heli.vx=0; heli.vy=0;
+            enemic1.naiveCopy(enemic_cp);
         }
         else //no checkpoint
         {
             sco=0;
             rescats=0;
-            flag.show();
+            //flag.show();
             //reinicialitzant les coordenades de l'helicopter i els blocs:
             bc1.x=200; bc1.y= 200+Math.random()*300;
             bc2.x=400; bc2.y= 200+Math.random()*300;
@@ -147,10 +148,11 @@ function restart() {
 
             //reinicialitzant les coordenadees i velocitat del jjjjjjoricopter
             heli.x = 200; heli.y = bc1.y - heli.width; heli.vx=0; heli.vy=0;
+            
+            //inicilitzant enemic1
+            enemic1.x = 1200; enemic1.y=Math.random()*400; enemic1.vx=-10; enemic1.vy=0;
         }
         corda.x = heli.x +23; corda.y = heli.y + 23;
-        //inicilitzant enemic1
-        enemic1.x = 1200; enemic1.y=Math.random()*400; enemic1.vx=-10; enemic1.vy=0;
 
         corda.angle = 0;
 	//mou=false;
@@ -172,7 +174,6 @@ function restart() {
 }
 
 function carrega() {
-
 	//document.getElementById("aux2").innerHTML="carregant...";
         draw();
 	//document.getElementById("aux2").innerHTML="hola2 " + corda.angle;
@@ -181,110 +182,123 @@ function carrega() {
         bloc.forEach(element => element.createWindows());
         
         intro();
-        
 }
 
 
 function move() {
-	//check hit:
-	if( checkxoc(heli,bc1) || checkxoc(heli,bc2) || checkxoc(heli,bc3) || checkxoc(heli,bc4) || checkxoc(heli,bc5) || checkxoc(heli,bc6) || 
-            checkxoc(heli,enemic1)  )  {
-            gameover();
-            return;
-	}
-        
-        //check resque:
-        if( !rescatat && ( checkxoc(heli,human)   ||  
-            xocrotatedrect( [corda.x - corda.height*Math.sin(Math.PI*corda.angle/180), corda.y+Math.cos(Math.PI*corda.angle/180)*corda.height],
-                            [corda.x,  corda.y],
-                            [corda.x - corda.height*Math.sin(Math.PI*corda.angle/180) + corda.width*Math.cos(Math.PI*corda.angle/180), corda.y+Math.cos(Math.PI*corda.angle/180)*corda.height + corda.width*Math.sin(Math.PI*corda.angle/180)],
-                            [corda.x + corda.width*Math.cos(Math.PI*corda.angle/180),  corda.y + corda.width*Math.sin(Math.PI*corda.angle/180)],
-                            human)
-            )) {
-            rescats += 1;
-            rescatat = true;
-            document.getElementById("human1").style.visibility = "hidden";
-        }
-        //checkpoint
-        if(checkxoc(heli,flag) && flag.isVisible())
-        {
-            flag.setColour("ForestGreen");
-            
-            // saving checkpoint state
-            current_checkpoint = checkpoint;
-            sco_cp = sco;
-            rescats_cp = rescats;
-            bc1_cp.naiveCopy(bc1);
-            bc2_cp.naiveCopy(bc2);
-            bc3_cp.naiveCopy(bc3);
-            bc4_cp.naiveCopy(bc4);
-            bc5_cp.naiveCopy(bc5);
-            bc6_cp.naiveCopy(bc6);
-            flag_cp.naiveCopy(flag);
-            human_cp.naiveCopy(human);
-            heli_cp.naiveCopy(heli);
-        }
-        //si no rescata a un clerck posa cara de sorpresa:
-        if(human.x + human.width < heli.x) {
-            human.setCara(":o");
-        } else {
-            human.setCara(":)");
-        }
-        
-	//move
-        if(mou) {
-            heli.move();
-            enemic1.move();
-            bloc.forEach(movebloc);
-            movehuman();
-            moveflag();
-            corda.move();
-	}
-        
-        if(sco > checkpoint*checkpoint_dist)
-        {
-            checkpoint++;
-            flag.show();
-        }
-        if(flag.x < 0)
-        {
-            flag.setColour("red");
-            flag.hide();
-        }
-	
-	/*draw helicop and bloc*/
-	draw();
-	
-	/*texts auxiliars*/
-	document.getElementById("aux2").innerHTML = "windown inner width: "+ window.innerWidth + " window.innerHeight: "+window.innerHeight ;
-	document.getElementById("aux1").innerHTML="heli vy:" +Math.round(heli.vy) + "<br> heli y:" + Math.round(heli.y) +
-                "<br> heli height: " +Math.round(heli.height) + "<br> heli x: " + heli.x +
-                "<br>bloc vx:" +Math.round(bc1.vx) + "<br>pos x bloc:" +Math.round(bc1.x) +
-                "<br> bloc vy: " +Math.round(bc1.vy) + "<br> bloc y: " + Math.round(bc1.y) + "<br> enemic1 y: " + Math.round(enemic1.y) +
-                "<br> enemic1 x: " + Math.round(enemic1.x) + "<br> request: " + request +
-                "<br> human x: " + human.x + "<br> human y: " + human.y + "<br> human heigth: " + human.height + "<br> human width " + human.width +
-                "<br> bloc 6 y " + bc6.y + "<br> corda*sin(ang corda):"+ Math.round(corda.height*Math.sin(Math.PI*corda.angle/180) ) + 
-                "<br> angle corda: " + corda.angle ;
-	document.getElementById("score").innerHTML = "<h3 style='color:white;text-shadow:1px 1px 4px blue;' ><b>Distance <b style='color:brown;'>"+Math.round(sco/10)/100 +" </b></b>km  - Clerks resqued </b><b style='color:brown'>"+rescats+"</b></h3>";
-	if(mou) sco +=1;
-	
-        if( (sco % 400) ===0) {enemic1.x=1200; enemic1.vx=-10; enemic1.y=Math.random()*bc1.y    ;}
-        
-	if(sco > 1000) {
-            bloc.forEach(element => element.setColour("DarkSlateBlue"));
-            if(sco > 2000) {
-                bloc.forEach(element => element.setColour("darkgreen"));
+    //check hit:
+    if( checkxoc(heli,bc1) || checkxoc(heli,bc2) || checkxoc(heli,bc3) || checkxoc(heli,bc4) || checkxoc(heli,bc5) || checkxoc(heli,bc6) || 
+        checkxoc(heli,enemic1) )  {
+        gameover();
+        return;
+    }
+
+    //check resque:
+    if( !rescatat && ( checkxoc(heli,human) ||
+        xocrotatedrect( [corda.x - corda.height*Math.sin(Math.PI*corda.angle/180), corda.y+Math.cos(Math.PI*corda.angle/180)*corda.height],
+                        [corda.x,  corda.y],
+                        [corda.x - corda.height*Math.sin(Math.PI*corda.angle/180) + corda.width*Math.cos(Math.PI*corda.angle/180), corda.y+Math.cos(Math.PI*corda.angle/180)*corda.height + corda.width*Math.sin(Math.PI*corda.angle/180)],
+                        [corda.x + corda.width*Math.cos(Math.PI*corda.angle/180),  corda.y + corda.width*Math.sin(Math.PI*corda.angle/180)],
+                        human)
+        )) {
+        rescats += 1;
+        rescatat = true;
+        document.getElementById("human1").style.visibility = "hidden";
+    }
+    //checkpoint
+    if(checkxoc(heli,flag) && flag.isVisible())
+    {
+        flag.setColour("ForestGreen");
+
+        // saving checkpoint state
+        current_checkpoint = checkpoint;
+        sco_cp = sco;
+        rescats_cp = rescats;
+        bc1_cp.naiveCopy(bc1);
+        bc2_cp.naiveCopy(bc2);
+        bc3_cp.naiveCopy(bc3);
+        bc4_cp.naiveCopy(bc4);
+        bc5_cp.naiveCopy(bc5);
+        bc6_cp.naiveCopy(bc6);
+        flag_cp.naiveCopy(flag);
+        human_cp.naiveCopy(human);
+        heli_cp.naiveCopy(heli);
+        enemic_cp.naiveCopy(enemic1);
+    }
+    //si no rescata a un clerck posa cara de sorpresa:
+    if(human.x + human.width < heli.x) {
+        human.setCara(":o");
+    } else {
+        human.setCara(":)");
+    }
+
+    //move
+    if(mou) {
+        heli.move();
+        enemic1.move();
+        bloc.forEach(movebloc);
+        human.move(bc6);
+        flag.move();
+        corda.move();
+    }
+
+    if(sco > checkpoint*checkpoint_dist)
+    {
+        checkpoint++;
+        var ind = 0;
+        var i;
+        for (i = 1; i < 6; i++) {
+            if(bloc[i].x > bloc[ind].x)
+            {
+                ind = i;
             }
-	}
-        
-        if(heli.y > enemic1.y) {
-            enemic1.vy = 3
-        } else {
-            enemic1.vy=-3
         }
-	
-	//repeat
-	request = requestAnimationFrame(move); 
+        flag.index = ind;
+        flag.show();
+    }
+    if(flag.x < 0)
+    {
+        flag.setColour("red");
+        flag.hide();
+    }
+
+    /*draw helicop and bloc*/
+    draw();
+
+    /*texts auxiliars*/
+    document.getElementById("aux2").innerHTML = "windown inner width: "+ window.innerWidth + " window.innerHeight: "+window.innerHeight ;
+    document.getElementById("aux1").innerHTML="heli vy:" +Math.round(heli.vy) + "<br> heli y:" + Math.round(heli.y) +
+            "<br> heli height: " +Math.round(heli.height) + "<br> heli x: " + heli.x +
+            "<br>bloc vx:" +Math.round(bc1.vx) + "<br>pos x bloc:" +Math.round(bc1.x) +
+            "<br> bloc vy: " +Math.round(bc1.vy) + "<br> bloc y: " + Math.round(bc1.y) + "<br> enemic1 y: " + Math.round(enemic1.y) +
+            "<br> enemic1 x: " + Math.round(enemic1.x) + "<br> request: " + request +
+            "<br> human x: " + human.x + "<br> human y: " + human.y + "<br> human heigth: " + human.height + "<br> human width " + human.width +
+            "<br> bloc 6 y " + bc6.y + "<br> corda*sin(ang corda):"+ Math.round(corda.height*Math.sin(Math.PI*corda.angle/180) ) + 
+            "<br> angle corda: " + corda.angle ;
+    document.getElementById("score").innerHTML = "<h3 style='color:white;text-shadow:1px 1px 4px blue;' ><b>Distance <b style='color:brown;'>"+Math.round(sco/10)/100 +" </b></b>km  - Clerks resqued </b><b style='color:brown'>"+rescats+"</b></h3>";
+    if(mou) sco +=1;
+
+    if( (sco % 400) === 0) {
+        enemic1.x = 1200;
+        enemic1.y = Math.random()*bc1.y;
+        enemic1.vx = -10;
+    }
+
+    if(sco > 1000) {
+        bloc.forEach(element => element.setColour("DarkSlateBlue"));
+        if(sco > 2000) {
+            bloc.forEach(element => element.setColour("darkgreen"));
+        }
+    }
+
+    if(heli.y > enemic1.y) {
+        enemic1.vy = 3
+    } else {
+        enemic1.vy=-3
+    }
+
+    //repeat
+    request = requestAnimationFrame(move); 
 }
 
 function draw() {
