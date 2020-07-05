@@ -1,5 +1,6 @@
 class rectvol extends rect {
-    constructor(left,top,width,height,vx,vy,ax,ay, name) {
+    constructor(left,top,width,height,vx,vy,ax,ay, name)
+    {
         super(left,top,width,height);
         this._vx = vx; //comm t'agrada canviar els .noms a les this variables! ;p
         this._vy = vy;
@@ -7,6 +8,7 @@ class rectvol extends rect {
         this._ay = ay;
         this._name = name;
     }
+    
     get vx() {
         return this._vx;
     }
@@ -19,9 +21,10 @@ class rectvol extends rect {
     get ay() {
         return this._ay;
     }
-    get name() {//no fiquem set (es fa al contructor i no es pot canviar després)
+    get name() {
         return this._name;
     }
+    
     set vx(ep) {
         this._vx = ep;
     }
@@ -38,11 +41,14 @@ class rectvol extends rect {
         this._name = ep;
     }
     
+
     setwidths() {
+
         document.getElementById(this._name).style.width = this.width + "px";
         document.getElementById(this._name).style.height = this.height + "px";
     }
     
+
     draw(transf='') {
         document.getElementById(this._name).style.transform = 'translateY('+this.y + 'px) translateX('+this.x + 'px) ' + transf;
     }
@@ -53,15 +59,18 @@ class rectvol extends rect {
         this.x = this.x + this.vx;
     }
     
-    hide() {
+    hide()
+    {
         document.getElementById(this._name).style.visibility = "hidden";
     }
     
-    show() {
+    show()
+    {
         document.getElementById(this._name).style.visibility = "visible";
     }
     
-    isVisible() {
+    isVisible()
+    {
         return document.getElementById(this._name).style.visibility == "visible";
     }
     

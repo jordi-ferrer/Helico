@@ -6,19 +6,37 @@
 
 
 class bandera extends rectvol {
-    constructor(left,top,width,height,vx,vy,ax,ay, name) {
+    constructor(left,top,width,height,vx,vy,ax,ay, name)
+    {
         super(left,top,width,height,vx,vy,ax,ay, name);
+        this._index = 0;
+    }
+    
+    get index()
+    {
+        return this._index;
+    }
+    
+    set index(i)
+    {
+        this._index = i;
+        this.x = bloc[i].x + bloc[i].width - this.width;
+        this.y = bloc[i].y - 58;
     }
 
-    draw(transf='') {
+    draw(transf='')
+    {
         super.draw(transf);
     }
     
-    move() {
-        //super.move();
+    move()
+    {
+        this.x = bloc[this._index].x + bloc[this._index].width - this.width;
+        this.y = bloc[this._index].y - 58;
     }
     
-    setColour(colour) {
+    setColour(colour)
+    {
         document.getElementById("banner").style.backgroundColor = colour;
     }
     
