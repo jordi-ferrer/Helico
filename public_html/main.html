@@ -276,6 +276,7 @@ function move() {
     draw();
 
     /*texts auxiliars*/
+    if(document.getElementById("controls").style.visible==="visible") {
     document.getElementById("aux2").innerHTML = "windown inner width: "+ window.innerWidth + " window.innerHeight: "+window.innerHeight ;
     document.getElementById("aux1").innerHTML="heli vy:" +Math.round(heli.vy) + "<br> heli y:" + Math.round(heli.y) +
             "<br> heli height: " +Math.round(heli.height) + "<br> heli x: " + heli.x +
@@ -284,7 +285,7 @@ function move() {
             "<br> enemic1 x: " + Math.round(enemic1.x) + "<br> request: " + request +
             "<br> human x: " + human.x + "<br> human y: " + human.y + "<br> human heigth: " + human.height + "<br> human width " + human.width +
             "<br> bloc 6 y " + bc6.y + "<br> corda*sin(ang corda):"+ Math.round(corda.height*Math.sin(Math.PI*corda.angle/180) ) + 
-            "<br> angle corda: " + corda.angle ;
+            "<br> angle corda: " + corda.angle ; }
     document.getElementById("score").innerHTML = "<h3 style='color:white;text-shadow:1px 1px 4px blue;' ><b>Distance <b style='color:brown;'>"+Math.round(sco/10)/100 +" </b></b>km  - Clerks resqued </b><b style='color:brown'>"+rescats+"</b></h3>";
     if(mou) sco +=1;
 
