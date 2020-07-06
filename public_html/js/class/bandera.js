@@ -43,5 +43,6 @@ class bandera extends rectvol {
     naiveCopy(obj)
     {
         super.naiveCopy(obj);
+        this._index = obj.index;
     }
 }
