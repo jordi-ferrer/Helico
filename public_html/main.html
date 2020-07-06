@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="style/flag.css">
 <link rel="stylesheet" href="style/controls.css">
 <link rel="stylesheet" href="style/forms.css">
+<link rel="stylesheet" href="style/chair.css">
 
 <style>
 
@@ -51,6 +52,7 @@ html {
 <script src="js/class/heli.js"></script>
 <script src="js/class/corda.js"></script>
 <script src="js/class/bandera.js"></script>
+<script src="js/class/chair.js"></script>
 
 <script src="js/function/randbolet2.js"></script>
 <script src="js/function/underscore.js"></script>
@@ -98,6 +100,7 @@ flag = new bandera(bc6.x, bc6.y-58, 33, 50, 0, 0, 0, 0, "flag");
 
 montse = new person(bc1.x+1.5*heli.width, bc1.y + 58, 10, 65, 0, 0, 0, 0, "human2", "cara_montse");
 human = new person(bc6.x, bc6.y - 58, 10, 65, 0, 0, 0, 0, "human1", "cara_huma");
+chair = new chair(bc3.x, bc3.y - 53, 25, 53,0, 0, 0, 0, "officechair");
 
 // checkpoint stored variables
 var sco_cp;
@@ -245,6 +248,8 @@ function move() {
         human.move(bc6);
         flag.move();
         corda.move();
+        
+        chair.move(bc3, chair.height);
     }
 
     if(sco > checkpoint*checkpoint_dist)
@@ -309,8 +314,10 @@ function move() {
 
 function setwidths() {
     heli.setwidths();
-    enemic1.setwidths();//afegeixo una transformacio al elicopter enemic
+    enemic1.setwidths();
     human.setwidths();
+    
+    chair.setwidths();
     
     corda.setwidths();
     flag.setwidths();
@@ -321,6 +328,8 @@ function draw() {
     heli.draw();
     enemic1.draw("rotateY(180deg)");//afegeixo una transformacio al elicopter enemic
     human.draw();
+    
+    chair.draw();
     
     corda.draw();
     flag.draw();
@@ -406,6 +415,9 @@ function showranking() {
 
 
 <div id="flag"><span class="stick"><span class="banner" id="banner"></span></div>
+
+<div id="officechair"></div>
+
 
 <div id="helicop" class="heli">
     <div class="helix1"></div>
