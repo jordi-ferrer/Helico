@@ -10,6 +10,7 @@ class bandera extends rectvol {
     {
         super(left,top,width,height,vx,vy,ax,ay, name);
         this._index = 0;
+        this._banner = 1;
     }
     
     get index()
@@ -35,9 +36,31 @@ class bandera extends rectvol {
         this.y = bloc[this._index].y - 58;
     }
     
-    setColour(colour)
+    hide()
     {
-        document.getElementById("banner").style.backgroundColor = colour;
+        super.hide();
+        document.getElementById("banner1").style.visibility = "hidden";
+        document.getElementById("banner2").style.visibility = "hidden";
+    }
+    
+    show()
+    {
+        super.show();
+        if(this._banner==1)
+        {
+            document.getElementById("banner1").style.visibility = "visible";
+            document.getElementById("banner2").style.visibility = "hidden";
+        }
+        else if(this._banner==2)
+        {
+            document.getElementById("banner1").style.visibility = "hidden";
+            document.getElementById("banner2").style.visibility = "visible";
+        }
+    }
+    
+    setBanner(num)
+    {
+        this._banner = num;
     }
     
     naiveCopy(obj)

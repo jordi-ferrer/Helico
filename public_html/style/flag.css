@@ -6,14 +6,24 @@
     position:absolute;
     height: 50px;
     width: 3px;
-    background-color: black;
+    background-color: chocolate;
     display: inline-block;
 }
-.banner {
+.banner1 {
     position:absolute;
     left: 3px;
     height: 20px;
     width: 30px;
     background-color: red;
-    display: inline-block;
+    visibility:hidden;
+}
+
+.banner2 {
+    position:absolute;
+    left: 3px;
+    height: 20px;
+    width: 30px;
+    background-image: url("../pictures/banner_bw.png");
+    background-size: 100% 100%;
+    visibility:hidden;
 }
