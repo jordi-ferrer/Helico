@@ -1,7 +1,7 @@
 class chair extends rectvol {
-    constructor(left,top,width,height,vx,vy,ax,ay, name)
+    constructor(left,top,width,height,vx,vy,ax,ay,ang, vang, aang, name)
     {
-        super(left,top,width,height,vx,vy,ax,ay, name);
+        super(left,top,width,height,vx,vy,ax,ay,ang, vang, aang, name);
     }
     
     draw(transf='')

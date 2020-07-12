@@ -6,9 +6,9 @@
 
 
 class person extends rectvol {
-    constructor(left,top,width,height,vx,vy,ax,ay, name, cara)
+    constructor(left,top,width,height,vx,vy,ax,ay,ang, vang, aang, name, cara)
     {
-        super(left,top,width,height,vx,vy,ax,ay, name);
+        super(left,top,width,height,vx,vy,ax,ay,ang, vang, aang, name);
         this._cara = cara;
     }
     
