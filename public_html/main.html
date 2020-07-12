@@ -159,7 +159,7 @@ function restart() {
         }
         corda.x = heli.x +23; corda.y = heli.y + 23;
 
-        corda.angle = 0;
+        corda.angle = 0;//modificar
 	//mou=false;
 	document.getElementById("gameover").style.visibility="hidden"; //amaga el botó restart
         
@@ -180,7 +180,6 @@ function restart() {
 
 function carrega() {
         setwidths();
-
 	//document.getElementById("aux2").innerHTML="carregant...";
         draw();
 	//document.getElementById("aux2").innerHTML="hola2 " + corda.angle;
@@ -201,16 +200,10 @@ function move() {
     }
 
     //check resque:
-    if( !rescatat && ( checkxoc(heli,human) ||
-        xocrotatedrect( [corda.x - corda.height*Math.sin(Math.PI*corda.angle/180), corda.y+Math.cos(Math.PI*corda.angle/180)*corda.height],
-                        [corda.x,  corda.y],
-                        [corda.x - corda.height*Math.sin(Math.PI*corda.angle/180) + corda.width*Math.cos(Math.PI*corda.angle/180), corda.y+Math.cos(Math.PI*corda.angle/180)*corda.height + corda.width*Math.sin(Math.PI*corda.angle/180)],
-                        [corda.x + corda.width*Math.cos(Math.PI*corda.angle/180),  corda.y + corda.width*Math.sin(Math.PI*corda.angle/180)],
-                        human)
-        )) {
+    if( !rescatat && ( checkxoc(heli,human) || xocrotatedrect(corda,human) )) {
         rescats += 1;
         rescatat = true;
-        document.getElementById("human1").style.visibility = "hidden";
+        human.hide();
     }
     //checkpoint
     if(checkxoc(heli,flag) && flag.isVisible())
@@ -428,7 +421,8 @@ function showranking() {
     <div class="cuah"></div>
     <div class="cara" id="cara">:D</div>   
 </div>
-<div id="corda"> </div>
+
+<div id="corda"><span class="segment1"><span class="segment2"><span class="segment3"></div>
 
 <div id="score"></div>
 

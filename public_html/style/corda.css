@@ -14,8 +14,29 @@ and open the template in the editor.
     left:0px;
     background-color: #c79645;
     border-radius: 30%;
-    transform: rotate(20deg);
     transform-origin: 0% 0%;
-    width:5px;
-    height:50px;
+}
+.segment1{
+    position:absolute;
+    background-color: red;
+    border-radius: 30%;
+    transform-origin: 0% 0%;
+    width:10px;
+    height:100px;
+}
+.segment2{
+    position:absolute;
+    background-color: blue;
+    border-radius: 30%;
+    transform-origin: 0% 0%;
+    width:10px;
+    height:100px;
+}
+.segment3{
+    position:absolute;
+    background-color: green;
+    border-radius: 30%;
+    transform-origin: 0% 0%;
+    width:10px;
+    height:100px;
 }
