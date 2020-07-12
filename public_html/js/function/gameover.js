@@ -12,31 +12,40 @@ function gameover() {
 }
 
 function explosiona() {
-    var ang1=0;
-    var ang2=0;
-    var ang3=-60;
     var anim2;
-    helix1.vx=5; helix1.vy=-8; helix1.ay=0.2;
-    it=200;
+    helix1.vx=5; helix1.vy=-4;  helix1.vang=4;
+    helix2.vx=-8; helix2.vy=-3;  helix2.vang=-5;
+    cuah.vx=-4; cuah.vy=-8;  cuah.vang=20;
+    heli.vx=-1; heli.vy=-1; heli.ay=0.2; 
+    cosheli.vx=-1; cosheli.vy=-3; cosheli.vang=-3; 
+    corda.vy=-5;
+    it=100;
     anim=requestAnimationFrame(peta);
     
     
     
     
    // peta("helix1", 0,0,0,200);
-    
-    document.getElementById(heli.name).style.backgroundColor="red";
-    document.getElementById("helix1").style.backgroundColor="red";
-    document.getElementById("helix2").style.backgroundColor="red";
-    document.getElementById("cuah").style.backgroundColor="red";
-    document.getElementById("cara").style.backgroundColor="red";
-    document.getElementById("gameover").style.visibility="visible";
+   
+    document.getElementById("gameover").style.visibility="visible"; 
     heli.setCara(":X");
 }
 
 function peta() {
     helix1.move();
+    helix2.move();
+    cuah.move();
+    heli.move();
+    cosheli.move();
+    corda.move();
+    
     helix1.draw();
+    helix2.draw();
+    cuah.draw();
+    heli.draw();
+    cosheli.draw();
+    corda.draw();
+    
     it -=1;
     if(it>0) anim = requestAnimationFrame(peta);
     }

@@ -101,6 +101,9 @@ class rectvol extends rect {
         this._vy = obj.vy;
         this._ax = obj.ax;
         this._ay = obj.ay;
+        this._ang = obj.ang;
+        this._vang = obj.vang;
+        this._aang = obj.aang;
         this._name = obj.name;
     }
 }

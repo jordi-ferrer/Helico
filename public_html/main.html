@@ -84,7 +84,15 @@ heli = new helicop(200, 300, 50, 25, 0, 0, 0, 0.2,0,0,0, "helicop");
 helix1 = new rectvol(0, 0, 80, 15, 0, 0, 0, 0, 0,0,0, "helix1");
 helix2 = new rectvol(0,0, 20, 20, 0, 0, 0, 0, 0,0,0, "helix2");
 cuah = new rectvol(-2, 0, 10, 25, 0, 0, 0, 0, -60,0,0, "cuah");
+cosheli = new rectvol(0, 0, 50, 25, 0, 0, 0, 0, 0,0,0, "cosheli");
 
+helix1_cp = new rectvol();  helix1_cp.naiveCopy(helix1);
+helix2_cp = new rectvol();  helix2_cp.naiveCopy(helix2);
+cuah_cp = new rectvol();    cuah_cp.naiveCopy(cuah);
+cosheli_cp = new rectvol(); cosheli_cp.naiveCopy(cosheli);
+
+orig_helix1 = 
+  
 corda = new rope(heli.x + heli.width/4,heli.y + heli.height - 8, 5, 100, 0,0, 0, 0,0,0,0, "corda");
 enemic1 = new helicop(1200, 200, 50, 25, -10, 0, 0, 0,0,0,0, "enemic1");
         
@@ -166,6 +174,10 @@ function restart() {
         }
         corda.x = heli.x +23; corda.y = heli.y + 23;
         
+        helix1.naiveCopy(helix1_cp);
+        helix2.naiveCopy(helix2_cp);
+        cuah.naiveCopy(cuah_cp);
+        cosheli.naiveCopy(cosheli_cp);
 
         corda.angle = 0;
 	//mou=false;
@@ -326,6 +338,7 @@ function setwidths() {
     helix1.setwidths();
     helix2.setwidths();
     cuah.setwidths();
+    cosheli.setwidths();
     
     enemic1.setwidths();
     human.setwidths();
@@ -338,10 +351,11 @@ function setwidths() {
 }
 
 function draw() {
-    heli.draw();
+    heli.draw();  
     helix1.draw();
     helix2.draw();
     cuah.draw();
+    cosheli.draw();
     
     enemic1.draw("rotateY(180deg)");//afegeixo una transformacio al elicopter enemic
     human.draw();
@@ -430,10 +444,13 @@ function showranking() {
 
 
 <div id="helicop" class="heli">
+    <div id="cosheli" class="cosheli">
+        <div class="cara" id="cara">:D</div>  
+    </div>
     <div id="helix1" class="helix1"></div>
     <div id="helix2" class="helix2"></div>
     <div id="cuah" class="cuah"></div>
-    <div class="cara" id="cara">:D</div>   
+     
 </div>
 <div id="corda"> </div>
 

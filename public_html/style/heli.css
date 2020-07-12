@@ -5,10 +5,18 @@
   width:50px;
   height: 25px;
   border-radius: 30px;
-  background-color: DarkOliveGreen;
   color:white;
   will-change: transform;
 }
+.cosheli {   
+  position: absolute;
+  width:50px;
+  height: 25px;
+  border-radius: 30px;
+  background-color: DarkOliveGreen;
+  will-change: transform;
+}
+
 .cuah {   
   position:absolute;
   top:-12px;
