@@ -75,7 +75,7 @@ let request; //aquesta variable serveix per fer les animacions
 var xocat = false;
 var checkpoint = 1;
 var current_checkpoint = 0;
-const checkpoint_dist = 300;
+const checkpoint_dist = 1000;
 
 /*helicopter position, speed & rope*/
 //                  left,top,width,height,vx,vy,ax,ay,name
@@ -86,6 +86,7 @@ helix2 = new rectvol(0,0, 20, 20, 0, 0, 0, 0, 0,0,0, "helix2");
 cuah = new rectvol(-2, 0, 10, 25, 0, 0, 0, 0, -60,0,0, "cuah");
 cosheli = new rectvol(0, 0, 50, 25, 0, 0, 0, 0, 0,0,0, "cosheli");
 
+
 helix1_cp = new rectvol();  helix1_cp.naiveCopy(helix1);
 helix2_cp = new rectvol();  helix2_cp.naiveCopy(helix2);
 cuah_cp = new rectvol();    cuah_cp.naiveCopy(cuah);
@@ -94,6 +95,7 @@ cosheli_cp = new rectvol(); cosheli_cp.naiveCopy(cosheli);
 orig_helix1 = 
   
 corda = new rope(heli.x + heli.width/4,heli.y + heli.height - 8, 5, 100, 0,0, 0, 0,0,0,0, "corda");
+
 enemic1 = new helicop(1200, 200, 50, 25, -10, 0, 0, 0,0,0,0, "enemic1");
         
 /*bloc position & speed*/
@@ -106,14 +108,13 @@ bc6 = new edifici(1200, 400+Math.random()*100, 100, 400, -5, 0, 0, 0,0,0,0, "blo
 
 var bloc = [bc1,bc2,bc3,bc4,bc5,bc6];
 
-
+human = new person(bc6.x, bc6.y - 58, 10, 65, 0, 0, 0, 0,0,0,0, "human1", "cara_huma");
 montse = new person(bc1.x+1.5*heli.width, bc1.y + 58, 50, 65, 0, 0, 0, 0,0,0,0, "human2", "cara_montse");
 jefe = new person(bc1.x+1.5*heli.width, bc1.y + 58, 50, 65, 0, 0, 0, 0,0,0,0, "jefe", "cara_jefe");
 
 /*flag*/
 flag = new bandera(bc6.x, bc6.y-58, 33, 50, 0, 0, 0, 0,0,0,0, "flag");
 
-human = new person(bc6.x, bc6.y - 58, 10, 65, 0, 0, 0, 0,0,0,0, "human1", "cara_huma");
 chair = new chair(bc3.x, bc3.y - 53, 25, 53,0, 0, 0, 0,0,0,0, "officechair");
 
 // checkpoint stored variables
@@ -179,7 +180,7 @@ function restart() {
         cuah.naiveCopy(cuah_cp);
         cosheli.naiveCopy(cosheli_cp);
 
-        corda.angle = 0;
+        corda.ang = 0;//modificar
 	//mou=false;
 	document.getElementById("gameover").style.visibility="hidden"; //amaga el botó restart
         
@@ -200,7 +201,6 @@ function restart() {
 
 function carrega() {
         setwidths();
-
 	//document.getElementById("aux2").innerHTML="carregant...";
         draw();
 	//document.getElementById("aux2").innerHTML="hola2 " + corda.angle;
@@ -221,16 +221,10 @@ function move() {
     }
 
     //check resque:
-    if( !rescatat && ( checkxoc(heli,human) ||
-        xocrotatedrect( [corda.x - corda.height*Math.sin(Math.PI*corda.angle/180), corda.y+Math.cos(Math.PI*corda.angle/180)*corda.height],
-                        [corda.x,  corda.y],
-                        [corda.x - corda.height*Math.sin(Math.PI*corda.angle/180) + corda.width*Math.cos(Math.PI*corda.angle/180), corda.y+Math.cos(Math.PI*corda.angle/180)*corda.height + corda.width*Math.sin(Math.PI*corda.angle/180)],
-                        [corda.x + corda.width*Math.cos(Math.PI*corda.angle/180),  corda.y + corda.width*Math.sin(Math.PI*corda.angle/180)],
-                        human)
-        )) {
+    if( !rescatat && ( checkxoc(heli,human) || xocrotatedrect(corda,human) )) {
         rescats += 1;
         rescatat = true;
-        document.getElementById("human1").style.visibility = "hidden";
+        human.hide();
     }
     //checkpoint
     if(checkxoc(heli,flag) && flag.isVisible())
@@ -296,16 +290,18 @@ function move() {
     draw();
 
     /*texts auxiliars*/
-    if(document.getElementById("controls").style.visible==="visible") {
-    document.getElementById("aux2").innerHTML = "windown inner width: "+ window.innerWidth + " window.innerHeight: "+window.innerHeight ;
-    document.getElementById("aux1").innerHTML="heli vy:" +Math.round(heli.vy) + "<br> heli y:" + Math.round(heli.y) +
-            "<br> heli height: " +Math.round(heli.height) + "<br> heli x: " + heli.x +
-            "<br>bloc vx:" +Math.round(bc1.vx) + "<br>pos x bloc:" +Math.round(bc1.x) +
-            "<br> bloc vy: " +Math.round(bc1.vy) + "<br> bloc y: " + Math.round(bc1.y) + "<br> enemic1 y: " + Math.round(enemic1.y) +
-            "<br> enemic1 x: " + Math.round(enemic1.x) + "<br> request: " + request +
-            "<br> human x: " + human.x + "<br> human y: " + human.y + "<br> human heigth: " + human.height + "<br> human width " + human.width +
-            "<br> bloc 6 y " + bc6.y + "<br> corda*sin(ang corda):"+ Math.round(corda.height*Math.sin(Math.PI*corda.angle/180) ) + 
-            "<br> angle corda: " + corda.angle ; }
+    if(document.getElementById("controls").style.visible==="visible")
+    {
+        document.getElementById("aux2").innerHTML = "windown inner width: " + window.innerWidth + " window.innerHeight: " + window.innerHeight ;
+        document.getElementById("aux1").innerHTML="heli vy:" + Math.round(heli.vy) + "<br> heli y:" + Math.round(heli.y) +
+        "<br> heli height: " + Math.round(heli.height) + "<br> heli x: " + heli.x +
+        "<br>bloc vx:" + Math.round(bc1.vx) + "<br>pos x bloc:" + Math.round(bc1.x) +
+        "<br> bloc vy: " + Math.round(bc1.vy) + "<br> bloc y: " + Math.round(bc1.y) + "<br> enemic1 y: " + Math.round(enemic1.y) +
+        "<br> enemic1 x: " + Math.round(enemic1.x) + "<br> request: " + request +
+        "<br> human x: " + human.x + "<br> human y: " + human.y + "<br> human heigth: " + human.height + "<br> human width " + human.width +
+        "<br> bloc 6 y " + bc6.y + "<br> corda*sin(ang corda):" + Math.round(corda.height*Math.sin(Math.PI*corda.ang/180) ) + 
+        "<br> angle corda: " + corda.ang ;
+    }
     document.getElementById("score").innerHTML = "<h3 style='color:white;text-shadow:1px 1px 4px blue;' ><b>Distance <b style='color:brown;'>"+Math.round(sco/10)/100 +" </b></b>km  - Clerks resqued </b><b style='color:brown'>"+rescats+"</b></h3>";
     if(mou) sco +=1;
 
@@ -438,7 +434,11 @@ function showranking() {
  <div id="human1"><span class="leg1"></span><span class="leg2"></span><span class="arms"></span><span class="body"><span class="papada"></span><span class="panxa"></span></span><span class="head"><span class="cara3" id="cara_huma">:|</span></span></div>
 
 
-<div id="flag"><span class="stick"><span class="banner1" id="banner1"><span class="banner2" id="banner2"></span></div>
+<div id="flag">
+    <span class="stick"></span>
+    <span class="banner1" id="banner1"></span>
+    <span class="banner2" id="banner2"></span>
+</div>
 
 <div id="officechair"></div>
 
@@ -452,7 +452,12 @@ function showranking() {
     <div id="cuah" class="cuah"></div>
      
 </div>
-<div id="corda"> </div>
+
+<div id="corda">
+    <span class="segment1" id="segment1"></span>
+    <span class="segment2" id="segment2"></span>
+    <span class="segment3" id="segment3"></span>
+</div>
 
 <div id="score"></div>
 

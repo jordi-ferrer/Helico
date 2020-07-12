@@ -28,8 +28,12 @@ function paboveline(p1,p2, p3, ab=true) { //point 3 above line formed by p1,p2.
     return (p3[1] <= m*p3[0] + n);
 }
 
-function xocrotatedrect(p1,p2,p3,p4, rect2) {
-    //p11, p22, p33, p44 are the four points forming the rotated rectangle, rect2 is NOT rotated
+function xocrotatedrect(rect1, rect2) {
+    var p1 = [rect1.x - rect1.height*Math.sin(Math.PI*rect1.ang/180), rect1.y+Math.cos(Math.PI*rect1.ang/180)*rect1.height];
+    var p2 = [rect1.x,  rect1.y];
+    var p3 = [rect1.x - rect1.height*Math.sin(Math.PI*rect1.ang/180) + rect1.width*Math.cos(Math.PI*rect1.ang/180), rect1.y + Math.cos(Math.PI*rect1.ang/180)*rect1.height + rect1.width*Math.sin(Math.PI*rect1.ang/180)];
+    var p4 = [rect1.x + rect1.width*Math.cos(Math.PI*rect1.ang/180),  rect1.y + rect1.width*Math.sin(Math.PI*rect1.ang/180)];
+        
     var pts = [p1, p2, p3, p4];
     pts.sort(sortfunction1);//sorts points from smallest to biggest x, and smallest to biggest y
     var pt24 = [pts[1],pts[2]];
