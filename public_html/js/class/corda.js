@@ -6,31 +6,21 @@
 
 
 class rope extends rectvol {
-    constructor(left,top,width,height,vx,vy,ax,ay, name) {
-        super(left,top,width,height,vx,vy,ax,ay, name);
-        this._angle = 0;
+    constructor(left,top,width,height,vx,vy,ax,ay,ang, vang, aang, name) {
+        super(left,top,width,height,vx,vy,ax,ay,ang, vang, aang, name);
     }
 
     draw(transf='') {
-        transf = "rotate(" + this._angle + "deg) " + transf;
         super.draw(transf);
     }
     
-    move() {
-        //super.move();        
-        this._angle += Math.random()*4 - 2;
-        if(this._angle < 0) this._angle = 0.01; 
-        if(this._angle > 45) this._angle = 45;
-        document.getElementById(this._name).style.transform = "rotate(" + this._angle + "deg)";
-        corda.y=heli.y + heli.height;
-        //super.move();
+    move() {    
+        this._ang += Math.random()*4 - 2;
+        if(this._ang < 0) this._ang = 0.01; 
+        if(this._ang > 45) this._ang = 45;
+        corda.y=heli.y + heli.height - 8;
+        corda.x = heli.x + heli.width/4;
+        super.move();
     }
-    
-    get angle() {
-        return this._angle;
-    }
-    
-    set angle(ep) {
-        this._angle = ep;
-    }
+
 }

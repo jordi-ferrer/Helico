@@ -37,6 +37,7 @@ and open the template in the editor.
   border-radius: 100%;
   background-color: black;
   will-change: transform;
+  
 }
 .wing1 {
   animation-name: wing1;

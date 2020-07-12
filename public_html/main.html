@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="style/controls.css">
 <link rel="stylesheet" href="style/forms.css">
 <link rel="stylesheet" href="style/chair.css">
+<link rel="stylesheet" href="style/intro_gameover.css">
 
 <style>
 
@@ -60,6 +61,7 @@ html {
 <script src="js/function/xocs.js"></script>
 <script src="js/function/introanimation.js"></script>
 <script src="js/function/songs.js"></script>
+<script src="js/function/gameover.js"></script>
 
 
 <script>
@@ -77,30 +79,34 @@ const checkpoint_dist = 300;
 
 /*helicopter position, speed & rope*/
 //                  left,top,width,height,vx,vy,ax,ay,name
-heli = new helicop(200, 300, 50, 25, 0, 0, 0, 0.2, "helicop");
-corda = new rope(heli.x + 23, heli.y + 23, 5, 100, heli.vx, heli.vy, 0, heli.ax, "corda");
-enemic1 = new helicop(1200, 200, 50, 25, -10, 0, 0, 0, "enemic1");
+heli = new helicop(200, 300, 50, 25, 0, 0, 0, 0.2,0,0,0, "helicop");
+//parts de l'helicopter
+helix1 = new rectvol(0, 0, 80, 15, 0, 0, 0, 0, 0,0,0, "helix1");
+helix2 = new rectvol(0,0, 20, 20, 0, 0, 0, 0, 0,0,0, "helix2");
+cuah = new rectvol(-2, 0, 10, 25, 0, 0, 0, 0, -60,0,0, "cuah");
+
+corda = new rope(heli.x + heli.width/4,heli.y + heli.height - 8, 5, 100, 0,0, 0, 0,0,0,0, "corda");
+enemic1 = new helicop(1200, 200, 50, 25, -10, 0, 0, 0,0,0,0, "enemic1");
         
 /*bloc position & speed*/
-bc1 = new edifici(200, heli.y+30, 100, 400, -5, 0, 0, 0, "bloc1");
-bc2 = new edifici(400, 400+Math.random()*100, 100, 400, -5, 0, 0, 0, "bloc2");
-bc3 = new edifici(600, 400+Math.random()*100, 100, 400, -5, 0, 0, 0, "bloc3");
-bc4 = new edifici(800, 400+Math.random()*100, 100, 400, -5, 0, 0, 0, "bloc4");
-bc5 = new edifici(1000, 400+Math.random()*100, 100, 400, -5, 0, 0, 0, "bloc5");
-bc6 = new edifici(1200, 400+Math.random()*100, 100, 400, -5, 0, 0, 0, "bloc6");
+bc1 = new edifici(200, heli.y+30, 100, 400, -5, 0, 0, 0,0,0,0, "bloc1");
+bc2 = new edifici(400, 400+Math.random()*100, 100, 400, -5, 0, 0, 0,0,0,0, "bloc2");
+bc3 = new edifici(600, 400+Math.random()*100, 100, 400, -5, 0, 0, 0,0,0,0, "bloc3");
+bc4 = new edifici(800, 400+Math.random()*100, 100, 400, -5, 0, 0, 0,0,0,0, "bloc4");
+bc5 = new edifici(1000, 400+Math.random()*100, 100, 400, -5, 0, 0, 0,0,0,0, "bloc5");
+bc6 = new edifici(1200, 400+Math.random()*100, 100, 400, -5, 0, 0, 0,0,0,0, "bloc6");
 
 var bloc = [bc1,bc2,bc3,bc4,bc5,bc6];
 
 
-montse = new person(bc1.x+1.5*heli.width, bc1.y + 58, 50, 65, 0, 0, 0, 0, "human2", "cara_montse");
-jefe = new person(bc1.x+1.5*heli.width, bc1.y + 58, 50, 65, 0, 0, 0, 0, "jefe", "cara_jefe");
+montse = new person(bc1.x+1.5*heli.width, bc1.y + 58, 50, 65, 0, 0, 0, 0,0,0,0, "human2", "cara_montse");
+jefe = new person(bc1.x+1.5*heli.width, bc1.y + 58, 50, 65, 0, 0, 0, 0,0,0,0, "jefe", "cara_jefe");
 
 /*flag*/
-flag = new bandera(bc6.x, bc6.y-58, 33, 50, 0, 0, 0, 0, "flag");
+flag = new bandera(bc6.x, bc6.y-58, 33, 50, 0, 0, 0, 0,0,0,0, "flag");
 
-montse = new person(bc1.x+1.5*heli.width, bc1.y + 58, 10, 65, 0, 0, 0, 0, "human2", "cara_montse");
-human = new person(bc6.x, bc6.y - 58, 10, 65, 0, 0, 0, 0, "human1", "cara_huma");
-chair = new chair(bc3.x, bc3.y - 53, 25, 53,0, 0, 0, 0, "officechair");
+human = new person(bc6.x, bc6.y - 58, 10, 65, 0, 0, 0, 0,0,0,0, "human1", "cara_huma");
+chair = new chair(bc3.x, bc3.y - 53, 25, 53,0, 0, 0, 0,0,0,0, "officechair");
 
 // checkpoint stored variables
 var sco_cp;
@@ -317,6 +323,10 @@ function move() {
 
 function setwidths() {
     heli.setwidths();
+    helix1.setwidths();
+    helix2.setwidths();
+    cuah.setwidths();
+    
     enemic1.setwidths();
     human.setwidths();
     
@@ -329,6 +339,10 @@ function setwidths() {
 
 function draw() {
     heli.draw();
+    helix1.draw();
+    helix2.draw();
+    cuah.draw();
+    
     enemic1.draw("rotateY(180deg)");//afegeixo una transformacio al elicopter enemic
     human.draw();
     
@@ -339,16 +353,9 @@ function draw() {
     bloc.forEach(element => element.draw()); //wow què és això? de:Romà
 }
 
-function gameover() {
-    xocat = true;
-    document.getElementById("formsendsc").style.visibility="visible";
-    document.getElementById("gameover").style.visibility="visible";
-    heli.setCara(":X");
-    document.getElementById("distance").value=Math.round(sco/10)/100;
-    document.getElementById("clerks").value=rescats;
-    
-    window.getSelection().removeAllRanges();
-}
+
+
+
 
 function showranking() {
     window.location.href = "php/getusers.php";
@@ -423,9 +430,9 @@ function showranking() {
 
 
 <div id="helicop" class="heli">
-    <div class="helix1"></div>
-    <div class="helix2"></div>
-    <div class="cuah"></div>
+    <div id="helix1" class="helix1"></div>
+    <div id="helix2" class="helix2"></div>
+    <div id="cuah" class="cuah"></div>
     <div class="cara" id="cara">:D</div>   
 </div>
 <div id="corda"> </div>
