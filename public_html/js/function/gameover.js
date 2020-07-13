@@ -6,26 +6,20 @@
 function gameover() {
     window.getSelection().removeAllRanges(); //this deselects the hidden button "restart"
     explosiona();
-    setTimeout(function(){ mostraformjoc(); }, 700); //wait 3 sec to show form
+    setTimeout(function(){ mostraformjoc(); }, 1000); //wait 3 sec to show form
     xocat = true;
  
 }
 
 function explosiona() {
     var anim2;
-    helix1.vx=3; helix1.vy=-4;  helix1.vang=6;
-    helix2.vx=-8; helix2.vy=-3;  helix2.vang=-5;
-    cuah.vx=-4; cuah.vy=-8;  cuah.vang=20;
+    helix1.vx=Math.random()*18-9; helix1.vy=Math.random()*18-9;  helix1.vang=Math.random()*20-10;
+    helix2.vx=Math.random()*18-9; helix2.vy=Math.random()*18-9;  helix2.vang=-Math.random()*20-10;
+    cuah.vx=Math.random()*20-10; cuah.vy=Math.random()*20-10;  cuah.vang=Math.random()*30-15;
     heli.vx=-bc1.vx/2; heli.vy+=-5; heli.ay=0.2; 
-    cosheli.vx=-1; cosheli.vy=-3; cosheli.vang=-3; 
-    corda.vy=-5; 
-    it=140;
-    anim=requestAnimationFrame(peta);
-    
-    
-    
-    
-   // peta("helix1", 0,0,0,200);
+    cosheli.vx=heli.vx; cosheli.vy=heli.vy; cosheli.vang=Math.random()*20-10; 
+    it=180;
+    anim=requestAnimationFrame(peta);    
    
     document.getElementById("gameover").style.visibility="visible"; 
     heli.setCara(":X");
@@ -53,7 +47,7 @@ function peta() {
         else document.getElementById(heli.name).style.visibility="hidden";
         }
     }
-d
+
 
 function mostraformjoc() {
     document.getElementById("formsendsc").style.visibility="visible";
