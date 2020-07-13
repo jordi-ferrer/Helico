@@ -6,20 +6,20 @@
 function gameover() {
     window.getSelection().removeAllRanges(); //this deselects the hidden button "restart"
     explosiona();
-    setTimeout(function(){ mostraformjoc(); }, 3000); //wait 3 sec to show form
+    setTimeout(function(){ mostraformjoc(); }, 700); //wait 3 sec to show form
     xocat = true;
  
 }
 
 function explosiona() {
     var anim2;
-    helix1.vx=5; helix1.vy=-4;  helix1.vang=4;
+    helix1.vx=3; helix1.vy=-4;  helix1.vang=6;
     helix2.vx=-8; helix2.vy=-3;  helix2.vang=-5;
     cuah.vx=-4; cuah.vy=-8;  cuah.vang=20;
-    heli.vx=-1; heli.vy=-1; heli.ay=0.2; 
+    heli.vx=-bc1.vx/2; heli.vy+=-5; heli.ay=0.2; 
     cosheli.vx=-1; cosheli.vy=-3; cosheli.vang=-3; 
-    corda.vy=-5;
-    it=100;
+    corda.vy=-5; 
+    it=140;
     anim=requestAnimationFrame(peta);
     
     
@@ -47,15 +47,13 @@ function peta() {
     corda.draw();
     
     it -=1;
-    if(it>0) anim = requestAnimationFrame(peta);
+    if(xocat) {//this if is to avoid executing exploding animation once game
+        //restarts!
+        if(it>0) anim = requestAnimationFrame(peta);
+        else document.getElementById(heli.name).style.visibility="hidden";
+        }
     }
-
-function moupart() {
-     document.getElementById(id1).style.transform = 'translateY('+y1 + 'px) translateX('+x1 + 'px) ' + 'rotate('+angi1+'deg)';
-     x1=x1+4;y1=y1+3; angi1=angi1+10;
-     it1=it1-1;
-     if(it1>0) anim1 = requestAnimationFrame(moupart); 
-}
+d
 
 function mostraformjoc() {
     document.getElementById("formsendsc").style.visibility="visible";

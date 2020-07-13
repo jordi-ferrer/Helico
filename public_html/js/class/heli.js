@@ -5,7 +5,7 @@
  */
 
 const vy_lim = 20;
-const height_lim = 1100;
+const height_lim = 31100;
 
 class helicop extends rectvol {
     constructor(left,top,width,height,vx,vy,ax,ay,ang, vang, aang, name) {

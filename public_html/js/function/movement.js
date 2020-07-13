@@ -23,7 +23,7 @@ function movebloc(rect, i){
 }
 
 function volare(id) {
-    if(mou) { 
+    if(mou && !xocat) { 
         heli.vy = heli.vy - 6;
         heli.y += heli.vy;
         corda.y = heli.y + heli.height;

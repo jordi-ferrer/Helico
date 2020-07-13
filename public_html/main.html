@@ -156,7 +156,8 @@ function restart() {
             flag.show();
         }
         else //no checkpoint
-        {
+        {   
+            xocat = false;
             sco=0;
             rescats=0;
             //flag.show();
@@ -181,6 +182,7 @@ function restart() {
         helix2.naiveCopy(helix2_cp);
         cuah.naiveCopy(cuah_cp);
         cosheli.naiveCopy(cosheli_cp);
+        document.getElementById(heli.name).style.visibility="visible";
 
         corda.ang = 0;//modificar
 	//mou=false;
@@ -194,7 +196,7 @@ function restart() {
         document.getElementById("distance").value=0;
         document.getElementById("clerks").value=0;
 
-        xocat = false;
+        
         heli.setCara(":O");
         //mou = true;
 	requestAnimationFrame(move);
