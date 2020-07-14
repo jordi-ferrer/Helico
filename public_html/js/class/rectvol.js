@@ -72,11 +72,11 @@ class rectvol extends rect {
     }
     
     move() {
-        this.vang = this.vang + this.aang;
-        this.ang = this.ang + this.vang;
-        this.vy = this.vy + this.ay;
-	this.y = this.y + this.vy;
-        this.x = this.x + this.vx;
+        this._vang = this._vang + this._aang;
+        this._ang = this._ang + this._vang;
+        this._vy = this._vy + this._ay;
+	this._y = this._y + this._vy;
+        this._x = this._x + this._vx;
     }
     
     hide()

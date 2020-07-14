@@ -10,6 +10,7 @@ and open the template in the editor.
 
 #corda{
     position:absolute;
+    transform-origin: 0% 0%;
 }
 .segment1{
     position:absolute;
