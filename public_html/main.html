@@ -55,6 +55,7 @@ html {
 <script src="js/class/corda.js"></script>
 <script src="js/class/bandera.js"></script>
 <script src="js/class/chair.js"></script>
+<script src="js/class/explosio.js"></script>
 
 <script src="js/function/randbolet2.js"></script>
 <script src="js/function/underscore.js"></script>
@@ -119,6 +120,9 @@ jefe = new person(bc1.x+1.5*heli.width, bc1.y + 58, 50, 65, 0, 0, 0, 0,0,0,0, "j
 flag = new bandera(bc6.x, bc6.y-58, 33, 50, 0, 0, 0, 0,0,0,0, "flag");
 
 chair = new chair(bc3.x, bc3.y - 53, 25, 53,0, 0, 0, 0,0,0,0, "officechair");
+explosio1 = new explosio(0,0, 200, 200,0, 0, 0, 0,0,0,0, "explosio1");
+explosio2 = new explosio(0,0, 100, 100,0, 0, 0, 0,0,0,0, "explosio2");
+explosio3 = new explosio(0,0, 10, 10,0, 0, 0, 0,0,0,0, "explosio3");
 
 // checkpoint stored variables
 var sco_cp;
@@ -177,6 +181,9 @@ function restart() {
             //inicilitzant enemic1
             enemic1.x = 1200; enemic1.y=Math.random()*400; enemic1.vx=-10; enemic1.vy=0;
         }
+        explosio1.hide();
+        explosio2.hide();
+        explosio3.hide();
         xocat = false;
         corda.x = heli.x +23; corda.y = heli.y + 23;
         
@@ -213,6 +220,9 @@ function carrega() {
         heli.setCara(":D");
         randbolet2(id="fons_de_pant",colors=["white","pink"],boles=80,spready=500,spreadx=1000,minballr=10,maxballr=100);
         bloc.forEach(element => element.createWindows());
+        explosio1.hide();
+        explosio2.hide();
+        explosio3.hide();
         
         intro();
 }
@@ -347,6 +357,7 @@ function setwidths() {
     
     chair.setwidths();
     
+    
     corda.setwidths();
     flag.setwidths();
     bloc.forEach(element => element.setwidths());
@@ -447,7 +458,9 @@ function showranking() {
 </div>
 
 <div id="officechair"></div>
-
+<div id="explosio1"></div>
+<div id="explosio2"></div>
+<div id="explosio3"></div>
 
 <div id="helicop" class="heli">
     <div id="cosheli" class="cosheli">
@@ -459,7 +472,7 @@ function showranking() {
     
      
 </div>
-<div id="explosio1"></div>
+
 
 <div id="corda">
     <span class="segment1" id="segment1"></span>

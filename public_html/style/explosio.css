@@ -1,0 +1,27 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 14-jul-2020, 12:41:31
+    Author     : MiPc
+*/
+
+#explosio1 {
+    position:absolute;
+    border-radius: 100%;
+    background-color: yellow;
+}
+
+#explosio2 {
+    position:absolute;
+    border-radius: 100%;
+    background-color: orange;
+}
+
+#explosio3 {
+    position:absolute;
+    border-radius: 100%;
+    background-color: white;
+}

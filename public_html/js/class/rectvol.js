@@ -36,6 +36,7 @@ class rectvol extends rect {
     get name() {
         return this._name;
     }
+   
     
     set vx(ep) {
         this._vx = ep;
@@ -61,6 +62,7 @@ class rectvol extends rect {
     set name(ep) {
         this._name = ep;
     }
+
     
     setwidths() {
         document.getElementById(this._name).style.width = this.width + "px";
@@ -78,6 +80,7 @@ class rectvol extends rect {
 	this.y = this.y + this.vy;
         this.x = this.x + this.vx;
     }
+    
     
     hide()
     {
