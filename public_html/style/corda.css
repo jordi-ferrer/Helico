@@ -10,13 +10,10 @@ and open the template in the editor.
 
 #corda{
     position:absolute;
-    background-color: #c79645;
-    border-radius: 30%;
-    transform-origin: 0% 0%;
 }
 .segment1{
     position:absolute;
-    background-color: red;
+    background-color: #c79645;
     border-radius: 30%;
     transform-origin: 0% 0%;
     width:10px;
@@ -24,17 +21,25 @@ and open the template in the editor.
 }
 .segment2{
     position:absolute;
-    background-color: blue;
+    background-color: #c79645;
     border-radius: 30%;
     transform-origin: 0% 0%;
-    width:10px;
-    height:100px;
 }
 .segment3{
     position:absolute;
-    background-color: green;
+    background-color: #c79645;
     border-radius: 30%;
     transform-origin: 0% 0%;
-    width:10px;
-    height:100px;
+}
+.segment4{
+    position:absolute;
+    background-color: #c79645;
+    border-radius: 30%;
+    transform-origin: 0% 0%;
+}
+.segment5{
+    position:absolute;
+    background-color: #c79645;
+    border-radius: 30%;
+    transform-origin: 0% 0%;
 }
