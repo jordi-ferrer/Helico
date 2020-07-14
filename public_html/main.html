@@ -95,7 +95,7 @@ cosheli_cp = new rectvol(); cosheli_cp.naiveCopy(cosheli);
 orig_helix1 = 
   
 
-corda = new rope(heli.x + heli.width/4,heli.y + heli.height - 8, 5, 100, 0,0, 0, 0,0,0,0, "corda","segment1","segment2","segment3");
+corda = new rope(heli.x + heli.width/4,heli.y + heli.height - 8, 5, 100, 0,0, 0, 0,0,0,0, "corda","segment1","segment2","segment3","segment4","segment5");
 
 
 enemic1 = new helicop(1200, 200, 50, 25, -10, 0, 0, 0,0,0,0, "enemic1");
@@ -135,7 +135,7 @@ enemic_cp = new helicop();
 
 function restart() {
     if(xocat) {
-        if( current_checkpoint > 0) //checkpoint guardat
+        if( current_checkpoint > 0 ) //checkpoint guardat
         {
             sco = sco_cp;
             rescats = rescats_cp;
@@ -459,8 +459,13 @@ function showranking() {
 
 <div id="corda">
     <span class="segment1" id="segment1"></span>
-    <span class="segment2" id="segment2"></span>
-    <span class="segment3" id="segment3"></span>
+    <span class="segment2" id="segment2">
+        <span class="segment3" id="segment3">
+            <span class="segment4" id="segment4">
+                <span class="segment5" id="segment5"></span>
+            </span>
+        </span>
+    </span>
 </div>
 
 <div id="score"></div>
