@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="style/forms.css">
 <link rel="stylesheet" href="style/chair.css">
 <link rel="stylesheet" href="style/intro_gameover.css">
+<link rel="stylesheet" href="style/explosio.css">
 
 <style>
 
@@ -157,7 +158,7 @@ function restart() {
         }
         else //no checkpoint
         {   
-            xocat = false;
+            
             sco=0;
             rescats=0;
             //flag.show();
@@ -176,6 +177,7 @@ function restart() {
             //inicilitzant enemic1
             enemic1.x = 1200; enemic1.y=Math.random()*400; enemic1.vx=-10; enemic1.vy=0;
         }
+        xocat = false;
         corda.x = heli.x +23; corda.y = heli.y + 23;
         
         helix1.naiveCopy(helix1_cp);
@@ -454,8 +456,10 @@ function showranking() {
     <div id="helix1" class="helix1"></div>
     <div id="helix2" class="helix2"></div>
     <div id="cuah" class="cuah"></div>
+    
      
 </div>
+<div id="explosio1"></div>
 
 <div id="corda">
     <span class="segment1" id="segment1"></span>
