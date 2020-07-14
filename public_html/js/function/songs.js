@@ -24,3 +24,13 @@ function playsong() {
     cançofons.play();
     
 }
+
+
+
+function soExplota() {
+    path = "audio/explosions/";
+    var so =  ["explosion_3.mp3", "explosion_9.mp3", "torpedo_explosion.mp3"];
+    var rand = _.sample([0, 1, 2]);
+    var soexplot = new Audio(path+so[rand]);
+    soexplot.play();
+}
