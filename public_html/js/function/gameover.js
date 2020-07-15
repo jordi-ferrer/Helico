@@ -4,10 +4,12 @@
 
 
 function gameover() {
+    xocat = true;
+    mou=false;
     window.getSelection().removeAllRanges(); //this deselects the hidden button "restart"
     explosiona();
     setTimeout(function(){ mostraformjoc(); }, 1000); //wait 3 sec to show form
-    xocat = true;
+    
  
 }
 

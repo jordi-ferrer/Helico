@@ -29,7 +29,7 @@ function explosiona() {
     
     //flying parts of the helicopter
     helix1.vx=Math.random()*18-9; helix1.vy=Math.random()*18-9;  helix1.vang=Math.random()*20-10;
-    helix2.vx=Math.random()*18-9; helix2.vy=Math.random()*18-9;  helix2.vang=-Math.random()*20-10;
+    helix2.vx=Math.random()*18-9; helix2.vy=Math.random()*18-9; 
     cuah.vx=Math.random()*20-10; cuah.vy=Math.random()*20-10;  cuah.vang=Math.random()*30;
     heli.vx=-bc1.vx/2; heli.vy+=-5; heli.ay=0.2; 
     cosheli.vx=heli.vx; cosheli.vy=heli.vy; cosheli.vang=Math.random()*20-10; 
@@ -71,7 +71,7 @@ function peta() {
     growStatic(explosio2,6,6);
     explosio2.setwidths();
     
-    growStatic(explosio2,3,1);
+    growStatic(explosio3,3,1);
     explosio3.setwidths();
     it +=1;
     if(xocat) {//this if is to avoid executing exploding animation once game
