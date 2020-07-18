@@ -68,7 +68,7 @@ html {
 
 
 <script>
-
+var music="on";
 var mou = false;
 var sco = 0;
 var skipintro = false;
@@ -525,6 +525,9 @@ function showranking() {
                                            </center>
     <button id="skipinbut" class='butt1' onclick='skipintrou()'><b>Skip intro</b></button>
 </div>
+
+<button id="mutemusic" class="butt1" onclick="switchmusic()">mute music</button>
+<button id="rndsong" class="butt1" onclick="playsong()">random song</button>
 <!-- galeria de songs a https://downloads.khinsider.com/game-soundtracks/album/fire-emblem-fates-->
 </body>
 </html>

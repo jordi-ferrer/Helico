@@ -34,3 +34,14 @@ button, .submitbut{
   background-color: lightblue; /* Green */
   color: black;
 }
+
+#mutemusic{
+    position:absolute;
+    left:5px;
+    top:5px;
+}
+#rndsong{
+    position:absolute;
+    left:100px;
+    top:5px;
+}
