@@ -43,6 +43,7 @@ function switchmusic() {
         music="off";
         cançofons.pause();
         document.getElementById("mutemusic").innerHTML ="play music";
+         typewriting.pause();
     } else {
         music="on";
         cançofons.play();
