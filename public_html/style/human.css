@@ -177,12 +177,12 @@
 
 
 @keyframes desplaça {
-   0%   {transform: translateX(250px) translateY(430px) rotate(60deg);visibility: visible; }
-      10%   {transform: translateX(280px) translateY(430px) rotate(70deg);visibility: visible; }
-  50%  {transform: translateX(280px) translateY(280px) rotate(60deg) }
-  60%  {transform: translateX(280px) translateY(280px) rotate(0deg)}
-  90%  {transform: translateX(200px) translateY(280px) rotate(0deg);visibility: hidden; }
-  100%  {transform: translateX(175px) translateY(280px) rotate(0deg);visibility: hidden; }
+   0%   {transform: translateX(90px) translateY(430px) rotate(60deg);visibility: visible; }
+      10%   {transform: translateX(120px) translateY(430px) rotate(70deg);visibility: visible; }
+  50%  {transform: translateX(120px) translateY(280px) rotate(60deg) }
+  60%  {transform: translateX(120px) translateY(280px) rotate(0deg)}
+  90%  {transform: translateX(40px) translateY(280px) rotate(0deg);visibility: hidden; }
+  100%  {transform: translateX(15px) translateY(280px) rotate(0deg);visibility: hidden; }
 }
 
 @keyframes camina {
@@ -313,14 +313,14 @@
 
 
 @keyframes desplaça2 {
-   0%   {transform: translateX(250px) translateY(430px) rotate(70deg);visibility: visible; }
-   10%   {transform: translateX(280px) translateY(430px) rotate(70deg);visibility: visible; }
-  40%  {transform: translateX(280px) translateY(280px) rotate(70deg) }
-  50%  {transform: translateX(280px) translateY(280px) rotate(0deg)}
-  75%  {transform: translateX(250px) translateY(280px) rotate(0deg); }
-  77%  {transform: translateX(250px) translateY(250px) rotate(0deg); }
-   82%  {transform: translateX(250px) translateY(280px) rotate(0deg); }
-   84%  {transform: translateX(250px) translateY(280px) rotate(0deg); }
-  100%  {transform: translateX(250px) translateY(330px) rotate(0deg); }
+   0%   {transform: translateX(90px) translateY(430px) rotate(70deg);visibility: visible; }
+   10%   {transform: translateX(120px) translateY(430px) rotate(70deg);visibility: visible; }
+  40%  {transform: translateX(120px) translateY(280px) rotate(70deg) }
+  50%  {transform: translateX(120px) translateY(280px) rotate(0deg)}
+  75%  {transform: translateX(90px) translateY(280px) rotate(0deg); }
+  77%  {transform: translateX(90px) translateY(250px) rotate(0deg); }
+   82%  {transform: translateX(90px) translateY(280px) rotate(0deg); }
+   84%  {transform: translateX(90px) translateY(280px) rotate(0deg); }
+  100%  {transform: translateX(90px) translateY(330px) rotate(0deg); }
 }
 

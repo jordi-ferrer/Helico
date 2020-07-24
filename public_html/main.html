@@ -82,7 +82,7 @@ const checkpoint_dist = 1000;
 
 /*helicopter position, speed & rope*/
 //                  left,top,width,height,vx,vy,ax,ay,name
-heli = new helicop(200, 300, 50, 25, 0, 0, 0, 0.2,0,0,0, "helicop");
+heli = new helicop(40, 300, 50, 25, 0, 0, 0, 0.2,0,0,0, "helicop");
 //parts de l'helicopter
 helix1 = new rectvol(0, 0, 80, 15, 0, 0, 0, 0, 0,0,0, "helix1");
 helix2 = new rectvol(0,0, 20, 20, 0, 0, 0, 0, 0,0,0, "helix2");
@@ -104,12 +104,12 @@ corda = new rope(heli.x + heli.width/4,heli.y + heli.height - 8, 5, 100, 0,0, 0,
 enemic1 = new helicop(1200, 200, 50, 25, -10, 0, 0, 0,0,0,0, "enemic1");
         
 /*bloc position & speed*/
-bc1 = new edifici(200, heli.y+30, 100, 400, -5, 0, 0, 0,0,0,0, "bloc1");
-bc2 = new edifici(400, 400+Math.random()*100, 100, 400, -5, 0, 0, 0,0,0,0, "bloc2");
-bc3 = new edifici(600, 400+Math.random()*100, 100, 400, -5, 0, 0, 0,0,0,0, "bloc3");
-bc4 = new edifici(800, 400+Math.random()*100, 100, 400, -5, 0, 0, 0,0,0,0, "bloc4");
-bc5 = new edifici(1000, 400+Math.random()*100, 100, 400, -5, 0, 0, 0,0,0,0, "bloc5");
-bc6 = new edifici(1200, 400+Math.random()*100, 100, 400, -5, 0, 0, 0,0,0,0, "bloc6");
+bc1 = new edifici(40, heli.y+30, 100, 400, -5, 0, 0, 0,0,0,0, "bloc1");
+bc2 = new edifici(240, 400+Math.random()*100, 100, 400, -5, 0, 0, 0,0,0,0, "bloc2");
+bc3 = new edifici(440, 400+Math.random()*100, 100, 400, -5, 0, 0, 0,0,0,0, "bloc3");
+bc4 = new edifici(640, 400+Math.random()*100, 100, 400, -5, 0, 0, 0,0,0,0, "bloc4");
+bc5 = new edifici(840, 400+Math.random()*100, 100, 400, -5, 0, 0, 0,0,0,0, "bloc5");
+bc6 = new edifici(1040, 400+Math.random()*100, 100, 400, -5, 0, 0, 0,0,0,0, "bloc6");
 
 var bloc = [bc1,bc2,bc3,bc4,bc5,bc6];
 
@@ -167,16 +167,16 @@ function restart() {
             rescats=0;
             //flag.show();
             //reinicialitzant les coordenades de l'helicopter i els blocs:
-            bc1.x=200; bc1.y= 200+Math.random()*300;
-            bc2.x=400; bc2.y= 200+Math.random()*300;
-            bc3.x=600; bc3.y= 200+Math.random()*300;
-            bc4.x=800; bc4.y= 200+Math.random()*300;
-            bc5.x=1000; bc5.y= 200+Math.random()*300;
-            bc6.x=1200; bc6.y= 200+Math.random()*300;
+            bc1.x=40; bc1.y= 200+Math.random()*300;
+            bc2.x=240; bc2.y= 200+Math.random()*300;
+            bc3.x=440; bc3.y= 200+Math.random()*300;
+            bc4.x=640; bc4.y= 200+Math.random()*300;
+            bc5.x=840; bc5.y= 200+Math.random()*300;
+            bc6.x=1040; bc6.y= 200+Math.random()*300;
             bloc.forEach(element => element.setColour("gray"));
 
             //reinicialitzant les coordenadees i velocitat del jjjjjjoricopter
-            heli.x = 200; heli.y = bc1.y - heli.width; heli.vx=0; heli.vy=0;
+            heli.x = 40; heli.y = bc1.y - heli.width; heli.vx=0; heli.vy=0;
             
             //inicilitzant enemic1
             enemic1.x = 1200; enemic1.y=Math.random()*400; enemic1.vx=-10; enemic1.vy=0;
@@ -518,12 +518,13 @@ function showranking() {
 <div id="intro" >
     <b><p id="introtext"  > 
         </p></b>
-    <center id="introbuttons">
+    <center><button id="skipinbut" class='butt1' onclick='skipintrou()'><b>Skip intro</b></button>
+    <span id="introbuttons">
         <button class='butt1' onclick='playsong();mou=true;requestAnimationFrame(move);document.getElementById("intro").innerHTML="";'><h1><b style='color:red'>YES</b></h1></button>
          <button onclick='caratrista()' class='butt1' ><h1><b>NO<b></h1></button>  
          <button class='butt1'  style='color:green' onclick='showranking()'><h1><b>Show Ranking<b></h1></button>
-                                           </center>
-    <button id="skipinbut" class='butt1' onclick='skipintrou()'><b>Skip intro</b></button>
+                         </span></center>
+    
 </div>
 
 <button id="mutemusic" class="butt1" onclick="switchmusic()">mute music</button>
