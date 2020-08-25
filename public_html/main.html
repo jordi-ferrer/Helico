@@ -211,18 +211,18 @@ function restart() {
 }
 
 function carrega() {
-        setwidths();
-	//document.getElementById("aux2").innerHTML="carregant...";
-        draw();
-	//document.getElementById("aux2").innerHTML="hola2 " + corda.angle;
-        heli.setCara(":D");
-        randbolet2(id="fons_de_pant",colors=["white","pink"],boles=80,spready=500,spreadx=1000,minballr=10,maxballr=100);
-        //bloc.forEach(element => element.createWindows());  //ho traiem, aviam si no va a cops duna p*** vegada
-        explosio1.hide();
-        explosio2.hide();
-        explosio3.hide();
-        
-        intro();
+    setwidths();
+    //document.getElementById("aux2").innerHTML="carregant...";
+    draw();
+    //document.getElementById("aux2").innerHTML="hola2 " + corda.angle;
+    heli.setCara(":D");
+    randbolet2(id="fons_de_pant",colors=["white","pink"],boles=80,spready=500,spreadx=1000,minballr=10,maxballr=100);
+    //bloc.forEach(element => element.createWindows());  //ho traiem, aviam si no va a cops duna p*** vegada
+    explosio1.hide();
+    explosio2.hide();
+    explosio3.hide();
+
+    intro();
 }
 
 
@@ -308,13 +308,14 @@ function move() {
         enemic1.y = Math.random()*bc1.y;
         enemic1.vx = -10;
     }
-
-    if(sco > 1000) {
-        bloc.forEach(element => element.setColour("DarkSlateBlue"));
-        if(sco > 2000) {
-            bloc.forEach(element => element.setColour("darkgreen"));
-        }
-    }
+    
+    // canvi de color dels edificis, ara ja no fa res
+    //if(sco > 1000) {
+    //    bloc.forEach(element => element.setColour("DarkSlateBlue"));
+    //    if(sco > 2000) {
+    //        bloc.forEach(element => element.setColour("darkgreen"));
+    //    }
+    //}
 
     if(heli.y > enemic1.y) {
         enemic1.vy = 3;
@@ -370,8 +371,8 @@ function showranking() {
     window.location.href = "php/getusers.php";
 }
 
-
 </script>
+
 <div class="solbunch">
 <div class="aura1"></div>
 <div class="aura2"></div>
@@ -460,7 +461,6 @@ function showranking() {
     
      
 </div>
-
 
 <div id="corda">
     <span class="segment1" id="segment1">
