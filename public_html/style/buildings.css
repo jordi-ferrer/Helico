@@ -1,8 +1,51 @@
-#bloc1,#bloc2,#bloc3,#bloc4,#bloc5,#bloc6{
+#bloc1{
     position: absolute;
     top:0px;
     left:0px;
+    background-image: url("../pictures/bloc_rand_1.png");
+    background-size: 100% 100%;
 }
+
+#bloc2{
+    position: absolute;
+    top:0px;
+    left:0px;
+    background-image: url("../pictures/bloc_rand_2.png");
+    background-size: 100% 100%;
+}
+
+#bloc3{
+    position: absolute;
+    top:0px;
+    left:0px;
+    background-image: url("../pictures/bloc_rand_3.png");
+    background-size: 100% 100%;
+}
+
+#bloc4{
+    position: absolute;
+    top:0px;
+    left:0px;
+    background-image: url("../pictures/bloc_rand_4.png");
+    background-size: 100% 100%;
+}
+
+#bloc5{
+    position: absolute;
+    top:0px;
+    left:0px;
+    background-image: url("../pictures/bloc_rand_5.png");
+    background-size: 100% 100%;
+}
+
+#bloc6{
+    position: absolute;
+    top:0px;
+    left:0px;
+    background-image: url("../pictures/bloc_rand_6.png");
+    background-size: 100% 100%;
+}
+
 .finestra {
     position:absolute;
     width: 30px;
