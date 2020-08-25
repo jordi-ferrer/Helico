@@ -32,6 +32,7 @@ function explosiona() {
     helix2.vx=Math.random()*18-9; helix2.vy=Math.random()*18-9; 
     cuah.vx=Math.random()*20-10; cuah.vy=Math.random()*20-10;  cuah.vang=Math.random()*30;
     heli.vx=-bc1.vx/2; heli.vy+=-5; heli.ay=0.2; 
+    corda.vang = Math.random()*10;
     cosheli.vx=heli.vx; cosheli.vy=heli.vy; cosheli.vang=Math.random()*20-10; 
     totit=240;
     it=0;
