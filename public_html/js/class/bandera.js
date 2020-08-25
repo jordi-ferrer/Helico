@@ -81,13 +81,13 @@ class bandera extends rectvol {
                     ind = i;
                 }
             }
-            flag.index = ind;
-            flag.show();
+            this._index = ind;
+            this.show();
         }
-        if(flag.x < -30) //we hide flag if it goes at an x less than -30
+        if(this.x < -30) //we hide flag if it goes at an x less than -30
         {
-            flag.setBanner(1);
-            flag.hide();
+            this.setBanner(1);
+            this.hide();
         }
     }
 }
