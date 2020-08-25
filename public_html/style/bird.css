@@ -10,14 +10,19 @@ and open the template in the editor.
 
 .bird {
   position:absolute;
-  width: 10px;
-  height: 4px;
-  border-radius: 90%;
-  background-color: black;
   animation-name: birdfly;
   animation-duration: 1s;
   animation-iteration-count: infinite;
   animation-delay: 0s;
+  visibility:visible;
+  will-change: transform;
+}
+.birdbody {
+  position:absolute;
+  width: 10px;
+  height: 4px;
+  border-radius: 90%;
+  background-color: black;
   visibility:visible;
   will-change: transform;
 }
