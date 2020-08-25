@@ -280,25 +280,7 @@ function move() {
         chair.move(bc3, chair.height);
     }
 
-    if(sco > checkpoint*checkpoint_dist)
-    {
-        checkpoint++;
-        var ind = 0;
-        var i;
-        for (i = 1; i < 6; i++) {
-            if(bloc[i].x > bloc[ind].x)
-            {
-                ind = i;
-            }
-        }
-        flag.index = ind;
-        flag.show();
-    }
-    if(flag.x < -30)
-    {
-        flag.setBanner(1);
-        flag.hide();
-    }
+    flag.update();
 
     /*draw helicop and bloc*/
     draw();

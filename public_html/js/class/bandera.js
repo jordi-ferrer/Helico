@@ -68,4 +68,26 @@ class bandera extends rectvol {
         super.naiveCopy(obj);
         this._index = obj.index;
     }
+    
+    update() {
+        if(sco > checkpoint*checkpoint_dist) //we show flag every 1000 points.
+        {
+            checkpoint++;
+            var ind = 0;
+            var i;
+            for (i = 1; i < 6; i++) {
+                if(bloc[i].x > bloc[ind].x)
+                {
+                    ind = i;
+                }
+            }
+            flag.index = ind;
+            flag.show();
+        }
+        if(flag.x < -30) //we hide flag if it goes at an x less than -30
+        {
+            flag.setBanner(1);
+            flag.hide();
+        }
+    }
 }
