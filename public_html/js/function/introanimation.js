@@ -32,6 +32,7 @@ function skipintrou() {
     document.getElementById("jefe").style.visibility="hidden";
     document.getElementById("skipinbut").style.visibility="hidden";
     document.getElementById("introtext").style.visibility="hidden";
+    document.getElementById("score").style.visibility="visible";
     typewriting.pause();
 }
 
@@ -41,7 +42,7 @@ function intro() {
     montse.draw("rotate(60deg)");
     jefe.draw();
     typeWriter();
-    if(!skipintro) setTimeout(function(){ document.getElementById("introbuttons").style.visibility = "visible";document.getElementById("skipinbut").style.visibility="hidden"; }, 32000);
+    if(!skipintro) setTimeout(function(){ skipintrou(); }, 32000);
     
     song = "audio/typewriter-1.mp3";
     typewriting = new Audio(song);
