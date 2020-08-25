@@ -298,7 +298,9 @@ function move() {
         "<br> bloc 6 y " + bc6.y + "<br> corda*sin(ang corda):" + Math.round(corda.height*Math.sin(Math.PI*corda.ang/180) ) + 
         "<br> angle corda: " + corda.ang ;
     }
-    document.getElementById("score").innerHTML = "<h3 style='color:white;text-shadow:1px 1px 4px blue;' ><b>Distance <b style='color:brown;'>"+Math.round(sco/10)/100 +" </b></b>km  - Clerks resqued </b><b style='color:brown'>"+rescats+"</b></h3>";
+    document.getElementById("dispdistance").innerHTML = Math.round(sco/10)/100 + " ";
+    document.getElementById("dispclerks").innerHTML = rescats + " ";
+
     if(mou) sco +=1;
 
     if( (sco % 400) === 0) {
@@ -472,7 +474,13 @@ function showranking() {
     </span>
 </div>
 
-<div id="score"></div>
+<div id="score" style="visibility:hidden;"> 
+    <h3 style='color:white;text-shadow:1px 1px 4px blue;' >
+        <b>Distance <b style='color:brown;' id="dispdistance"></b></b>
+        km  - Clerks resqued </b><b style='color:brown' id="dispclerks"></b>
+    </h3> 
+
+</div>
 
 <div id="controls">
     <p id="aux1"></p>
