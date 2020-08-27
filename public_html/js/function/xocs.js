@@ -28,6 +28,14 @@ function paboveline(p1,p2, p3, ab=true) { //point 3 above line formed by p1,p2.
     return (p3[1] <= m*p3[0] + n);
 }
 
+function xocarray(array, rect1) {
+    xoc = false;
+    for(let i = 0; i < array.length; i++){ 
+        if(xocrotatedrect(array[i], rect1)) xoc = true;
+    }
+    return xoc;
+}
+
 function xocrotatedrect(rect1, rect2) {
     var p1 = [rect1.x - rect1.height*Math.sin(Math.PI*rect1.ang/180), rect1.y+Math.cos(Math.PI*rect1.ang/180)*rect1.height];
     var p2 = [rect1.x,  rect1.y];

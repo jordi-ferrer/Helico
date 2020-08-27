@@ -12,33 +12,7 @@ and open the template in the editor.
     position:absolute;
     transform-origin: 0% 0%;
 }
-.segment1{
-    position:absolute;
-    background-color: #c79645;
-    border-radius: 30%;
-    transform-origin: 0% 0%;
-    width:10px;
-    height:100px;
-}
-.segment2{
-    position:absolute;
-    background-color: #c79645;
-    border-radius: 30%;
-    transform-origin: 0% 0%;
-}
-.segment3{
-    position:absolute;
-    background-color: #c79645;
-    border-radius: 30%;
-    transform-origin: 0% 0%;
-}
-.segment4{
-    position:absolute;
-    background-color: #c79645;
-    border-radius: 30%;
-    transform-origin: 0% 0%;
-}
-.segment5{
+.segment{
     position:absolute;
     background-color: #c79645;
     border-radius: 30%;

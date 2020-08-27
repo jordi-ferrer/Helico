@@ -40,7 +40,7 @@ html {
 }
 #controls{
     position:absolute;
-    visibility:hidden;
+    visibility:visible;
 }
 
 </style>
@@ -56,6 +56,7 @@ html {
 <script src="js/class/bandera.js"></script>
 <script src="js/class/chair.js"></script>
 <script src="js/class/explosio.js"></script>
+<script src="js/class/ropelink.js"></script>
 
 <script src="js/function/randbolet2.js"></script>
 <script src="js/function/underscore.js"></script>
@@ -81,7 +82,7 @@ var current_checkpoint = 0;
 const checkpoint_dist = 1000;
 
 /*helicopter position, speed & rope*/
-//                  left,top,width,height,vx,vy,ax,ay,name
+//                  left,top,width,height,vx,vy,ax,ay, ang, vang, aang, name
 heli = new helicop(40, 300, 50, 25, 0, 0, 0, 0.2,0,0,0, "helicop");
 //parts de l'helicopter
 helix1 = new rectvol(0, 0, 80, 15, 0, 0, 0, 0, 0,0,0, "helix1");
@@ -97,8 +98,14 @@ cosheli_cp = new rectvol(); cosheli_cp.naiveCopy(cosheli);
 
   
 
-corda = new rope(heli.x + heli.width/4,heli.y + heli.height - 8, 5, 100, 0,0, 0, 0,0,0,0, "corda","segment1","segment2","segment3","segment4","segment5");
+corda = new rope(heli.x + heli.width/4,heli.y + heli.height - 8, 5, 100, 0,0, 0, 0,0,0,0, "corda");
+segment1 = new ropelink(0,0,corda.width, corda.height/5, 0, 0,0,0,0,0,0,"segment1", "heli");
+segment2 = new ropelink(0,corda.height/5,corda.width, corda.height/5, 0, 0,0,0,0,0,0,"segment2",segment1);
+segment3 = new ropelink(0,2*corda.height/5,corda.width, corda.height/5, 0, 0,0,0,0,0,0,"segment3", segment2);
+segment4 = new ropelink(0,3*corda.height/5,corda.width, corda.height/5, 0, 0,0,0,0,0,0,"segment4", segment3);
+segment5 = new ropelink(0,4*corda.height/5,corda.width, corda.height/5, 0, 0,0,0,0,0,0,"segment5", segment4);
 
+var cadena = [segment1, segment2, segment3, segment4, segment5];
 
 enemic1 = new helicop(1200, 200, 50, 25, -10, 0, 0, 0,0,0,0, "enemic1");
         
@@ -184,7 +191,10 @@ function restart() {
         explosio2.hide();
         explosio3.hide();
         xocat = false;
-        corda.x = heli.x +23; corda.y = heli.y + 23; corda.ang=0; corda.vang=0;
+        segment1.vang = 0;
+        cadena.forEach(element => element.ang = 0);
+        cadena.forEach(element => {element.ang_min = -9; element.ang_max=30});
+
         
         helix1.naiveCopy(helix1_cp);
         helix2.naiveCopy(helix2_cp);
@@ -235,7 +245,7 @@ function move() {
     }
 
     //check resque:
-    if( !rescatat && ( checkxoc(heli,human) || xocrotatedrect(corda,human) )) {
+    if( !rescatat && ( checkxoc(heli,human) || xocarray(cadena,human) )) {
         rescats += 1;
         rescatat = true;
         human.hide();
@@ -275,7 +285,7 @@ function move() {
         bloc.forEach(movebloc);
         human.move(bc6);
         flag.move();
-        corda.move();
+        cadena.forEach(element => element.move());
         
         chair.move(bc3, chair.height);
     }
@@ -341,7 +351,8 @@ function setwidths() {
     chair.setwidths();
     
     
-    corda.setwidths();
+    cadena.forEach(element => element.setwidths());
+    
     flag.setwidths();
     bloc.forEach(element => element.setwidths());
 }
@@ -358,7 +369,8 @@ function draw() {
     
     chair.draw();
     
-    corda.draw();
+    cadena.forEach(element => element.draw());
+    
     flag.draw();
     bloc.forEach(element => element.draw()); //wow què és això? de:Romà
 }
@@ -462,17 +474,14 @@ function showranking() {
      
 </div>
 
-<div id="corda">
-    <span class="segment1" id="segment1">
-        <span class="segment2" id="segment2">
-            <span class="segment3" id="segment3">
-                <span class="segment4" id="segment4">
-                    <span class="segment5" id="segment5"></span>
-                </span>
-            </span>
-        </span>
-    </span>
-</div>
+<div id="corda"></div>
+<span class="segment" id="segment1"></span>
+<span class="segment" id="segment2"></span>
+<span class="segment" id="segment3"></span>
+<span class="segment" id="segment4"></span>
+<span class="segment" id="segment5"></span>
+            
+
 
 <div id="score" style="visibility:hidden;"> 
     <h3 style='color:white;text-shadow:1px 1px 4px blue;' >
