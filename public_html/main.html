@@ -221,6 +221,9 @@ function carrega() {
     explosio1.hide();
     explosio2.hide();
     explosio3.hide();
+    
+    document.getElementById("dispdistance").innerHTML = Math.round(sco/10)/100 + " ";
+    document.getElementById("dispclerks").innerHTML = rescats + " ";
 
     intro();
 }
@@ -374,9 +377,9 @@ function showranking() {
 </script>
 
 <div class="solbunch">
-<div class="aura1"></div>
-<div class="aura2"></div>
-<div class="sol"> </div>
+    <div class="aura1"></div>
+    <div class="aura2"></div>
+    <div class="sol"> </div>
 </div>
     
 <div id="fons_de_pant"></div>
@@ -389,7 +392,7 @@ function showranking() {
     </div>
     <div class="bird" id="bird2" style="top:220px;left:20px;">
        <div class="wing wing1"  style="background-color:CadetBlue;left:-5px;"></div>
-       <div class="birdbody"  style="background-color:navyBlue;"></div>
+       <div class="birdbody"  style="background-color:black;"></div>
        <div class="wing wing2"  style="background-color:CadetBlue;left:5px;"></div>
     </div>
     <div class="bird"  style="top:230px;">
@@ -417,10 +420,33 @@ function showranking() {
    </div>
 </div>
 
-<div id="areavital" ><div id="human2"><span class="peluca"></span><span class="leg1m"></span><span class="leg2m"></span><span class="armsm"></span><span class="bodym"></span><span class="headm"><span class="cara3" id="cara_montse">:|</span></span></div>
+<div id="areavital" >
+    <div id="human2">
+        <span class="peluca"></span>
+        <span class="leg1m"></span>
+        <span class="leg2m"></span>
+        <span class="armsm"></span>
+        <span class="bodym"></span>
+        <span class="headm">
+            <span class="cara3" id="cara_montse">:|</span>
+        </span>
+    </div>
 </div>
 
-<div id="areavital2" ><div id="jefe"><span class="peluca2"></span><span class="leg13"></span><span class="leg23"></span><span class="arms3"></span><span class="body3"><span class="papada2"></span><span class="panxa2"></span><span class="head3"><span class="cara4" id="cara_jefe">;}</span></span></div>
+<div id="areavital2" >
+    <div id="jefe">
+        <span class="peluca2"></span>
+        <span class="leg13"></span>
+        <span class="leg23"></span>
+        <span class="arms3"></span>
+        <span class="body3">
+            <span class="papada2"></span>
+            <span class="panxa2"></span>
+            <span class="head3">
+                <span class="cara4" id="cara_jefe">;}</span>
+            </span>
+        </span>
+    </div>
 </div>
 
 <div class="terra" id="bloc1"></div>
@@ -430,15 +456,25 @@ function showranking() {
 <div class="terra" id="bloc5"></div>
 <div class="terra" id="bloc6"></div>
 
-<div id="enemic1" class="heli" style="background-color:red;" >
+<div id="enemic1" class="heli" style="background-color:red;">
     <div class="helix1"></div>
     <div class="helix2"></div>
     <div class="cuah" style="background-color:red;"></div>
     <div class="cara2">o.O</div>
 </div>
 
- <div id="human1"><span class="leg1"></span><span class="leg2"></span><span class="arms"></span><span class="body"><span class="papada"></span><span class="panxa"></span></span><span class="head"><span class="cara3" id="cara_huma">:|</span></span></div>
-
+<div id="human1">
+    <span class="leg1"></span>
+    <span class="leg2"></span>
+    <span class="arms"></span>
+    <span class="body">
+        <span class="papada"></span>
+        <span class="panxa"></span>
+    </span>
+    <span class="head">
+        <span class="cara3" id="cara_huma">:|</span>
+    </span>
+</div>
 
 <div id="flag">
     <span class="stick"></span>
@@ -458,8 +494,6 @@ function showranking() {
     <div id="helix1" class="helix1"></div>
     <div id="helix2" class="helix2"></div>
     <div id="cuah" class="cuah"></div>
-    
-     
 </div>
 
 <div id="corda">
@@ -475,11 +509,11 @@ function showranking() {
 </div>
 
 <div id="score" style="visibility:hidden;"> 
-    <h3 style='color:white;text-shadow:1px 1px 4px blue;' >
-        <b>Distance <b style='color:brown;' id="dispdistance"></b></b>
-        km  - Clerks resqued </b><b style='color:brown' id="dispclerks"></b>
-    </h3> 
-
+    <h3 style='color:white;text-shadow:1px 1px 4px blue;'>
+        <b>Distance</b> <b style='color:brown;' id="dispdistance"></b>
+        <b>km  - Clerks resqued</b>
+        <b style='color:brown' id="dispclerks"></b>
+    </h3>
 </div>
 
 <div id="controls">
@@ -487,39 +521,66 @@ function showranking() {
     <p id="aux2"></p>
     <p id="aux3"></p>
 </div>
+
 <br>
 <br>
 <br>
-<div id="formsendsc"> <h2><i>Send score to da server, sist! </i></h2>
-    <form action="php/sendscore.php" >
+<br>
+<div id="formsendsc">
+    <h2>
+        <i>Send score to da server, sist!</i>
+    </h2>
+    <form action="php/sendscore.php">
         <input placeholder="your name" name="user" id="user"> 
         <input placeholder="email" name="email" id="email">
         <p>Comments for the creators Jordi and Romà:</p>
         <textarea id="comment" placeholder="Your comments on the game" name="comentaris" rows="8" cols="40"></textarea>
         <br>
         <input class ="submitbut" type="submit" value="Send score! :D :D Yay!"> 
-        <input placeholder="distance" name="distance" id="distance" style="visibility:hidden" > 
+        <input placeholder="distance" name="distance" id="distance" style="visibility:hidden"> 
         <input placeholder="clerks" name="clerks" id="clerks" style="visibility:hidden">
     </form>
-    <button id="botogameov"  class="butt1"  onclick="restart()"><h2><b>Skip and restart</b></h2></button>
+    <button id="botogameov"  class="butt1"  onclick="restart()">
+        <h2>
+            <b>Skip and restart</b>
+        </h2>
+    </button>
 </div>
 
 <div id="gameover"> 
     <center>
-    <h2><b>BOOOM!!! YOUR SWEET COPTER RIDE IS OVER.. :(</b></h2>
+        <h2>
+            <b>BOOOM!!! YOUR SWEET COPTER RIDE IS OVER.. :(</b>
+        </h2>
     </center>
-</div> 
+</div>
 
 <div id="intro" >
-    <b><p id="introtext"  > 
-        </p></b>
-    <center><button id="skipinbut" class='butt1' onclick='skipintrou()'><b>Skip intro</b></button>
-    <span id="introbuttons">
-        <button class='butt1' onclick='playsong();mou=true;requestAnimationFrame(move);document.getElementById("intro").innerHTML="";'><h1><b style='color:red'>YES</b></h1></button>
-         <button onclick='caratrista()' class='butt1' ><h1><b>NO<b></h1></button>  
-         <button class='butt1'  style='color:green' onclick='showranking()'><h1><b>Show Ranking<b></h1></button>
-                         </span></center>
-    
+    <p>
+        <b id="introtext"></b>
+    </p>
+    <center>
+        <button id="skipinbut" class='butt1' onclick='skipintrou()'>
+            <b>Skip intro</b>
+        </button>
+        <span id="introbuttons">
+            <button class='butt1' onclick='playsong();mou=true;requestAnimationFrame(move);document.getElementById("intro").innerHTML="";'>
+                <h1>
+                    <b style='color:red' >YES</b>
+                </h1>
+            </button>
+            <button onclick='caratrista()' class='butt1' >
+                <h1>
+                    NO
+                </h1>
+            </button>  
+            <button class='butt1'  style='color:green' onclick='showranking()'>
+                <h1>
+                    <b>Show Ranking</b>
+                </h1>
+            </button>
+        </span>
+    </center>
 </div>
 
 <button id="mutemusic" class="butt1" onclick="switchmusic()">mute music</button>
