@@ -31,7 +31,7 @@ class ropelink extends rectvol
         } else {
             this._ang_min =  this._prev_seg._ang - 5;
             this._ang_max = this._prev_seg._ang +15;
-            this.x = this._prev_seg.x - this._prev_seg.height*Math.sin(this._prev_seg.ang/180*Math.PI) ;
+            this.x = -this._width/2 + this._prev_seg.x + this._prev_seg.width/2 - this._prev_seg.height*Math.sin(this._prev_seg.ang/180*Math.PI) ;
             this.y = this._prev_seg.y + this._prev_seg.height*Math.cos(this._prev_seg.ang/180*Math.PI);
             this._ang += this._prev_seg.ang*0.1;
         }
