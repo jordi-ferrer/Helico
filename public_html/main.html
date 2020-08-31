@@ -99,10 +99,10 @@ cosheli_cp = new rectvol(); cosheli_cp.naiveCopy(cosheli);
   
 
 corda = new rope(heli.x + heli.width/4,heli.y + heli.height - 8, 5, 100, 0,0, 0, 0,0,0,0, "corda");
-segment1 = new ropelink(0,0,corda.width, corda.height/5, 0, 0,0,0,0,0,0,"segment1", "heli");
-segment2 = new ropelink(0,corda.height/5,corda.width, corda.height/5, 0, 0,0,0,0,0,0,"segment2",segment1);
+segment1 = new ropelink(0,0,corda.width*2, corda.height/5*2, 0, 0,0,0,0,0,0,"segment1", "heli");
+segment2 = new ropelink(0,corda.height/5,corda.width*2, corda.height/5*2, 0, 0,0,0,0,0,0,"segment2",segment1);
 segment3 = new ropelink(0,2*corda.height/5,corda.width*2, 2*corda.height/5, 0, 0,0,0,0,0,0,"segment3", segment2);
-segment4 = new ropelink(0,3*corda.height/5,corda.width, corda.height/5, 0, 0,0,0,0,0,0,"segment4", segment3);
+segment4 = new ropelink(0,3*corda.height/5,corda.width*2, corda.height/5*2, 0, 0,0,0,0,0,0,"segment4", segment3);
 segment5 = new ropelink(0,4*corda.height/5,corda.width*6, corda.height/5*2, 0, 0,0,0,0,0,0,"segment5", segment4);
 
 var cadena = [segment1, segment2, segment3, segment4, segment5];
