@@ -33,7 +33,7 @@ function explosiona() {
     cuah.vx=Math.random()*20-10; cuah.vy=Math.random()*20-10;  cuah.vang=Math.random()*30;
     heli.vx=-bc1.vx/2; heli.vy+=-5; heli.ay=0.2; 
     segment1.vang = Math.random()*16-8;
-    cadena.forEach(element => {element.ang_min = -170; element.ang_max=170});
+    //cadena.forEach(element => {element.ang_min = -170; element.ang_max=170});
     segment1.ang_min=-99999; segment1.ang_max=99999;
     cosheli.vx=heli.vx; cosheli.vy=heli.vy; cosheli.vang=Math.random()*20-10; 
     totit=240;
