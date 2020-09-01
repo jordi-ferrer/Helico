@@ -33,8 +33,8 @@ class helicop extends rectvol {
 	}
         
         //the next if is to stop the red helicopters from going too far out of the screen
-        if(this.x<-100) {
-            this.x = -100;
+        if(this.x<-300) {
+            this.x = -300;
             this.vx = 0;
 	}
     }
