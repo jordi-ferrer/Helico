@@ -28,8 +28,8 @@ function explosiona() {
     
     
     //flying parts of the helicopter
-    pilot1.vx=Math.random()*9-4; pilot1.vy=Math.random()*18-9;  pilot1.vang=Math.random()*15-7;
-    cabina1.vx=Math.random()*9-4; cabina1.vy=Math.random()*18-9;
+    pilot1.vx=Math.random()*14-4; pilot1.vy=Math.random()*15-4;  pilot1.vang=Math.random()*15-7;
+    cabina1.vx=Math.random()*18-9; cabina1.vy=Math.random()*18-9;
     helix1.vx=Math.random()*10-5; helix1.vy=Math.random()*10-5;  helix1.vang=Math.random()*30-15;
     helix2.vx=Math.random()*9-4; helix2.vy=Math.random()*18-9; helix2.vang=Math.random()*60-30;
     cuah.vx=Math.random()*9-4; cuah.vy=Math.random()*9-4;  cuah.vang=Math.random()*10;
