@@ -59,7 +59,7 @@
   top:5px;
 }
 
-#enemic1{d
+#enemic1{
    background-color:red;
 }
 
@@ -102,10 +102,10 @@
 }
 .mol_heli_helixgran {   
     position:absolute;
-    top:-30px;
+    top:-20px;
     left:-41px;
     background-image: url("../pictures/helicopter/helixgran.png");
-    background-size: 160px;
+    background-size: 150px;
      background-repeat: no-repeat;
 }
 
