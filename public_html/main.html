@@ -83,12 +83,12 @@ const checkpoint_dist = 1000;
 
 /*helicopter position, speed & rope*/
 //                  left,top,width,height,vx,vy,ax,ay, ang, vang, aang, name
-heli = new helicop(40, 300, 50, 25, 0, 0, 0, 0.2,0,0,0, "helicop");
+heli = new helicop(60, 300, 50, 25, 0, 0, 0, 0.2,0,0,0, "helicop");
 //parts de l'helicopter
 helix1 = new rectvol(0, 0, 150, 25, 0, 0, 0, 0, 0,0,0, "helix1");
 helix2 = new rectvol(0,0, 40, 50, 0, 0, 0, 0, 0,0,0, "helix2");
-cuah = new rectvol(-2, 0, 120, 25, 0, 0, 0, 0, 0,0,0, "cuah");
-cosheli = new rectvol(0, 0, 50, 25, 0, 0, 0, 0, 0,0,0, "cosheli");
+cuah = new rectvol(-2, 0, 100, 55, 0, 0, 0, 0, 0,0,0, "cuah");
+cosheli = new rectvol(0, 0, 80, 65, 0, 0, 0, 0, 0,0,0, "cosheli");
 
 
 helix1_cp = new rectvol();  helix1_cp.naiveCopy(helix1);
@@ -99,7 +99,7 @@ cosheli_cp = new rectvol(); cosheli_cp.naiveCopy(cosheli);
   
 
 corda = new rope(heli.x + heli.width/4,heli.y + heli.height - 8, 5, 100, 0,0, 0, 0,0,0,0, "corda");
-segment1 = new ropelink(0,0,corda.width*2, corda.height/5*2, 0, 0,0,0,0-60,0,0,"segment1", "heli");
+segment1 = new ropelink(0,0,corda.width*2, corda.height/5*2, 0, 0,0,0,-60,0,0,"segment1", "heli");
 segment2 = new ropelink(0,corda.height/5,corda.width*2, corda.height/5*2, 0, 0,0,0,0,0,0,"segment2",segment1);
 segment3 = new ropelink(0,2*corda.height/5,corda.width*2, 2*corda.height/5, 0, 0,0,0,0,0,0,"segment3", segment2);
 segment4 = new ropelink(0,3*corda.height/5,corda.width*2, corda.height/5*2, 0, 0,0,0,0,0,0,"segment4", segment3);
@@ -110,7 +110,7 @@ var cadena = [segment1, segment2, segment3, segment4, segment5];
 enemic1 = new helicop(1200, 200, 160, 75, -10, 0, 0, 0,0,0,0, "enemic1");
         
 /*bloc position & speed*/
-bc1 = new edifici(40, heli.y+30, 100, 400, -5, 0, 0, 0,0,0,0, "bloc1");
+bc1 = new edifici(40, heli.y+37, 100, 400, -5, 0, 0, 0,0,0,0, "bloc1");
 bc2 = new edifici(240, 400+Math.random()*100, 100, 400, -5, 0, 0, 0,0,0,0, "bloc2");
 bc3 = new edifici(440, 400+Math.random()*100, 100, 400, -5, 0, 0, 0,0,0,0, "bloc3");
 bc4 = new edifici(640, 400+Math.random()*100, 100, 400, -5, 0, 0, 0,0,0,0, "bloc4");
@@ -182,7 +182,7 @@ function restart() {
             bloc.forEach(element => element.setColour("gray"));
 
             //reinicialitzant les coordenadees i velocitat del jjjjjjoricopter
-            heli.x = 40; heli.y = bc1.y - heli.width; heli.vx=0; heli.vy=0;
+            heli.x = 80; heli.y = bc1.y - heli.width; heli.vx=0; heli.vy=0;
             
             //inicilitzant enemic1
             enemic1.x = 1200; enemic1.y=Math.random()*400; enemic1.vx=-10; enemic1.vy=0;
@@ -565,6 +565,14 @@ mol_heli {
 .mol_heli_pilot {  
     position:absol-->
     
+    
+<span class="segment" id="segment1"></span>
+<span class="segment" id="segment2"></span>
+<span class="segment" id="segment3"></span>
+<span class="segment" id="segment4"></span>
+<span class="segment" id="segment5"></span>
+   
+
 <div id="helicop" class="mol_heli">
     <div id="cosheli" class="mol_heli_body">
         <div class="cara" id="cara">:D</div>  
@@ -574,13 +582,8 @@ mol_heli {
     <div id="cuah" class="mol_heli_cua"></div>
 </div>
 
-<div id="corda"></div>
-<span class="segment" id="segment1"></span>
-<span class="segment" id="segment2"></span>
-<span class="segment" id="segment3"></span>
-<span class="segment" id="segment4"></span>
-<span class="segment" id="segment5"></span>
-            
+
+         
 
 
 <div id="score" style="visibility:hidden;"> 

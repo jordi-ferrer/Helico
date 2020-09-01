@@ -81,23 +81,23 @@
   position: absolute;
   border-radius: 30px;
   background-image: url("../pictures/helicopter/mainbody.png");
-  background-size: 50px;
+  background-size: 80px;
   background-repeat: no-repeat;
 }
 
 .mol_heli_cua {   
   position:absolute;
-  top:-12px;
-  left:-7px;
+  top:-2px;
+  left:-47px;
   border-radius: 30px;
   background-image: url("../pictures/helicopter/cua.png");
-    background-size: 120px;
+    background-size: 80px;
      background-repeat: no-repeat;
 }
 .mol_heli_helixpeque {   
   position:absolute;
-  top:-17px;
-  left:-25px;
+  top:-22px;
+  left:-55px;
   background-image: url("../pictures/helicopter/helixpetita.png");
     background-size: 20px;
      background-repeat: no-repeat;
@@ -105,9 +105,9 @@
 .mol_heli_helixgran {   
     position:absolute;
     top:-30px;
-    left:-15px;
+    left:-41px;
     background-image: url("../pictures/helicopter/helixgran.png");
-    background-size: 150px;
+    background-size: 160px;
      background-repeat: no-repeat;
 }
 
