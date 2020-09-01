@@ -26,7 +26,7 @@ class ropelink extends rectvol
     {        
         
         if(this._prev_seg === "heli") {
-            if(!xocat) this._ang = 60*Math.cos(sco*Math.PI/180) ;
+            if(!xocat) this._vang = Math.PI/180*60*Math.sin(sco*Math.PI/180)  ;
             this.x = heli.x + heli.width/4;
             this.y = heli.y + heli.height - 8;
         } else {
