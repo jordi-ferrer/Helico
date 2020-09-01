@@ -64,3 +64,73 @@
     background-image: url("../pictures/beautyhelicop_peque.png");
     background-size: 160px;
 }
+
+
+
+
+.mol_heli {   
+  position: absolute;
+  top:0px;
+  left:0px;
+   /*with and height set when declaring the object in the main!*/
+  border-radius: 30px;
+  color:white;
+  will-change: transform;
+}
+.mol_heli_body {   
+  position: absolute;
+  border-radius: 30px;
+  background-image: url("../pictures/helicopter/mainbody.png");
+  background-size: 50px;
+  background-repeat: no-repeat;
+}
+
+.mol_heli_cua {   
+  position:absolute;
+  top:-12px;
+  left:-7px;
+  border-radius: 30px;
+  background-image: url("../pictures/helicopter/cua.png");
+    background-size: 120px;
+     background-repeat: no-repeat;
+}
+.mol_heli_helixpeque {   
+  position:absolute;
+  top:-17px;
+  left:-25px;
+  background-image: url("../pictures/helicopter/helixpetita.png");
+    background-size: 20px;
+     background-repeat: no-repeat;
+}
+.mol_heli_helixgran {   
+    position:absolute;
+    top:-30px;
+    left:-15px;
+    background-image: url("../pictures/helicopter/helixgran.png");
+    background-size: 150px;
+     background-repeat: no-repeat;
+}
+
+.mol_heli_partbody2 {   
+    position:absolute;
+    width:7px;
+    height:15px;
+    background-image: url("../pictures/helicopter/mainbody_2part.png");
+    background-size: 15px;
+     background-repeat: no-repeat;
+}
+.mol_heli_cabina { 
+    position:absolute;
+    width:15px;
+    height:20px;
+    opacity:0.5;
+    background-color:skyblue;
+}
+.mol_heli_pilot {  
+    position:absolute;
+    width:7px;
+    height:15px;
+    background-image: url("../pictures/helicopter/human.png");
+    background-size: 10px;
+     background-repeat: no-repeat;
+}
