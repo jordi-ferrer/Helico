@@ -49,7 +49,7 @@
 .cara {   
   position:absolute;
   transform: rotate(90deg);
-  left:20px;
+  left:-20px;
   top:5px;
 }
 .cara2 {   
@@ -111,26 +111,23 @@
      background-repeat: no-repeat;
 }
 
-.mol_heli_partbody2 {   
-    position:absolute;
-    width:7px;
-    height:15px;
-    background-image: url("../pictures/helicopter/mainbody_2part.png");
-    background-size: 15px;
-     background-repeat: no-repeat;
-}
 .mol_heli_cabina { 
     position:absolute;
-    width:15px;
-    height:20px;
+    left:37px;
+    top:10px;
+    width:30px;
+    height:30px;
+    border-radius: 30px;
     opacity:0.5;
-    background-color:skyblue;
+    background-color:aqua;
 }
 .mol_heli_pilot {  
     position:absolute;
-    width:7px;
-    height:15px;
+    left:35px;
+    top:13px;
+    width:20px;
+    height:40px;
     background-image: url("../pictures/helicopter/human.png");
-    background-size: 10px;
+    background-size: 20px;
      background-repeat: no-repeat;
 }

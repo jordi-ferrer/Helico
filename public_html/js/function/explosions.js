@@ -28,8 +28,10 @@ function explosiona() {
     
     
     //flying parts of the helicopter
-    helix1.vx=Math.random()*18-9; helix1.vy=Math.random()*18-9;  helix1.vang=Math.random()*30-15;
-    helix2.vx=Math.random()*18-9; helix2.vy=Math.random()*18-9; helix2.vang=Math.random()*60-30;
+    pilot1.vx=Math.random()*9-4; pilot1.vy=Math.random()*10-5;  pilot1.vang=Math.random()*15-7;
+    cabina1.vx=Math.random()*9-4; cabina1.vy=Math.random()*10-5;
+    helix1.vx=Math.random()*10-5; helix1.vy=Math.random()*10-5;  helix1.vang=Math.random()*30-15;
+    helix2.vx=Math.random()*9-4; helix2.vy=Math.random()*18-9; helix2.vang=Math.random()*60-30;
     cuah.vx=Math.random()*20-10; cuah.vy=Math.random()*20-10;  cuah.vang=Math.random()*30;
     heli.vx=-bc1.vx/2; heli.vy+=-5; heli.ay=0.2; 
     segment1.vang = Math.random()*16-8;
@@ -45,6 +47,8 @@ function explosiona() {
 }
 
 function peta() {
+    pilot1.move();
+    cabina1.move();
     helix1.move();
     helix2.move();
     cuah.move();
@@ -52,6 +56,8 @@ function peta() {
     cosheli.move();
     cadena.forEach(element => element.move());
     
+    cabina1.draw();
+    pilot1.draw();
     helix1.draw();
     helix2.draw();
     cuah.draw();

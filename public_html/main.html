@@ -84,13 +84,17 @@ const checkpoint_dist = 1000;
 /*helicopter position, speed & rope*/
 //                  left,top,width,height,vx,vy,ax,ay, ang, vang, aang, name
 heli = new helicop(60, 300, 50, 25, 0, 0, 0, 0.2,0,0,0, "helicop");
-//parts de l'helicopter
+//parts de l'helicòpter
+
+pilot1 = new rectvol(0, 0,20, 40, 0, 0, 0, 0, 0,0,0, "pilot1");
+cabina1 = new rectvol(0, 0, 30, 30, 0, 0, 0, 0, 0,0,0, "cabina1");
 helix1 = new rectvol(0, 0, 150, 25, 0, 0, 0, 0, 0,0,0, "helix1");
 helix2 = new rectvol(0,0, 40, 50, 0, 0, 0, 0, 0,0,0, "helix2");
 cuah = new rectvol(-2, 0, 100, 55, 0, 0, 0, 0, 0,0,0, "cuah");
-cosheli = new rectvol(0, 0, 80, 65, 0, 0, 0, 0, 0,0,0, "cosheli");
+cosheli = new rectvol(0, 0, 80, 75, 0, 0, 0, 0, 0,0,0, "cosheli");
 
-
+pilot1_cp = new rectvol(); pilot1_cp.naiveCopy(pilot1);
+cabina1_cp = new rectvol(); cabina1_cp.naiveCopy(cabina1);
 helix1_cp = new rectvol();  helix1_cp.naiveCopy(helix1);
 helix2_cp = new rectvol();  helix2_cp.naiveCopy(helix2);
 cuah_cp = new rectvol();    cuah_cp.naiveCopy(cuah);
@@ -199,6 +203,8 @@ function restart() {
         cadena.forEach(element => {element.ang_min = -90; element.ang_max=90});
 
         
+        pilot1.naiveCopy(pilot1_cp);
+        cabina1.naiveCopy(cabina1_cp);
         helix1.naiveCopy(helix1_cp);
         helix2.naiveCopy(helix2_cp);
         cuah.naiveCopy(cuah_cp);
@@ -350,6 +356,8 @@ function setwidths() {
     helix2.setwidths();
     cuah.setwidths();
     cosheli.setwidths();
+    pilot1.setwidths();
+    cabina1.setwidths();
     
     enemic1.setwidths();
     human.setwidths();
@@ -369,6 +377,8 @@ function draw() {
     helix2.draw();
     cuah.draw();
     cosheli.draw();
+    pilot1.draw();
+    cabina1.draw();
     
     enemic1.draw("rotateY(180deg)");//afegeixo una transformacio al elicopter enemic
     human.draw();
@@ -576,12 +586,17 @@ mol_heli {
    
 
 <div id="helicop" class="mol_heli">
+    <div id="cuah" class="mol_heli_cua"></div>
     <div id="cosheli" class="mol_heli_body">
-        <div class="cara" id="cara">:D</div>  
+         
     </div>
     <div id="helix1" class="mol_heli_helixgran"></div>
     <div id="helix2" class="mol_heli_helixpeque"></div>
-    <div id="cuah" class="mol_heli_cua"></div>
+    
+    <div id="pilot1" class="mol_heli_pilot"></div>
+    <div id="cabina1" class="mol_heli_cabina"></div>
+        <div class="cara" id="cara">:D</div> 
+
 </div>
 
 
