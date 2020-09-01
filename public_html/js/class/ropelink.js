@@ -26,12 +26,12 @@ class ropelink extends rectvol
     {        
         
         if(this._prev_seg === "heli") {
-            this._ang = 70*Math.cos(sco*Math.PI/180) - 30;
+            this._ang = 60*Math.cos(sco*Math.PI/180) ;
             this.x = heli.x + heli.width/4;
             this.y = heli.y + heli.height - 8;
         } else {
-            this._ang_min =  this._prev_seg._ang - 5;
-            this._ang_max = this._prev_seg._ang +15;
+            this._ang_min =  this._prev_seg._ang - 10;
+            this._ang_max = this._prev_seg._ang +10;
             this.x = -this._width/2 + this._prev_seg.x + this._prev_seg.width/2 - this._prev_seg.height*Math.sin(this._prev_seg.ang/180*Math.PI) ;
             this.y = this._prev_seg.y + this._prev_seg.height*Math.cos(this._prev_seg.ang/180*Math.PI);
             this._ang += this._prev_seg.ang*0.1;
