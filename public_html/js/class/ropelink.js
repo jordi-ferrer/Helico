@@ -23,20 +23,20 @@ class ropelink extends rectvol
     }
 
     move()
-    {        
-        
+    {
         if(this._prev_seg === "heli") {
-            if(!xocat) this._vang = Math.PI/180*60*Math.sin(sco*Math.PI/180)  ;
+            if(!xocat) this._vang = Math.PI/180*60*Math.sin(sco*Math.PI/180);
             this.x = heli.x + heli.width/4;
             this.y = heli.y + heli.height -8;
         } else {
             this._ang_min =  this._prev_seg._ang - 10;
             this._ang_max = this._prev_seg._ang + 10;
-            this.x = -this._width/2 + this._prev_seg.x + this._prev_seg.width/2 - this._prev_seg.height*Math.sin(this._prev_seg.ang/180*Math.PI) ;
+            this.x = -this._width/2 + this._prev_seg.x + this._prev_seg.width/2 - this._prev_seg.height*Math.sin(this._prev_seg.ang/180*Math.PI);
             this.y = this._prev_seg.y + this._prev_seg.height*Math.cos(this._prev_seg.ang/180*Math.PI);
             this._ang += this._prev_seg.ang*0.1;
+            this._ang +=  Math.random()*2-1;
+        }
         
-        this._ang +=  Math.random()*2-1;}
         if(this._ang < this._ang_min) this._ang = this._ang_min; 
         if(this._ang > this._ang_max) this._ang = this._ang_max;       
         
