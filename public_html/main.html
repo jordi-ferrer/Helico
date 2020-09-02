@@ -93,18 +93,16 @@ helix2 = new rectvol(0,0, 20, 50, 0, 0, 0, 0, 0,12,0, "helix2");
 cuah = new rectvol(-2, 0, 100, 55, 0, 0, 0, 0, 0,0,0, "cuah");
 cosheli = new rectvol(0, 0, 80, 75, 0, 0, 0, 0, 0,0,0, "cosheli");
 
-pilot1_cp = new rectvol(); pilot1_cp.naiveCopy(pilot1);
+pilot1_cp = new rectvol();  pilot1_cp.naiveCopy(pilot1);
 cabina1_cp = new rectvol(); cabina1_cp.naiveCopy(cabina1);
 helix1_cp = new rectvol();  helix1_cp.naiveCopy(helix1);
 helix2_cp = new rectvol();  helix2_cp.naiveCopy(helix2);
 cuah_cp = new rectvol();    cuah_cp.naiveCopy(cuah);
 cosheli_cp = new rectvol(); cosheli_cp.naiveCopy(cosheli);
 
-  
-
 corda = new rope(heli.x + heli.width/4,heli.y + heli.height - 8, 5, 100, 0,0, 0, 0,0,0,0, "corda");
 
-segment1 = new ropelink(corda.x,corda.y,corda.width*2, corda.height/5*2, 0, 0,0,0,-60,0,0,"segment1", "heli");
+segment1 = new ropelink(corda.x,corda.y,corda.width*2,corda.height/5*2,0,0,0,0,-60,0,0,"segment1", "heli");
 segment2 = new ropelink(corda.x,corda.y+segment1.height,corda.width*2,corda.height/5*2, 0, 0,0,0,0,0,0,"segment2",segment1);
 segment3 = new ropelink(corda.x,corda.y+segment1.height*2,corda.width*2,corda.height/5*2, 0, 0,0,0,0,0,0,"segment3", segment2);
 segment4 = new ropelink(corda.x,corda.y+segment1.height*3,corda.width*2,corda.height/5*2, 0, 0,0,0,0,0,0,"segment4", segment3);
@@ -360,15 +358,10 @@ function setwidths() {
     cosheli.setwidths();
     pilot1.setwidths();
     cabina1.setwidths();
-    
     enemic1.setwidths();
     human.setwidths();
-    
     chair.setwidths();
-    
-    
     cadena.forEach(element => element.setwidths());
-    
     flag.setwidths();
     bloc.forEach(element => element.setwidths());
 }
@@ -381,21 +374,13 @@ function draw() {
     cosheli.draw();
     pilot1.draw();
     cabina1.draw();
-    
-    enemic1.draw("rotateY(180deg)");//afegeixo una transformacio al elicopter enemic
+    enemic1.draw("rotateY(180deg)");//afegeixo una transformacio al helicopter enemic
     human.draw();
-    
     chair.draw();
-    
     cadena.forEach(element => element.draw());
-    
-    flag.draw();
+    flag.draw('skewY('+ 5*Math.cos(sco/10) +'deg)');
     bloc.forEach(element => element.draw()); //wow què és això? de:Romà
 }
-
-
-
-
 
 function showranking() {
     window.location.href = "php/getusers.php";
@@ -598,11 +583,7 @@ mol_heli {
     <div id="pilot1" class="mol_heli_pilot"></div>
     <div id="cabina1" class="mol_heli_cabina"></div>
         <div class="cara" id="cara">:D</div> 
-
 </div>
-
-
-         
 
 
 <div id="score" style="visibility:hidden;"> 
