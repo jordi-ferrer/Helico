@@ -19,6 +19,7 @@
 <link rel="stylesheet" href="style/chair.css">
 <link rel="stylesheet" href="style/intro_gameover.css">
 <link rel="stylesheet" href="style/explosio.css">
+<link rel="stylesheet" href="style/background.css">
 
 <style>
 
@@ -80,6 +81,9 @@ var xocat = false;
 var checkpoint = 1;
 var current_checkpoint = 0;
 const checkpoint_dist = 1000;
+
+//background-skyline:
+skyline = new rectvol(0, 0,2268, 712, -0.15, 0, 0, 0, 0,0,0, "skyline");
 
 /*helicopter position, speed & rope*/
 //                  left,top,width,height,vx,vy,ax,ay, ang, vang, aang, name
@@ -191,6 +195,8 @@ function restart() {
             //inicilitzant enemic1
             enemic1.x = 1200; enemic1.y=Math.random()*400; enemic1.vx=-10; enemic1.vy=0;
         }
+        skyline.x = -sco/10;
+        
         explosio1.hide();
         explosio2.hide();
         explosio3.hide();
@@ -300,6 +306,8 @@ function move() {
         cadena.forEach(element => element.move());
         
         chair.move(bc3, chair.height);
+        
+        skyline.move();
     }
 
     flag.update();
@@ -364,9 +372,13 @@ function setwidths() {
     cadena.forEach(element => element.setwidths());
     flag.setwidths();
     bloc.forEach(element => element.setwidths());
+    
+    skyline.setwidths();
 }
 
 function draw() {
+    skyline.draw();
+    
     heli.draw();  
     helix1.draw("scaleY("+Math.abs(Math.cos(helix1.ang/180*Math.PI))+") rotateZ("+ -helix1.ang+"deg)");
     
@@ -396,6 +408,7 @@ function showranking() {
 </div>
     
 <div id="fons_de_pant"></div>
+<div id="skyline"></div>
 
 <div class="flock">
     <div class="bird"  style="top:210px;left:40px">

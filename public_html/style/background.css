@@ -1,0 +1,14 @@
+
+#skyline{
+    position:absolute;
+    width:100vw;
+    height:100vh;
+    background-image: url("../pictures/background/skylinechicago1.png");
+    background-position-x: -30px;
+    background-repeat: repeat-x;
+    opacity:1;
+}
+
+#fons_de_pant{
+    position:absolute;
+}
