@@ -104,8 +104,10 @@
     position:absolute;
     top:-20px;
     left:-41px;
+    
     background-image: url("../pictures/helicopter/helixgran.png");
     background-size: 150px;
+    transform-origin: 50% 100%;
      background-repeat: no-repeat;
 }
 

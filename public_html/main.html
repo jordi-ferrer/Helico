@@ -200,7 +200,7 @@ function restart() {
         segment1.vang = 0;
         cadena.forEach(element => element.ang = 0);
         segment1.ang = -60;
-        cadena.forEach(element => {element.ang_min = -90; element.ang_max=90});
+        cadena.forEach(element => {element.ang_min = -90; element.ang_max=90;});
 
         
         pilot1.naiveCopy(pilot1_cp);
@@ -376,6 +376,7 @@ function setwidths() {
 function draw() {
     heli.draw();  
     helix1.draw("scaleY("+Math.abs(Math.cos(helix1.ang/180*Math.PI))+") rotateZ("+ -helix1.ang+"deg)");
+    
     helix2.draw();
     cuah.draw();
     cosheli.draw();
