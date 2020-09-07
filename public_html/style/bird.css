@@ -29,10 +29,12 @@ and open the template in the editor.
 .flock{
     position:absolute;
   animation-name: birdmove;
-  animation-duration: 200s;
+  animation-duration: 100s;
   animation-iteration-count: infinite;
   animation-delay: 0s;
+   animation-timing-function: linear;
   visibility:visible;
+  
   will-change: transform;
 }
 .wing {
@@ -59,8 +61,8 @@ and open the template in the editor.
   will-change: transform;
 }
 @keyframes birdmove {
-   0%   {transform: translateX(1200px);visibility:visible }
-  90%  {transform: translateX(-300px);visibility:hidden }
+   0%   {transform: translateX(120vw);visibility:visible }
+   90%  {transform: translateX(-300px);visibility:hidden }
   100%  {transform: translateX(-300px);visibility:hidden }
 }
 
