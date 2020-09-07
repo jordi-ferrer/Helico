@@ -106,7 +106,7 @@ cosheli_cp = new rectvol(); cosheli_cp.naiveCopy(cosheli);
 
 corda = new rope(heli.x + heli.width/4,heli.y + heli.height - 8, 5, 100, 0,0, 0, 0,0,0,0, "corda");
 
-segment1 = new ropelink(corda.x,corda.y,corda.width*2,corda.height/5*2,0,0,0,0,-60,0,0,"segment1", "heli");
+segment1 = new ropelink(corda.x,corda.y,corda.width*2,corda.height/5*2,0,0,0,0,0,0,0,"segment1", "heli");
 segment2 = new ropelink(corda.x,corda.y+segment1.height,corda.width*2,corda.height/5*2, 0, 0,0,0,0,0,0,"segment2",segment1);
 segment3 = new ropelink(corda.x,corda.y+segment1.height*2,corda.width*2,corda.height/5*2, 0, 0,0,0,0,0,0,"segment3", segment2);
 segment4 = new ropelink(corda.x,corda.y+segment1.height*3,corda.width*2,corda.height/5*2, 0, 0,0,0,0,0,0,"segment4", segment3);
@@ -202,9 +202,10 @@ function restart() {
         explosio3.hide();
         xocat = false;
         segment1.vang = 0;
-        cadena.forEach(element => element.ang = 0);
-        segment1.ang = -60;
         cadena.forEach(element => {element.ang_min = -90; element.ang_max=90;});
+        cadena.forEach(element => element.ang = 0);
+        
+        
 
         
         pilot1.naiveCopy(pilot1_cp);
@@ -326,7 +327,7 @@ function move() {
         "<br> enemic1 x: " + Math.round(enemic1.x) + "<br> request: " + request +
         "<br> human x: " + human.x + "<br> human y: " + human.y + "<br> human heigth: " + human.height + "<br> human width " + human.width +
         "<br> bloc 6 y " + bc6.y + "<br> corda*sin(ang corda):" + Math.round(corda.height*Math.sin(Math.PI*corda.ang/180) ) + 
-        "<br> angle corda: " + corda.ang ;
+        "<br> angle corda: " + segment1.ang ;
     }
     document.getElementById("dispdistance").innerHTML = Math.round(sco/10)/100 + " ";
     document.getElementById("dispclerks").innerHTML = rescats + " ";
@@ -583,7 +584,7 @@ mol_heli {
 <span class="segment" id="segment2"></span>
 <span class="segment" id="segment3"></span>
 <span class="segment" id="segment4"></span>
-<span class="segment" id="segment5"></span>
+<span class="segment segment2" id="segment5"></span>
    
 
 <div id="helicop" class="mol_heli">

@@ -18,3 +18,9 @@ and open the template in the editor.
     border-radius: 30%;
     transform-origin: top center;
 }
+.segment2{
+    border-radius: 100%;
+    background-color:brown;
+    background-image: url("../pictures/dinoegg_peque.png");
+    background-size: 31px;
+}
