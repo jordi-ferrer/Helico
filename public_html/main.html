@@ -195,7 +195,7 @@ function restart() {
             //inicilitzant enemic1
             enemic1.x = 1200; enemic1.y=Math.random()*400; enemic1.vx=-10; enemic1.vy=0;
         }
-        skyline.x = -sco/10;
+        skyline.x = sco*skyline.vx;
         
         explosio1.hide();
         explosio2.hide();
