@@ -8,8 +8,17 @@ const vy_lim = 20;
 const height_lim = 31100;
 
 class helicop extends rectvol {
-    constructor(left=20,top,width,height,vx,vy,ax,ay,ang, vang, aang, name) {
+    constructor(left=20,top,width,height,vx,vy,ax,ay,ang, vang, aang, name, y_min) {
         super(left,top,width,height,vx,vy,ax,ay,ang, vang, aang, name);
+        this._y_min=y_min;
+    }
+    get y_min() {
+        return this._y_min;
+    }
+   
+    
+    set y_min(ep) {
+        this._y_min = ep;
     }
 
     draw(transf='') {
@@ -27,8 +36,8 @@ class helicop extends rectvol {
             this.y = height_lim;
             this.vy = 0;
 	}
-	if(this.y < 0) {
-            this.y = 0;
+	if(this.y < this._y_min) {
+            this.y = this._y_min;
             this.vy = 0;
 	}
         

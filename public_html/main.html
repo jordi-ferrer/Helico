@@ -87,7 +87,7 @@ skyline = new rectvol(0, 0,2*2268, 712, -0.15, 0, 0, 0, 0,0,0, "skyline");
 
 /*helicopter position, speed & rope*/
 //                  left,top,width,height,vx,vy,ax,ay, ang, vang, aang, name
-heli = new helicop(60, 300, 70, 40, 0, 0, 0, 0.2,0,0,0, "helicop");
+heli = new helicop(60, 300, 70, 40, 0, 0, 0, 0.2,0,0,0, "helicop",y_min=0);
 //parts de l'helicòpter
 
 pilot1 = new rectvol(0, 0,20, 40, 0, 0, 0, 0, 0,0,0, "pilot1");
@@ -204,7 +204,7 @@ function restart() {
         segment1.vang = 0;
         cadena.forEach(element => {element.ang_min = -90; element.ang_max=90;});
         cadena.forEach(element => element.ang = 0);
-        
+        heli.y_min=0;
         
 
         
