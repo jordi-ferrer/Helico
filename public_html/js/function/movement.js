@@ -4,10 +4,6 @@
  * and open the template in the editor.
  */
 
-function caratrista() {
-    document.getElementById("cara").innerHTML=":(";
-}
-
 function movebloc(rect, i){
     rect.x = rect.x + rect.vx;
     if(rect.x < -rect.width) {

@@ -49,8 +49,9 @@
 .cara {   
   position:absolute;
   transform: rotate(90deg);
-  left:-20px;
-  top:5px;
+  left:37px;
+  top:10px;
+  transform: scale(0.5) rotate(90deg);
 }
 .cara2 {   
   position:absolute;

@@ -75,7 +75,7 @@ class bandera extends rectvol {
             checkpoint++;
             var ind = 0;
             var i;
-            for (i = 1; i < 6; i++) {
+            for (i = 1; i < bloc.length; i++) {
                 if(bloc[i].x > bloc[ind].x)
                 {
                     ind = i;
