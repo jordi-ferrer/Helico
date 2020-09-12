@@ -40,9 +40,9 @@
 }
 
 @keyframes trumpruns {
-   0%   {transform: translateX(-69px);visibility:visible }
+   0%   {transform: translateX(-66px);visibility:visible }
    50%   {transform: translateX(0px);visibility:visible }
-  100%  {transform: translateX(-69px);visibility:visible }
+  100%  {transform: translateX(-66px);visibility:visible }
 }
 
 @keyframes trumpjumps {
