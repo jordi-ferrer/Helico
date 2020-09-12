@@ -20,7 +20,7 @@
     top:0px;
     left:0px;
     animation-name: trumpruns;
-    animation-duration: 4s;
+    animation-duration: 5s;
     animation-iteration-count: infinite;
     animation-delay: 0s;
     /*animation-timing-function:linear;*/
@@ -40,9 +40,9 @@
 }
 
 @keyframes trumpruns {
-   0%   {transform: translateX(-20px);visibility:visible }
-   50%   {transform: translateX(25px);visibility:visible }
-  100%  {transform: translateX(-20px);visibility:visible }
+   0%   {transform: translateX(-69px);visibility:visible }
+   50%   {transform: translateX(0px);visibility:visible }
+  100%  {transform: translateX(-69px);visibility:visible }
 }
 
 @keyframes trumpjumps {
