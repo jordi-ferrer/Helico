@@ -107,10 +107,10 @@ cosheli_cp = new rectvol(); cosheli_cp.naiveCopy(cosheli);
 
 corda = new rope(heli.x + heli.width/4,heli.y + heli.height - 8, 5, 100, 0,0, 0, 0,0,0,0, "corda");
 
-segment1 = new ropelink(corda.x,corda.y,corda.width*2,corda.height/5*2,0,0,0,0,0,0,0,"segment1", "heli");
-segment2 = new ropelink(corda.x,corda.y+segment1.height,corda.width*2,corda.height/5*2, 0, 0,0,0,0,0,0,"segment2",segment1);
-segment3 = new ropelink(corda.x,corda.y+segment1.height*2,corda.width*2,corda.height/5*2, 0, 0,0,0,0,0,0,"segment3", segment2);
-segment4 = new ropelink(corda.x,corda.y+segment1.height*3,corda.width*2,corda.height/5*2, 0, 0,0,0,0,0,0,"segment4", segment3);
+segment1 = new ropelink(corda.x,corda.y,corda.width*1.25,corda.height/5*2,0,0,0,0,0,0,0,"segment1", "heli");
+segment2 = new ropelink(corda.x,corda.y+segment1.height,corda.width*1.25,corda.height/5*2, 0, 0,0,0,0,0,0,"segment2",segment1);
+segment3 = new ropelink(corda.x,corda.y+segment1.height*2,corda.width*1.25,corda.height/5*2, 0, 0,0,0,0,0,0,"segment3", segment2);
+segment4 = new ropelink(corda.x,corda.y+segment1.height*3,corda.width*1.25,corda.height/5*2, 0, 0,0,0,0,0,0,"segment4", segment3);
 segment5 = new ropelink(corda.x-corda.width*2,corda.y+segment1.height*4,corda.width*6,corda.height/5*2, 0, 0,0,0,0,0,0,"segment5", segment4);
 
 

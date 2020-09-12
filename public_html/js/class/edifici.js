@@ -8,6 +8,17 @@
 class edifici extends rectvol {
     constructor(left,top,width,height,vx,vy,ax,ay,ang, vang, aang,name) {
         super(left,top,width,height,vx,vy,ax,ay, ang, vang, aang,name);
+        if(this._y < 300) this._y = 300;
+        if(this._y > 450) this._y = 450;
+    }
+    
+    get y() {
+      return this._y;
+    }
+    set y(ep) {
+      this._y = ep;
+      if(this._y < 300) this._y = 300;
+      if(this._y > 450) this._y = 450;
     }
 
     draw(transf='') {
