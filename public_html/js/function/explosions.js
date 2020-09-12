@@ -12,7 +12,7 @@ function explosiona() {
     var anim2;
     
     //exploding clouds:
-    
+    explosio1.ang = 360*Math.random();
     explosio1.width=50; explosio1.height=50;
     explosio1.x=heli.x +explosio1.width/2; explosio1.y=heli.y ;
        
