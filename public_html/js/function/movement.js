@@ -4,14 +4,17 @@
  * and open the template in the editor.
  */
 
-function movebloc(rect, i){
+function movebloc(rect, i)
+{
     rect.x = rect.x + rect.vx;
-    if(rect.x < -rect.width) {
-        rect.x = 1100 ;
-        rect.y = bloc[i].y +  Math.floor(Math.random()*150 - 75);
-        if(rect.y < 200) rect.y = 200;
+    if(rect.x < -rect.width)
+    {
+        rect.x = 1100;
+        rect.y = bloc[ (i+bloc.length-1)%bloc.length ].y + Math.floor(Math.random()*150 - 75);
+        if(rect.y < 300) rect.y = 300;
         if(rect.y > 450) rect.y = 450;
-        if(i===5 && rescatat) {
+        if(i===5 && rescatat)
+        {
             rescatat = false;
             document.getElementById("human1").style.visibility="visible";
         }
