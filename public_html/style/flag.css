@@ -38,7 +38,9 @@
 }
 
 @keyframes oneja {
-   0%   {transform: skewY(-6deg) }
-   50%  {transform: skewY(6deg) }
-  100%  {transform: skewY(-6deg) }
+   0%   {transform: skewY(-6deg) scaleX(0.9) translateX(0px) }
+
+   50%  {transform: skewY(6deg) scaleX(1) translateX(0px)}
+
+  100%  {transform: skewY(-6deg) scaleX(0.9) translateX(0px)}
 }
