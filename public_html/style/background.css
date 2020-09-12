@@ -12,10 +12,15 @@
 
 #trumpenvelope{
     position:absolute;
-    top:400px;
-    left:1250px;
+    /*animation-timing-function:linear;*/
+}
+
+#trumpbody{
+    position:absolute;
+    top:0px;
+    left:0px;
     animation-name: trumpruns;
-    animation-duration: 3s;
+    animation-duration: 4s;
     animation-iteration-count: infinite;
     animation-delay: 0s;
     /*animation-timing-function:linear;*/
@@ -28,16 +33,16 @@
     height:37px;
     background-image: url("../pictures/trump2.png");
     animation-name: trumpjumps;
-    animation-duration: 1s;
+    animation-duration: 0.7s;
     animation-iteration-count: infinite;
     animation-delay: 0s;
     /*animation-timing-function:linear;*/
 }
 
 @keyframes trumpruns {
-   0%   {transform: translateX(-15px);visibility:visible }
+   0%   {transform: translateX(-20px);visibility:visible }
    50%   {transform: translateX(25px);visibility:visible }
-  100%  {transform: translateX(-15px);visibility:visible }
+  100%  {transform: translateX(-20px);visibility:visible }
 }
 
 @keyframes trumpjumps {
