@@ -30,7 +30,9 @@ class explosio extends rectvol {
         super.naiveCopy(obj);
     }
     
-    
+    centerbg() {
+       // document.getElementById(this._name).style.backgroundSize = this._width + "px";
+    }
     
     
 }

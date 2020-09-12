@@ -10,8 +10,13 @@ and open the template in the editor.
 
 #explosio1 {
     position:absolute;
-    border-radius: 100%;
-    background-color: yellow;
+    border-radius: 0%;
+    /*background-color: yellow;*/
+    background-image: url("../pictures/explosio/explosio1.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: center;
 }
 
 #explosio2 {

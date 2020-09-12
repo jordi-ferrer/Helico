@@ -138,7 +138,6 @@ flag = new bandera(bc6.x, bc6.y-58, 33, 50, 0, 0, 0, 0,0,0,0, "flag");
 chair = new chair(bc3.x, bc3.y - 53, 25, 53,0, 0, 0, 0,0,0,0, "officechair");
 explosio1 = new explosio(0,0, 200, 200,0, 0, 0, 0,0,0,0, "explosio1");
 explosio2 = new explosio(0,0, 100, 100,0, 0, 0, 0,0,0,0, "explosio2");
-explosio3 = new explosio(0,0, 10, 10,0, 0, 0, 0,0,0,0, "explosio3");
 
 // checkpoint stored variables
 var sco_cp;
@@ -201,7 +200,7 @@ function restart() {
         
         explosio1.hide();
         explosio2.hide();
-        explosio3.hide();
+      
         xocat = false;
         segment1.vang = 0;
         cadena.forEach(element => {element.ang_min = -90; element.ang_max=90;});
@@ -246,7 +245,6 @@ function carrega() {
     //bloc.forEach(element => element.createWindows());  //ho traiem, aviam si no va a cops duna p*** vegada
     explosio1.hide();
     explosio2.hide();
-    explosio3.hide();
     
     document.getElementById("dispdistance").innerHTML = Math.round(sco/10)/100 + " ";
     document.getElementById("dispclerks").innerHTML = rescats + " ";
@@ -420,25 +418,7 @@ function showranking() {
         <div id="trump"></div>
     </div>
 </div>
-<div id="skyline"></div>
 
-<div class="flock">
-    <div class="bird"  style="top:210px;left:40px">
-        <div class="wing wing1"  style="left:-5px;"></div>
-        <div class="birdbody"  style="background-color:coral;"></div>
-        <div class="wing wing2"  style="left:5px;"></div>
-    </div>
-    <div class="bird" id="bird2" style="top:220px;left:20px;">
-       <div class="wing wing1"  style="background-color:CadetBlue;left:-5px;"></div>
-       <div class="birdbody"  style="background-color:black;"></div>
-       <div class="wing wing2"  style="background-color:CadetBlue;left:5px;"></div>
-    </div>
-    <div class="bird"  style="top:230px;">
-        <div class="wing wing1"  style="background-color:CadetBlue;left:-5px;"></div>
-        <div class="birdbody"  style="background-color:black;"></div>
-        <div class="wing wing2"  style="background-color:CadetBlue;left:5px;"></div>
-    </div>
-</div>
 
 <div class="flock" style="top:-110px;left:240px">
     <div class="bird"  style="background-color:Crimson;top:210px;left:40px">
@@ -456,6 +436,27 @@ function showranking() {
        <div class="birdbody"  style="background-color:DarkCyan;"></div>
        <div class="wing wing2"  style="background-color:Coral;left:5px;"></div>
    </div>
+</div>
+
+<div id="skyline"></div>
+
+
+<div class="flock">
+    <div class="bird"  style="top:210px;left:40px">
+        <div class="wing wing1"  style="left:-5px;"></div>
+        <div class="birdbody"  style="background-color:coral;"></div>
+        <div class="wing wing2"  style="left:5px;"></div>
+    </div>
+    <div class="bird" id="bird2" style="top:220px;left:20px;">
+       <div class="wing wing1"  style="background-color:CadetBlue;left:-5px;"></div>
+       <div class="birdbody"  style="background-color:black;"></div>
+       <div class="wing wing2"  style="background-color:CadetBlue;left:5px;"></div>
+    </div>
+    <div class="bird"  style="top:230px;">
+        <div class="wing wing1"  style="background-color:CadetBlue;left:-5px;"></div>
+        <div class="birdbody"  style="background-color:black;"></div>
+        <div class="wing wing2"  style="background-color:CadetBlue;left:5px;"></div>
+    </div>
 </div>
 
 <div id="areavital" >
@@ -504,7 +505,8 @@ function showranking() {
 <div id="human1">
     <span class="leg1"></span>
     <span class="leg2"></span>
-    <span class="arms"></span>
+    <span class="arm1"></span>
+    <span class="arm2"></span>
     <span class="body">
         <span class="papada"></span>
         <span class="panxa"></span>
@@ -521,9 +523,10 @@ function showranking() {
 </div>
 
 <div id="officechair"></div>
-<div id="explosio1"></div>
+
+
 <div id="explosio2"></div>
-<div id="explosio3"></div>
+<div id="explosio1"></div>
 <!--
 mol_heli {   
   position: absolute;

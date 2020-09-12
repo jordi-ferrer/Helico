@@ -12,19 +12,16 @@ function explosiona() {
     var anim2;
     
     //exploding clouds:
-    explosio1.ang=Math.random()*120-60;
-    explosio1.width=100; explosio1.height=200;
-    explosio1.x=heli.x - explosio1.width/2; explosio1.y=heli.y - explosio1.height/2;
+    
+    explosio1.width=50; explosio1.height=50;
+    explosio1.x=heli.x +explosio1.width/2; explosio1.y=heli.y ;
        
     explosio2.ang=60;
     explosio2.width=10; explosio2.height=30;
-    explosio2.x=heli.x - explosio2.width/2; explosio2.y=heli.y -explosio2.height/2 ;
+    explosio2.x=heli.x +explosio1.width/2+ explosio2.width; explosio2.y=heli.y  ;
     
-    explosio3.ang=Math.random()*60-30;
-    explosio3.width=5; explosio3.height=5;
-    explosio3.x=heli.x - explosio3.width/2; explosio3.y=heli.y -explosio3.height/2 ;
-    
-    explosio1.show(); explosio2.show(); explosio3.show();
+
+    explosio1.show(); explosio2.show(); 
     
     
     //flying parts of the helicopter
@@ -65,13 +62,14 @@ function peta() {
     cosheli.draw();
     cadena.forEach(element => element.draw());
     
+    explosio1.centerbg();
     explosio1.draw();
     explosio2.draw();
-    explosio3.draw();
+
     
     explosio1.opacity = 1-it/240;
     explosio2.opacity = 1-it/240;;
-    explosio3.opacity = 1-it/240;;
+  
     
     
     growStatic(explosio1,2,2);
@@ -80,8 +78,7 @@ function peta() {
     growStatic(explosio2,6,6);
     explosio2.setwidths();
     
-    growStatic(explosio3,3,1);
-    explosio3.setwidths();
+
     it +=1;
     if(xocat) {//this if is to avoid executing exploding animation once game
         //restarts!
