@@ -16,6 +16,11 @@
     width: 30px;
     background-color: red;
     visibility:hidden;
+    animation-name: oneja;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-delay: 0s;
+    will-change: transform;
 }
 .banner2 {
     position:absolute;
@@ -25,4 +30,15 @@
     background-image: url("../pictures/banner_bw.png");
     background-size: 100% 100%;
     visibility:hidden;
+    animation-name: oneja;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-delay: 0s;
+    will-change: transform;
+}
+
+@keyframes oneja {
+   0%   {transform: skewY(-6deg) }
+   50%  {transform: skewY(6deg) }
+  100%  {transform: skewY(-6deg) }
 }
