@@ -32,7 +32,7 @@ and open the template in the editor.
   animation-duration: 100s;
   animation-iteration-count: infinite;
   animation-delay: 0s;
-   animation-timing-function: linear;
+  animation-timing-function: linear;
   visibility:visible;
   
   will-change: transform;
