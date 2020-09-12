@@ -82,7 +82,8 @@ var checkpoint = 1;
 var current_checkpoint = 0;
 const checkpoint_dist = 1000;
 
-//background-skyline:
+//background-skyline and trump:
+trump = new rectvol(1250, 393, 36, 37, -0.15, 0, 0, 0, 0,0,0, "trumpenvelope");
 skyline = new rectvol(0, 0,2*2551, 712, -0.15, 0, 0, 0, 0,0,0, "skyline");
 
 /*helicopter position, speed & rope*/
@@ -196,6 +197,7 @@ function restart() {
             enemic1.x = 1200; enemic1.y=Math.random()*400; enemic1.vx=-10; enemic1.vy=0;
         }
         skyline.x = sco*skyline.vx;
+        trump.x = skyline.x + 1250;
         
         explosio1.hide();
         explosio2.hide();
@@ -309,6 +311,7 @@ function move() {
         chair.move(bc3, chair.height);
         
         skyline.move();
+        trump.move();
     }
 
     flag.update();
@@ -375,10 +378,12 @@ function setwidths() {
     bloc.forEach(element => element.setwidths());
     
     skyline.setwidths();
+    trump.setwidths();
 }
 
 function draw() {
     skyline.draw();
+    trump.draw();
     
     heli.draw();  
     helix1.draw("scaleY("+Math.abs(Math.cos(helix1.ang/180*Math.PI))+") rotateZ("+ -helix1.ang+"deg)");
@@ -392,7 +397,8 @@ function draw() {
     human.draw();
     chair.draw();
     cadena.forEach(element => element.draw());
-    flag.draw('skewY('+ 5*Math.cos(sco/10) +'deg)');
+    //flag.draw('skewY('+ 5*Math.cos(sco/10) +'deg)');
+    flag.draw();
     bloc.forEach(element => element.draw()); //wow què és això? de:Romà
 }
 
@@ -410,7 +416,9 @@ function showranking() {
     
 <div id="fons_de_pant"></div>
 <div id="trumpenvelope">
-    <div id="trump"></div>
+    <div id="trumpbody">
+        <div id="trump"></div>
+    </div>
 </div>
 <div id="skyline"></div>
 
