@@ -116,7 +116,7 @@ segment5 = new ropelink(corda.x-corda.width*2,corda.y+segment1.height*4,corda.wi
 
 var cadena = [segment1, segment2, segment3, segment4, segment5];
 
-enemic1 = new helicop(1200, 200, 120, 55, -10, 0, 0, 0,0,0,0, "enemic1");
+enemic1 = new helicop(1200, 200, 140, 65, -7, 0, 0, 0,0,0,0, "enemic1envelope");
         
 /*bloc position & speed*/
 bc1 = new edifici(40, heli.y+48, 100, 400, -5, 0, 0, 0,0,0,0, "bloc1");
@@ -350,9 +350,9 @@ function move() {
     //}
 
     if(heli.y > enemic1.y) {
-        enemic1.vy = 3;
+        enemic1.vy = 1;
     } else {
-        enemic1.vy=-3;
+        enemic1.vy=-1;
     }
 
     //repeat
@@ -495,8 +495,10 @@ function showranking() {
 <div class="terra" id="bloc5"></div>
 <div class="terra" id="bloc6"></div>
 
+<div id="enemic1envelope" class="heli">
 <div id="enemic1" class="heli">
 
+</div>
 </div>
 
 <div id="human1">
