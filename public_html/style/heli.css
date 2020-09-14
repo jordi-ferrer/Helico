@@ -61,7 +61,10 @@
 }
 
 #enemic1{
-   background-color:red;
+   /*background-color:red;*/
+   background-image: url("../pictures/trump/trumpjet1.png");
+   background-size:120px;
+   transform: rotateY(180deg);
 }
 
 

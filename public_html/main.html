@@ -116,7 +116,7 @@ segment5 = new ropelink(corda.x-corda.width*2,corda.y+segment1.height*4,corda.wi
 
 var cadena = [segment1, segment2, segment3, segment4, segment5];
 
-enemic1 = new helicop(1200, 200, 50, 25, -10, 0, 0, 0,0,0,0, "enemic1");
+enemic1 = new helicop(1200, 200, 120, 55, -10, 0, 0, 0,0,0,0, "enemic1");
         
 /*bloc position & speed*/
 bc1 = new edifici(40, heli.y+48, 100, 400, -5, 0, 0, 0,0,0,0, "bloc1");
@@ -391,7 +391,7 @@ function draw() {
     cosheli.draw();
     pilot1.draw();
     cabina1.draw();
-    enemic1.draw("rotateY(180deg)");//afegeixo una transformacio al helicopter enemic
+    enemic1.draw();//afegeixo una transformacio al helicopter enemic
     human.draw();
     chair.draw();
     cadena.forEach(element => element.draw());
@@ -496,10 +496,7 @@ function showranking() {
 <div class="terra" id="bloc6"></div>
 
 <div id="enemic1" class="heli">
-    <div class="helix1"></div>
-    <div class="helix2"></div>
-    <div class="cuah" style="background-color:red;"></div>
-    <div class="cara2">o.O</div>
+
 </div>
 
 <div id="human1">
