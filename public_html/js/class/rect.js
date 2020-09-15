@@ -32,6 +32,11 @@ class rect {
       this._height = ep;
     }
     
+    isVisible()
+    {
+        return document.getElementById(this._name).style.visibility == "visible";
+    }
+    
     naiveCopy(obj)
     {
         this._x = obj.x;

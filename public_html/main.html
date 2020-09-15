@@ -58,6 +58,7 @@ html {
 <script src="js/class/chair.js"></script>
 <script src="js/class/explosio.js"></script>
 <script src="js/class/ropelink.js"></script>
+<script src="js/class/egg.js"></script>
 
 <script src="js/function/randbolet2.js"></script>
 <script src="js/function/underscore.js"></script>
@@ -111,10 +112,9 @@ segment1 = new ropelink(corda.x,corda.y,corda.width*1.25,corda.height/5*2,0,0,0,
 segment2 = new ropelink(corda.x,corda.y+segment1.height,corda.width*1.25,corda.height/5*2, 0, 0,0,0,0,0,0,"segment2",segment1);
 segment3 = new ropelink(corda.x,corda.y+segment1.height*2,corda.width*1.25,corda.height/5*2, 0, 0,0,0,0,0,0,"segment3", segment2);
 segment4 = new ropelink(corda.x,corda.y+segment1.height*3,corda.width*1.25,corda.height/5*2, 0, 0,0,0,0,0,0,"segment4", segment3);
-segment5 = new ropelink(corda.x-corda.width*2,corda.y+segment1.height*4,corda.width*6,corda.height/5*2, 0, 0,0,0,0,0,0,"segment5", segment4);
+segment5 = new egg(corda.x-corda.width*2,corda.y+segment1.height*4,corda.width*6,corda.height/5*2, 0, 0,0,0,0,0,0,"segment5", segment4);
 
-
-var cadena = [segment1, segment2, segment3, segment4, segment5];
+var cadena = [segment1, segment2, segment3, segment4];
 
 enemic1 = new helicop(1200, 200, 140, 65, -7, 0, 0, 0,0,0,0, "enemic1envelope");
         
@@ -206,8 +206,6 @@ function restart() {
         cadena.forEach(element => {element.ang_min = -90; element.ang_max=90;});
         cadena.forEach(element => element.ang = 0);
         heli.y_min=0;
-        
-
         
         pilot1.naiveCopy(pilot1_cp);
         cabina1.naiveCopy(cabina1_cp);
@@ -340,25 +338,19 @@ function move() {
         enemic1.y = Math.random()*bc1.y;
         enemic1.vx = -10;
     }
-    
-    // canvi de color dels edificis, ara ja no fa res
-    //if(sco > 1000) {
-    //    bloc.forEach(element => element.setColour("DarkSlateBlue"));
-    //    if(sco > 2000) {
-    //        bloc.forEach(element => element.setColour("darkgreen"));
-    //    }
-    //}
 
     if(heli.y > enemic1.y) {
         enemic1.vy = 1;
     } else {
         enemic1.vy=-1;
     }
+    
+    //huevasso
+    segment5.huevasso();
 
     //repeat
     if(mou) request = requestAnimationFrame(move); 
 }
-
 
 function setwidths() {
     heli.setwidths();

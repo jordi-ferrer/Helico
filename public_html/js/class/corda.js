@@ -18,13 +18,13 @@ class rope extends rectvol
 
     move()
     {
-        corda.x = heli.x + heli.width/4;
+        /*corda.x = heli.x + heli.width/4;
         corda.y = heli.y + heli.height - 8;
         
         this._ang += Math.random()*4 - 2;
         if(this._ang < min_ang) this._ang = min_ang; 
         if(this._ang > max_ang) this._ang = max_ang;
 
-        super.move();
+        super.move();*/
     }
 }
