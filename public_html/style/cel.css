@@ -17,6 +17,10 @@ body{
 .cel{
     background-color: blue;
 }
+.nuvol1{
+    position:absolute;
+    background-color:blue;
+}
 
 .boleta {
     position:absolute;
