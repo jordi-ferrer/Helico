@@ -24,8 +24,8 @@ class egg extends ropelink
         }
         else
         {
-            this.x = bloc[this._index].x + bloc[this._index].width/2 - this.width/2 - 10;
-            this.y = bloc[this._index].y - this.height - 10;
+            this.x = bloc[this._index].x + bloc[this._index].width/2 - this.width;
+            this.y = bloc[this._index].y - this.height;
         }
     }
     
@@ -45,7 +45,7 @@ class egg extends ropelink
     
     huevasso()
     {
-        if(sco>100)
+        if(sco>1000)
         {
             if(cadena.length<5)
             {
