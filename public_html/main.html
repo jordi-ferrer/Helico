@@ -20,6 +20,7 @@
 <link rel="stylesheet" href="style/intro_gameover.css">
 <link rel="stylesheet" href="style/explosio.css">
 <link rel="stylesheet" href="style/background.css">
+<link rel="stylesheet" href="style/jet.css">
 
 <style>
 
@@ -128,12 +129,12 @@ bc6 = new edifici(1040, 400+Math.random()*100, 100, 400, -5, 0, 0, 0,0,0,0, "blo
 
 var bloc = [bc1,bc2,bc3,bc4,bc5,bc6];
 
-human = new person(bc6.x, bc6.y - 58, 10, 65, 0, 0, 0, 0,0,0,0, "human1", "cara_huma");
+human = new person(bc6.x, bc6.y - 54, 10, 65, 0, 0, 0, 0,0,0,0, "human1", "cara_huma");
 montse = new person(bc1.x+1.5*heli.width, bc1.y + 58, 50, 65, 0, 0, 0, 0,0,0,0, "human2", "cara_montse");
 jefe = new person(bc1.x+1.5*heli.width, bc1.y + 58, 50, 65, 0, 0, 0, 0,0,0,0, "jefe", "cara_jefe");
 
 /*flag*/
-flag = new bandera(bc6.x, bc6.y-58, 33, 50, 0, 0, 0, 0,0,0,0, "flag");
+flag = new bandera(bc6.x, bc6.y-54, 33, 50, 0, 0, 0, 0,0,0,0, "flag");
 
 chair = new chair(bc3.x, bc3.y - 53, 25, 53,0, 0, 0, 0,0,0,0, "officechair");
 explosio1 = new explosio(0,0, 200, 200,0, 0, 0, 0,0,0,0, "explosio1");
@@ -187,7 +188,7 @@ function restart() {
             bc4.x=640; bc4.y= 200+Math.random()*300;
             bc5.x=840; bc5.y= 200+Math.random()*300;
             bc6.x=1040; bc6.y= 200+Math.random()*300;
-            bloc.forEach(element => element.setColour("gray"));
+           
 
             //reinicialitzant les coordenadees i velocitat del jjjjjjoricopter
             heli.x = 80; heli.y = bc1.y - heli.width; heli.vx=0; heli.vy=0;
@@ -513,7 +514,7 @@ function showranking() {
 
 <div id="enemic1envelope" class="heli">
 <div id="enemic1" class="heli">
-
+   
 </div>
 </div>
 

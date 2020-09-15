@@ -12,8 +12,8 @@ and open the template in the editor.
     position:absolute;
     width:25px;
     height:53px;
-    top:0px;
-    left:0px;
+    top:5px;
+    left:12px;
     background-image: url("../pictures/office_chair.png");
     background-size: 100% 100%;
 }
