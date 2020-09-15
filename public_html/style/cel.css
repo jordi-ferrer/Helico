@@ -54,34 +54,7 @@ body{
     animation-delay: 0s;
     will-change: transform;
 }
-.aura1 {
-    position:absolute;
-    width: 120px;
-    height: 120px;
-    border-radius: 100%;
-    background-color: white;
-    opacity: 0.3;
-    animation-name: aurachange;
-    animation-duration: 600s;
-    animation-iteration-count: infinite;
-    animation-delay: 0s;
-    will-change: transform;
-} 
-.aura2 {
-  position:absolute;
-  left: - 20px;
-  top:-40px;
-  width: 220px;
-  height: 220px;
-  border-radius: 100%;
-  background-color: white;
-  opacity: 0.3;
-  animation-name: aurachange;
-  animation-duration: 600s;
-  animation-iteration-count: infinite;
-  animation-delay: 0s;
-  will-change: transform;
-} 
+
 .solbunch {
    width:20%;
    height:20%;
@@ -122,12 +95,3 @@ body{
   100%  {background-color:yellow }
 }
 
-@keyframes aurachange{
-    0%   {opacity:1 }
-   40%   {opacity:1 }
-   43%   {opacity:0.6 }
-   54%   {opacity:0.4; background-color: white }
-   67%   {opacity:0.5; background-color: yellow }
-  96%  {opacity:0.5; background-color: yellow  }
-  100%  {opacity:1; background-color: white  }
-}
