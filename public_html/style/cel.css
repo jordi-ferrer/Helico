@@ -19,7 +19,17 @@ body{
 }
 .nuvol1{
     position:absolute;
-    background-color:blue;
+    background-color:transparent;
+    background-image: url("../pictures/background/nuvol1.png");
+    background-size:100%;
+    background-repeat: no-repeat;
+}
+.nuvol2{
+    position:absolute;
+    background-color:transparent;
+    background-image: url("../pictures/background/nuvol2.png");
+    background-size:100%;
+    background-repeat: no-repeat;
 }
 
 .boleta {
