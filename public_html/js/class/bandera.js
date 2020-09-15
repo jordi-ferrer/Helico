@@ -33,7 +33,7 @@ class bandera extends rectvol {
     move()
     {
         this.x = bloc[this._index].x + bloc[this._index].width - this.width;
-        this.y = bloc[this._index].y - 58;
+        this.y = bloc[this._index].y - 54;
     }
     
     hide()
