@@ -92,11 +92,6 @@ class rectvol extends rect {
         document.getElementById(this._name).style.visibility = "visible";
     }
     
-    isVisible()
-    {
-        return document.getElementById(this._name).style.visibility == "visible";
-    }
-    
     naiveCopy(obj)
     {
         super.naiveCopy(obj)
