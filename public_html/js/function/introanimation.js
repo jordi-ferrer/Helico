@@ -29,7 +29,7 @@ function skipintrou() {
     skipintro=true;
     document.getElementById("introbuttons").style.visibility="visible";
     document.getElementById("human2").style.visibility="hidden";
-    document.getElementById("jefe").style.visibility="hidden";
+    document.getElementById("jefe1").style.visibility="hidden";
     document.getElementById("skipinbut").style.visibility="hidden";
     document.getElementById("introtext").style.visibility="hidden";
     document.getElementById("score").style.visibility="visible";

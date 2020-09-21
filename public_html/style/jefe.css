@@ -1,0 +1,130 @@
+#jefe2 {
+    position:absolute;
+    visibility:hidden;
+}
+
+/*style of the boss*/
+
+.panxa2 {
+  position:absolute;
+  top:10px;
+  left:-6px;
+  height: 27px;
+  width: 23px;
+  background-color: sienna;
+  border-radius: 100%;
+  display: inline-block;
+}
+.papada2 {
+  position:absolute;
+  top:-2px;
+  left:-1px;
+  height: 12px;
+  width: 12px;
+  background-color: AntiqueWhite;
+  border-radius: 100%;
+  display: inline-block;
+}
+.cara4 {
+     position:absolute;
+  transform: rotate(90deg);
+  left:5px;
+}
+
+
+.leg13 {
+  position:absolute;
+  top:40px;
+  left:10px;
+  height: 4px;
+  width: 20px;
+  background-color: AntiqueWhite;
+  transform: rotate(-60deg);
+  border-radius: 40%;
+  display: inline-block;
+}
+.leg23 {
+  position:absolute;
+  top:40px;
+  left:20px;
+  height: 4px;
+  width: 20px;
+  background-color: AntiqueWhite;
+  transform: rotate(60deg);
+  border-radius: 40%;
+  display: inline-block;
+}
+
+.arm1j {
+  position:absolute;
+  top:20px;
+  left:5px;
+  height: 5px;
+  width: 15px;
+  background-color: AntiqueWhite;
+  border-radius: 40%;
+  display: inline-block;
+  animation-name: mou1;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-delay: 0s;
+  will-change: transform;
+  transform-origin: 100% 50%;
+}
+.arm2j {
+  position:absolute;
+  top:20px;
+  left:30px;
+  height: 5px;
+  width: 15px;
+  background-color: AntiqueWhite;
+  border-radius: 40%;
+  display: inline-block;
+  animation-name: mou2;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-delay: 0s;
+  will-change: transform;
+  transform-origin: 0% 50%;
+}
+
+.head3 {
+  position:absolute;
+  top:-9px;
+  left:-3px;
+  height: 15px;
+  width: 15px;
+  background-color: AntiqueWhite;
+  border-radius: 40%;
+}
+.body3 {
+  position:absolute;
+  top:10px;
+  left:20px;
+  height: 30px;
+  width: 10px;
+  background-color: sienna;
+  border-radius: 40%;
+}
+.peluca2 {
+  position:absolute;
+  top:3px;
+  left:12px;
+  height: 10px;
+  width: 25px;
+  background-color: gray;
+  border-radius: 45%;
+}
+
+@keyframes mou1 {
+   0%   {transform: rotate(-10deg); }
+   50%  {transform: rotate(-10deg); }
+   75%  {transform: rotate(40deg); }
+  100%  {transform: rotate(-10deg); }
+}
+@keyframes mou2 {
+   0%   {transform: rotate(40deg); }
+   50%  {transform: rotate(40deg); }
+   75%  {transform: rotate(-10deg); }
+  100%  {transform: rotate(40deg); }
+}

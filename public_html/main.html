@@ -21,6 +21,8 @@
 <link rel="stylesheet" href="style/explosio.css">
 <link rel="stylesheet" href="style/background.css">
 <link rel="stylesheet" href="style/jet.css">
+<link rel="stylesheet" href="style/jefe.css">
+<link rel="stylesheet" href="style/tomato.css">
 
 <style>
 
@@ -60,6 +62,7 @@ html {
 <script src="js/class/explosio.js"></script>
 <script src="js/class/ropelink.js"></script>
 <script src="js/class/egg.js"></script>
+<script src="js/class/arrojadiza.js"></script>
 
 <script src="js/function/randbolet2.js"></script>
 <script src="js/function/randnuvol1.js"></script>
@@ -118,7 +121,7 @@ segment5 = new egg(corda.x-corda.width*2,corda.y+segment1.height*4,corda.width*6
 
 var cadena = [segment1, segment2, segment3, segment4];
 
-enemic1 = new helicop(1200, 200, 140, 65, -7, 0, 0, 0,0,0,0, "enemic1envelope");
+enemic1 = new helicop(1200, 200, 140, 65, -8, 0, 0, 0,0,0,0, "enemic1envelope");
         
 /*bloc position & speed*/
 bc1 = new edifici(40, heli.y+48, 100, 400, -5, 0, 0, 0,0,0,0, "bloc1");
@@ -132,8 +135,10 @@ var bloc = [bc1,bc2,bc3,bc4,bc5,bc6];
 
 human = new person(bc6.x, bc6.y - 54, 10, 65, 0, 0, 0, 0,0,0,0, "human1", "cara_huma");
 montse = new person(bc1.x+1.5*heli.width, bc1.y + 58, 50, 65, 0, 0, 0, 0,0,0,0, "human2", "cara_montse");
-jefe = new person(bc1.x+1.5*heli.width, bc1.y + 58, 50, 65, 0, 0, 0, 0,0,0,0, "jefe", "cara_jefe");
+jefe1 = new person(bc1.x+1.5*heli.width, bc1.y + 58, 50, 65, 0, 0, 0, 0,0,0,0, "jefe1", "cara_jefe1");
+jefe2 = new person(bc1.x+1.5*heli.width, bc1.y + 58, 50, 65, 0, 0, 0, 0,0,0,0, "jefe2", "cara_jefe2");
 
+tomato1 = new arrojadiza(20,20,10,10,0,0,0,0.2,0,0,0,"tomato1",jefe2,false);
 /*flag*/
 flag = new bandera(bc6.x, bc6.y-54, 33, 50, 0, 0, 0, 0,0,0,0, "flag");
 
@@ -195,7 +200,7 @@ function restart() {
             heli.x = 80; heli.y = bc1.y - heli.width; heli.vx=0; heli.vy=0;
             
             //inicilitzant enemic1
-            enemic1.x = 1200; enemic1.y=Math.random()*400; enemic1.vx=-10; enemic1.vy=0;
+            enemic1.x = 1200; enemic1.y=Math.random()*400; enemic1.vx=-8; enemic1.vy=0;
         }
         skyline.x = sco*skyline.vx;
         trump.x = skyline.x + 1250;
@@ -256,7 +261,7 @@ function carrega() {
 function move() {
     //check hit:
     if( checkxoc(heli,bc1) || checkxoc(heli,bc2) || checkxoc(heli,bc3) || checkxoc(heli,bc4) || checkxoc(heli,bc5) || checkxoc(heli,bc6) || 
-        checkxoc(heli,enemic1) )  {
+        checkxoc(heli,enemic1) || checkxoc(heli,tomato1))   {
         gameover();
         return;
     }
@@ -310,6 +315,9 @@ function move() {
         
         skyline.move();
         trump.move();
+        
+        jefe2.move(bc4);
+        tomato1.move();
     }
 
     flag.update();
@@ -338,7 +346,7 @@ function move() {
     if( (sco % 400) === 0) {
         enemic1.x = 1200;
         enemic1.y = Math.random()*bc1.y;
-        enemic1.vx = -10;
+        enemic1.vx = -7;
     }
 
     if(heli.y > enemic1.y) {
@@ -347,6 +355,12 @@ function move() {
         enemic1.vy=-1;
     }
     
+    if(sco>100) {
+        jefe2.show();
+    }
+    if(sco % 200 === 0) {
+        tomato1.arroja();
+    }
     //huevasso
     segment5.huevasso();
 
@@ -371,6 +385,8 @@ function setwidths() {
     
     skyline.setwidths();
     trump.setwidths();
+    jefe2.setwidths();
+    tomato1.setwidths();
 }
 
 function draw() {
@@ -392,6 +408,9 @@ function draw() {
     //flag.draw('skewY('+ 5*Math.cos(sco/10) +'deg)');
     flag.draw();
     bloc.forEach(element => element.draw()); //wow què és això? de:Romà
+    
+    jefe2.draw();
+    tomato1.draw();
 }
 
 function showranking() {
@@ -466,7 +485,7 @@ function showranking() {
 </div>
 
 <div id="areavital2" >
-    <div id="jefe">
+    <div id="jefe1">
         <span class="peluca2"></span>
         <span class="leg13"></span>
         <span class="leg23"></span>
@@ -475,7 +494,7 @@ function showranking() {
             <span class="papada2"></span>
             <span class="panxa2"></span>
             <span class="head3">
-                <span class="cara4" id="cara_jefe">;}</span>
+                <span class="cara4" id="cara_jefe1">;}</span>
             </span>
         </span>
     </div>
@@ -488,7 +507,20 @@ function showranking() {
 <div class="terra" id="bloc5"></div>
 <div class="terra" id="bloc6"></div>
 
-
+<div id="jefe2">
+        <span class="peluca2"></span>
+        <span class="leg13"></span>
+        <span class="leg23"></span>
+        <span class="arm1j"></span>
+        <span class="arm2j"></span>
+        <span class="body3">
+            <span class="papada2"></span>
+            <span class="panxa2"></span>
+            <span class="head3">
+                <span class="cara4" id="cara_jefe2">;}</span>
+            </span>
+        </span>
+    </div>
 
 <div id="human1">
     <span class="leg1"></span>
@@ -527,6 +559,7 @@ function showranking() {
 <span class="segment" id="segment4"></span>
 <span class="segment segment2" id="segment5"></span>
    
+<div class="tomato" id="tomato1"></div>
 
 <div id="helicop" class="mol_heli">
     <div id="cuah" class="mol_heli_cua"></div>
