@@ -10,6 +10,7 @@ class rectvol extends rect {
         this._vang = vang;
         this._aang = aang;
         this._name = name;
+        this._transf = '';
     }
     
     get vx() {
@@ -35,6 +36,9 @@ class rectvol extends rect {
     }
     get name() {
         return this._name;
+    }
+    get transf() {
+        return this._transf;
     }
    
     
@@ -62,6 +66,9 @@ class rectvol extends rect {
     set name(ep) {
         this._name = ep;
     }
+    set transf(ep) {
+        this._transf = ep;
+    }
 
     
     setwidths() {
@@ -69,8 +76,8 @@ class rectvol extends rect {
         document.getElementById(this._name).style.height = this.height + "px";
     }
     
-    draw(transf='') {
-        document.getElementById(this._name).style.transform = 'translateY('+this.y + 'px) translateX('+this.x + 'px) rotate(' + this.ang + 'deg)' + transf;
+    draw() {
+        document.getElementById(this._name).style.transform = 'translateY('+this.y + 'px) translateX('+this.x + 'px) rotate(' + this.ang + 'deg)' + this._transf;
     }
     
     move() {
