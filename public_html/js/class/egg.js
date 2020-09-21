@@ -45,19 +45,35 @@ class egg extends ropelink
     
     huevasso()
     {
-        if(sco>1000)
+        if(!this.taken)
         {
-            if(cadena.length<5)
+            if(sco>1000)
             {
-                cadena.push(segment5);
-                segment5.update();
-                segment5.setwidths();
+                if(cadena.length<5)
+                {
+                    cadena.push(segment5);
+                    segment5.update();
+                    segment5.setwidths();
+                }
+                else
+                {
+                    if(checkxoc(heli,segment5) || xocarray(cadena.slice(0,3),segment5))
+                    {
+                        segment5.taken = true;
+                    }
+                    if(this.x < -30)
+                    {
+                        cadena.pop();
+                        this.hide();
+                    }
+                }
             }
             else
             {
-                if(checkxoc(heli,segment5) || xocarray(cadena.slice(0,3),segment5))
+                if(cadena.length===5)
                 {
-                    segment5.taken = true;
+                    cadena.pop();
+                    this.hide();
                 }
             }
         }
