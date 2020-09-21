@@ -7,4 +7,5 @@
     position:absolute;
     background-color: red;
     border-radius: 100%;
+    visibility:hidden;
 }

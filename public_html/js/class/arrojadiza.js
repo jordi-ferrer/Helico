@@ -11,11 +11,10 @@ class arrojadiza extends rectvol
         if(this._flying) {
             super.move();
             if(this.x < -10 || this.y > 1200) {
-                this._flying = false;
+                this.desa();
             }
         }
         else {
-            this.hide();
             this.x = this._thrower.x;
             this.y = this._thrower.y+10;
         }
@@ -25,9 +24,16 @@ class arrojadiza extends rectvol
         this._flying=true;
         this.show();
         
-        this.vx = -10;
-        this.vy = -10;
+        this.vx = -6 - Math.random()*6;
+        this.vy = -8 - Math.random()*4;
        
+    }
+    
+    desa(){
+        this._flying = false;
+        this.hide();
+        this.x = this._thrower.x;
+        this.y = this._thrower.y+10;
     }
     
 }
