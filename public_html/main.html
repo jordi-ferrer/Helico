@@ -362,6 +362,14 @@ function move() {
     } else {
         enemic1.vy=-1;
     }
+    if(enemic1.x-heli.x>0)
+    {
+        enemic1.transf = "rotateZ("+ Math.atan( (enemic1.y-heli.y)/(enemic1.x-heli.x) ) +"rad)";
+    }
+    else
+    {
+        enemic1.transf = "rotateZ("+ -Math.atan( (enemic1.y-heli.y)/(enemic1.x-heli.x) ) +"rad)";
+    }
     
     if(sco>100) {
         jefe2.show();
@@ -404,10 +412,9 @@ function setwidths() {
 function draw() {
     skyline.draw();
     trump.draw();
-    
-    heli.draw();  
-    helix1.draw("scaleY("+Math.abs(Math.cos(helix1.ang/180*Math.PI))+") rotateZ("+ -helix1.ang+"deg)");
-    
+    heli.draw();
+    helix1.transf = "scaleY(" + Math.abs(Math.cos(helix1.ang/180*Math.PI))+ ") rotateZ(" + -helix1.ang+"deg)";
+    helix1.draw();
     helix2.draw();
     cuah.draw();
     cosheli.draw();
@@ -417,7 +424,6 @@ function draw() {
     human.draw();
     chair.draw();
     cadena.forEach(element => element.draw());
-    //flag.draw('skewY('+ 5*Math.cos(sco/10) +'deg)');
     flag.draw();
     bloc.forEach(element => element.draw()); //wow què és això? de:Romà
     
