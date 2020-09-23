@@ -2,9 +2,11 @@
 <html  onclick="volare('helicop')" onkeydown="volare('helicop')">
 <head>
 <title>JoriCop</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
 <meta charset="UTF-8">
 <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, 
+      maximum-scale=1.0, user-scalable=no"/>
 
 <link rel="stylesheet" href="style/human.css">
 <link rel="stylesheet" href="style/heli.css">
@@ -139,6 +141,8 @@ jefe1 = new person(bc1.x+1.5*heli.width, bc1.y + 58, 50, 65, 0, 0, 0, 0,0,0,0, "
 jefe2 = new person(bc1.x+1.5*heli.width, bc1.y + 58, 50, 65, 0, 0, 0, 0,0,0,0, "jefe2", "cara_jefe2");
 
 tomato1 = new arrojadiza(20,20,10,10,0,0,0,0.2,0,0,0,"tomato1",jefe2,false);
+tomato2 = new arrojadiza(20,20,10,10,0,0,0,0.2,0,0,0,"tomato2",jefe2,false);
+
 /*flag*/
 flag = new bandera(bc6.x, bc6.y-54, 33, 50, 0, 0, 0, 0,0,0,0, "flag");
 
@@ -225,6 +229,7 @@ function restart() {
         corda.ang = 0;//modificar
         
         tomato1.desa();
+        tomato2.desa();
 	//mou=false;
 	document.getElementById("gameover").style.visibility="hidden"; //amaga el botó restart
         
@@ -263,7 +268,7 @@ function carrega() {
 function move() {
     //check hit:
     if( checkxoc(heli,bc1) || checkxoc(heli,bc2) || checkxoc(heli,bc3) || checkxoc(heli,bc4) || checkxoc(heli,bc5) || checkxoc(heli,bc6) || 
-        checkxoc(heli,enemic1) ||  (checkxoc(heli,tomato1) && tomato1.isVisible() ) )      {
+        checkxoc(heli,enemic1) ||  (checkxoc(heli,tomato1) && tomato1.isVisible() ) ||  (checkxoc(heli,tomato2) && tomato2.isVisible() )   )      {
         gameover();
         return;
     }
@@ -320,6 +325,7 @@ function move() {
         
         jefe2.move(bc4);
         tomato1.move();
+        tomato2.move();
     }
 
     flag.update();
@@ -363,6 +369,9 @@ function move() {
     if(sco % 200 === 0) {
         tomato1.arroja();
     }
+    if((sco-100) % 200 === 0) {
+        tomato2.arroja();
+    }
     //huevasso
     segment5.huevasso();
 
@@ -389,6 +398,7 @@ function setwidths() {
     trump.setwidths();
     jefe2.setwidths();
     tomato1.setwidths();
+    tomato2.setwidths();
 }
 
 function draw() {
@@ -413,6 +423,7 @@ function draw() {
     
     jefe2.draw();
     tomato1.draw();
+    tomato2.draw();
 }
 
 function showranking() {
@@ -562,6 +573,7 @@ function showranking() {
 <span class="segment segment2" id="segment5"></span>
    
 <div class="tomato" id="tomato1"></div>
+<div class="tomato" id="tomato2"></div>
 
 <div id="helicop" class="mol_heli">
     <div id="cuah" class="mol_heli_cua"></div>

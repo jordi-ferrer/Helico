@@ -24,7 +24,8 @@ class arrojadiza extends rectvol
         this._flying=true;
         this.show();
         
-        this.vx = -6 - Math.random()*6;
+        if(heli.x<this.x) this.vx = -5- Math.random()*7;
+        else this.vx =  Math.random()*5;
         this.vy = -8 - Math.random()*4;
        
     }
