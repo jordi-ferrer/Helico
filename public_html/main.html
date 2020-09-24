@@ -280,12 +280,12 @@ function carrega() {
 
 function move() {
     //check hit:
-    if( checkxoc(heli,bc1) || checkxoc(heli,bc2) || checkxoc(heli,bc3) || checkxoc(heli,bc4) || checkxoc(heli,bc5) || checkxoc(heli,bc6) || 
-        xocrotatedrect(enemic1,heli) ||  (checkxoc(heli,tomato1) && tomato1.isVisible() ) ||  (checkxoc(heli,tomato2) && tomato2.isVisible() ) ||
-        (checkxoc(heli,llibre) && llibre.flying) )      {
-        gameover();
-        return;
-    }
+    //if( checkxoc(heli,bc1) || checkxoc(heli,bc2) || checkxoc(heli,bc3) || checkxoc(heli,bc4) || checkxoc(heli,bc5) || checkxoc(heli,bc6) || 
+    //    xocrotatedrect(enemic1,heli) ||  (checkxoc(heli,tomato1) && tomato1.isVisible() ) ||  (checkxoc(heli,tomato2) && tomato2.isVisible() ) ||
+    //    (checkxoc(heli,llibre) && llibre.flying) )      {
+    //    gameover();
+    //    return;
+    //}
 
     //check resque:
     if( !rescatat && ( checkxoc(heli,human) || xocarray(cadena,human) )) {
@@ -382,11 +382,11 @@ function move() {
     var angle = Math.atan( (enemic1.y-heli.y)/(enemic1.x-heli.x) )*180/Math.PI;
     if(enemic1.x-heli.x>0)
     {
-        enemic1.ang = Math.min(angle, 45);
+        enemic1.ang = Math.min(Math.max(angle, -45), 45);
     }
     else
     {
-        enemic1.ang = Math.min(-angle, 45);
+        enemic1.ang = Math.min(Math.max(-angle, -45), 45);
     }
     
     if(sco>100) {
