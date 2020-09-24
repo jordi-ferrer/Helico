@@ -36,7 +36,7 @@ function xocarray(array, rect1) {
     return xoc;
 }
 
-function xocrotatedrect(rect1, rect2) {
+function xocrotatedrect(rect1, rect2) { //rectangle 1 is rotatee, rect 2 is not
     var p1 = [rect1.x - rect1.height*Math.sin(Math.PI*rect1.ang/180), rect1.y+Math.cos(Math.PI*rect1.ang/180)*rect1.height];
     var p2 = [rect1.x,  rect1.y];
     var p3 = [rect1.x - rect1.height*Math.sin(Math.PI*rect1.ang/180) + rect1.width*Math.cos(Math.PI*rect1.ang/180), rect1.y + Math.cos(Math.PI*rect1.ang/180)*rect1.height + rect1.width*Math.sin(Math.PI*rect1.ang/180)];
