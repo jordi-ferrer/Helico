@@ -15,6 +15,8 @@
     height: 20px;
     width: 30px;
     background-color: red;
+    background-image:url("../pictures/CNTFAI.png");
+    background-size:30px;
     visibility:hidden;
     animation-name: oneja;
     animation-duration: 1.5s;
