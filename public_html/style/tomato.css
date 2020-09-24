@@ -5,7 +5,10 @@
 
 .tomato{
     position:absolute;
-    background-color: red;
-    border-radius: 100%;
+    background-color: none;
+    border-radius: 0%;
     visibility:hidden;
+    background-image:url("../pictures/tomato.png");
+    background-size:12px;
+    background-repeat: no-repeat;
 }
