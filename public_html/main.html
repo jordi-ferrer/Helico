@@ -378,13 +378,15 @@ function move() {
     } else {
         enemic1.vy=-1;
     }
+    
+    var angle = Math.atan( (enemic1.y-heli.y)/(enemic1.x-heli.x) )*180/Math.PI;
     if(enemic1.x-heli.x>0)
     {
-        enemic1.ang =  Math.atan( (enemic1.y-heli.y)/(enemic1.x-heli.x) )*180/Math.PI;
+        enemic1.ang = Math.min(angle, 45);
     }
     else
     {
-        enemic1.ang = -Math.atan( (enemic1.y-heli.y)/(enemic1.x-heli.x) )*180/Math.PI;
+        enemic1.ang = Math.min(-angle, 45);
     }
     
     if(sco>100) {
