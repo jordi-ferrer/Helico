@@ -31,7 +31,6 @@ body{
     background-size:100%;
     background-repeat: no-repeat;
 }
-
 .boleta {
     position:absolute;
     width: 30px;
@@ -54,7 +53,6 @@ body{
     animation-delay: 0s;
     will-change: transform;
 }
-
 .solbunch {
    width:20%;
    height:20%;

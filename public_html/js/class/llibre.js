@@ -15,7 +15,7 @@ class llibre extends rectvol
     }
     
     
-     get flying() {
+    get flying() {
         return this._flying;
     }
     

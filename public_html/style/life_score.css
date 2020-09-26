@@ -1,0 +1,17 @@
+
+.life_frame{
+    position:absolute;
+    left:210px;
+    top:5px;
+    border-radius: 30px;
+    background-color: gray;
+    visibility: visible;
+}
+.life{
+    position:absolute;
+    left:2.5px;
+    top:2.5px;
+    border-radius: 30px;
+    background-color: red;
+    visibility: visible;
+}

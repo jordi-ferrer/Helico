@@ -26,6 +26,7 @@
 <link rel="stylesheet" href="style/jefe.css">
 <link rel="stylesheet" href="style/tomato.css">
 <link rel="stylesheet" href="style/llibre.css">
+<link rel="stylesheet" href="style/life_score.css">
 
 <style>
 
@@ -53,7 +54,7 @@ html {
 </style>
 </head>
 <body onload="carrega();">
-
+<!-- classes -->
 <script src="js/class/rect.js"></script>
 <script src="js/class/rectvol.js"></script>
 <script src="js/class/person.js"></script>
@@ -67,7 +68,8 @@ html {
 <script src="js/class/egg.js"></script>
 <script src="js/class/arrojadiza.js"></script>
 <script src="js/class/llibre.js"></script>
-
+<script src="js/class/life.js"></script>
+<!-- functions -->
 <script src="js/function/randbolet2.js"></script>
 <script src="js/function/randnuvol1.js"></script>
 <script src="js/function/underscore.js"></script>
@@ -78,9 +80,8 @@ html {
 <script src="js/function/gameover.js"></script>
 <script src="js/function/explosions.js"></script>
 
-
 <script>
-var music="on";
+var music = "on";
 var mou = false;
 var sco = 0;
 var skipintro = false;
@@ -91,6 +92,9 @@ var xocat = false;
 var checkpoint = 1;
 var current_checkpoint = 0;
 const checkpoint_dist = 1000;
+var starting_life = 100;
+
+life = new life(210,5,400,25,starting_life,"life_frame","life");
 
 //background-skyline and trump:
 trump = new rectvol(1250, 393, 36, 37, -0.15, 0, 0, 0, 0,0,0, "trumpenvelope");
@@ -118,10 +122,10 @@ cosheli_cp = new rectvol(); cosheli_cp.naiveCopy(cosheli);
 corda = new rope(heli.x + heli.width/4,heli.y + heli.height - 8, 5, 100, 0,0, 0, 0,0,0,0, "corda");
 
 segment1 = new ropelink(corda.x,corda.y,corda.width*1.25,corda.height/5*2,0,0,0,0,0,0,0,"segment1", "heli");
-segment2 = new ropelink(corda.x,corda.y+segment1.height,corda.width*1.25,corda.height/5*2, 0, 0,0,0,0,0,0,"segment2",segment1);
-segment3 = new ropelink(corda.x,corda.y+segment1.height*2,corda.width*1.25,corda.height/5*2, 0, 0,0,0,0,0,0,"segment3", segment2);
-segment4 = new ropelink(corda.x,corda.y+segment1.height*3,corda.width*1.25,corda.height/5*2, 0, 0,0,0,0,0,0,"segment4", segment3);
-segment5 = new egg(corda.x-corda.width*2,corda.y+segment1.height*4,corda.width*6,corda.height/5*2, 0, 0,0,0,0,0,0,"segment5", segment4);
+segment2 = new ropelink(corda.x,corda.y+segment1.height,corda.width*1.25,corda.height/5*2,0,0,0,0,0,0,0,"segment2",segment1);
+segment3 = new ropelink(corda.x,corda.y+segment1.height*2,corda.width*1.25,corda.height/5*2,0,0,0,0,0,0,0,"segment3", segment2);
+segment4 = new ropelink(corda.x,corda.y+segment1.height*3,corda.width*1.25,corda.height/5*2,0,0,0,0,0,0,0,"segment4", segment3);
+segment5 = new egg(corda.x-corda.width*2,corda.y+segment1.height*4,corda.width*6,corda.height/5*2,0,0,0,0,0,0,0,"segment5", segment4);
 
 var cadena = [segment1, segment2, segment3, segment4];
 
@@ -168,6 +172,7 @@ heli_cp = new helicop();
 enemic_cp = new helicop();
 
 function restart() {
+    life.life = starting_life;
     if(xocat) {
         if( current_checkpoint > 0 ) //checkpoint guardat
         {
@@ -284,11 +289,23 @@ function move() {
     /*draw helicop and bloc*/
     draw();
     
+    //check mortal hit:
+    if( checkxoc(heli,bc1) || checkxoc(heli,bc2) || checkxoc(heli,bc3) || checkxoc(heli,bc4) || 
+        checkxoc(heli,bc5) || checkxoc(heli,bc6) || xocrotatedrect(enemic1,heli) )
+    {
+        life.life = 0;
+    }
     
     //check hit:
-    if( checkxoc(heli,bc1) || checkxoc(heli,bc2) || checkxoc(heli,bc3) || checkxoc(heli,bc4) || checkxoc(heli,bc5) || checkxoc(heli,bc6) || 
-        xocrotatedrect(enemic1,heli) ||  (checkxoc(heli,tomato1) && tomato1.isVisible() ) ||  (checkxoc(heli,tomato2) && tomato2.isVisible() ) ||
-        (checkxoc(heli,llibre) && llibre.flying) )      {
+    if( (checkxoc(heli,tomato1) && tomato1.flying ) ||  (checkxoc(heli,tomato2) && tomato2.flying ) ||
+        (checkxoc(heli,llibre) && llibre.flying) ) {
+        life.life = life.life - 1;
+    }
+    
+    life.update();
+    
+    if(life.life < 1)
+    {
         gameover();
         return;
     }
@@ -418,6 +435,7 @@ function setwidths() {
     pilot1.setwidths();
     cabina1.setwidths();
     enemic1.setwidths();
+    life.setwidths();
     human.setwidths();
     chair.setwidths();
     cadena.forEach(element => element.setwidths());
@@ -465,17 +483,15 @@ function showranking() {
 </script>
 
 <div class="solbunch">
-    
     <div class="sol"> </div>
 </div>
-    
+
 <div id="fons_de_pant"></div>
 <div id="trumpenvelope">
     <div id="trumpbody">
         <div id="trump"></div>
     </div>
 </div>
-
 
 <div class="flock" style="top:-110px;left:240px">
     <div class="bird"  style="background-color:Crimson;top:210px;left:40px">
@@ -497,6 +513,9 @@ function showranking() {
 
 <div id="skyline"></div>
 
+<div id="life_frame" class="life_frame">
+    <div id="life" class="life"></div>
+</div>
 
 <div class="flock">
     <div class="bird"  style="top:210px;left:40px">
