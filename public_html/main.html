@@ -398,9 +398,7 @@ function move() {
     if(sco % 200 === 0) {
         tomato1.arroja();
     }
-    if((sco-100) % 200 === 0) {
-        tomato2.arroja();
-    }
+    
     if((sco-150) % 200 === 0) {
         llibre.jump();
     }
@@ -430,7 +428,7 @@ function setwidths() {
     trump.setwidths();
     jefe2.setwidths();
     tomato1.setwidths();
-    tomato2.setwidths();
+    //tomato2.setwidths();
     
     llibre.setwidths();
 }
@@ -455,7 +453,7 @@ function draw() {
     
     jefe2.draw();
     tomato1.draw();
-    tomato2.draw();
+    //tomato2.draw();
     
     llibre.draw();
 }
