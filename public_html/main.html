@@ -297,9 +297,22 @@ function move() {
     }
     
     //check hit:
-    if( (checkxoc(heli,tomato1) && tomato1.flying ) ||  (checkxoc(heli,tomato2) && tomato2.flying ) ||
-        (checkxoc(heli,llibre) && llibre.flying) ) {
-        life.life = life.life - 5;
+    if( checkxoc(heli,tomato1) && tomato1.flying )
+    {
+        life.life = life.life - 10;
+        tomato1.desa();
+    }
+    
+    if( checkxoc(heli,tomato2) && tomato2.flying )
+    {
+        life.life = life.life - 10;
+        tomato2.desa();
+    }
+    
+    if( checkxoc(heli,llibre) && llibre.flying )
+    {
+        life.life = life.life - 10;
+        llibre.stop();
     }
     
     life.update();
