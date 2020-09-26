@@ -2,12 +2,12 @@
     position: absolute;
     top:0px;
     left:0px;
-    background-color:none;
+    background-color:red;
 }
 #enemic1{
     position: absolute;
     top:0px;
-    left:0px;
+    left:-20px;
     width:140px;
     height:65px;
     background-image: url("../pictures/trump/trumpjet1.png");

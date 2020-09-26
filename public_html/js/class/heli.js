@@ -8,7 +8,7 @@ const vy_lim = 20;
 const height_lim = 31100;
 
 class helicop extends rectvol {
-    constructor(left=20,top,width,height,vx,vy,ax,ay,ang, vang, aang, name, y_min) {
+    constructor(left,top,width,height,vx,vy,ax,ay,ang, vang, aang, name, y_min) {
         super(left,top,width,height,vx,vy,ax,ay,ang, vang, aang, name);
         this._y_min=y_min;
     }

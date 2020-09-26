@@ -125,7 +125,7 @@ segment5 = new egg(corda.x-corda.width*2,corda.y+segment1.height*4,corda.width*6
 
 var cadena = [segment1, segment2, segment3, segment4];
 
-enemic1 = new helicop(1200, 200, 140, 65, -8, 0, 0, 0,0,0,0, "enemic1envelope");
+enemic1 = new helicop(1200, 200, 120, 65, -8, 0, 0, 0,0,0,0, "enemic1envelope");
         
 /*bloc position & speed*/
 bc1 = new edifici(40, heli.y+48, 100, 400, -5, 0, 0, 0,0,0,0, "bloc1");
@@ -279,13 +279,19 @@ function carrega() {
 
 
 function move() {
+    flag.update();
+
+    /*draw helicop and bloc*/
+    draw();
+    
+    
     //check hit:
-    //if( checkxoc(heli,bc1) || checkxoc(heli,bc2) || checkxoc(heli,bc3) || checkxoc(heli,bc4) || checkxoc(heli,bc5) || checkxoc(heli,bc6) || 
-    //    xocrotatedrect(enemic1,heli) ||  (checkxoc(heli,tomato1) && tomato1.isVisible() ) ||  (checkxoc(heli,tomato2) && tomato2.isVisible() ) ||
-    //    (checkxoc(heli,llibre) && llibre.flying) )      {
-    //    gameover();
-    //    return;
-    //}
+    if( checkxoc(heli,bc1) || checkxoc(heli,bc2) || checkxoc(heli,bc3) || checkxoc(heli,bc4) || checkxoc(heli,bc5) || checkxoc(heli,bc6) || 
+        xocrotatedrect(enemic1,heli) ||  (checkxoc(heli,tomato1) && tomato1.isVisible() ) ||  (checkxoc(heli,tomato2) && tomato2.isVisible() ) ||
+        (checkxoc(heli,llibre) && llibre.flying) )      {
+        gameover();
+        return;
+    }
 
     //check resque:
     if( !rescatat && ( checkxoc(heli,human) || xocarray(cadena,human) )) {
@@ -344,10 +350,7 @@ function move() {
         llibre.move();
     }
 
-    flag.update();
-
-    /*draw helicop and bloc*/
-    draw();
+    
 
     /*texts auxiliars*/
     if(document.getElementById("controls").style.visible==="visible")
@@ -386,7 +389,7 @@ function move() {
     }
     else
     {
-        enemic1.ang = Math.min(Math.max(-angle, -45), 45);
+        enemic1.ang = enemic1.ang*0.95;
     }
     
     if(sco>100) {

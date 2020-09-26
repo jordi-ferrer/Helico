@@ -5,6 +5,8 @@
 
 .tomato{
     position:absolute;
+    top:0px;
+    left:0px;
     background-color: none;
     border-radius: 0%;
     visibility:hidden;

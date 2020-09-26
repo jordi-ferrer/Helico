@@ -74,6 +74,7 @@ class rectvol extends rect {
     setwidths() {
         document.getElementById(this._name).style.width = this.width + "px";
         document.getElementById(this._name).style.height = this.height + "px";
+        
     }
     
     draw() {
