@@ -160,6 +160,7 @@ llibre = new llibre(10,10,40,26,0,0,0,0,0,0,0,"llibre", bc2, false);
 // checkpoint stored variables
 var sco_cp;
 var rescats_cp;
+var life_cp;
 bc1_cp = new edifici();
 bc2_cp = new edifici();
 bc3_cp = new edifici();
@@ -172,10 +173,10 @@ heli_cp = new helicop();
 enemic_cp = new helicop();
 
 function restart() {
-    life.life = starting_life;
     if(xocat) {
         if( current_checkpoint > 0 ) //checkpoint guardat
         {
+            life.life = life_cp;
             sco = sco_cp;
             rescats = rescats_cp;
             
@@ -196,6 +197,7 @@ function restart() {
         }
         else //no checkpoint
         {   
+            life.life = starting_life;
             sco=0;
             rescats=0;
             //flag.show();
@@ -338,6 +340,7 @@ function move() {
         // saving checkpoint state
         current_checkpoint = checkpoint;
         sco_cp = sco;
+        life_cp = life.life;
         rescats_cp = rescats;
         bc1_cp.naiveCopy(bc1);
         bc2_cp.naiveCopy(bc2);
