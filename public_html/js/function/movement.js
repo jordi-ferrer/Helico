@@ -8,7 +8,8 @@ function movebloc(rect, i)
 {
     rect.x = rect.x + rect.vx;
     if(rect.x < -rect.width)
-    {
+    {   
+        rect.inc_index();
         rect.x = 1100;
         //var difficulty = sco/100;
         //if(difficulty > 150) difficulty = 150;
