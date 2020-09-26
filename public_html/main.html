@@ -418,7 +418,7 @@ function move() {
     var angle = Math.atan( (enemic1.y-heli.y)/(enemic1.x-heli.x) )*180/Math.PI;
     if(enemic1.x-heli.x>0)
     {
-        enemic1.ang = Math.min(Math.max(angle, -45), 45);
+        enemic1.ang = Math.min(Math.max(angle, -25), 25);
     }
     else
     {
