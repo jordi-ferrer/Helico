@@ -1,10 +1,14 @@
 class arrojadiza extends rectvol
 {
-        constructor(left,top,width,height,vx,vy,ax,ay,ang, vang, aang, name, thrower, flying)
+    constructor(left,top,width,height,vx,vy,ax,ay,ang, vang, aang, name, thrower, flying)
     {
         super(left,top,width,height,vx,vy,ax,ay,ang, vang, aang, name);
         this._thrower = thrower;
         this._flying = flying;
+    }
+    
+    get flying() {
+        return this._flying;
     }
     
     move() {
