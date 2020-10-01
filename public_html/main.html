@@ -410,10 +410,10 @@ function move() {
     document.getElementById("dispclerks").innerHTML = rescats ;
     document.getElementById("dispous").innerHTML = ous ;
     var checkie = "0";
-    if(checkpoint ===1 ) checkie = "1st";
-    if(checkpoint ===2) checkie = "2nd";
-    if(checkpoint ===3) checkie = "3rd";
-    if(checkpoint >3) checkie = checkpoint + "th";
+    if(current_checkpoint ===1 ) checkie = "1st";
+    if(current_checkpoint ===2) checkie = "2nd";
+    if(current_checkpoint ===3) checkie = "3rd";
+    if(current_checkpoint >3) checkie = checkpoint + "th";
     document.getElementById("dispflags").innerHTML = checkie ;
 
     if(mou) sco +=1;
