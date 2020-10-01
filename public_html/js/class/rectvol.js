@@ -102,7 +102,7 @@ class rectvol extends rect {
     
     naiveCopy(obj)
     {
-        super.naiveCopy(obj)
+        super.naiveCopy(obj);
         this._vx = obj.vx;
         this._vy = obj.vy;
         this._ax = obj.ax;
@@ -111,5 +111,6 @@ class rectvol extends rect {
         this._vang = obj.vang;
         this._aang = obj.aang;
         this._name = obj.name;
+        
     }
 }

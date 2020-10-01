@@ -1,0 +1,12 @@
+.ou{
+    position:absolute;
+    border-radius: 100%;
+    left:0px;
+    top:0px;
+    width:30px;
+    height:40px;
+    background-color:brown;
+    background-image: url("../pictures/dinoegg_peque.png");
+    background-size: 31px;
+    visibility:hidden;
+}

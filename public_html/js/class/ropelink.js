@@ -42,5 +42,10 @@ class ropelink extends rectvol
         
         super.move();
     }
+    
+    esborra() {
+        this.width = this.height = 0;
+        this.setwidths();
+    }
 }
 

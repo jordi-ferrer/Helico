@@ -29,7 +29,7 @@ class arrojadiza extends rectvol
         this.show();
         
         if(heli.x<this.x) this.vx = -5- Math.random()*7;
-        else this.vx =  Math.random()*5;
+        else this.vx = -5;
         this.vy = -8 - Math.random()*4;
        
     }

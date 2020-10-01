@@ -32,7 +32,9 @@ class edifici extends rectvol {
     }
 
     inc_index() {
-        this._index++;
+        maxindex++;
+        minindex++;
+        this._index = maxindex;;
     }
     
     draw(transf='') {
@@ -61,6 +63,7 @@ class edifici extends rectvol {
     
     naiveCopy(obj)
     {
+        this._index = obj.index;
         super.naiveCopy(obj);
     }
 }

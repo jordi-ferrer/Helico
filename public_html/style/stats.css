@@ -1,0 +1,59 @@
+.stats {
+    position:absolute;
+    width:300px;
+    color:white;
+    text-shadow: 1px 1px 4px blue;
+     font-family: "Comic Sans MS";    
+}
+
+#ouseniuats {
+    position:absolute;
+    width:21px;
+    height:30px;
+    background-color:none;
+    background-image: url("../pictures/dinoegg_peque.png");
+    background-size: 21px;
+}
+
+#dispous{
+    position:relative;
+    left:30px;
+}
+
+#clerksresqued{
+    position:absolute;
+    width:21px;
+    height:30px;
+    left:70px;
+    background-color:none;
+    background-image: url("../pictures/human1.png");
+    background-size: 21px;
+    
+}
+
+#dispclerks {
+    position:relative;
+    left:30px;
+}
+
+#distance{
+    position:absolute;
+    left:220px;
+    width:290px;
+
+}
+
+#flags {
+    position:absolute;
+    left:140px;
+    width:21px;
+    height:30px;
+    background-color:none;
+    background-image: url("../pictures/flag.png");
+    background-size: 21px;
+}
+
+#dispflags{
+    position:relative;
+    left:30px;
+}

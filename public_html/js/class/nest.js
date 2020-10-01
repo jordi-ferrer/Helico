@@ -1,38 +1,19 @@
-class egg extends rectvol
+class nest extends rectvol
 {
     constructor(left,top,width,height,vx,vy,ax,ay,ang, vang, aang, name, apareix)
     {
         super(left,top,width,height,vx,vy,ax,ay,ang, vang, aang, name);
         this._apareix = apareix;
         this._index = 0;
-        this._nested = false;
-    }
-    set nested(ep){
-        this._nested = ep;
     }
     
     get startplace() {
         return this._apareix;
     }
     
-    get nested(){
-        return this._nested;
-    }
-    
-    take() {
-        segment5.width=this.width;
-        segment5.height=this.height;
-        segment5.setwidths();
-        //la següent linia canvia la classe CSS del 5è tros de segment de
-        //la corda
-        document.getElementById(segment5.name).classList.add('ou');
-        segment5.show();
-        
-        this.hidegg();
-    }
-    
-    hidegg() {
-        this.hide();
+
+    hide() {
+        super.hide();
         this.x = -31;
         this.vx=0;
     }
@@ -44,9 +25,9 @@ class egg extends rectvol
         this.x = bloc[this._index].x + bloc[this._index].width/2 ;
         this.y = bloc[this._index].y - this.height*0.9;
         this.vx =  bloc[this._index].vx;
-        ou.nested = false;
         
         this.show();
+        
     }
     
     move() {
@@ -57,10 +38,15 @@ class egg extends rectvol
         else super.move();
     }
     
-     naiveCopy(obj)
-    {
-        super.naiveCopy(obj);
-        this._nested = obj.nested;
-        
+    putegg() {
+        ou.x = this._x;
+        ou.y = this._y;
+        ou.vx = this.vx;
+        ou.show();
+        ou.nested = true;
     }
+    
+   
+    
+    
 }
