@@ -454,6 +454,14 @@ function move() {
     //segment5.huevasso();
     if( match(maxindex,nest.startplace) !== (-1) ) nest.appear();
     
+    /*if( match( maxindex,[10] ) !== (-1) )
+    {
+        array = [bc1.index, bc2.index, bc3.index, bc4.index, bc5.index, bc6.index];
+        aux_index = match(maxindex, array);
+        document.getElementById(bloc[aux_index].name).style.backgroundImage = "url('../pictures/edificis/bloc_final.png')";
+        document.getElementById(bloc[aux_index].name).style.backgroundSize = "100px";
+    }*/
+    
     //repeat
     if(mou) request = requestAnimationFrame(move); 
 }
