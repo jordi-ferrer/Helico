@@ -73,7 +73,7 @@ class bandera extends rectvol {
         if(sco > checkpoint*checkpoint_dist) //we show flag every 1000 points.
         {
             checkpoint++;
-            array = [bc1.index, bc2.index, bc3.index, bc4.index, bc5.index, bc6.index];
+            var array = [bc1.index, bc2.index, bc3.index, bc4.index, bc5.index, bc6.index];
             this._index = match(maxindex, array);
             this.show();
         }

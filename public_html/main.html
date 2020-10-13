@@ -51,7 +51,7 @@ html {
 }
 #controls{
     position:absolute;
-    visibility:visible;
+    visibility:hidden;
 }
 
 </style>
@@ -73,6 +73,7 @@ html {
 <script src="js/class/llibre.js"></script>
 <script src="js/class/life.js"></script>
 <script src="js/class/nest.js"></script>
+<script src="js/class/ambedifici.js"></script>
 <!-- functions -->
 <script src="js/function/randbolet2.js"></script>
 <script src="js/function/randnuvol1.js"></script>
@@ -133,8 +134,8 @@ segment3 = new ropelink(corda.x,corda.y+segment1.height*2,corda.width*1.25,corda
 segment4 = new ropelink(corda.x,corda.y+segment1.height*3,corda.width*1.25,corda.height/5*2,0,0,0,0,0,0,0,"segment4", segment3);
 segment5 = new ropelink(corda.x,corda.y+segment1.height*4,0,0,0,0,0,0,0,0,0,"segment5", segment4);
 
-ou = new egg(corda.x-corda.width*2,corda.y+segment1.height*4,corda.width*6,corda.height/5*2,0,0,0,0,0,0,0,"ou", [15,45,70, 90, 120, 140, 160, 180]);
-nest = new nest(0,0,65,41,0,0,0,0,0,0,0,"nest", [25,55,80, 100, 130, 150, 170, 200]);
+ou = new egg(corda.x-corda.width*2,corda.y+segment1.height*4,corda.width*6,corda.height/5*2,0,0,0,0,0,0,0,"ou", 20);
+nest = new nest(0,0,65,41,0,0,0,0,0,0,0,"nest", 20);
 
 
 
@@ -152,7 +153,7 @@ bc6 = new edifici(1040, 400+Math.random()*100, 100, 400, -5, 0, 0, 0,0,0,0, "blo
 
 var bloc = [bc1,bc2,bc3,bc4,bc5,bc6];
 
-human = new person(bc6.x, bc6.y - 54, 10, 65, 0, 0, 0, 0,0,0,0, "human1", "cara_huma");
+human = new person(bc6.x, bc6.y - 65*0.7, 10, 65, 0, 0, 0, 0,0,0,0, "human1", "cara_huma");
 montse = new person(bc1.x+1.5*heli.width, bc1.y + 58, 50, 65, 0, 0, 0, 0,0,0,0, "human2", "cara_montse");
 jefe1 = new person(bc1.x+1.5*heli.width, bc1.y + 58, 50, 65, 0, 0, 0, 0,0,0,0, "jefe1", "cara_jefe1");
 jefe2 = new person(bc1.x+1.5*heli.width, bc1.y + 58, 50, 65, 0, 0, 0, 0,0,0,0, "jefe2", "cara_jefe2");
@@ -162,6 +163,7 @@ tomato2 = new arrojadiza(20,20,12,12,0,0,0,0.2,0,0,0,"tomato2",jefe2,false);
 
 /*flag*/
 flag = new bandera(bc6.x, bc6.y-54, 33, 50, 0, 0, 0, 0,0,0,0, "flag");
+gayflag = new ambedifici(bc3.x, bc3.y-54, 33, 50, 0, 0, 0, 0,0,0,0, "gayflag", 15, -20);
 
 chair = new chair(bc3.x, bc3.y - 53, 25, 53,0, 0, 0, 0,0,0,0, "officechair");
 explosio1 = new explosio(0,0, 200, 200,0, 0, 0, 0,0,0,0, "explosio1");
@@ -184,6 +186,7 @@ human_cp = new person();
 heli_cp = new helicop();
 enemic_cp = new helicop();
 ou_cp = new egg();
+segment5_cp = new ropelink();
 
 var maxindex = 6;
 var minindex = 1;
@@ -319,6 +322,13 @@ function move() {
         ou.take();
     }
     
+    if( ( checkxoc(heli,gayflag) || xocarray(cadena, gayflag)) && 
+            gayflag.isVisible() ) {
+        life.life = life.life + 20;
+        gayflag.hide();
+    }
+    
+    if( life.life > 100) life.life = 100;
     life.update();
     
     if(life.life < 1)
@@ -326,6 +336,7 @@ function move() {
         gameover();
         return;
     }
+    
 
     //check resque:
     if( !rescatat && ( checkxoc(heli,human) || xocarray(cadena,human) )) {
@@ -380,6 +391,8 @@ function move() {
         llibre.move();
         ou.move();
         nest.move();
+        
+        gayflag.move();
     }
 
     
@@ -397,15 +410,18 @@ function move() {
         "<br> bloc 6 y " + bc6.y + "<br> corda*sin(ang corda):" + Math.round(corda.height*Math.sin(Math.PI*corda.ang/180) ) + 
         "<br> angle corda: " + segment1.ang ;
         
+        
+        
     }
-    array = [bc1.index, bc2.index, bc3.index, bc4.index, bc5.index, bc6.index];
-    oindex = match(maxindex, array);
-    letters = ['c','b','a','p'];
-    document.getElementById("control2").innerHTML = "<br><br> edifici 1: " + bc1.index + " edifici 2: " + bc2.index +
-            " edifici 3: " + bc3.index + " edifici 4: " + bc4.index + " edifici 5: " + bc5.index + " edifici 6: " + bc6.index + 
-            " match 'p' to 'b' 'c' 'a' 'p' index is:" + match('p', letters) + 
-            "<br> edifici de la dreta de tot:" + oindex +
-            "<br> minim index:" + minindex;
+   var barray = [bc1.index, bc2.index, bc3.index, bc4.index, bc5.index, bc6.index];
+        oindex = match(maxindex, barray);
+        letters = ['c','b','a','p'];
+         document.getElementById("control2").innerHTML = "<br><br> edifici 1: " + bc1.index + " edifici 2: " + bc2.index +
+               " edifici 3: " + bc3.index + " edifici 4: " + bc4.index + " edifici 5: " + bc5.index + " edifici 6: " + bc6.index + 
+               " match 'p' to 'b' 'c' 'a' 'p' index is:" + match('p', letters) + 
+               "<br> edifici de la dreta de tot:" + oindex +
+               "<br> minim index:" + minindex + " maxim index:" + maxindex;
+   
     document.getElementById("dispdistance").innerHTML = Math.round(sco/10)/100 + " ";
     document.getElementById("dispclerks").innerHTML = rescats ;
     document.getElementById("dispous").innerHTML = ous ;
@@ -455,9 +471,11 @@ function move() {
     }
     
     //
-    if( match(maxindex,ou.startplace) !== (-1) ) ou.appear();
+    if( maxindex % ou.startplace === 0 ) ou.appear();
     //segment5.huevasso();
-    if( match(maxindex,nest.startplace) !== (-1) ) nest.appear();
+    if( ( (maxindex-10) % nest.startplace === 0) && maxindex >10 ) nest.appear();
+    
+    if( maxindex % gayflag.startplace === 0 ) gayflag.appear();
 
     
 
@@ -491,6 +509,7 @@ function setwidths() {
     
     ou.setwidths();
     nest.setwidths();
+    gayflag.setwidths();
 }
 
 function draw() {
@@ -518,6 +537,7 @@ function draw() {
     llibre.draw();
     ou.draw();
     nest.draw();
+    gayflag.draw();
 }
 
 function showranking() {
@@ -543,6 +563,7 @@ function save_game() {
         heli_cp.naiveCopy(heli);
         enemic_cp.naiveCopy(enemic1);
         ou_cp.naiveCopy(ou);
+        segment5_cp.naiveCopy(segment5);
 }
 
 function load_game() {
@@ -569,6 +590,8 @@ function load_game() {
             cuah.naiveCopy(cuah_cp);
             cosheli.naiveCopy(cosheli_cp);
             ou.naiveCopy(ou_cp);
+            segment5.naiveCopy(segment5_cp);
+            segment5.setwidths();
 }
 
 </script>
@@ -695,6 +718,11 @@ function load_game() {
     <span class="stick"></span>
     <span class="banner1" id="banner1"></span>
     <span class="banner2" id="banner2"></span>
+</div>
+
+<div id="gayflag">
+    <span class="stick"></span>
+    <span class="banner3" id="banner3"></span>
 </div>
 
 <div id="officechair"></div>

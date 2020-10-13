@@ -38,7 +38,7 @@ class egg extends rectvol
     }
     
     appear() {
-        array = [bc1.index, bc2.index, bc3.index, bc4.index, bc5.index, bc6.index];
+        var array = [bc1.index, bc2.index, bc3.index, bc4.index, bc5.index, bc6.index];
         this._index = match(maxindex, array);
         
         this.x = bloc[this._index].x + bloc[this._index].width/2 ;

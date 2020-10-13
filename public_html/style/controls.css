@@ -43,6 +43,7 @@ and open the template in the editor.
 }
 
 #control2 {
+    visibility:visible;
     position:absolute;
     left: 10px;
     top: 40px;

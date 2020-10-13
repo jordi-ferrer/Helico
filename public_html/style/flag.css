@@ -39,6 +39,33 @@
     will-change: transform;
 }
 
+#gayflag{
+    position:absolute;
+    visibility:hidden;
+    background-color: none;
+    left:0px;
+    top:0px;
+}
+
+.banner3 {
+    position:absolute;
+    left: 3px;
+    height: 20px;
+    width: 30px;
+    background-color: none;
+    background-image:url("../pictures/gayflag.jpg");
+    background-size:30px;
+    background-repeat: no-repeat;
+    
+    animation-name: oneja;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-delay: 0s;
+    will-change: transform;
+}
+
+
+
 @keyframes oneja {
    0%   {transform: skewY(-6deg) scaleX(0.9) translateX(0px) }
 

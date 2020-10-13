@@ -20,7 +20,7 @@ class person extends rectvol {
     move(edifici)
     {
         this.x = edifici.x;
-        this.y = edifici.y - 51 ;
+        this.y = edifici.y - this.height*0.7 ;
     }
     
     setCara(cara)
