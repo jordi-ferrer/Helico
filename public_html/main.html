@@ -211,8 +211,6 @@ function restart() {
             //flag.show();
         }
         
-        
-        
         skyline.x = sco*skyline.vx;
         trump.x = skyline.x + 1250;
         
@@ -252,7 +250,6 @@ function restart() {
         document.getElementById("comment").value="";
         document.getElementById("distance").value=0;
         document.getElementById("clerks").value=0;
-        
 
         heli.setCara(":O");
         mou = true;
@@ -266,7 +263,6 @@ function carrega() {
     llibre.move();
     //document.getElementById("aux2").innerHTML="carregant...";
     draw();
-    
     
     //document.getElementById("aux2").innerHTML="hola2 " + corda.angle;
     heli.setCara(":D");
@@ -409,9 +405,7 @@ function move() {
         "<br> human x: " + human.x + "<br> human y: " + human.y + "<br> human heigth: " + human.height + "<br> human width " + human.width +
         "<br> bloc 6 y " + bc6.y + "<br> corda*sin(ang corda):" + Math.round(corda.height*Math.sin(Math.PI*corda.ang/180) ) + 
         "<br> angle corda: " + segment1.ang ;
-        
-        
-        
+
     }
    var barray = [bc1.index, bc2.index, bc3.index, bc4.index, bc5.index, bc6.index];
         oindex = match(maxindex, barray);
@@ -473,12 +467,21 @@ function move() {
     //
     if( maxindex % ou.startplace === 0 ) ou.appear();
     //segment5.huevasso();
+
     if( ( (maxindex-10) % nest.startplace === 0) && maxindex >10 ) nest.appear();
     
     if( maxindex % gayflag.startplace === 0 ) gayflag.appear();
 
-    
 
+    
+    /*if( match( maxindex,[10] ) !== (-1) )
+    {
+        array = [bc1.index, bc2.index, bc3.index, bc4.index, bc5.index, bc6.index];
+        aux_index = match(maxindex, array);
+        document.getElementById(bloc[aux_index].name).style.backgroundImage = "url('../pictures/edificis/bloc_final.png')";
+        document.getElementById(bloc[aux_index].name).style.backgroundSize = "100px";
+    }*/
+    
     //repeat
     if(mou) request = requestAnimationFrame(move); 
 }
@@ -498,15 +501,12 @@ function setwidths() {
     cadena.forEach(element => element.setwidths());
     flag.setwidths();
     bloc.forEach(element => element.setwidths());
-    
     skyline.setwidths();
     trump.setwidths();
     jefe2.setwidths();
     tomato1.setwidths();
     tomato2.setwidths();
-    
     llibre.setwidths();
-    
     ou.setwidths();
     nest.setwidths();
     gayflag.setwidths();
@@ -529,11 +529,9 @@ function draw() {
     cadena.forEach(element => element.draw());
     flag.draw();
     bloc.forEach(element => element.draw()); //wow què és això? de:Romà
-    
     jefe2.draw();
     tomato1.draw();
     tomato2.draw();
-    
     llibre.draw();
     ou.draw();
     nest.draw();
@@ -546,6 +544,7 @@ function showranking() {
 
 
 function save_game() {
+
         current_checkpoint = checkpoint;
         building_chekpoint = maxindex; //sets the building count at maxindex
         sco_cp = sco;
@@ -564,9 +563,11 @@ function save_game() {
         enemic_cp.naiveCopy(enemic1);
         ou_cp.naiveCopy(ou);
         segment5_cp.naiveCopy(segment5);
+
 }
 
 function load_game() {
+
             life.life = life_cp;
             sco = sco_cp;
             rescats = rescats_cp;
@@ -592,6 +593,7 @@ function load_game() {
             ou.naiveCopy(ou_cp);
             segment5.naiveCopy(segment5_cp);
             segment5.setwidths();
+
 }
 
 </script>
@@ -733,13 +735,9 @@ function load_game() {
 </div>
 </div>
 
-
-
-
 <div id="llibre"></div>
 <div id="nest"></div>
 <div id="ou" class="ou"></div>
-
 
 <div id="explosio2"></div>
 <div id="explosio1"></div>
