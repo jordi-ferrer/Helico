@@ -187,6 +187,7 @@ heli_cp = new helicop();
 enemic_cp = new helicop();
 ou_cp = new egg();
 segment5_cp = new ropelink();
+var gayflag_cp = new ambedifici();
 
 var maxindex = 6;
 var minindex = 1;
@@ -405,9 +406,8 @@ function move() {
         "<br> human x: " + human.x + "<br> human y: " + human.y + "<br> human heigth: " + human.height + "<br> human width " + human.width +
         "<br> bloc 6 y " + bc6.y + "<br> corda*sin(ang corda):" + Math.round(corda.height*Math.sin(Math.PI*corda.ang/180) ) + 
         "<br> angle corda: " + segment1.ang ;
-
-    }
-   var barray = [bc1.index, bc2.index, bc3.index, bc4.index, bc5.index, bc6.index];
+        
+        var barray = [bc1.index, bc2.index, bc3.index, bc4.index, bc5.index, bc6.index];
         oindex = match(maxindex, barray);
         letters = ['c','b','a','p'];
          document.getElementById("control2").innerHTML = "<br><br> edifici 1: " + bc1.index + " edifici 2: " + bc2.index +
@@ -415,6 +415,8 @@ function move() {
                " match 'p' to 'b' 'c' 'a' 'p' index is:" + match('p', letters) + 
                "<br> edifici de la dreta de tot:" + oindex +
                "<br> minim index:" + minindex + " maxim index:" + maxindex;
+    }
+   
    
     document.getElementById("dispdistance").innerHTML = Math.round(sco/10)/100 + " ";
     document.getElementById("dispclerks").innerHTML = rescats ;
@@ -563,6 +565,7 @@ function save_game() {
         enemic_cp.naiveCopy(enemic1);
         ou_cp.naiveCopy(ou);
         segment5_cp.naiveCopy(segment5);
+        gayflag_cp.naiveCopy(gayflag);
 
 }
 
@@ -593,6 +596,7 @@ function load_game() {
             ou.naiveCopy(ou_cp);
             segment5.naiveCopy(segment5_cp);
             segment5.setwidths();
+            gayflag.naiveCopy(gayflag_cp);
 
 }
 
